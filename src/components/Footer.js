@@ -5,10 +5,9 @@ import styled from "styled-components"
 import { FaUniversity } from "@react-icons/all-files/fa/FaUniversity"
 import { SiFacebook } from "@react-icons/all-files/si/SiFacebook"
 
-const copyright =
-  "All copyright is owned by Professor Masuda Hajimu and fellow collaborators."
 const designer = "Designed and deployed by Syahrul Anuar"
 const supportDetails = "Supported by NUS FASS"
+const masudaWebsite = "http://masudahajimu.com/"
 
 const Footer = () => {
   return (
@@ -20,7 +19,13 @@ const Footer = () => {
         </div>
       </section>
       <section className="footer__details">
-        <div className="footer__copyright">{copyright}</div>
+        <div className="footer__copyright">
+          <p>
+            &copy; {new Date().getFullYear()}{" "}
+            <a href="http://masudahajimu.com/">Masuda Hajimu</a> and the
+            National University of Singapore
+          </p>
+        </div>
         <div className="footer__designer">{designer}</div>
         <div className="footer_socialmedia">
           <SiFacebook />
@@ -34,8 +39,7 @@ const Footer = () => {
 
 const FooterStyle = styled.footer`
   background-color: #333533;
-  padding: 1rem 3rem 1rem 3rem;
-  height: 20vh;
+  padding: 2rem;
 
   display: flex;
   grid-area: footer;
@@ -44,13 +48,14 @@ const FooterStyle = styled.footer`
   font-family: "Ubuntu", serif;
   font-size: normal;
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #f5cb5c;
+
 
   .footer__support {
     display: flex;
-    align-self: center;
-    width: 50%;
+    align-self: end;
+    flex: 1;
   }
 
   .footer__NUS {
@@ -63,15 +68,20 @@ const FooterStyle = styled.footer`
     align-self: center;
     margin-left: auto;
     flex-direction: column;
+    text-align: right;
   }
 
   .footer__copyright {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     margin-left: auto;
   }
 
+  .footer__copyright a {
+    color: #f5cb5c;
+  }
+
   .footer__designer {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     margin-left: auto;
   }
 

@@ -6,7 +6,8 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 
 // Import Global Items
-import "./layout.css"
+import 'normalize.css'
+import "../assets/layout.css"
 
 const Layout = ({ children }) => {
   return (
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
 }
 const LayoutWrapper = styled.section`
   height: 100vh;
+  max-width: 100vw;
   background-color: #cfdbd5;
   display: grid;
   grid-template-columns: auto;
@@ -31,7 +33,10 @@ const LayoutWrapper = styled.section`
 
 const ChildWrapper = styled.section`
   grid-area: body;
-  padding: 1rem;
+  align-items: center;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
 `
 
 export default Layout
