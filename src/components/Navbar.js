@@ -1,6 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
+
+// Import Data
+import { pageLinks } from "../data"
 
 // Icons
 import { BiSearchAlt } from "@react-icons/all-files/Bi/BiSearchAlt"
@@ -10,51 +13,44 @@ import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu"
 const title = "Reconceptualizing The Cold War"
 
 const Navbar = () => {
+  // hide list first by initial state of show = false
+  const [show, setShow] = useState(false)
+  // create button handler to change state
+  const handleClick = () => {
+    setShow(!show) // this returns opposite of the initial value which is false to true
+  }
+  //create CSS modiifer
+  const listState = show ? "nav__list show--container" : "nav__list"
+
   return (
     <NavStyle>
       <h1 className="nav__title">{title}</h1>
       <div className="nav__separator"></div>
       <div className="nav__dropdown">
         <div className="nav__header">
-          <button className="nav__btn">
-            <GiHamburgerMenu />
+          <button className="nav__btn" onClick={handleClick}>
+            <GiHamburgerMenu color="#F5CB5C" />
+          </button>
+          <div className="nav__currentPage">
+            <p>Home</p>
+          </div>
+          <button className="nav__btn btn--hidden">
+            <GiHamburgerMenu color="#F5CB5C" />
           </button>
         </div>
-        <div className="nav__links">
-          <Link to="/" className="nav_link" activeClassName="active-link">
-            Home
-          </Link>
-          <Link to="/about" className="nav_link" activeClassName="active-link">
-            About
-          </Link>
-          <Link
-            to="/browsearchives"
-            className="nav_link"
-            activeClassName="active-link"
-          >
-            Browse Archives
-          </Link>
-          <Link
-            to="/glossary"
-            className="nav_link"
-            activeClassName="active-link"
-          >
-            Glossary
-          </Link>
-          <Link
-            to="/workshops"
-            className="nav_link"
-            activeClassName="active-link"
-          >
-            Workshops
-          </Link>
-          <Link
-            to="/contribute"
-            className="nav_link"
-            activeClassName="active-link"
-          >
-            Contribute
-          </Link>
+        <div className={listState}>
+          <ul className="nav__links">
+            {pageLinks.map(link => {
+              const { id, url, text } = link
+              return (
+                <li>
+                  <Link className={id} activeClassName="active--link" to={url}>
+                    {text}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
           <form className="nav__search">
             <input
               type="text"
@@ -79,7 +75,7 @@ const NavStyle = styled.nav`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem 3rem;
+  margin: 1rem 2rem;
 
   .nav__title {
     font-size: 1.5rem;
@@ -93,8 +89,9 @@ const NavStyle = styled.nav`
   }
 
   .nav__separator {
-    width: 85%;
+    width: 100%;
     border: 2px solid #f5cb5c;
+    border-radius: 2px;
     flex: 1;
   }
 
@@ -108,106 +105,93 @@ const NavStyle = styled.nav`
 
     /* styling */
     width: 100%;
-    margin: 1rem 0rem;
+  }
+
+  .nav__header {
+    margin: 1rem 0rem 0.5rem 0rem;
+    padding: 0.7rem 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* styling */
+    background-color: #333533;
+    border-radius: 40px;
   }
 
   .nav__btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #333533;
   }
 
-  .nav__links {
-    /* display */
-    height: 0;
-    overflow: hidden;
+  .btn--hidden {
+    opacity: 0;
+  }
 
+  .nav__currentPage {
+    color: #e8eddf;
+    width: 100%;
+  }
+
+  .nav__list {
     /* flex */
     display: flex;
+    height: 0;
+    overflow: hidden;
     flex-direction: column;
-    flex: 1;
 
     /* font styling */
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
-    list-style: none;
 
-    /* styling */
     background-color: #f5cb5c;
-    padding: 1rem 3rem;
+    border-radius: 0 0 28px 28px;
+
+    /* Card DS */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    /* transititon */
+    transition: var(--transition);
   }
 
-  .nav__links > a:link {
-  margin: 0.2rem;
-  text-decoration: none;
-  }
 
-  .show_links {
-    /* display */
+  .show--container {
+    display: flex;
     height: 100%;
-
+    padding: 0.5rem 3rem 1rem 3rem;
   }
-  
 
-  .active-link  {
+  .nav__links {
+    list-style: none;
+  }
+
+  .nav__links li {
+    margin: 0.875rem;
+  }
+
+  .nav__links a {
+    text-decoration: none;
     color: #000000;
-    text-decoration: underline;
   }
 
-  /* old */
-  //background-color: #333533;
-  //padding: 1rem 3rem 1rem 3rem;
-  //color: #e8eddf;
-  //grid-area: header;
-  //display: flex;
-  //height: 16vh;
+  .active--link {
+    text-decoration: underline !important;
+  }
 
-  //.nav__title {
-  //  font-size: 1.5rem;
-  //  font-family: "Lora", serif;
-  //  font-style: normal;
-  //  font-weight: bold;
-  //  white-space: pre-line;
-  //  text-decoration: underline;
-  //  align-self: center;
-  //}
+  .nav__search {
+    display: none;
+  }
 
-  //.nav__list {
-  //  font-family: "Ubuntu", sans-serif;
-  //  font-style: normal;
-  //  font-size: 1.125rem;
-  //  list-style: none;
-  //  display: flex;
-  //  align-items: center;
-  //  margin-left: auto;
-  //}
+  @media (min-width: 768px) {
+    .nav__search {
+      display: flex;
+      place-self: center;
+    }
 
-  //.nav__list a {
-  //  text-decoration: none;
-  //  color: #e8eddf;
-  //  padding-right: 1rem;
-  //}
 
-  //.nav__search {
-  //  display: inline-flex;
-  //}
-
-  //.nav__search input {
-  //  width: 160px;
-  //  height: 25px;
-  //  border-radius: 25px 0 0 25px;
-  //  border: none;
-  //  outline: none;
-  //  background: rgba(232, 237, 223, 0.5);
-  //  align-items: center;
-  //}
-
-  //.nav__search button {
-  //  height: 25px;
-  //  background: #f5cb5c;
-  //  border: none;
-  //  border-radius: 0px 25px 25px 0;
-  //  padding-right: 9px;
-  //  padding-left: 9px;
-  //  align-items: center;
-  //}
+  }
 `
 
 export default Navbar

@@ -57,10 +57,9 @@ const ImageWrapper = styled.div`
 const ContributeWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
 
   .contribute__header {
-    padding: 1rem;
     flex: 1;
     text-align: center;
   }
