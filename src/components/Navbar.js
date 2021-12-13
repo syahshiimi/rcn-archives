@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
@@ -20,7 +20,25 @@ const Navbar = () => {
     setShow(!show) // this returns opposite of the initial value which is false to true
   }
   //create CSS modiifer
-  const listState = show ? "nav__list show--container" : "nav__list"
+  // const listState = show ? "nav__list show--container" : "nav__list"
+
+  // useRef instead
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
+
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+
+    if (show) {
+      linksContainerRef.current.style.height = `${linksHeight}px`
+      linksContainerRef.current.style.padding = `0.5rem 3rem 1rem 3rem`
+    } else {
+      linksContainerRef.current.style.height = '0px';
+      linksContainerRef.current.style.padding = `0rem`
+    }
+
+     
+  }, [show])
 
   return (
     <NavStyle>
@@ -38,13 +56,13 @@ const Navbar = () => {
             <GiHamburgerMenu color="#F5CB5C" />
           </button>
         </div>
-        <div className={listState}>
-          <ul className="nav__links">
+        <div className="nav__list" ref={linksContainerRef}>
+          <ul className="nav__links" ref={linksRef}>
             {pageLinks.map(link => {
               const { id, url, text } = link
               return (
-                <li>
-                  <Link className={id} activeClassName="active--link" to={url}>
+                <li key={id}>
+                  <Link activeClassName="active--link" to={url}>
                     {text}
                   </Link>
                 </li>
@@ -141,6 +159,7 @@ const NavStyle = styled.nav`
     height: 0;
     overflow: hidden;
     flex-direction: column;
+    position: static;
 
     /* font styling */
     font-family: "Ubuntu", sans-serif;
@@ -154,13 +173,6 @@ const NavStyle = styled.nav`
 
     /* transititon */
     transition: var(--transition);
-  }
-
-
-  .show--container {
-    display: flex;
-    height: 100%;
-    padding: 0.5rem 3rem 1rem 3rem;
   }
 
   .nav__links {
@@ -189,8 +201,6 @@ const NavStyle = styled.nav`
       display: flex;
       place-self: center;
     }
-
-
   }
 `
 
