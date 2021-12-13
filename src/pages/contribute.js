@@ -57,11 +57,11 @@ const ImageWrapper = styled.div`
 const ContributeWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem 2rem 2rem;
 
   .contribute__header {
     flex: 1;
     text-align: center;
+    padding-bottom: 6.15vh
   }
 
   .contribute__title {
@@ -71,22 +71,19 @@ const ContributeWrapper = styled.main`
   .contribute__content {
     align-items: center;
     display: flex;
-    padding-top: 2rem;
     flex-direction: column;
   }
-
-  /* right side */
 
   .contribute__info {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-top: 1rem;
+    padding-top: 6.15vh; 
   }
 
   .contribute__info > p,
   input {
-    margin: 1rem 0rem 0.5rem 0rem;
+    margin: 1.24vh 0rem 1.24vh 0rem;
   }
 
   .contribute__info > input {
@@ -97,8 +94,20 @@ const ContributeWrapper = styled.main`
   }
 
   .contribute__info .addinfo {
-    height: 4rem;
+    height: 8.5vh;
     align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+
+    .contribute__content {
+      flex-direction: row;
+
+      .contribute__info {
+        padding-left: 5%;
+      }
+    }
   }
 `
 

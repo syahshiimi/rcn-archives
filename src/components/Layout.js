@@ -33,11 +33,16 @@ const LayoutWrapper = styled.section`
 
 const ChildWrapper = styled.section`
   grid-area: body;
-  align-self: center;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 10vw;
+
+  @media (min-width: 768px) {
+    padding: 10vh 4.5vw 21vh 4.5vw;
+
+  }
+
 `
 
 export default Layout

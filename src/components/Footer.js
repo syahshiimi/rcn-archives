@@ -39,7 +39,7 @@ const Footer = () => {
 
 const FooterStyle = styled.footer`
   background-color: #333533;
-  padding: 2rem;
+  padding: 4vh 10vw; 
 
   display: flex;
   grid-area: footer;
@@ -89,8 +89,8 @@ const FooterStyle = styled.footer`
   }
 
   @media (min-width: 768px) {
-    height: 20vh;
-    padding: 3rem;
+    height: 15vh;
+    padding: 4vh 4.5vw; 
     font-size: 1rem;
   }
 

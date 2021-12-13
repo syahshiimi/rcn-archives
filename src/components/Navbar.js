@@ -86,15 +86,10 @@ const Navbar = () => {
 const NavStyle = styled.nav`
   grid-area: header;
   display: flex;
-  max-height: 100%;
-  max-width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem 2rem;
-
-  @media (min-width: 768px) {
-  }
+  margin: 5vh 10vw 3.5vh 10vw;
 
   .nav__title {
     font-size: 1.5rem;
@@ -198,7 +193,7 @@ const NavStyle = styled.nav`
 
   @media (min-width: 768px) {
     margin: 0;
-    padding: 1rem 3rem 1rem 3rem;
+    padding: 1vh 4.5vw;
     flex-direction: row;
     background-color: #333533;
     height: 15vh !important;
@@ -293,7 +288,7 @@ const NavStyle = styled.nav`
   }
 
   .nav__links a {
-  margin: 1rem;
+  margin: 1vh;
 
   }
 
