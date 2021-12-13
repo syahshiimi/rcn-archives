@@ -7,7 +7,7 @@ import Footer from "./Footer"
 
 // Import Global Items
 import 'normalize.css'
-import "../assets/layout.css"
+import "../assets/main.css"
 
 const Layout = ({ children }) => {
   return (

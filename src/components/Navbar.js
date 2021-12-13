@@ -10,7 +10,7 @@ import { BiSearchAlt } from "@react-icons/all-files/Bi/BiSearchAlt"
 import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu"
 
 // Variables
-const title = "Reconceptualizing The Cold War"
+const title = "Reconceptualizing \n The Cold War"
 
 const Navbar = () => {
   // hide list first by initial state of show = false
@@ -23,21 +23,19 @@ const Navbar = () => {
   // const listState = show ? "nav__list show--container" : "nav__list"
 
   // useRef instead
-  const linksContainerRef = useRef(null);
-  const linksRef = useRef(null);
+  const linksContainerRef = useRef(null)
+  const linksRef = useRef(null)
 
   useEffect(() => {
-    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    const linksHeight = linksRef.current.getBoundingClientRect().height
 
     if (show) {
       linksContainerRef.current.style.height = `${linksHeight}px`
       linksContainerRef.current.style.padding = `0.5rem 3rem 1rem 3rem`
     } else {
-      linksContainerRef.current.style.height = '0px';
+      linksContainerRef.current.style.height = "0px"
       linksContainerRef.current.style.padding = `0rem`
     }
-
-     
   }, [show])
 
   return (
@@ -76,7 +74,7 @@ const Navbar = () => {
               placeholder="Search.."
             />
             <button className="nav__search button" type="button">
-              <BiSearchAlt />
+              <BiSearchAlt color="#000000" />
             </button>
           </form>
         </div>
@@ -95,12 +93,14 @@ const NavStyle = styled.nav`
   justify-content: center;
   margin: 1rem 2rem;
 
+  @media (min-width: 768px) {
+  }
+
   .nav__title {
     font-size: 1.5rem;
     font-family: "Lora", serif;
     font-style: normal;
     font-weight: bold;
-    white-space: pre-line;
     text-align: center;
     text-decoration: underline;
     align-self: center;
@@ -156,10 +156,8 @@ const NavStyle = styled.nav`
   .nav__list {
     /* flex */
     display: flex;
-    height: 0;
     overflow: hidden;
     flex-direction: column;
-    position: static;
 
     /* font styling */
     font-family: "Ubuntu", sans-serif;
@@ -196,12 +194,118 @@ const NavStyle = styled.nav`
     display: none;
   }
 
+  /* Desktop Layout */
+
   @media (min-width: 768px) {
+    margin: 0;
+    padding: 1rem 3rem 1rem 3rem;
+    flex-direction: row;
+    background-color: #333533;
+    height: 15vh !important;
+    font-size: 1.125rem;
+
+    .nav__title {
+      color: #e8eddf;
+      white-space: pre-line;
+      text-align: left;
+      font-size: 1.5rem;
+    }
+
+    .nav__separator {
+      display: none;
+    }
+
+    .nav__dropdown {
+      flex-direction: row;
+      height: 100%;
+    }
+
+    .nav__header {
+      display: none;
+    }
+
+    .nav__list {
+      background-color: transparent;
+      box-shadow: none;
+      height: auto !important;
+      overflow: visible;
+      flex-direction: row !important;
+      flex: 1 1 0;
+      margin-left: auto;
+      justify-content: right;
+      align-self: center;
+    }
+
+    .nav__links a {
+      color: #e8eddf;
+    }
+
+    .active--link {
+      color: #f5cb5c !important;
+    }
+
+    ul {
+      display: inline-flex;
+      align-items: center;
+    }
+
     .nav__search {
       display: flex;
-      place-self: center;
+      margin: 0.875rem 0rem;
     }
+
+    .button {
+      background-color: #F5CB5C;
+      display: flex;
+      border: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 0px 25px 25px 0px;
+    }
+
+    input {
+      opacity: 50%;
+      text-align: center;
+      background: rgba(232, 237, 223, 0.5);
+      border: none;
+      border-radius: 25px 0px 0px 25px;
+
+    ::placeholder {
+    color: #E8EDDF; 
+    font-size: 0.8rem;
+    }
+
+    /* dropdown menu for mobile */
+    .nav__btn {
+      display: none;
+    }
+
   }
+
+  /* 4k UHD displasy */
+
+  @media (min-width: 2560px) {
+  font-size: 1.5rem;
+
+  .nav__title {
+  font-size: 2rem;
+  }
+
+  .nav__links a {
+  margin: 1rem;
+
+  }
+
+  input {
+
+    ::placeholder {
+      font-size: 1rem;
+      }
+  }
+
+  }
+
 `
 
 export default Navbar

@@ -51,7 +51,6 @@ const FooterStyle = styled.footer`
   font-size: 0.75rem;
   color: #f5cb5c;
 
-
   .footer__support {
     display: flex;
     align-self: end;
@@ -87,6 +86,16 @@ const FooterStyle = styled.footer`
 
   .footer_socialmedia {
     margin-left: auto;
+  }
+
+  @media (min-width: 768px) {
+    height: 20vh;
+    padding: 3rem;
+    font-size: 1rem;
+  }
+
+  .footer__support {
+    align-self: center;
   }
 `
 
