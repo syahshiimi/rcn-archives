@@ -6,7 +6,7 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 
 // Import Global Items
-import 'normalize.css'
+import "normalize.css"
 import "../assets/main.css"
 
 const Layout = ({ children }) => {
@@ -34,15 +34,11 @@ const LayoutWrapper = styled.section`
 const ChildWrapper = styled.section`
   grid-area: body;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4vh 10vw;
+  --padding-global-child: 4vh 10vw;
 
   @media (min-width: 768px) {
-    padding: 10vh 4.5vw 21vh 4.5vw;
-
+    --padding-global-child: 10vh 4.5vw 21vh 4.5vw;
   }
-
 `
 
 export default Layout

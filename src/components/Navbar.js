@@ -45,13 +45,13 @@ const Navbar = () => {
       <div className="nav__dropdown">
         <div className="nav__header">
           <button className="nav__btn" onClick={handleClick}>
-            <GiHamburgerMenu color="#F5CB5C" />
+            <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
           <div className="nav__currentPage">
             <p>Home</p>
           </div>
           <button className="nav__btn btn--hidden">
-            <GiHamburgerMenu color="#F5CB5C" />
+            <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
         </div>
         <div className="nav__list" ref={linksContainerRef}>
@@ -74,7 +74,7 @@ const Navbar = () => {
               placeholder="Search.."
             />
             <button className="nav__search button" type="button">
-              <BiSearchAlt color="#000000" />
+              <BiSearchAlt color="var(--primary-clr-200)" />
             </button>
           </form>
         </div>
@@ -128,7 +128,7 @@ const NavStyle = styled.nav`
     justify-content: center;
 
     /* styling */
-    background-color: #333533;
+    background-color: var(--primary-clr-150);
     border-radius: 40px;
   }
 
@@ -136,7 +136,7 @@ const NavStyle = styled.nav`
     display: flex;
     align-items: center;
     border: none;
-    background-color: #333533;
+    background-color: var(--primary-clr-150);
   }
 
   .btn--hidden {
@@ -144,7 +144,7 @@ const NavStyle = styled.nav`
   }
 
   .nav__currentPage {
-    color: #e8eddf;
+    color: var(--primary-clr-50);
     width: 100%;
   }
 
@@ -158,11 +158,11 @@ const NavStyle = styled.nav`
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
 
-    background-color: #f5cb5c;
+    background-color: var(--primary-clr-100);
     border-radius: 0 0 28px 28px;
 
     /* Card DS */
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
 
     /* transititon */
     transition: var(--transition);
@@ -178,7 +178,7 @@ const NavStyle = styled.nav`
 
   .nav__links a {
     text-decoration: none;
-    color: #000000;
+    color: var(--primary-clr-150);
   }
 
   .active--link {
@@ -191,16 +191,16 @@ const NavStyle = styled.nav`
 
   /* Desktop Layout */
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     margin: 0;
     padding: 1vh 4.5vw;
     flex-direction: row;
-    background-color: #333533;
+    background-color: var(--primary-clr-150);
     height: 15vh !important;
     font-size: 1.125rem;
 
     .nav__title {
-      color: #e8eddf;
+      color: var(--primary-clr-50);
       white-space: pre-line;
       text-align: left;
       font-size: 1.5rem;
@@ -232,11 +232,11 @@ const NavStyle = styled.nav`
     }
 
     .nav__links a {
-      color: #e8eddf;
+      color: var(--primary-clr-50);
     }
 
     .active--link {
-      color: #f5cb5c !important;
+      color: var(--primary-clr-100) !important;
     }
 
     ul {
@@ -245,62 +245,62 @@ const NavStyle = styled.nav`
     }
 
     .nav__search {
-      display: flex;
-      margin: 0.875rem 0rem;
-    }
+      display: none;
 
-    .button {
-      background-color: #F5CB5C;
-      display: flex;
-      border: none;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      border-radius: 0px 25px 25px 0px;
+      @media (min-width: 1280px) {
+        display: flex;
+        margin: 0.875rem 0rem;
+      }
     }
+  }
 
-    input {
-      opacity: 50%;
-      text-align: center;
-      background: rgba(232, 237, 223, 0.5);
-      border: none;
-      border-radius: 25px 0px 0px 25px;
+  .button {
+    background-color: var(--primary-clr-100);
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0px 25px 25px 0px;
+  }
+
+  input {
+    opacity: 50%;
+    text-align: center;
+    background: rgba(232, 237, 223, 0.5);
+    border: none;
+    border-radius: 25px 0px 0px 25px;
 
     ::placeholder {
-    color: #E8EDDF; 
-    font-size: 0.8rem;
+      color: var(--primary-clr-50);
+      font-size: 0.8rem;
     }
 
     /* dropdown menu for mobile */
     .nav__btn {
       display: none;
     }
-
   }
 
   /* 4k UHD displasy */
 
   @media (min-width: 2560px) {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 
-  .nav__title {
-  font-size: 2rem;
-  }
+    .nav__title {
+      font-size: 2rem;
+    }
 
-  .nav__links a {
-  margin: 1vh;
+    .nav__links a {
+      margin: 1vh;
+    }
 
-  }
-
-  input {
-
-    ::placeholder {
-      font-size: 1rem;
+    input {
+      ::placeholder {
+        font-size: 1rem;
       }
+    }
   }
-
-  }
-
 `
 
 export default Navbar

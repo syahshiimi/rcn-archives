@@ -8,6 +8,16 @@
 /* Variables */
 
 :root {
+	/* colors */
+	--primary-clr-0: #cfdbd5;
+	--primary-clr-50: #e8eddf;
+	--primary-clr-100: #f5cb5c;
+	--primary-clr-150: #333533;
+	--primary-clr-200: #242423;
+	
+	/* grays */
+	--secondary-clr-250: #C4C4C4;
+
 	--transition: all 0.7s ease-in-out;
 }
 
@@ -39,4 +49,14 @@ h5 {
 
 input {
 	font-family: "Ubuntu", sans-serif;
+}
+
+.bg--std {
+	background-color: var(--primary-clr-0);
+}
+.bg--light {
+	background-color: var(--primary-clr-100);
+}
+.bg--gray {
+	background-color: var(--secondary-clr-250);
 }

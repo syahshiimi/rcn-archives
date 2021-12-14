@@ -23,11 +23,14 @@ const Contribute = () => {
         </section>
         <section className="contribute__content">
           <ImageWrapper>
-            <StaticImage
-              src="../assets/img/rcn_workshop_image.jpg"
-              alt="RCN Workshop"
-              layout="constrained"
-            />
+            <article>
+              <StaticImage
+                src="../assets/img/rcn_workshop_image.jpg"
+                alt="RCN Workshop"
+                layout="constrained"
+                className="contribute__image"
+              />
+            </article>
           </ImageWrapper>
           <div className="contribute__info">
             <p>{ContributeHead}</p>
@@ -47,8 +50,22 @@ const Contribute = () => {
 }
 
 const ImageWrapper = styled.div`
+  display: flex;
   flex: 1;
-  border: 1px solid black;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    padding-right: 3vw;
+  }
+
+  article {
+    border: 2px solid black;
+    border-radius: calc(2rem + 2px);
+  }
+
+  .contribute__image {
+    border-radius: 2rem;
+  }
 
   /* drop shadow */
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
@@ -56,12 +73,14 @@ const ImageWrapper = styled.div`
 
 const ContributeWrapper = styled.main`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  padding: var(--padding-global-child);
 
   .contribute__header {
     flex: 1;
     text-align: center;
-    padding-bottom: 6.15vh
   }
 
   .contribute__title {
@@ -69,21 +88,22 @@ const ContributeWrapper = styled.main`
   }
 
   .contribute__content {
-    align-items: center;
+    align-items: start;
     display: flex;
     flex-direction: column;
+    padding-top: 6.15vh;
   }
 
   .contribute__info {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-top: 6.15vh; 
+    padding-top: 6.15vh;
   }
 
   .contribute__info > p,
   input {
-    margin: 1.24vh 0rem 1.24vh 0rem;
+    margin: 0vh 0rem 2vh 0rem;
   }
 
   .contribute__info > input {
@@ -91,6 +111,10 @@ const ContributeWrapper = styled.main`
     background: rgba(232, 237, 223, 0.5);
     border: none;
     outline: none;
+
+    ::placeholder {
+      opacity: 50%;
+    }
   }
 
   .contribute__info .addinfo {
@@ -103,10 +127,12 @@ const ContributeWrapper = styled.main`
 
     .contribute__content {
       flex-direction: row;
+      align-items: center;
+    }
 
-      .contribute__info {
-        padding-left: 5%;
-      }
+    .contribute__info {
+      padding-top: 0vh;
+      padding-left: 3vw;
     }
   }
 `

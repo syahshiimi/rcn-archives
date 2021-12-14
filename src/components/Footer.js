@@ -38,8 +38,8 @@ const Footer = () => {
 // Content Styling
 
 const FooterStyle = styled.footer`
-  background-color: #333533;
-  padding: 4vh 10vw; 
+  background-color: var(--primary-clr-150);
+  padding: 4vh 10vw;
 
   display: flex;
   grid-area: footer;
@@ -49,7 +49,7 @@ const FooterStyle = styled.footer`
   font-size: normal;
   font-weight: normal;
   font-size: 0.75rem;
-  color: #f5cb5c;
+  color: var(--primary-clr-100); 
 
   .footer__support {
     display: flex;
@@ -90,12 +90,12 @@ const FooterStyle = styled.footer`
 
   @media (min-width: 768px) {
     height: 15vh;
-    padding: 4vh 4.5vw; 
+    padding: 4vh 4.5vw;
     font-size: 1rem;
-  }
 
-  .footer__support {
-    align-self: center;
+    .footer__support {
+      align-self: center;
+    }
   }
 `
 
