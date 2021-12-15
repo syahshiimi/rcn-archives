@@ -89,13 +89,18 @@ const FooterStyle = styled.footer`
   }
 
   @media (min-width: 768px) {
-    height: 15vh;
+    height: 10vh;
     padding: 4vh 4.5vw;
-    font-size: 1rem;
+    font-size: 0.75rem;
 
     .footer__support {
       align-self: center;
     }
+  }
+
+  @media (min-width: 2560px) {
+  font-size: 1rem;
+
   }
 `
 
