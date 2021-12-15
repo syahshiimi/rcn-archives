@@ -25,6 +25,9 @@ export const BACard = (props) => {
 
 const ButtonWrapper = styled.div`
   margin: 3vh 0vw;
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
 
   .BA__type {
     text-transform: capitalize;
@@ -40,10 +43,11 @@ const ButtonWrapper = styled.div`
   /* styling */
   background: #F5CB5C;
   border: 2px solid var(--primary-clr-200);
+  box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
   border-radius: calc(3.75rem + 6px);
 
   svg {
-  size: 70;
+  margin-bottom: 1vh;
   }
 
   

@@ -59,8 +59,8 @@ const ImageWrapper = styled.div`
   }
 
   .contribute__image {
-    border: 0.125rem solid var(--primary-clr-200);
-    border-radius: calc(2rem + 0.125rem);
+    border: var(--imagecard-border-clr); 
+    border-radius: var(--imagecard-border-radius); 
   }
 
   /* drop shadow */

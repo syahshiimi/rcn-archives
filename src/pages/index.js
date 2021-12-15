@@ -47,8 +47,9 @@ const Index = () => {
         <section className="home__two bg--gray">
           <article className="home__archives">
             <h1>Archives Map</h1>
-            <BACard type="search"/>
+            <BACard type="search" />
             <BACard type="geography" />
+            <p>Our archives are informed with</p>
           </article>
         </section>
         <section className="home__three bg--std">
@@ -77,8 +78,8 @@ const ImageWrapper = styled.div`
   }
 
   .hero__image {
-    border: 0.125rem solid var(--primary-clr-200);
-    border-radius: calc(2rem + 0.125rem);
+    border: var(--imagecard-border-clr);
+    border-radius: var(--imagecard-border-radius);
   }
 
   /* drop shadow */
@@ -95,6 +96,7 @@ const HomeWrapper = styled.section`
   article {
     padding: var(--padding-global-child);
     text-align: center;
+    padding-top: 6vh;
   }
 
   article > h1,
