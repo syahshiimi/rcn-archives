@@ -14,11 +14,19 @@
 	--primary-clr-100: #f5cb5c;
 	--primary-clr-150: #333533;
 	--primary-clr-200: #242423;
-	
-	/* grays */
-	--secondary-clr-250: #C4C4C4;
 
+	/* grays */
+	--secondary-clr-250: #c4c4c4;
+
+	/* transition */
 	--transition: all 0.7s ease-in-out;
+
+	/* global padding values */
+
+	--padding-mobile: 10vw;
+	--padding-desktop: 4.5vw;
+
+
 }
 
 * {
@@ -36,7 +44,7 @@ html {
 h1 {
 	font-family: "Lora", serif;
 	text-decoration: underline;
-	font-size: 3rem;
+	font-size: 2rem;
 }
 
 p,

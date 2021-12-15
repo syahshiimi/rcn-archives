@@ -41,7 +41,7 @@ const Contribute = () => {
               className="addinfo"
               placeholder="Additional Info"
             />
-            <DefaultButton />
+            <DefaultButton title="Submit"/>
           </div>
         </section>
       </ContributeWrapper>
@@ -58,13 +58,9 @@ const ImageWrapper = styled.div`
     padding-right: 3vw;
   }
 
-  article {
-    border: 2px solid black;
-    border-radius: calc(2rem + 2px);
-  }
-
   .contribute__image {
-    border-radius: 2rem;
+    border: 0.125rem solid var(--primary-clr-200);
+    border-radius: calc(2rem + 0.125rem);
   }
 
   /* drop shadow */

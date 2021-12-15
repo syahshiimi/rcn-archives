@@ -39,7 +39,7 @@ const Footer = () => {
 
 const FooterStyle = styled.footer`
   background-color: var(--primary-clr-150);
-  padding: 4vh 10vw;
+  padding: 4vh var(--padding-mobile);
 
   display: flex;
   grid-area: footer;
@@ -49,7 +49,7 @@ const FooterStyle = styled.footer`
   font-size: normal;
   font-weight: normal;
   font-size: 0.75rem;
-  color: var(--primary-clr-100); 
+  color: var(--primary-clr-100);
 
   .footer__support {
     display: flex;
@@ -88,9 +88,9 @@ const FooterStyle = styled.footer`
     margin-left: auto;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     height: 10vh;
-    padding: 4vh 4.5vw;
+    padding: 4vh var(--padding-desktop);
     font-size: 0.75rem;
 
     .footer__support {
@@ -99,8 +99,7 @@ const FooterStyle = styled.footer`
   }
 
   @media (min-width: 2560px) {
-  font-size: 1rem;
-
+    font-size: 1rem;
   }
 `
 

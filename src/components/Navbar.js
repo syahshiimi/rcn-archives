@@ -89,7 +89,7 @@ const NavStyle = styled.nav`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5vh 10vw 3.5vh 10vw;
+  padding: 5vh var(--padding-mobile) 3.5vh var(--padding-mobile);
 
   .nav__title {
     font-size: 1.5rem;
@@ -193,7 +193,7 @@ const NavStyle = styled.nav`
 
   @media (min-width: 992px) {
     margin: 0;
-    padding: 1vh 4.5vw;
+    padding: 1vh var(--padding-desktop);
     flex-direction: row;
     background-color: var(--primary-clr-150);
     height: 15vh !important;

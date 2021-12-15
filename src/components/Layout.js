@@ -34,10 +34,10 @@ const LayoutWrapper = styled.section`
 const ChildWrapper = styled.section`
   grid-area: body;
   display: flex;
-  --padding-global-child: 4vh 10vw;
+  --padding-global-child: 4vh var(--padding-mobile);
 
-  @media (min-width: 768px) {
-    --padding-global-child: 10vh 4.5vw 21vh 4.5vw;
+  @media (min-width: 992px) {
+    --padding-global-child: 10vh var(--padding-desktop) 21vh var(--padding-desktop);
   }
 `
 

@@ -1,11 +1,12 @@
+import {Link} from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-const DefaultButton = () => {
+const DefaultButton = ({ title, url }) => {
   return (
     <ButtonWrapper>
       <button type="submit" className="contribute__btn">
-        Submit
+        <Link to={url}>{title}</Link>
       </button>
     </ButtonWrapper>
   )
