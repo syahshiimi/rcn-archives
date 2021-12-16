@@ -41,7 +41,7 @@ const Contribute = () => {
               className="addinfo"
               placeholder="Additional Info"
             />
-            <DefaultButton title="Submit"/>
+            <DefaultButton title="Submit" />
           </div>
         </section>
       </ContributeWrapper>
@@ -54,13 +54,13 @@ const ImageWrapper = styled.div`
   flex: 1;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: 2560px) {
     padding-right: 3vw;
   }
 
   .contribute__image {
-    border: var(--imagecard-border-clr); 
-    border-radius: var(--imagecard-border-radius); 
+    border: var(--imagecard-border-clr);
+    border-radius: var(--imagecard-border-radius);
   }
 
   /* drop shadow */
@@ -93,7 +93,8 @@ const ContributeWrapper = styled.main`
   .contribute__info {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    width: 100%;
+    flex: 1 1 0;
     padding-top: 6.15vh;
   }
 
@@ -118,8 +119,7 @@ const ContributeWrapper = styled.main`
     align-items: start;
   }
 
-  @media (min-width: 768px) {
-    flex-direction: column;
+  @media (min-width: 1280px) {
 
     .contribute__content {
       flex-direction: row;
@@ -127,9 +127,12 @@ const ContributeWrapper = styled.main`
     }
 
     .contribute__info {
-      padding-top: 0vh;
-      padding-left: 3vw;
+    padding-left: 3vw;
+    padding-top: 0;
+
     }
+
+
   }
 `
 

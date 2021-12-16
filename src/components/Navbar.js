@@ -57,9 +57,9 @@ const Navbar = () => {
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
             {pageLinks.map(link => {
-              const { id, url, text } = link
+              const { pageID, url, text } = link
               return (
-                <li key={id}>
+                <li key={pageID}>
                   <Link activeClassName="active--link" to={url}>
                     {text}
                   </Link>
