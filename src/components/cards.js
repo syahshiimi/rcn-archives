@@ -9,6 +9,7 @@ import { FaSearchPlus } from "@react-icons/all-files/fa/FaSearchPlus"
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
 import { BsArrowRight } from "@react-icons/all-files/Bs/BsArrowRight"
 
+// Browse Archives Card (Mobile Only)
 export const BACard = props => {
   const { type, link } = props
   const Icon =
@@ -16,7 +17,7 @@ export const BACard = props => {
 
   return (
     <CardWrapper>
-      <button type="button" className="mobile__BAcard">
+      <button type="button" className="c-browse__card">
         <>{Icon}</>
         <h3>Browse By {type}</h3>
         <p>
@@ -28,15 +29,25 @@ export const BACard = props => {
   )
 }
 
+// Featured Documents Card
 export const FeatureCard = () => {
   return featuredDocs.map(item => {
     const { docID, interviewer, interviewee, title, country, text } = item
     return (
-      <CardWrapper key={docID}>
-        <button type="button" className="mobile__featurecard">
-          <div className="card__content">
+      <CardWrapper key={docID} className="c-featured__card">
+        <button type="button" className="c-featured__button">
+          <div className="c-featured__content">
             <h3>{title}</h3>
-            <div className="subheading">
+            <ImageWrapper>
+              <StaticImage
+                src="../assets/img/china_interviews11.jpeg"
+                layout="constrained"
+                alt="featured documents image"
+                className="c-featured__image"
+              />
+            </ImageWrapper>
+
+            <div className="c-featured__subheading">
               <h4>By {interviewer}</h4>
             </div>
             <p>{text}</p>
@@ -47,6 +58,7 @@ export const FeatureCard = () => {
   })
 }
 
+// Events Card (Homepage)
 export const EventsCard = () => {
   return eventList.map(items => {
     const {
@@ -58,14 +70,14 @@ export const EventsCard = () => {
       eventBlurb,
     } = items
     return (
-      <CardWrapper key={eventID} className="event__cards">
-        <button type="button" className="events__button">
-          <section className="event__content">
-            <h3 className="event__details">Event Details</h3>
-            <p className="event__date">{eventDate}</p>
-            <h4 className="event__location">{eventLocation}</h4>
+      <CardWrapper key={eventID} className="c-event__card">
+        <button type="button" className="c-event__button">
+          <section className="c-event__content">
+            <h3 className="c-event__details">Event Details</h3>
+            <p className="c-event__date">{eventDate}</p>
+            <h4 className="c-event__location">{eventLocation}</h4>
           </section>
-          <Link to="/workshops" className="event__link">
+          <Link to="/workshops" className="c-event__link">
             Find out more
             <BsArrowRight size={20} />
           </Link>
@@ -75,19 +87,32 @@ export const EventsCard = () => {
   })
 }
 
+///////////////////////////////
+//////////STYLING//////////////
+///////////////////////////////
+
+// Image Wrapper Styling
 const ImageWrapper = styled.div`
-  .feature__image {
+  // Featured Documents Image
+  .c-featured__image {
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
     margin: 2vh 0vw;
-    display: flex;
+    display: block;
     flex: 1;
-    height: 20vh;
+    height: 15vh;
+
+    @media (min-width: 992px) {
+      height: 10vh;
+    }
   }
 `
 
 const CardWrapper = styled.div`
+  // Global Card Contents //
+  //
   display: flex;
+  justify-content: center;
 
   @media (max-width: 768px) {
     p {
@@ -128,71 +153,68 @@ const CardWrapper = styled.div`
 
   /* Browse Archives Mobile Card */
 
-  .mobile__BAcard {
+  .c-browse__card {
     width: 70vw;
   }
 
-  .mobile__BAcard > h3 {
+  .c-browse__card > h3 {
     margin-bottom: 0;
   }
 
   /* Mobile Feature Document Card */
 
-  .mobile__featurecard {
-    display: flex;
-    flex: 1;
-    width: 75vw; // fix width
+
+  .c-featured__button {
+    display: block;
+    width: 70%;
     align-items: stretch;
-    padding: 10%;
 
-    p {
-    }
-
+    /* Tablet */
     @media (min-width: 992px) {
-      width: 40vw;
+      width: 25vw;
     }
   }
 
-  .card__content {
+  .c-featured__content {
     display: block;
     height: 100%;
   }
 
-  .card__content > h3 {
+  .c-featured__content > h3 {
     font-family: "lora", serif;
     text-decoration: underline;
   }
 
-  .card__content > p {
+  .c-featured__content > p {
     text-align: left;
     font-size: 0.75rem;
   }
 
-  .subheading {
+  .c-featured__subheading {
     text-align: right;
     font-size: 0.8rem;
   }
 
   /* Events Card */
 
-  .events__button {
+  .c-event__button {
     display: block;
     padding: 3vh;
   }
 
-  .event__content > * {
+  .c-event__content > * {
     margin: 1vh 0vw;
   }
 
-  .event__content {
+  .c-event__content {
     flex-direction: column;
     flex: 1;
     text-align: center;
   }
-  .event__details {
+  .c-event__details {
     text-decoration: underline;
   }
-  .event__link {
+  .c-event__link {
     font-size: 1rem;
     display: flex;
     width: 100%;

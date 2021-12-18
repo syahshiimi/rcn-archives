@@ -33,5 +33,10 @@ const ButtonWrapper = styled.div`
     box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
     border-radius: calc(1.875rem + 4px);
   }
+
+  a {
+    color: var(--primary-clr-200) !important;
+
+  }
 `
 export default DefaultButton

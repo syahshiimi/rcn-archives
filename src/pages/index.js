@@ -17,22 +17,22 @@ const Index = () => {
   return (
     <Layout>
       <HomeWrapper>
-        <section className="home__one bg--std">
-          <article className="home__hero">
-            <h1 className="heading mobile">Who We Are</h1>
-            <div className="hero__details">
+        <section className="l-hero bg--std">
+          <article className="c-hero">
+            <h1 className="c-hero__heading mobile">Who We Are</h1>
+            <div className="l-hero__details">
               <ImageWrapper>
                 <StaticImage
                   src="../assets/img/china_interviews_10.jpeg"
-                  className="hero__image"
+                  className="c-hero__image"
                   alt="Hero Image"
                   layout="constrained"
-                objectFit="cover"
+                  objectFit="cover"
                 />
               </ImageWrapper>
 
-              <div className="hero__content">
-                <h1 className="heading desktop">Who We Are</h1>
+              <div className="l-hero__content">
+                <h1 className="c-hero__heading desktop">Who We Are</h1>
                 <h3>
                   Aliquam facilis numquam. Quisquam soluta officia. Molestias
                   voluptate voluptatem cupiditate sed sit. Nihil quod corrupti
@@ -47,48 +47,48 @@ const Index = () => {
                   Voluptatem deserunt velit aut quibusdam cum asperiores est
                   numquam eveniet.
                 </p>
-                <div className="hero__button">
+                <div className="c-hero__button">
                   <DefaultButton url="/about" title="About Us" />
                 </div>
               </div>
             </div>
           </article>
         </section>
-        <section className="home__two bg--gray">
-          <article className="home__archives">
-            <h1>Archives Map</h1>
-            <div className="archives__search">
+        <section className="l-browse bg--gray">
+          <article className="c-browse">
+            <h1 className="c-browse__header">Archives Map</h1>
+            <div className="c-browse__container">
               <BACard type="Search" />
               <BACard type="Geography" />
             </div>
-            <p>{BrowseArchiveSub}</p>
+            <p className="c-browse__subheading">{BrowseArchiveSub}</p>
           </article>
         </section>
-        <section className="home__three bg--std">
-          <article className="home__featureddocs">
+        <section className="l-featured bg--std">
+          <article className="c-featured">
             <h1>Featured Documents</h1>
-            <div className="featureddocs__cards">
+            <div className="l-featured__documents">
               <FeatureCard />
             </div>
           </article>
         </section>
-        <section className="home__four bg--gray">
+        <section className="l-events bg--gray">
           {eventList.map(items => {
             const { eventID, eventTitle, eventType, eventDate, eventBlurb } =
               items
             return (
-              <article className="home__events">
+              <article className="c-events">
                 <h1>Workshops & {"\n"}Events</h1>
-                <h2 className="heading mobile">{eventTitle}</h2>
+                <h2 className="c-events__heading mobile">{eventTitle}</h2>
                 <ImageWrapper>
                   <StaticImage
                     src="../assets/img/rcw_workshops/rcw_3rd_workshop_card_image.jpeg"
                     layout="constrained"
                     alt="rcw workshop iamge"
-                    className="event__image"
+                    className="c-event__image"
                   />
                 </ImageWrapper>
-                <h2 className="heading desktop">{eventTitle}</h2>
+                <h2 className="c-events__heading desktop">{eventTitle}</h2>
                 <p>{eventBlurb}</p>
                 <EventsCard />
               </article>
@@ -105,12 +105,12 @@ const ImageWrapper = styled.div`
   flex: 1;
   justify-content: center;
 
-  .hero__image {
+  .c-hero__image {
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
   }
 
-  .event__image {
+  .c-event__image {
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
   }
@@ -119,7 +119,7 @@ const ImageWrapper = styled.div`
   filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
 
   @media (min-width: 768px) {
-    .hero__image {
+    .c-hero__image {
       display: flex;
       flex: 1;
     }
@@ -154,18 +154,18 @@ const HomeWrapper = styled.section`
 
   /* Hero Section */
 
-  .home__hero {
+  .c-hero {
     padding-bottom: 6vh;
   }
 
-  .home__hero > * {
+  .l-hero__details > * {
     margin-top: 2vh;
   }
-  .hero__button {
+  .c-hero__button {
     margin: 2vh 0vw;
   }
 
-  .hero__content {
+  .l-hero__content {
     margin-top: 2vh;
     display: flex;
     justify-content: center;
@@ -176,33 +176,34 @@ const HomeWrapper = styled.section`
 
   /* Archives Map Section */
 
-  .home__archives {
+  .c-browse {
     text-align: center;
     padding-bottom: 6vh;
   }
 
-  .archives__search > * {
+  .c-browse__container > * {
     margin: 2vh 0vw;
   }
+
   /* Featured Documents Section */
 
-  .home__featureddocs {
+  .c-featured {
     padding-bottom: 6vh;
     text-align: center;
   }
 
-  .featureddocs__cards > * {
-    margin: 2vh 0vw;
+  .l-featured__documents > * {
+    margin: 2vh 0vw; // apply margin to all child eleenents
   }
 
   /* Events & Workshops Section */
 
-  .home__events {
+  .c-events {
     text-align: center;
     padding-bottom: 6vh;
   }
 
-  .home__events > * {
+  .c__events > * {
     margin: 2vh 0vw;
   }
 
@@ -221,14 +222,14 @@ const HomeWrapper = styled.section`
       display: flex;
     }
 
-    .hero__details {
+    .c-hero__details {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
     }
 
-    .hero__content {
+    .c-hero__content {
       display: flex;
       flex-direction: column;
       width: 40vw;
@@ -236,21 +237,22 @@ const HomeWrapper = styled.section`
     }
 
     /* Browse Archives Section */
-    .archives__search {
+    .c-browse__container {
       display: none;
     }
 
     /* Featured Documents Section */
 
-    .featureddocs__cards {
+    .l-featured__documents {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-evenly;
+
     }
 
     /* Workshops & Events */
 
-    .home__events {
+    .c-events {
       display: grid;
       grid-template-columns: 1fr auto auto auto 1fr;
       grid-template-rows: 1fr auto auto;
@@ -260,7 +262,7 @@ const HomeWrapper = styled.section`
         "content content content content eventCard";
     }
 
-    .event__image {
+    .c-event__image {
       grid-area: image;
     }
 
