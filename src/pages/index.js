@@ -281,7 +281,7 @@ const HomeWrapper = styled.section`
       align-self: center;
     }
 
-    .event__cards {
+    .c-event__card {
       grid-area: eventCard;
       justify-content: end;
       align-self: center;
