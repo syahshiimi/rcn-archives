@@ -96,13 +96,14 @@ const ImageWrapper = styled.div`
     margin: 2vh 0vw;
     display: flex;
     flex-grow: 1;
+    width: 100%;
   }
 `
 
 const CardWrapper = styled.div`
   
   display: flex;
-  flex-grow: 1;
+
   button {
     display: flex;
     flex-direction: column;
@@ -141,7 +142,7 @@ const CardWrapper = styled.div`
   /*  Feature Document Card */
 
   .c-featured__card {
-    display: flex;
+    display: block;
     padding: 4vh 8vw 6vh 8vw;
     width: 100%;
 
@@ -154,6 +155,7 @@ const CardWrapper = styled.div`
       font-size: 0.9rem;
       flex-grow: 1;
       margin-left: auto;
+      text-align: right;
     }
     p {
       margin-right auto;
@@ -201,8 +203,11 @@ const CardWrapper = styled.div`
 
   @media (min-width: 992px) {
     .c-featured__card {
-    max-width: 45vw;
-    padding: 2vh 4vw 4vh 4vw;
+      max-width: 45vw;
+      flex-grow: 1;
+
+      justify-content: stretch;
+      padding: 2vh 4vw 4vh 4vw;
 
       h3 {
         font-size: 1.5rem;

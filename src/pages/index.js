@@ -199,16 +199,12 @@ const HomeWrapper = styled.section`
 
   /* Featured Documents Section */
 
-  .c-featured {
-  }
-
   .c-featured__heading {
     text-align: center;
   }
 
   .l-featured__documents {
     display: flex;
-    justify-content: stretch;
     align-items: stretch;
     flex-wrap: wrap;
 
@@ -334,11 +330,6 @@ const HomeWrapper = styled.section`
     }
 
     /* featured documents layout */
-
-      .l-featured__documents {
-
-      }
-
 
     /* events section */
     .c-events {

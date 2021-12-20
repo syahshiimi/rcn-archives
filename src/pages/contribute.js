@@ -72,7 +72,7 @@ const ContributeWrapper = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: var(--padding-global-child);
+  padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
 
   .contribute__header {
     flex: 1;
