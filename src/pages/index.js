@@ -66,7 +66,7 @@ const Index = () => {
         </section>
         <section className="l-featured bg--std">
           <article className="c-featured">
-            <h1>Featured Documents</h1>
+            <h1 className="c-featured__heading">Featured Documents</h1>
             <div className="l-featured__documents">
               <FeatureCard />
             </div>
@@ -103,16 +103,29 @@ const Index = () => {
 const ImageWrapper = styled.div`
   display: flex;
   flex: 1;
-  justify-content: center;
 
   .c-hero__image {
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
+    justify-content: center;
+    width: 100%;
+
+    @media (min-width: 1280px) {
+      grid-area: image;
+      height: 70%;
+      align-self: center;
+    }
   }
 
   .c-event__image {
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
+    justify-content: center;
+
+    @media (min-width: 992px) {
+      grid-area: image;
+      width: 75%;
+    }
   }
 
   /* drop shadow */
@@ -123,10 +136,6 @@ const ImageWrapper = styled.div`
       display: flex;
       flex: 1;
     }
-  }
-
-  @media (min-width: 992px) {
-    grid-area: image;
   }
 `
 
@@ -142,7 +151,7 @@ const HomeWrapper = styled.section`
     align-items: center;
     flex: 1 1 0;
     flex-direction: column;
-    padding: var(--padding-global-child);
+    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
 
   article > h1,
@@ -155,7 +164,6 @@ const HomeWrapper = styled.section`
   /* Hero Section */
 
   .c-hero {
-    padding-bottom: 6vh;
   }
 
   .l-hero__details > * {
@@ -178,50 +186,55 @@ const HomeWrapper = styled.section`
 
   .c-browse {
     text-align: center;
-    padding-bottom: 6vh;
   }
 
   .c-browse__container > * {
     margin: 2vh 0vw;
   }
 
+  .c-browse__card {
+    padding: 8%;
+
+  }
+
   /* Featured Documents Section */
 
   .c-featured {
-    padding-bottom: 6vh;
+  }
+
+  .c-featured__heading {
     text-align: center;
   }
 
+  .l-featured__documents {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+  }
   .l-featured__documents > * {
-    margin: 2vh 0vw; // apply margin to all child eleenents
+    margin: 2vh 0vw; // set margin for each card component
   }
 
   /* Events & Workshops Section */
 
   .c-events {
     text-align: center;
-    padding-bottom: 6vh;
   }
 
-  .c__events > * {
+  .c-events > * {
     margin: 2vh 0vw;
   }
 
   /* tablet layout */
 
   @media (min-width: 992px) {
-    h1 {
-      font-size: 2.5rem;
+    article {
+      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     }
+
     /* Hero Section */
-    .mobile {
-      display: none;
-    }
-
-    .desktop {
-      display: flex;
-    }
-
     .c-hero__details {
       display: flex;
       flex-direction: row;
@@ -241,25 +254,21 @@ const HomeWrapper = styled.section`
       display: none;
     }
 
-    /* Featured Documents Section */
-
-    .l-featured__documents {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-
-    }
-
     /* Workshops & Events */
 
     .c-events {
       display: grid;
-      grid-template-columns: 1fr auto auto auto 1fr;
+      grid-row-gap: 3vh;
+      grid-template-columns: 2fr auto 1fr;
       grid-template-rows: 1fr auto auto;
       grid-template-areas:
-        "image . title title title "
-        "heading heading heading heading heading "
-        "content content content content eventCard";
+        "image . title "
+        "heading heading heading "
+        "content content eventCard";
+    }
+
+    .c-events > * {
+      margin: 0;
     }
 
     .c-event__image {
@@ -288,9 +297,56 @@ const HomeWrapper = styled.section`
     }
   }
 
+  // desktop layout //
   @media (min-width: 1280px) {
-    h1 {
-      font-size: 4rem;
+    article {
+      padding: 10vh var(--padding-desktop);
+    }
+    .mobile {
+      display: none;
+    }
+
+    .desktop {
+      display: flex;
+    }
+
+    .c-hero {
+    }
+
+    /* Hero Section */
+
+    .l-hero__details {
+      display: grid;
+      grid-column-gap: 4vw;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto;
+      grid-template-areas: "image content";
+    }
+
+    .l-hero__content {
+      grid-area: content;
+    }
+
+    /* target all child elements */
+    .l-hero__content > * {
+      text-align: right;
+      margin-left: auto;
+    }
+
+    /* featured documents layout */
+
+      .l-featured__documents {
+
+      }
+
+
+    /* events section */
+    .c-events {
+      grid-row-gap: 4vh;
+    }
+
+    .c-events__heading {
+      margin-top: 2vh;
     }
   }
 `

@@ -34,16 +34,6 @@ const LayoutWrapper = styled.section`
 const ChildWrapper = styled.section`
   grid-area: body;
   display: flex;
-  --padding-global-child: 4vh var(--padding-mobile);
-
-  @media (min-width: 992px) {
-    --padding-global-child: 5vh var(--padding-desktop) 10.5vh
-      var(--padding-desktop);
-  }
-  @media (min-width: 1280px) {
-    --padding-global-child: 10vh var(--padding-desktop) 21vh
-      var(--padding-desktop);
-  }
 `
 
 export default Layout

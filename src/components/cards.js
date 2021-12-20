@@ -34,24 +34,20 @@ export const FeatureCard = () => {
   return featuredDocs.map(item => {
     const { docID, interviewer, interviewee, title, country, text } = item
     return (
-      <CardWrapper key={docID} className="c-featured__card">
-        <button type="button" className="c-featured__button">
-          <div className="c-featured__content">
-            <h3>{title}</h3>
-            <ImageWrapper>
-              <StaticImage
-                src="../assets/img/china_interviews11.jpeg"
-                layout="constrained"
-                alt="featured documents image"
-                className="c-featured__image"
-              />
-            </ImageWrapper>
-
-            <div className="c-featured__subheading">
-              <h4>By {interviewer}</h4>
-            </div>
-            <p>{text}</p>
-          </div>
+      <CardWrapper>
+        <button key={docID} type="button" className="c-featured__card">
+          <h3>{title}</h3>
+          <ImageWrapper>
+            <StaticImage
+              src="../assets/img/china_interviews_2.jpeg"
+              layout="constrained"
+              alt="featured documents image"
+              className="c-featured__image"
+              aspectRatio={3 / 2}
+            />
+          </ImageWrapper>
+          <h4>By {interviewer}</h4>
+          <p>{text}</p>
         </button>
       </CardWrapper>
     )
@@ -98,42 +94,20 @@ const ImageWrapper = styled.div`
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
     margin: 2vh 0vw;
-    display: block;
-    flex: 1;
-    height: 15vh;
-
-    @media (min-width: 992px) {
-      height: 10vh;
-    }
+    display: flex;
+    flex-grow: 1;
   }
 `
 
 const CardWrapper = styled.div`
-  // Global Card Contents //
-  //
+  
   display: flex;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    p {
-      font-size: 0.85rem;
-    }
-
-    h3 {
-      font-size: 1rem;
-    }
-
-    h4 {
-      font-size: 0.8rem;
-    }
-  }
-
+  flex-grow: 1;
   button {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8%;
 
     /* styling */
     background: #f5cb5c;
@@ -143,7 +117,6 @@ const CardWrapper = styled.div`
   }
 
   button > * {
-    display: flex;
     align-items: center;
   }
 
@@ -155,55 +128,50 @@ const CardWrapper = styled.div`
 
   .c-browse__card {
     width: 70vw;
-  }
 
-  .c-browse__card > h3 {
-    margin-bottom: 0;
-  }
+    h3 {
+      margin-bottom: 0;
+    }
 
-  /* Mobile Feature Document Card */
-
-
-  .c-featured__button {
-    display: block;
-    width: 70%;
-    align-items: stretch;
-
-    /* Tablet */
-    @media (min-width: 992px) {
-      width: 25vw;
+    p {
+      font-size: 0.8rem;
     }
   }
 
-  .c-featured__content {
-    display: block;
-    height: 100%;
-  }
+  /*  Feature Document Card */
 
-  .c-featured__content > h3 {
-    font-family: "lora", serif;
-    text-decoration: underline;
-  }
+  .c-featured__card {
+    display: flex;
+    padding: 4vh 8vw 6vh 8vw;
+    width: 100%;
 
-  .c-featured__content > p {
-    text-align: left;
-    font-size: 0.75rem;
-  }
-
-  .c-featured__subheading {
-    text-align: right;
-    font-size: 0.8rem;
+    h3 {
+      text-decoration: underline;
+      font-family: "Lora", Serif;
+      flex-grow: 1;
+    }
+    h4 {
+      font-size: 0.9rem;
+      flex-grow: 1;
+      margin-left: auto;
+    }
+    p {
+      margin-right auto;
+      text-align: left;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
   }
 
   /* Events Card */
 
   .c-event__button {
     display: block;
-    padding: 3vh;
+    padding: 4vh;
   }
 
   .c-event__content > * {
-    margin: 1vh 0vw;
+    margin: 2vh 0vw;
   }
 
   .c-event__content {
@@ -226,6 +194,49 @@ const CardWrapper = styled.div`
 
     svg {
       margin: 0;
+    }
+  }
+
+  /* tablet */
+
+  @media (min-width: 992px) {
+    .c-featured__card {
+    max-width: 45vw;
+    padding: 2vh 4vw 4vh 4vw;
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1.125rem;
+
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    /* event card */
+    .c-event__button {
+      padding: 2vh 4vw;
+    }
+
+    .c-event__content > * {
+      margin: 1vh 0vw;
+    }
+  }
+
+  /* desktop */
+
+  @media (min-width: 1280px) {
+    /* events card */
+    .c-event__button {
+      padding: 4vh 4vw;
+    }
+
+    .c-event__content > * {
+      margin: 2vh 0vw;
     }
   }
 `
