@@ -74,25 +74,35 @@ const Index = () => {
         </section>
         <section className="l-events bg--gray">
           {eventList.map(items => {
-            const { eventID, eventTitle, eventType, eventDate, eventBlurb } =
-              items
-            return (
-              <article className="c-events">
-                <h1>Workshops & {"\n"}Events</h1>
-                <h2 className="c-events__heading mobile">{eventTitle}</h2>
-                <ImageWrapper>
-                  <StaticImage
-                    src="../assets/img/rcw_workshops/rcw_3rd_workshop_card_image.jpeg"
-                    layout="constrained"
-                    alt="rcw workshop iamge"
-                    className="c-event__image"
-                  />
-                </ImageWrapper>
-                <h2 className="c-events__heading desktop">{eventTitle}</h2>
-                <p>{eventBlurb}</p>
-                <EventsCard />
-              </article>
-            )
+            const {
+              featured,
+              eventID,
+              eventTitle,
+              eventType,
+              eventDate,
+              eventBlurb,
+            } = items
+            if (featured === true) {
+              return (
+                <article className="c-events" key={eventID}>
+                  <h1>Workshops & {"\n"}Events</h1>
+                  <h2 className="c-events__heading mobile">{eventTitle}</h2>
+                  <ImageWrapper>
+                    <StaticImage
+                      src="../assets/img/rcw_workshops/rcw_3rd_workshop_card_image.jpeg"
+                      layout="constrained"
+                      alt="rcw workshop iamge"
+                      className="c-event__image"
+                    />
+                  </ImageWrapper>
+                  <h2 className="c-events__heading desktop">{eventTitle}</h2>
+                  <p>{eventBlurb}</p>
+                  <EventsCard featured={true}/>
+                </article>
+              )
+            } else {
+              return null
+            }
           })}
         </section>
       </HomeWrapper>
@@ -194,7 +204,6 @@ const HomeWrapper = styled.section`
 
   .c-browse__card {
     padding: 8%;
-
   }
 
   /* Featured Documents Section */
@@ -207,7 +216,6 @@ const HomeWrapper = styled.section`
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-
   }
   .l-featured__documents > * {
     margin: 2vh 0vw; // set margin for each card component

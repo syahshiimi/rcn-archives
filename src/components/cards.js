@@ -9,7 +9,13 @@ import { FaSearchPlus } from "@react-icons/all-files/fa/FaSearchPlus"
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
 import { BsArrowRight } from "@react-icons/all-files/Bs/BsArrowRight"
 
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 // Browse Archives Card (Mobile Only)
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 export const BACard = props => {
   const { type, link } = props
   const Icon =
@@ -29,13 +35,19 @@ export const BACard = props => {
   )
 }
 
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 // Featured Documents Card
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 export const FeatureCard = () => {
   return featuredDocs.map(item => {
     const { docID, interviewer, interviewee, title, country, text } = item
     return (
-      <CardWrapper>
-        <button key={docID} type="button" className="c-featured__card">
+      <CardWrapper key={docID}>
+        <button type="button" className="c-featured__card">
           <h3>{title}</h3>
           <ImageWrapper>
             <StaticImage
@@ -54,10 +66,58 @@ export const FeatureCard = () => {
   })
 }
 
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 // Events Card (Homepage)
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 export const EventsCard = () => {
   return eventList.map(items => {
     const {
+      featured,
+      eventID,
+      eventURL,
+      eventTitle,
+      eventType,
+      eventDate,
+      eventLocation,
+      eventBlurb,
+    } = items
+    if (featured === true) {
+      return (
+        <CardWrapper key={eventID} className="c-event__card">
+          <button type="button" className="c-event__button">
+            <section className="c-event__content">
+              <h3 className="c-event__details">Event Details</h3>
+              <p className="c-event__date">{eventDate}</p>
+              <h4 className="c-event__location">{eventLocation}</h4>
+            </section>
+            <Link to="/events/" className="c-event__link">
+              Find out more
+              <BsArrowRight size={20} />
+            </Link>
+          </button>
+        </CardWrapper>
+      )
+    } else {
+      return null
+    }
+  })
+}
+
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
+// Past Evvents Card
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
+export const PastEventsCard = () => {
+  return eventList.map(items => {
+    const {
+      featured,
       eventID,
       eventTitle,
       eventType,
@@ -66,19 +126,13 @@ export const EventsCard = () => {
       eventBlurb,
     } = items
     return (
-      <CardWrapper key={eventID} className="c-event__card">
-        <button type="button" className="c-event__button">
-          <section className="c-event__content">
-            <h3 className="c-event__details">Event Details</h3>
-            <p className="c-event__date">{eventDate}</p>
-            <h4 className="c-event__location">{eventLocation}</h4>
-          </section>
-          <Link to="/workshops" className="c-event__link">
-            Find out more
-            <BsArrowRight size={20} />
-          </Link>
-        </button>
-      </CardWrapper>
+      <ButtonWrapper key={eventID} className="c-pastevent__card">
+        <a href="/" className="c-pastevent__button">
+          <h3 className="c-pastevent__details">{eventTitle}</h3>
+          <p className="c-pastevent__date">{eventDate}</p>
+          <h4 className="c-pastevent__location">{eventLocation}</h4>
+        </a>
+      </ButtonWrapper>
     )
   })
 }
@@ -87,7 +141,13 @@ export const EventsCard = () => {
 //////////STYLING//////////////
 ///////////////////////////////
 
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
 // Image Wrapper Styling
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
 const ImageWrapper = styled.div`
   // Featured Documents Image
   .c-featured__image {
@@ -100,6 +160,13 @@ const ImageWrapper = styled.div`
   }
 `
 
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+// Card Wrapper Styling
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
 const CardWrapper = styled.div`
   
   display: flex;
@@ -243,5 +310,47 @@ const CardWrapper = styled.div`
     .c-event__content > * {
       margin: 2vh 0vw;
     }
+  }
+`
+
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+// Button Wrapper Styling
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+const ButtonWrapper = styled.div`
+  display: flex;
+  padding: 1vh 8vw;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+  border-radius: 2.75rem;
+  background-color: var(--primary-clr-100);
+
+  a {
+    text-decoration: none !important;
+  }
+
+  a > * {
+    margin: 4vh 0vw;
+  }
+
+  .c-pastevent__details {
+    font-size: 1rem;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration-line: underline;
+  }
+
+  .c-pastevent__date {
+    font-size: 0.85rem;
+    text-align: right;
+  }
+  .c-pastevent__location {
+    font-size: 0.85rem;
+    text-align: left;
   }
 `

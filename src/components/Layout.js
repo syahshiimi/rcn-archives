@@ -33,7 +33,6 @@ const LayoutWrapper = styled.section`
 
 const ChildWrapper = styled.section`
   grid-area: body;
-  display: flex;
 `
 
 export default Layout

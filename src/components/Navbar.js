@@ -146,6 +146,10 @@ const NavStyle = styled.nav`
   .nav__currentPage {
     color: var(--primary-clr-50);
     width: 100%;
+
+    p {
+      color: var(--primary-clr-50);
+    }
   }
 
   .nav__list {

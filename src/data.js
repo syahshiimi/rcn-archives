@@ -72,7 +72,9 @@ export const featuredDocs = [
 
 export const eventList = [
   {
-    eventID: 0xb,
+    featured: true,
+    eventID: 0xa,
+    eventURL: "../events/{0xa}+{eventTitle}",
     eventTitle:
       "Reconceptualizing the Cold War: On-the-Ground-Experience in Asia Project Workshop",
     eventType: "Workshop",
@@ -80,5 +82,25 @@ export const eventList = [
     eventLocation: "Google Docs & Zoom",
     eventBlurb:
       "Dr. Kisho Tsuchiya and I have organized the 3rd Reconceptualizing the Cold War workshop from the 14th to 26th September 2020, in which we discussed eleven papers that focus on diverse local experiences of “social warfare” in different places of Southeast Asia. Due to the COVID-19 situation, this workshop was held virtually by utilizing Google Docs. We read one paper a day, and exchanged 35-100 comments per paper. The workshop also enabled scholarly exchanges with our local research collaborators who had been working on our digital oral history archive project in the Philippines and Indonesia. The project team is aiming for a follow-up workshop and an edited volume in the future based on the series of workshops since 2019.",
+  },
+  {
+    featured: false,
+    eventID: 0xb,
+    eventTitle: "Reconceptualizing the Cold War (RCW) Second Workshop",
+    eventType: "Workshop",
+    eventDate: "22 to 23 June, 2019",
+    eventLocation: "National University of Singapore",
+    eventBlurb:
+      "We organized the Second Cold War Oral History Workshop, “Reconceptualizing the Cold War: On-the-ground Experiences in Asia,” which was held at NUS Utown on 22-23 June 2019. Ten scholars from abroad (Thailand, Pakistan, China, Japan, Australia, Czech, France, UK, and the US), nine scholars from local institutions (NUS, NTU, NIE, SUTD, SMU), and five graduate students from our Department participated in this workshop and had quite lively and intense discussions.",
+  },
+  {
+    featured: false,
+    eventID: 0xc,
+    eventTitle: "Reconceptualizing the Cold War First Workshop",
+    eventType: "Workshop",
+    eventDate: "21 to 22 May, 2019",
+    eventLocation: "National University of Singapore",
+    eventBlurb:
+      "I organized the first Cold War Oral History Workshop “Reconceptualizing the Cold War: On-the-ground Experiences in Asia,” which was held at NUS Utown on 21-22 May 2019. Ten scholars from abroad (Japan, China, Hong Kong, Taiwan, Vietnam, India, France, the U.K., and the U.S.), seven scholars and researchers from local institutions (NUS, NTU, and Singapore Chinese Chamber of Commerce), and six graduate students from our Department participated in this workshop, and had lively discussions",
   },
 ]

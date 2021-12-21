@@ -72,11 +72,16 @@ const FooterStyle = styled.footer`
 
   .footer__copyright {
     margin-bottom: 1rem;
+    color: var(--primary-clr-100);
     margin-left: auto;
   }
 
-  .footer__copyright a {
-    color: #f5cb5c;
+  .footer__copyright > p{
+    color: var(--primary-clr-100);
+  }
+
+  .footer__copyright > p > a {
+    color: var(--primary-clr-100) !important;
   }
 
   .footer__designer {
