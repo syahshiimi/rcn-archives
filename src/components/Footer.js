@@ -76,7 +76,7 @@ const FooterStyle = styled.footer`
     margin-left: auto;
   }
 
-  .footer__copyright > p{
+  .footer__copyright > p {
     color: var(--primary-clr-100);
   }
 
@@ -93,18 +93,42 @@ const FooterStyle = styled.footer`
     margin-left: auto;
   }
 
+  /////////////////////////
+  /////// Tablet //////////
+  /////////////////////////
+
   @media (min-width: 992px) {
     height: 10vh;
     padding: 4vh var(--padding-desktop);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
 
     .footer__support {
       align-self: center;
     }
   }
 
-  @media (min-width: 2560px) {
+  /////////////////////////
+  ////  Desktop //////////
+  /////////////////////////
+  @media (min-width: 1280px) {
+    padding: 9vh var(--padding-desktop);
     font-size: 1rem;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  ////////////////////////
+  ///// Hig Res //////////
+  ////////////////////////
+
+  @media (min-width: 2560px) {
+    padding: 11vh var(--padding-desktop);
+    font-size: 1.5rem;
+    p {
+      font-size: 1.5rem;
+    }
   }
 `
 

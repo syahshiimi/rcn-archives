@@ -10,12 +10,11 @@ const Workshops = () => {
     <Layout>
       <WorkshopWrapper>
         <section className="l-pastworkshops">
-          <h1 className="c-pastworkshops__heading">Past Events & Workshops</h1>
+          <h1 className="c-pastworkshops__heading">Events & Workshops</h1>
 
           <div className="l-pastworkshops__container">
             <PastEventsCard />
           </div>
-          <DefaultButton title="See More" />
         </section>
       </WorkshopWrapper>
     </Layout>
@@ -23,8 +22,9 @@ const Workshops = () => {
 }
 
 const WorkshopWrapper = styled.main`
-  padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
-
+  section {
+    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+  }
   .l-pastworkshops {
     display: flex;
     flex-direction: column;
@@ -45,11 +45,34 @@ const WorkshopWrapper = styled.main`
     flex-direction: column;
     background-color: var(--primary-clr-50);
     padding: 2vh 8vw;
-    border-radius: 25px;
+    border-radius: calc(5vw + 4px); 
   }
 
   .l-pastworkshops__container > * {
     margin: 2vh 0vw;
+  }
+
+  /////////////////////////////
+  //////// Tablet ////////////
+  /////////////////////////////
+
+  @media (min-width: 992px) {
+    section {
+      padding: 6vh var(--padding-desktop);
+    }
+  }
+
+  /////////////////////////////
+  /////////// Desktop /////////
+  /////////////////////////////
+  @media (min-width: 1280px) {
+    section {
+      padding: 10vh var(--padding-desktop);
+    }
+
+    .l-pastworkshops > * {
+      margin: 4vh 0vw;
+    }
   }
 `
 

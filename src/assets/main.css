@@ -53,9 +53,8 @@ h1 {
 }
 
 h2 {
-	font-size: 1.2rem ;
+	font-size: 1.2rem;
 }
-
 
 h3 {
 	font-size: 1.125rem;
@@ -71,7 +70,6 @@ h5 {
 	color: var(--primary-clr-200);
 }
 
-
 input {
 	font-family: "Ubuntu", sans-serif;
 }
@@ -86,18 +84,43 @@ input {
 /* desktop displays 1280px wide */
 
 @media (min-width: 1280px) {
+	h1 {
+		font-size: 3rem;
+	}
 
-h1 {
-	font-size: 3rem;
-}
+	h2 {
+		font-size: 2rem;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+	}
+
+	p {
+		font-size: 1.25rem;
+	}
+
 }
 
 /* 4k dispalys 2550px wide */
 
 @media (min-width: 2560px) {
-h1 {
-	font-size: 8rem;
-}
+	h1 {
+		font-size: 6rem;
+	}
+
+	h2 {
+		font-size: 2.5rem;
+	}
+	h3 {
+		font-size: 2rem;
+	}
+	h4 {
+		font-size: 1.85rem;
+	}
+	p {
+		font-size: 1.8rem;
+	}
 }
 
 .bg--std {

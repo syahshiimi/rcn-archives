@@ -130,6 +130,7 @@ export const PastEventsCard = () => {
         <a href="/" className="c-pastevent__button">
           <h3 className="c-pastevent__details">{eventTitle}</h3>
           <p className="c-pastevent__date">{eventDate}</p>
+          <p className="c-pastevent__content">{eventBlurb}</p>
           <h4 className="c-pastevent__location">{eventLocation}</h4>
         </a>
       </ButtonWrapper>
@@ -337,6 +338,10 @@ const ButtonWrapper = styled.div`
     margin: 4vh 0vw;
   }
 
+  .c-pastevent__content {
+    display: none;
+  }
+
   .c-pastevent__details {
     font-size: 1rem;
     font-family: Lora;
@@ -352,5 +357,68 @@ const ButtonWrapper = styled.div`
   .c-pastevent__location {
     font-size: 0.85rem;
     text-align: left;
+  }
+
+  ///////////////////////////////
+  ///////////////////////////////
+  ///////////////////////////////
+  ///// Tablet Layout ///////////
+
+  @media (min-width: 992px) {
+    .c-pastevent__content {
+      display: block;
+    }
+    a > * {
+      margin: 2vh 0vw;
+    }
+    .c-pastevent__details {
+      font-size: 1.25rem;
+    }
+    .c-pastevent__date {
+      font-size: 1rem;
+    }
+    .c-pastevent__location {
+      font-size: 1rem;
+    }
+  }
+
+  ///////////////////////////
+  ///////////////////////////
+  ////////// Desktop ////////
+  ///////////////////////////
+  @media (min-width: 1280px) {
+    padding: 2vh 6vw;
+    a > * {
+      margin: 6vh 0vw;
+    }
+    .c-pastevent__details {
+      font-size: 1.5rem;
+      text-align: left;
+    }
+    .c-pastevent__date {
+      font-size: 1.125rem;
+    }
+    .c-pastevent__location {
+      font-size: 1.125rem;
+    }
+  }
+
+  //////////////////////////
+  //////////////////////////
+  /////// High Res /////////
+  //////////////////////////
+  //////////////////////////
+
+  @media (min-width: 2560px) {
+    .c-pastevent__details {
+      font-size: 2.5rem;
+      text-align: left;
+    }
+    .c-pastevent__date {
+      font-size: 1.85rem;
+    }
+    .c-pastevent__location {
+      font-size: 1.85rem;
+    }
   }
 `

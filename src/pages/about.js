@@ -12,7 +12,7 @@ const About = () => {
           <h1 className="c-hero__header">Who We Are</h1>
           <h2 className="c-hero__subheading">
             Reconceptualizing the Cold War Narratives is a long term project by
-            Professor Masuda Hajimu of National University Singapore
+            historian Masuda Hajimu of National University Singapore.
           </h2>
           <StaticImage
             src="../assets/img/Masuda_cover_image.jpeg"
@@ -69,7 +69,7 @@ const About = () => {
             objectFit="cover"
             aspectRatio={3 / 2}
           />
-          <p className="c-contact__form">
+          <div className="c-contact__form">
             <input type="text" className="name" placeholder="Name" />
             <input type="text" className="email" placeholder="Email" />
             <input
@@ -78,7 +78,7 @@ const About = () => {
               placeholder="Additional Info"
             />
             <DefaultButton title="Submit" />
-          </p>
+          </div>
         </section>
       </AboutWrapper>
     </Layout>
@@ -119,7 +119,7 @@ const AboutWrapper = styled.main`
   }
 
   .c-contact__form > input {
-    padding: 1rem;
+    padding: 2vh 4vw;
     background: rgba(232, 237, 223, 0.5);
     border: none;
     outline: none;
@@ -139,6 +139,7 @@ const AboutWrapper = styled.main`
     align-items: start;
   }
   //  page wide image styling
+  //
   .std-style {
     border-radius: calc(1.5rem + 4px);
     border: 2px solid var(--primary-clr-200);
@@ -155,15 +156,15 @@ const AboutWrapper = styled.main`
 
   @media (min-width: 992px) {
     section {
-      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+      padding: 6vh var(--padding-desktop);
     }
 
     // Hero Section
     .l-hero {
       display: grid;
-      grid-column-gap: 4vw;
+      grid-column-gap: 6vw;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows:  auto auto auto;
+      grid-template-rows: auto auto auto;
       grid-template-areas:
         "heading image"
         "subheading image"
@@ -172,14 +173,17 @@ const AboutWrapper = styled.main`
 
     .c-hero__header {
       grid-area: heading;
+      align-self: center;
     }
 
     .c-hero__subheading {
       grid-area: subheading;
+      align-self: center;
     }
 
     .c-hero__content {
       grid-area: content;
+      align-self: center;
     }
     .c-hero__image {
       grid-area: image;
@@ -188,9 +192,9 @@ const AboutWrapper = styled.main`
     // Focus Section
     .l-focus {
       display: grid;
-      grid-column-gap: 4vw;
+      grid-column-gap: 6vw;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows:  auto auto auto;
+      grid-template-rows: auto auto auto;
       grid-template-areas:
         "image heading"
         "image subheading"
@@ -198,26 +202,28 @@ const AboutWrapper = styled.main`
     }
     .c-focus__header {
       grid-area: heading;
+      align-self: center;
     }
 
     .c-focus__subheading {
       grid-area: subheading;
+      align-self: center;
     }
 
     .c-focus__content {
       grid-area: content;
+      align-self: center;
     }
     .c-focus__image {
       grid-area: image;
     }
-
 
     // Contact Section
     .l-contact {
       display: grid;
       grid-column-gap: 4vw;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows:  auto auto auto;
+      grid-template-rows: auto auto auto;
       grid-template-areas:
         "heading heading"
         "subheading subheading"
@@ -225,13 +231,16 @@ const AboutWrapper = styled.main`
     }
     .c-contact__header {
       grid-area: heading;
+      align-self: center;
     }
 
     .c-contact__subheading {
       grid-area: subheading;
+      align-self: center;
     }
 
     .c-contact__form {
+      align-self: center;
       grid-area: content;
       display: flex;
       flex-direction: column;
@@ -242,12 +251,61 @@ const AboutWrapper = styled.main`
     }
 
     // Contact Form Styling
-    
-    .c-focus__form > p,
+    //
+    .c-contact__form > input {
+      padding: 1vh 3vw;
+    }
+  }
+  .c-contact__form > p,
   input {
-    margin: 0vh 0rem 2vh 0rem;
-  
+    margin: 0vh 0vw 1vh 0vw;
+  }
 
+  ///////////////////////////
+  ///////////////////////////
+  ///////////////////////////
+  /////// Desktop ///////////
+  ///////////////////////////
+  ///////////////////////////
+  ///////////////////////////
+
+  @media (min-width: 1280px) {
+    section {
+      padding: 10vh var(--padding-desktop);
+    }
+
+    .c-contact__form > input {
+      padding: 3vh 3vw;
+      font-size: 1.15rem;
+    }
+  }
+
+  // High Res Display
+
+  @media (min-width: 2560px) {
+    // Form Styling
+    .c-contact__form > input {
+      padding: 3vh 2vw;
+      font-size: 1.9rem;
+    }
+    .c-contact__form > p,
+    input {
+      margin: 0vh 0vw 2vh 0vw;
+    }
+    .l-hero > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
+
+    .l-focus > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
+
+    .l-contact > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
   }
 `
 export default About
