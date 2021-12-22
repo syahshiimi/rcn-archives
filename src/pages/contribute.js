@@ -21,7 +21,7 @@ const Contribute = () => {
           <h1 className="c-contribute__header">Contribute</h1>
           <h2 className="c-contribute__heading">{contributeHead}</h2>
           <StaticImage
-            src="../assets/img/rcn_workshop_image.jpg"
+            src="../assets/img/rcw_workshops/rcw_2nd_workshop.jpg"
             alt="RCN Workshop"
             layout="constrained"
             className="c-contribute__image"

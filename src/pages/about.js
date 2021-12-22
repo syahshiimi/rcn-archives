@@ -278,6 +278,21 @@ const AboutWrapper = styled.main`
       padding: 3vh 3vw;
       font-size: 1.15rem;
     }
+    .l-hero > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
+
+    .l-focus > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
+
+    .l-contact > * {
+      margin: 4vh 0vw;
+      text-align: center;
+    }
+
   }
 
   // High Res Display

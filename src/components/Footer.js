@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="footer__copyright">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <a href="http://masudahajimu.com/">Masuda Hajimu</a> and the
+            <a href={masudaWebsite}>Masuda Hajimu</a> and the
             National University of Singapore
           </p>
         </div>

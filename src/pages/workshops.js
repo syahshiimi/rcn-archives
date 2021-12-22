@@ -1,7 +1,5 @@
-import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
-import DefaultButton from "../components/button"
 import { PastEventsCard } from "../components/cards"
 import Layout from "../components/Layout"
 

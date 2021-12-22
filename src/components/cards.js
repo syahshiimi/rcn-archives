@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { StaticImage } from "gatsby-plugin-image"
@@ -17,9 +17,9 @@ import { BsArrowRight } from "@react-icons/all-files/Bs/BsArrowRight"
 /////////////////////////////////
 /////////////////////////////////
 export const BACard = props => {
-  const { type, link } = props
+  const { type } = props
   const Icon =
-    type == "Search" ? <FaSearchPlus size={90} /> : <FaMapMarkerAlt size={90} />
+    type === "Search" ? <FaSearchPlus size={90} /> : <FaMapMarkerAlt size={90} />
 
   return (
     <CardWrapper>
@@ -44,7 +44,7 @@ export const BACard = props => {
 /////////////////////////////////
 export const FeatureCard = () => {
   return featuredDocs.map(item => {
-    const { docID, interviewer, interviewee, title, country, text } = item
+    const { docID, interviewer, title,  text } = item
     return (
       <CardWrapper key={docID}>
         <button type="button" className="c-featured__card">
@@ -78,12 +78,8 @@ export const EventsCard = () => {
     const {
       featured,
       eventID,
-      eventURL,
-      eventTitle,
-      eventType,
       eventDate,
       eventLocation,
-      eventBlurb,
     } = items
     if (featured === true) {
       return (
@@ -117,10 +113,8 @@ export const EventsCard = () => {
 export const PastEventsCard = () => {
   return eventList.map(items => {
     const {
-      featured,
       eventID,
       eventTitle,
-      eventType,
       eventDate,
       eventLocation,
       eventBlurb,
