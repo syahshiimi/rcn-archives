@@ -1,7 +1,9 @@
 import React from "react"
 import Layout from "../components/Layout"
 import styled from "styled-components"
-import { StaticImage } from "gatsby-plugin-image"
+import { getImage, StaticImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 // components
 import DefaultButton from "../components/button"
@@ -13,7 +15,26 @@ import { eventList } from "../data"
 const BrowseArchiveSub =
   "Our archives are informed with the deep oral narratives within Asia. Browse our archives to immerse yourself into the rich untold stories of Asia during the Cold War."
 
+const query = graphql`
+  {
+    allFile(
+      filter: {
+        relativeDirectory: { eq: "workshops" }
+        name: { eq: "rcw_3rd_workshop_1" }
+      }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`
 const Index = () => {
+  const data = useStaticQuery(query)
+  const nodes = data.allFile.nodes
   return (
     <Layout>
       <HomeWrapper>
@@ -87,17 +108,32 @@ const Index = () => {
                 <article className="c-events" key={eventID}>
                   <h1>Workshops & {"\n"}Events</h1>
                   <h2 className="c-events__heading mobile">{eventTitle}</h2>
-                  <ImageWrapper>
+
+                  {/* <ImageWrapper>
                     <StaticImage
                       src="../assets/img/rcw_workshops/rcw_3rd_workshop_card_image.jpeg"
                       layout="constrained"
                       alt="rcw workshop iamge"
                       className="c-event__image"
-                    />
-                  </ImageWrapper>
+                    /> 
+                    
+                  </ImageWrapper>*/}
+                  {nodes.map((item, index) => {
+                    const { name } = item
+                    const pathToImage = getImage(item)
+                    return (
+                      <ImageWrapper key={index}>
+                        <GatsbyImage
+                          image={pathToImage}
+                          alt={name}
+                          className="c-event__image"
+                        />
+                      </ImageWrapper>
+                    )
+                  })}
                   <h2 className="c-events__heading desktop">{eventTitle}</h2>
                   <p>{eventBlurb}</p>
-                  <EventsCard featured={true}/>
+                  <EventsCard featured={true} />
                 </article>
               )
             } else {

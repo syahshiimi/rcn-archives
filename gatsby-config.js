@@ -5,6 +5,20 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: "Reconceptualizing the Cold War",
+    description: "By historian Masuda Hajimu",
+    author: "Masuda Hajimu",
+    person: {
+      name: "Masuda Hajimu",
+      age: "32",
+    },
+    simpleData: ["item 1", "item 2"],
+    complexData: [
+      { name: "Syahrul", age: "26" },
+      { name: "Varun", age: "26" },
+    ],
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-styled-components`,
@@ -12,8 +26,15 @@ module.exports = {
         // Add any options here
       },
     },
-        `gatsby-plugin-image`,
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/img`,
+      },
+    },
   ],
 }
