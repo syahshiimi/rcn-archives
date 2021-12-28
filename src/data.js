@@ -21,7 +21,7 @@ export const pageLinks = [
   },
   {
     pageID: 5,
-    url: "/workshops",
+    url: "/eventlist",
     text: "Workshops",
   },
   {

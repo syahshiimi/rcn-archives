@@ -1,17 +1,41 @@
 import React from "react"
 import styled from "styled-components"
-import { PastEventsCard } from "../components/cards"
+import { PastEventsCard } from "../components/eventscard"
 import Layout from "../components/Layout"
+import { graphql, useStaticQuery } from "gatsby"
 
+const query = graphql`
+  {
+    allContentfulEventsWorkshops {
+      nodes {
+        id
+        eventTitle
+        eventBlurb
+        eventLocation
+        eventEnd (formatString:"MMMM Do, YYYY")
+        eventStart(formatString:"MMMM Do, YYYY")
+        eventImage {
+          gatsbyImageData(
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            aspectRatio: 1.5
+          )
+        }
+      }
+    }
+  }
+`
 const Workshops = () => {
+  const data = useStaticQuery(query)
+  const events = data.allContentfulEventsWorkshops.nodes
+
   return (
     <Layout>
       <WorkshopWrapper>
         <section className="l-pastworkshops">
           <h1 className="c-pastworkshops__heading">Events & Workshops</h1>
-
-          <div className="l-pastworkshops__container">
-            <PastEventsCard />
+          <div className="l-pastworkshops__list">
+            <PastEventsCard events={events} />
           </div>
         </section>
       </WorkshopWrapper>
@@ -37,13 +61,13 @@ const WorkshopWrapper = styled.main`
     text-align: center;
   }
 
-  .l-pastworkshops__container {
+  .l-pastworkshops__list {
     display: flex;
     justify-content: center;
     flex-direction: column;
     background-color: var(--primary-clr-50);
     padding: 2vh 8vw;
-    border-radius: calc(5vw + 4px); 
+    border-radius: calc(5vw + 4px);
   }
 
   .l-pastworkshops__container > * {

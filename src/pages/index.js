@@ -8,33 +8,38 @@ import { GatsbyImage } from "gatsby-plugin-image"
 // components
 import DefaultButton from "../components/button"
 import { BACard, FeatureCard, EventsCard } from "../components/cards"
-import { eventList } from "../data"
 
-// variables
-
-const BrowseArchiveSub =
-  "Our archives are informed with the deep oral narratives within Asia. Browse our archives to immerse yourself into the rich untold stories of Asia during the Cold War."
 
 const query = graphql`
   {
-    allFile(
-      filter: {
-        relativeDirectory: { eq: "workshops" }
-        name: { eq: "rcw_3rd_workshop_1" }
-      }
+    allContentfulEventsWorkshops(
+      sort: { fields: id, order: ASC }
+      filter: { featured: { eq: true } }
     ) {
       nodes {
-        name
-        childImageSharp {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+        id
+        eventTitle
+        eventBlurb
+        eventEnd
+        eventStart(formatString: "MMMM Do, YYYY")
+        eventImage {
+          gatsbyImageData(
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            aspectRatio: 1.5
+          )
         }
+        eventLocation
       }
+      totalCount
     }
   }
 `
+
 const Index = () => {
   const data = useStaticQuery(query)
-  const nodes = data.allFile.nodes
+  const featuredEvents = data.allContentfulEventsWorkshops.nodes
+
   return (
     <Layout>
       <HomeWrapper>
@@ -82,7 +87,8 @@ const Index = () => {
               <BACard type="Search" />
               <BACard type="Geography" />
             </div>
-            <p className="c-browse__subheading">{BrowseArchiveSub}</p>
+            <p className="c-browse__subheading">Our archives are informed with the deep oral narratives within Asia. Browse our archives to immerse yourself into the rich untold stories of Asia during the Cold War.
+</p>
           </article>
         </section>
         <section className="l-featured bg--std">
@@ -94,51 +100,33 @@ const Index = () => {
           </article>
         </section>
         <section className="l-events bg--gray">
-          {eventList.map(items => {
+          {featuredEvents.map(event => {
             const {
-              featured,
-              eventID,
+              id,
               eventTitle,
-              eventType,
-              eventDate,
               eventBlurb,
-            } = items
-            if (featured === true) {
-              return (
-                <article className="c-events" key={eventID}>
-                  <h1>Workshops & {"\n"}Events</h1>
-                  <h2 className="c-events__heading mobile">{eventTitle}</h2>
+              eventStart,
+              eventImage,
+              eventLocation,
+            } = event 
+            const pathToImage = getImage(eventImage);
+            return (
+              <article className="c-events" key={id}>
+                <h1>Workshops & {"\n"}Events</h1>
+                <ImageWrapper>
+                <GatsbyImage
+                  image={pathToImage}
+                  alt={eventTitle}
+                  className="c-event__image"
+                />
+                  </ImageWrapper>
 
-                  {/* <ImageWrapper>
-                    <StaticImage
-                      src="../assets/img/rcw_workshops/rcw_3rd_workshop_card_image.jpeg"
-                      layout="constrained"
-                      alt="rcw workshop iamge"
-                      className="c-event__image"
-                    /> 
-                    
-                  </ImageWrapper>*/}
-                  {nodes.map((item, index) => {
-                    const { name } = item
-                    const pathToImage = getImage(item)
-                    return (
-                      <ImageWrapper key={index}>
-                        <GatsbyImage
-                          image={pathToImage}
-                          alt={name}
-                          className="c-event__image"
-                        />
-                      </ImageWrapper>
-                    )
-                  })}
-                  <h2 className="c-events__heading desktop">{eventTitle}</h2>
-                  <p>{eventBlurb}</p>
-                  <EventsCard featured={true} />
-                </article>
-              )
-            } else {
-              return null
-            }
+                <h2 className="c-events__heading mobile">{eventTitle}</h2>
+                <h2 className="c-events__heading desktop">{eventTitle}</h2>
+                <p>{eventBlurb}</p>
+                <EventsCard events={event} />
+              </article>
+            )
           })}
         </section>
       </HomeWrapper>

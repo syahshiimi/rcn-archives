@@ -3,6 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -34,6 +37,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/assets/img`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `2h4eq8swsmzf`,
+        accessToken: process.env.CONTENTFUL_API_KEY,
       },
     },
   ],

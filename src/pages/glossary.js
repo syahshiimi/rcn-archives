@@ -7,7 +7,7 @@ const Glossary = () => {
     <Layout>
       <GlossaryWrapper>
         <section className="l-glossary bg--std">
-          <h1 className="c-glossary__header"></h1>
+          <h1 className="c-glossary__header">Glossary</h1>
          <p className="c-glossary__a">A</p>
          <p className="c-glossary__b">B</p>
           <p className="c-glossary__c">c</p>
