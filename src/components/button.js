@@ -1,4 +1,4 @@
-import {Link} from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
@@ -36,7 +36,7 @@ const ButtonWrapper = styled.div`
 
   a {
     color: var(--primary-clr-200) !important;
-
   }
 `
+
 export default DefaultButton

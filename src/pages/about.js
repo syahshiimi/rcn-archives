@@ -139,7 +139,6 @@ const AboutWrapper = styled.main`
     align-items: start;
   }
   //  page wide image styling
-  //
   .std-style {
     border-radius: calc(1.5rem + 4px);
     border: 2px solid var(--primary-clr-200);

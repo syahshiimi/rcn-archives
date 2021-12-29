@@ -9,7 +9,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import DefaultButton from "../components/button"
 import { BACard, FeatureCard, EventsCard } from "../components/cards"
 
-
 const query = graphql`
   {
     allContentfulEventsWorkshops(
@@ -87,10 +86,14 @@ const Index = () => {
               <BACard type="Search" />
               <BACard type="Geography" />
             </div>
-            <p className="c-browse__subheading">Our archives are informed with the deep oral narratives within Asia. Browse our archives to immerse yourself into the rich untold stories of Asia during the Cold War.
-</p>
+            <p className="c-browse__subheading">
+              Our archives are informed with the deep oral narratives within
+              Asia. Browse our archives to immerse yourself into the rich untold
+              stories of Asia during the Cold War.
+            </p>
           </article>
         </section>
+        {/* Featured Documents */}
         <section className="l-featured bg--std">
           <article className="c-featured">
             <h1 className="c-featured__heading">Featured Documents</h1>
@@ -99,32 +102,28 @@ const Index = () => {
             </div>
           </article>
         </section>
+
+        {/* Featured Event */}
         <section className="l-events bg--gray">
-          {featuredEvents.map(event => {
-            const {
-              id,
-              eventTitle,
-              eventBlurb,
-              eventStart,
-              eventImage,
-              eventLocation,
-            } = event 
-            const pathToImage = getImage(eventImage);
+          {featuredEvents.map(item => {
+            const { id, eventTitle, eventBlurb, eventImage } = item
+            const pathToImage = getImage(eventImage)
             return (
               <article className="c-events" key={id}>
                 <h1>Workshops & {"\n"}Events</h1>
                 <ImageWrapper>
-                <GatsbyImage
-                  image={pathToImage}
-                  alt={eventTitle}
-                  className="c-event__image"
-                />
-                  </ImageWrapper>
+                  <GatsbyImage
+                    image={pathToImage}
+                    alt={eventTitle}
+                    className="c-event__image"
+                  />
+                </ImageWrapper>
 
                 <h2 className="c-events__heading mobile">{eventTitle}</h2>
                 <h2 className="c-events__heading desktop">{eventTitle}</h2>
                 <p>{eventBlurb}</p>
-                <EventsCard events={event} />
+                {/* feed mapped out featuredevents as props*/}
+                <EventsCard item={item} />
               </article>
             )
           })}

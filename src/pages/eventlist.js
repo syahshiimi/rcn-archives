@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { PastEventsCard } from "../components/eventscard"
+import { EventsCard } from "../components/eventscard"
 import Layout from "../components/Layout"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -28,13 +28,15 @@ const query = graphql`
 const Events = () => {
   const data = useStaticQuery(query)
   const events = data.allContentfulEventsWorkshops.nodes
+  console.log(data);
+  console.log(events);
   return (
     <Layout>
       <EventWrapper>
         <section className="l-pastevents">
           <h1 className="c-pastevents__heading">Events & Workshops</h1>
           <div className="l-pastevents__list">
-            <PastEventsCard events={events} />
+            <EventsCard events={events} />
           </div>
         </section>
       </EventWrapper>

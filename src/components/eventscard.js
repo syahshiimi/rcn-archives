@@ -1,8 +1,10 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import slugify from "slugify"
+import parse from "html-react-parser"
 
-export const PastEventsCard = ({ events = [] }) => {
+export const EventsCard = ({ events = [] }) => {
   return (
     <div className="l-pastevents__container">
       {events.map(events => {
@@ -15,10 +17,11 @@ export const PastEventsCard = ({ events = [] }) => {
           eventEnd,
           eventImage,
         } = events
+        const slug = slugify(eventTitle, { lower: true })
         return (
-          <ButtonWrapper key={id} className="c-pastevents__card">
+          <PastEventsWrapper key={id} className="c-pastevents__card">
             <Link
-              to={`/${eventTitle}`}
+              to={`/${slug}`}
               className="c-pastevents__button"
               alt={eventTitle}
               key={id}
@@ -28,14 +31,22 @@ export const PastEventsCard = ({ events = [] }) => {
               <p className="c-pastevents__content">{eventBlurb}</p>
               <h4 className="c-pastevents__location">{eventLocation}</h4>
             </Link>
-          </ButtonWrapper>
+          </PastEventsWrapper>
         )
       })}
     </div>
   )
 }
 
-const ButtonWrapper = styled.div`
+export const EventScheduleCard = ({ items = [] }) => {
+  return (
+    <EventScheduleWrapper>
+      <div className="c-eventschedule__card">{parse(`${items}`)}</div>
+    </EventScheduleWrapper>
+  )
+}
+
+const PastEventsWrapper = styled.div`
   display: flex;
   padding: 1vh 8vw;
   justify-content: center;
@@ -136,4 +147,9 @@ const ButtonWrapper = styled.div`
       font-size: 1.85rem;
     }
   }
+`
+
+const EventScheduleWrapper = styled.div`
+  background-color: var(--primary-clr-100);
+
 `

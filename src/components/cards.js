@@ -3,6 +3,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { StaticImage } from "gatsby-plugin-image"
 import { featuredDocs, eventList } from "../data"
+import slugify from "slugify"
 
 // Icons
 import { FaSearchPlus } from "@react-icons/all-files/fa/FaSearchPlus"
@@ -77,8 +78,9 @@ export const FeatureCard = () => {
 ////////////////////////////////////
 ////////////////////////////////////
 ////////////////////////////////////
-export const EventsCard = ({ events = [] }) => {
-  const { eventTitle, eventStart, eventLocation } = events
+export const EventsCard = ({ item = [] }) => {
+  const { eventTitle, eventStart, eventLocation } = item
+  const slug = slugify(eventTitle, { lower: true })
   return (
     <CardWrapper className="c-event__card">
       <button type="button" className="c-event__button">
@@ -87,7 +89,7 @@ export const EventsCard = ({ events = [] }) => {
           <p className="c-event__date">{eventStart}</p>
           <h4 className="c-event__location">{eventLocation}</h4>
         </section>
-        <Link to={`/${eventTitle}`} className="c-event__link">
+        <Link to={`/${slug}`} className="c-event__link">
           Find out more
           <BsArrowRight size={20} />
         </Link>
