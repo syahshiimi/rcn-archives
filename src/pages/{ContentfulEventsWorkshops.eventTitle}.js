@@ -7,133 +7,78 @@ import { EventScheduleCard } from "../components/eventscard"
 import Layout from "../components/Layout"
 import DefaultButton from "../components/button"
 
-//const EventsTest = ({ data }) => {
-//  const events = data.allContentfulEventsWorkshops.nodes
-//  console.log(events)
-//  return (
-//    <div>
-//      {events.map(item => {
-//        const {
-//          eventTitle,
-//          eventSubheading,
-//          eventContent: { eventContent },
-//        } = item
-//        return (
-//          <div>
-//            {eventSubheading}
-//            <p>{eventTitle}</p>
-//            <h3>{eventContent}</h3>
-//          </div>
-//        )
-//      })}
-//    </div>
-//  )
-//}
-
-//export const query = graphql`
-//  query getSingleEvent($eventTitle: String) {
-//    allContentfulEventsWorkshops(filter: { eventTitle: { eq: $eventTitle } }) {
-//      nodes {
-//        eventTitle
-//        eventScheduleOne {
-//          childMarkdownRemark {
-//            scheduleOne: html
-//          }
-//        }
-//        eventScheduleFour {
-//          childMarkdownRemark {
-//            scheduleFour: html
-//          }
-//        }
-//        eventScheduleThree {
-//          childMarkdownRemark {
-//            scheduleThree: html
-//          }
-//        }
-//        eventScheduleTwo {
-//          childMarkdownRemark {
-//            scheduleTwo: html
-//          }
-//        }
-//        eventTags
-//        eventSubheading
-//        eventStart(formatString: "DD, MMMM, YYYY")
-//        eventEnd(formatString: "DD, MMMM, YYYY")
-//        eventBlurb
-//        eventContent {
-//          eventContent
-//        }
-//        contentful_id
-//        eventImage {
-//          gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
-//        }
-//      }
-//    }
-//  }
-//`
-
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops
-  const {
-    eventTitle,
-    eventSubheading,
-    eventContent: { eventContent },
-    eventStart,
-    eventEnd,
-    eventLocation,
-    eventImage,
-    eventScheduleOne: {
-      childMarkdownRemark: { scheduleOne },
-    },
-    eventScheduleTwo: {
-      childMarkdownRemark: { scheduleTwo },
-    },
-    eventScheduleThree: {
-      childMarkdownRemark: { scheduleThree },
-    },
-    eventScheduleFour: {
-      childMarkdownRemark: { scheduleFour },
-    },
-  } = events
-  const pathToImage = getImage(eventImage)
 
-  {
-    /* create schedules array */
-  }
+  // convert event objects to array with key value paris
+  const eventArr = Object.entries(events)
 
-  const eventsArr = [
-    { scheduleOne },
-    { scheduleTwo },
-    { scheduleThree },
-    { scheduleFour },
-  ]
-  console.log(eventsArr)
+  // filter through key/value pairs to remove 'null'
+  const filteredArr = eventArr.filter(([key, value]) => value != null)
+
+  // print out to compare filtered array
+  console.log(filteredArr)
+
+  // convert filtered arr to object
+  const newEvents = Object.fromEntries(filteredArr)
+  console.log(newEvents)
+
+  // destructure object
+  const { eventTitle } = newEvents
+
+  // map out array to procedurally generate website
+  //
+  // 1. Create object from each key value pair
+
   return (
     <Layout>
-      <EventWrapper>
-        <section className="l-events">
-          <GatsbyImage
-            image={pathToImage}
-            alt={eventTitle}
-            className="c-event__image std-style"
-          />
-          <h1 className="c-events__title">{eventTitle}</h1>
-          <h3 className="c-events__title">{eventSubheading}</h3>
-          <h3 className="c-events__date">
-            {eventStart} - {eventEnd}
-          </h3>
-          <h3 className="c-events__location">{eventLocation}</h3>
-          <p className="c-events__content">{eventContent}</p>
-          <DefaultButton title="Sign Up" url="/" />
-          <h1 className="c-events__details">Event Details</h1>
-          <div className="c-eventschedule__container">
-             <EventScheduleCard items={eventsArr} />
-          </div>
-          <DefaultButton title="See Past Events" url="/eventlist" />
-        </section>
-      </EventWrapper>
+      <EventWrapper></EventWrapper>
     </Layout>
   )
+
+  //  const pathToImage = getImage(eventImage)
+  //
+  //  {
+  //    /* create schedules array */
+  //  }
+  //
+  //  const eventsArr = [
+  //    { scheduleOne },
+  //    { scheduleTwo },
+  //    { scheduleThree },
+  //    { scheduleFour },
+  //    { scheduleFive },
+  //    //    { scheduleSix },
+  //    //    { scheduleSeven },
+  //    //    { scheduleEight },
+  //    //    { scheduleNine },
+  //    //    { scheduleTen },
+  //    //    { scheduleTwelve },
+  //  ]
+  //  return (
+  //    <Layout>
+  //      <EventWrapper>
+  //        <section className="l-events">
+  //          <GatsbyImage
+  //            image={pathToImage}
+  //            alt={eventTitle}
+  //            className="c-event__image std-style"
+  //          />
+  //          <h1 className="c-events__title">{eventTitle}</h1>
+  //          <h3 className="c-events__title">{eventSubheading}</h3>
+  //          <h3 className="c-events__date">
+  //            {eventStart} - {eventEnd}
+  //          </h3>
+  //          <h3 className="c-events__location">{eventLocation}</h3>
+  //          <p className="c-events__content">{eventContent}</p>
+  //          <DefaultButton title="Sign Up" url="/" />
+  //          <h1 className="c-events__details">Event Details</h1>
+  //          <div className="c-eventschedule__container"></div>
+  //          <DefaultButton title="See Past Events" url="/eventlist" />
+  //        </section>
+  //      </EventWrapper>
+  //    </Layout>
+  //  )
 }
 
 export const query = graphql`
@@ -171,6 +116,41 @@ export const query = graphql`
       eventScheduleFour {
         childMarkdownRemark {
           scheduleFour: html
+        }
+      }
+      eventScheduleFive {
+        childMarkdownRemark {
+          scheduleFive: html
+        }
+      }
+      eventScheduleSix {
+        childMarkdownRemark {
+          scheduleSix: html
+        }
+      }
+      eventScheduleSeven {
+        childMarkdownRemark {
+          scheduleSeven: html
+        }
+      }
+      eventScheduleEight {
+        childMarkdownRemark {
+          scheduleEight: html
+        }
+      }
+      eventScheduleNine {
+        childMarkdownRemark {
+          scheduleNine: html
+        }
+      }
+      eventScheduleTen {
+        childMarkdownRemark {
+          scheduleTen: html
+        }
+      }
+      eventScheduleTwelve {
+        childMarkdownRemark {
+          scheduleTwelve: html
         }
       }
     }
