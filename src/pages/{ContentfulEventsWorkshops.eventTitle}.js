@@ -6,9 +6,71 @@ import styled from "styled-components"
 import { EventScheduleCard } from "../components/eventscard"
 import Layout from "../components/Layout"
 import DefaultButton from "../components/button"
-{
-  /* import components */
-}
+
+//const EventsTest = ({ data }) => {
+//  const events = data.allContentfulEventsWorkshops.nodes
+//  console.log(events)
+//  return (
+//    <div>
+//      {events.map(item => {
+//        const {
+//          eventTitle,
+//          eventSubheading,
+//          eventContent: { eventContent },
+//        } = item
+//        return (
+//          <div>
+//            {eventSubheading}
+//            <p>{eventTitle}</p>
+//            <h3>{eventContent}</h3>
+//          </div>
+//        )
+//      })}
+//    </div>
+//  )
+//}
+
+//export const query = graphql`
+//  query getSingleEvent($eventTitle: String) {
+//    allContentfulEventsWorkshops(filter: { eventTitle: { eq: $eventTitle } }) {
+//      nodes {
+//        eventTitle
+//        eventScheduleOne {
+//          childMarkdownRemark {
+//            scheduleOne: html
+//          }
+//        }
+//        eventScheduleFour {
+//          childMarkdownRemark {
+//            scheduleFour: html
+//          }
+//        }
+//        eventScheduleThree {
+//          childMarkdownRemark {
+//            scheduleThree: html
+//          }
+//        }
+//        eventScheduleTwo {
+//          childMarkdownRemark {
+//            scheduleTwo: html
+//          }
+//        }
+//        eventTags
+//        eventSubheading
+//        eventStart(formatString: "DD, MMMM, YYYY")
+//        eventEnd(formatString: "DD, MMMM, YYYY")
+//        eventBlurb
+//        eventContent {
+//          eventContent
+//        }
+//        contentful_id
+//        eventImage {
+//          gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+//        }
+//      }
+//    }
+//  }
+//`
 
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops
@@ -26,8 +88,26 @@ const EventsTemplate = ({ data }) => {
     eventScheduleTwo: {
       childMarkdownRemark: { scheduleTwo },
     },
+    eventScheduleThree: {
+      childMarkdownRemark: { scheduleThree },
+    },
+    eventScheduleFour: {
+      childMarkdownRemark: { scheduleFour },
+    },
   } = events
   const pathToImage = getImage(eventImage)
+
+  {
+    /* create schedules array */
+  }
+
+  const eventsArr = [
+    { scheduleOne },
+    { scheduleTwo },
+    { scheduleThree },
+    { scheduleFour },
+  ]
+  console.log(eventsArr)
   return (
     <Layout>
       <EventWrapper>
@@ -44,11 +124,10 @@ const EventsTemplate = ({ data }) => {
           </h3>
           <h3 className="c-events__location">{eventLocation}</h3>
           <p className="c-events__content">{eventContent}</p>
-          <DefaultButton title="Sign Up" url="https://google.com" />
+          <DefaultButton title="Sign Up" url="/" />
           <h1 className="c-events__details">Event Details</h1>
           <div className="c-eventschedule__container">
-            <EventScheduleCard items={scheduleOne} />
-            <EventScheduleCard items={scheduleTwo} />
+             <EventScheduleCard items={eventsArr} />
           </div>
           <DefaultButton title="See Past Events" url="/eventlist" />
         </section>
@@ -61,26 +140,37 @@ export const query = graphql`
   query getSingleEvent($eventTitle: String) {
     contentfulEventsWorkshops(eventTitle: { eq: $eventTitle }) {
       eventTitle
-      eventStart(formatString: "DD MMM YYYY")
-      eventEnd(formatString: "DD MMMM YYYY")
-      eventBlurb
-      eventImage {
-        gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
-        title
-      }
+      eventSubheading
+      eventTags
+      eventStart(formatString: "DDM MMMM YYYY")
+      eventEnd(formatString: "DDM MMMM YYYY")
       eventLocation
+      eventImage {
+        gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+      }
       eventContent {
         eventContent
       }
-      eventSubheading
+      eventBlurb
+      contentful_id
+      eventScheduleTwo {
+        childMarkdownRemark {
+          scheduleTwo: html
+        }
+      }
+      eventScheduleThree {
+        childMarkdownRemark {
+          scheduleThree: html
+        }
+      }
       eventScheduleOne {
         childMarkdownRemark {
           scheduleOne: html
         }
       }
-      eventScheduleTwo {
+      eventScheduleFour {
         childMarkdownRemark {
-          scheduleTwo: html
+          scheduleFour: html
         }
       }
     }
@@ -116,3 +206,4 @@ const EventWrapper = styled.main`
 `
 
 export default EventsTemplate
+//export default EventsTest

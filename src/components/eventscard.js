@@ -39,10 +39,22 @@ export const EventsCard = ({ events = [] }) => {
 }
 
 export const EventScheduleCard = ({ items = [] }) => {
+  console.log(items)
   return (
-    <EventScheduleWrapper>
-      <div className="c-eventschedule__card">{parse(`${items}`)}</div>
-    </EventScheduleWrapper>
+    <div>
+      {items.map(schedule => {
+        console.log(schedule)
+        for (const [key, value] of Object.entries(schedule)) {
+          return (
+            <EventScheduleWrapper>
+              <div className="c-eventschedule__card">
+                {parse(`${value}`)}
+              </div>
+            </EventScheduleWrapper>
+          )
+        }
+      })}
+    </div>
   )
 }
 
@@ -151,5 +163,4 @@ const PastEventsWrapper = styled.div`
 
 const EventScheduleWrapper = styled.div`
   background-color: var(--primary-clr-100);
-
 `
