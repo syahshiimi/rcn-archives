@@ -9,76 +9,61 @@ import DefaultButton from "../components/button"
 
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops
+  // print default queried data
+  console.log(events)
 
-  // convert event objects to array with key value paris
+  // convert default objects to array with key value pairs
   const eventArr = Object.entries(events)
+  console.log(eventArr);
 
-  // filter through key/value pairs to remove 'null'
+  // filter through key/value pairs to remove 'null' and produce new arr
   const filteredArr = eventArr.filter(([key, value]) => value != null)
-
-  // print out to compare filtered array
   console.log(filteredArr)
 
-  // convert filtered arr to object
+  // convert filtered array to object
   const newEvents = Object.fromEntries(filteredArr)
   console.log(newEvents)
 
-  // destructure object
-  const { eventTitle } = newEvents
+  // destructure object for quick access
+  const {
+    eventTitle,
+    eventSubheading,
+    eventBlurb,
+    eventContent: { eventContent },
+    eventImage,
+    eventLocation,
+    eventStart,
+    eventEnd,
+    eventTags,
+  } = newEvents
 
-  // map out array to procedurally generate website
-  //
-  // 1. Create object from each key value pair
-
+  const pathToImage = getImage(eventImage)
   return (
     <Layout>
-      <EventWrapper></EventWrapper>
+      <EventWrapper>
+        <section className="l-events">
+          <GatsbyImage
+            image={pathToImage}
+            alt={eventTitle}
+            className="c-event__image std-style"
+          />
+          <h1 className="c-events__title">{eventTitle}</h1>
+          <h3 className="c-events__title">{eventSubheading}</h3>
+          <h3 className="c-events__date">
+            {eventStart} - {eventEnd}
+          </h3>
+          <h3 className="c-events__location">{eventLocation}</h3>
+          <p className="c-events__content">{eventContent}</p>
+          <DefaultButton title="Sign Up" url="/" />
+          <h1 className="c-events__details">Event Details</h1>
+          <div className="c-eventschedule__container">
+            <EventScheduleCard items={filteredArr} />
+          </div>
+          <DefaultButton title="See Past Events" url="/eventlist" />
+        </section>
+      </EventWrapper>
     </Layout>
   )
-
-  //  const pathToImage = getImage(eventImage)
-  //
-  //  {
-  //    /* create schedules array */
-  //  }
-  //
-  //  const eventsArr = [
-  //    { scheduleOne },
-  //    { scheduleTwo },
-  //    { scheduleThree },
-  //    { scheduleFour },
-  //    { scheduleFive },
-  //    //    { scheduleSix },
-  //    //    { scheduleSeven },
-  //    //    { scheduleEight },
-  //    //    { scheduleNine },
-  //    //    { scheduleTen },
-  //    //    { scheduleTwelve },
-  //  ]
-  //  return (
-  //    <Layout>
-  //      <EventWrapper>
-  //        <section className="l-events">
-  //          <GatsbyImage
-  //            image={pathToImage}
-  //            alt={eventTitle}
-  //            className="c-event__image std-style"
-  //          />
-  //          <h1 className="c-events__title">{eventTitle}</h1>
-  //          <h3 className="c-events__title">{eventSubheading}</h3>
-  //          <h3 className="c-events__date">
-  //            {eventStart} - {eventEnd}
-  //          </h3>
-  //          <h3 className="c-events__location">{eventLocation}</h3>
-  //          <p className="c-events__content">{eventContent}</p>
-  //          <DefaultButton title="Sign Up" url="/" />
-  //          <h1 className="c-events__details">Event Details</h1>
-  //          <div className="c-eventschedule__container"></div>
-  //          <DefaultButton title="See Past Events" url="/eventlist" />
-  //        </section>
-  //      </EventWrapper>
-  //    </Layout>
-  //  )
 }
 
 export const query = graphql`
@@ -125,7 +110,7 @@ export const query = graphql`
       }
       eventScheduleSix {
         childMarkdownRemark {
-          scheduleSix: html
+          scheduleSix: html 
         }
       }
       eventScheduleSeven {

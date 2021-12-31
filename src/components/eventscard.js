@@ -39,19 +39,39 @@ export const EventsCard = ({ events = [] }) => {
 }
 
 export const EventScheduleCard = ({ items = [] }) => {
-  return (
-    <EventScheduleWrapper>
-      {items.map((schedule, index) => {
-        for (const [key, value] of Object.entries(schedule)) {
-          return (
-            <div className="c-eventschedule__card" id={index}>
-              {parse(`${value} `)}
-            </div>
-          )
-        }
-      })}
-    </EventScheduleWrapper>
-  )
+  //print out filteredAr passed as props
+  console.log(items)
+
+  // create empty array to store new schedule
+  const scheduleArr = []
+
+  // create new obj from filteredArr
+  const eventObj = Object.fromEntries(items)
+  console.log(eventObj)
+  console.log(eventObj.eventScheduleOne.childMarkdownRemark.scheduleOne)
+
+  // create a loop to check if key == search valueo
+  {
+    items.map(item => {
+      // convert each item to object
+      console.log(item[0])
+      if (item[0] === "eventScheduleOne") {
+        scheduleArr.push(
+          eventObj.eventScheduleOne.childMarkdownRemark.scheduleOne
+        )
+        console.log(scheduleArr)
+      } else if (item[0] === "eventScheduleTwo") {
+        scheduleArr.push(
+          eventObj.eventScheduleTwo.childMarkdownRemark.scheduleTwo
+        )
+        console.log(scheduleArr)
+      } else {
+        console.log("fail")
+      }
+    })
+  }
+
+  return <div>hello</div>
 }
 
 const PastEventsWrapper = styled.div`
