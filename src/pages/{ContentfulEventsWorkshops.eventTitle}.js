@@ -9,32 +9,23 @@ import DefaultButton from "../components/button"
 
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops
-  // print default queried data
-  console.log(events)
 
-  // convert default objects to array with key value pairs
+  // 1. convert default objects to array with key value pairs
+  // 2. filter through key/value pairs to remove 'null' and produce new arr
+  // 3. convert filtered array to object
   const eventArr = Object.entries(events)
-  console.log(eventArr)
-
-  // filter through key/value pairs to remove 'null' and produce new arr
   const filteredArr = eventArr.filter(([key, value]) => value != null)
-  console.log(filteredArr)
-
-  // convert filtered array to object
   const filteredEvents = Object.fromEntries(filteredArr)
-  console.log(filteredEvents)
 
   // destructure object for quick access
   const {
     eventTitle,
     eventSubheading,
-    eventBlurb,
     eventContent: { eventContent },
     eventImage,
     eventLocation,
     eventStart,
     eventEnd,
-    eventTags,
   } = filteredEvents
 
   const pathToImage = getImage(eventImage)

@@ -1,8 +1,8 @@
 import React from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import styled from "styled-components"
 import { StaticImage } from "gatsby-plugin-image"
-import { featuredDocs, eventList } from "../data"
+import { featuredDocs} from "../data"
 import slugify from "slugify"
 
 // Icons
