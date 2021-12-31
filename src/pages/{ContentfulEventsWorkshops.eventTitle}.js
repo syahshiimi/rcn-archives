@@ -14,7 +14,7 @@ const EventsTemplate = ({ data }) => {
 
   // convert default objects to array with key value pairs
   const eventArr = Object.entries(events)
-  console.log(eventArr);
+  console.log(eventArr)
 
   // filter through key/value pairs to remove 'null' and produce new arr
   const filteredArr = eventArr.filter(([key, value]) => value != null)
@@ -35,7 +35,7 @@ const EventsTemplate = ({ data }) => {
     eventStart,
     eventEnd,
     eventTags,
-  } = filteredEvents 
+  } = filteredEvents
 
   const pathToImage = getImage(eventImage)
   return (
@@ -83,6 +83,11 @@ export const query = graphql`
       }
       eventBlurb
       contentful_id
+      eventScheduleOne {
+        childMarkdownRemark {
+          scheduleOne: html
+        }
+      }
       eventScheduleTwo {
         childMarkdownRemark {
           scheduleTwo: html
@@ -93,11 +98,7 @@ export const query = graphql`
           scheduleThree: html
         }
       }
-      eventScheduleOne {
-        childMarkdownRemark {
-          scheduleOne: html
-        }
-      }
+
       eventScheduleFour {
         childMarkdownRemark {
           scheduleFour: html
@@ -110,7 +111,7 @@ export const query = graphql`
       }
       eventScheduleSix {
         childMarkdownRemark {
-          scheduleSix: html 
+          scheduleSix: html
         }
       }
       eventScheduleSeven {

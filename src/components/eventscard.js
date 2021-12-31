@@ -42,48 +42,80 @@ export const EventScheduleCard = ({ items = [] }) => {
   //print out filteredAr passed as props
   console.log(items)
 
+  // create filtered array to object
+  const filteredItems = Object.fromEntries(items)
+
   // create empty array to store new schedule
   const scheduleArr = []
 
-  // create new obj from filteredArr
-  const eventObj = Object.fromEntries(items)
-
-  // create a loop to check if key == search valueo
   {
     items.map(item => {
-      // convert each item to object
       console.log(item[0])
       if (item[0] === "eventScheduleOne") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleOne.childMarkdownRemark.scheduleOne
+        )
       } else if (item[0] === "eventScheduleTwo") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleTwo.childMarkdownRemark.scheduleTwo
+        )
       } else if (item[0] === "eventScheduleThree") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleThree.childMarkdownRemark.scheduleThree
+        )
       } else if (item[0] === "eventScheduleFour") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleFour.childMarkdownRemark.scheduleFour
+        )
       } else if (item[0] === "eventScheduleFive") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleFive.childMarkdownRemark.scheduleFive
+        )
       } else if (item[0] === "eventScheduleSix") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleSix.childMarkdownRemark.scheduleSix
+        )
       } else if (item[0] === "eventScheduleSeven") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleSeven.childMarkdownRemark.scheduleSeven
+        )
       } else if (item[0] === "eventScheduleEight") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleEight.childMarkdownRemark.scheduleEight
+        )
       } else if (item[0] === "eventScheduleNine") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleNine.childMarkdownRemark.scheduleNine
+        )
       } else if (item[0] === "eventScheduleTen") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleTen.childMarkdownRemark.scheduleTen
+        )
       } else if (item[0] === "eventScheduleEleven") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleEleven.childMarkdownRemark.scheduleEleven
+        )
       } else if (item[0] === "eventScheduleTwelve") {
-        scheduleArr.push(item)
+        scheduleArr.push(
+          filteredItems.eventScheduleTwelve.childMarkdownRemark.scheduleTwelve
+        )
       } else {
         return null
       }
     })
   }
+
   console.log(scheduleArr)
-  return <div>hello</div>
+
+  return (
+    <div>
+      {scheduleArr.map(event => (
+        <EventScheduleWrapper>
+          <div className="c-eventschedule__card">{parse(`${event}`)}</div>
+        </EventScheduleWrapper>
+      ))}
+    </div>
+  )
 }
 
 const PastEventsWrapper = styled.div`
