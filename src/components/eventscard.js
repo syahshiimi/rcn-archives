@@ -47,8 +47,6 @@ export const EventScheduleCard = ({ items = [] }) => {
 
   // create new obj from filteredArr
   const eventObj = Object.fromEntries(items)
-  console.log(eventObj)
-  console.log(eventObj.eventScheduleOne.childMarkdownRemark.scheduleOne)
 
   // create a loop to check if key == search valueo
   {
@@ -56,21 +54,35 @@ export const EventScheduleCard = ({ items = [] }) => {
       // convert each item to object
       console.log(item[0])
       if (item[0] === "eventScheduleOne") {
-        scheduleArr.push(
-          eventObj.eventScheduleOne.childMarkdownRemark.scheduleOne
-        )
-        console.log(scheduleArr)
+        scheduleArr.push(item)
       } else if (item[0] === "eventScheduleTwo") {
-        scheduleArr.push(
-          eventObj.eventScheduleTwo.childMarkdownRemark.scheduleTwo
-        )
-        console.log(scheduleArr)
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleThree") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleFour") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleFive") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleSix") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleSeven") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleEight") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleNine") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleTen") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleEleven") {
+        scheduleArr.push(item)
+      } else if (item[0] === "eventScheduleTwelve") {
+        scheduleArr.push(item)
       } else {
-        console.log("fail")
+        return null
       }
     })
   }
-
+  console.log(scheduleArr)
   return <div>hello</div>
 }
 

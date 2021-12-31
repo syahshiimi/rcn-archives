@@ -21,8 +21,8 @@ const EventsTemplate = ({ data }) => {
   console.log(filteredArr)
 
   // convert filtered array to object
-  const newEvents = Object.fromEntries(filteredArr)
-  console.log(newEvents)
+  const filteredEvents = Object.fromEntries(filteredArr)
+  console.log(filteredEvents)
 
   // destructure object for quick access
   const {
@@ -35,7 +35,7 @@ const EventsTemplate = ({ data }) => {
     eventStart,
     eventEnd,
     eventTags,
-  } = newEvents
+  } = filteredEvents 
 
   const pathToImage = getImage(eventImage)
   return (
