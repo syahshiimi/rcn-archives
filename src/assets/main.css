@@ -57,7 +57,15 @@ h2 {
 }
 
 h3 {
+	font-size: 1.15rem;
+}
+
+h4 {
 	font-size: 1.125rem;
+}
+
+h5 {
+	font-size: 1.05rem;
 }
 
 a,
@@ -96,10 +104,16 @@ input {
 		font-size: 1.5rem;
 	}
 
-	p {
+	h4 {
 		font-size: 1.25rem;
 	}
+	h5 {
+		font-size: 1.125rem;
+	}
 
+	p {
+		font-size: 1rem;
+	}
 }
 
 /* 4k dispalys 2550px wide */

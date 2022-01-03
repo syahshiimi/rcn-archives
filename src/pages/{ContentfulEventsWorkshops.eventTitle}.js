@@ -226,7 +226,7 @@ const EventWrapper = styled.main`
     .c-event__title {
       grid-area: title;
       font-size: 2.125rem;
-      padding-bottom: 2.5vh;
+      margin-bottom: 2.5vh;
     }
 
     .c-event__subheading {
@@ -250,7 +250,6 @@ const EventWrapper = styled.main`
     .c-event__content {
       grid-area: content;
       align-self: center;
-
     }
 
     .c-event__signup {
@@ -271,6 +270,39 @@ const EventWrapper = styled.main`
     .c-event__pastevents {
       grid-area: pastevents;
     }
+  }
+
+  /////////////////////////
+  /////// Desktop /////////
+  /////////////////////////
+
+  @media (min-width: 1280px) {
+    section {
+      padding: 10vh var(--padding-desktop);
+    }
+
+    .c-event__title {
+      margin-bottom: 8vh;
+      font-size: 3rem;
+    }
+
+    .c-event__subheading {
+      font-size: 1.5rem;
+      margin-bottom: 4vh;
+    }
+
+    .c-event__date {
+      font-size: 1.5rem;
+    }
+    .c-event__location {
+      font-size: 1.5rem;
+    }
+
+      .c-eventschedule__container {
+        margin: 0vh 8vw;
+        padding: 2vh 2vw;
+
+      }
   }
 `
 

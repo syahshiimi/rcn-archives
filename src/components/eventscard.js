@@ -230,8 +230,9 @@ const EventScheduleWrapper = styled.div`
     @media (max-width: 992px) {
 
     h3 {
-        text-align: left;
+    text-align: left;
     margin: 1.5vh 0vw;
+    font-family: 'Lora', serif;
     }
 
     h5 {
@@ -242,6 +243,7 @@ const EventScheduleWrapper = styled.div`
 
     p {
       margin: 1vh 0vw;
+        text-align: left;
       }
     }
 
@@ -261,6 +263,7 @@ const EventScheduleWrapper = styled.div`
     }
         h3 {
         margin: 2vh 0vw;
+    font-family: 'Lora', serif;
         text-decoration: underline;
     }
         h5 {
@@ -268,12 +271,24 @@ const EventScheduleWrapper = styled.div`
       }
 
       p {
-        font-size: 1rem;
         margin: 1vh 0vw;
         text-align: left;
           }
-  
-
-
   }
+
+    // desktop styling
+    @media (min-width: 1280px) {
+
+      .c-eventschedule__card {
+        padding: 4vh 4vw;
+
+        * {
+          margin: 4vh 0vw;
+        }
+
+      }
+
+
+
+    }
 `
