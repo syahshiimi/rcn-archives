@@ -265,6 +265,10 @@ const HomeWrapper = styled.section`
     }
 
     /* Hero Section */
+    .c-hero {
+      padding-top: 4vh;
+    }
+
     .c-hero__details {
       display: flex;
       flex-direction: row;
