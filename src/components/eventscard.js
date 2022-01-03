@@ -221,15 +221,16 @@ const EventScheduleWrapper = styled.div`
   .c-eventschedule__card {
     margin: 4vh 2vw;
     background-color: var(--primary-clr-100);
-    padding: 2vh 8vw;
+    padding: 4vh 8vw;
     border-radius: calc(2rem + 6px);
     display: flex;
     box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
     flex-direction: column;
 
     @media (max-width: 992px) {
+
     h3 {
-      font-size: 1rem;
+        text-align: left;
     margin: 1.5vh 0vw;
     }
 
@@ -240,8 +241,6 @@ const EventScheduleWrapper = styled.div`
     }
 
     p {
-       font-size: 0.75rem;
-      text-align: left;
       margin: 1vh 0vw;
       }
     }
@@ -262,7 +261,6 @@ const EventScheduleWrapper = styled.div`
     }
         h3 {
         margin: 2vh 0vw;
-        text-align: left;
         text-decoration: underline;
     }
         h5 {

@@ -148,20 +148,20 @@ export const query = graphql`
 `
 const EventWrapper = styled.main`
   section {
-    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 2vh var(--padding-mobile) 6vh var(--padding-mobile);
     display: flex;
     flex-direction: column;
   }
 
   .l-events > * {
-    margin: 2vh 0vw;
+    margin: 1vh 0vw;
     text-align: center;
   }
 
   //  page wide image styling
   .std-style {
     border-radius: calc(1.5rem + 4px);
-    border: 2px solid var(--primary-clr-200);
+    border: 1px solid var(--primary-clr-200);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   }
 
@@ -176,6 +176,13 @@ const EventWrapper = styled.main`
 
   .c-event__title {
     font-size: 1.8rem;
+    margin: 4vh 0vw;
+  }
+
+  .c-event__content {
+    p {
+      margin: 1vh 0vw;
+    }
   }
 
   .c-event__subheading,
@@ -244,9 +251,6 @@ const EventWrapper = styled.main`
       grid-area: content;
       align-self: center;
 
-      p {
-        margin: 1vh 0vw;
-      }
     }
 
     .c-event__signup {
