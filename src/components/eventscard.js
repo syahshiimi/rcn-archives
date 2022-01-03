@@ -219,14 +219,63 @@ const PastEventsWrapper = styled.div`
 
 const EventScheduleWrapper = styled.div`
   .c-eventschedule__card {
-    margin: 2vh 2vw;
+    margin: 4vh 2vw;
     background-color: var(--primary-clr-100);
-    padding: 2vh 2vw;
+    padding: 2vh 8vw;
     border-radius: calc(2rem + 6px);
+    display: flex;
+    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+    flex-direction: column;
+
+    @media (max-width: 992px) {
+    h3 {
+      font-size: 1rem;
+    margin: 1.5vh 0vw;
+    }
+
+    h5 {
+      text-align: right;
+    margin: 1.5vh 0vw;
+
+    }
+
+    p {
+       font-size: 0.75rem;
+      text-align: left;
+      margin: 1vh 0vw;
+      }
+    }
 
   }
 
-  .c-eventschedule__card > * {
-    margin: 2vh 0vw;
+
+  }
+
+  // tablet styling 
+  @media (min-width: 992px) {
+    .c-eventschedule__card {
+      margin: 3vh 2vw;
+      padding: 2vh 4vw;
+
+        * {
+        margin: 1vh 0vw;
+    }
+        h3 {
+        margin: 2vh 0vw;
+        text-align: left;
+        text-decoration: underline;
+    }
+        h5 {
+        text-align: right;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 1vh 0vw;
+        text-align: left;
+          }
   
+
+
+  }
 `

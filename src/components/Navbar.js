@@ -92,8 +92,8 @@ const NavStyle = styled.nav`
   padding: 5vh var(--padding-mobile) 3.5vh var(--padding-mobile);
 
   .nav__title {
-    font-size: 1.5rem;
-    font-family: "Lora", serif;
+    font-size: 1rem;
+    font-family: 'Ubuntu', sans-serif;
     font-style: normal;
     font-weight: bold;
     text-align: center;

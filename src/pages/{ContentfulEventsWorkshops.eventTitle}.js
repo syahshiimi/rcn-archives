@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import parse from "html-react-parser"
 
 import { EventScheduleCard } from "../components/eventscard"
 import Layout from "../components/Layout"
@@ -21,7 +22,9 @@ const EventsTemplate = ({ data }) => {
   const {
     eventTitle,
     eventSubheading,
-    eventContent: { eventContent },
+    eventContent: {
+      childMarkdownRemark: { content },
+    },
     eventImage,
     eventLocation,
     eventStart,
@@ -38,19 +41,23 @@ const EventsTemplate = ({ data }) => {
             alt={eventTitle}
             className="c-event__image std-style"
           />
-          <h1 className="c-events__title">{eventTitle}</h1>
-          <h3 className="c-events__title">{eventSubheading}</h3>
-          <h3 className="c-events__date">
+          <h1 className="c-event__title">{eventTitle}</h1>
+          <h3 className="c-event__subheading">{eventSubheading}</h3>
+          <h3 className="c-event__date">
             {eventStart} - {eventEnd}
           </h3>
-          <h3 className="c-events__location">{eventLocation}</h3>
-          <p className="c-events__content">{eventContent}</p>
-          <DefaultButton title="Sign Up" url="/" />
-          <h1 className="c-events__details">Event Details</h1>
+          <h3 className="c-event__location">{eventLocation}</h3>
+          <p className="c-event__content">{parse(`${content}`)}</p>
+          <DefaultButton className="c-event__signup" title="Sign Up" url="/" />
+          <h1 className="c-event__details">Event Details</h1>
           <div className="c-eventschedule__container">
             <EventScheduleCard items={filteredArr} />
           </div>
-          <DefaultButton title="See Past Events" url="/eventlist" />
+          <DefaultButton
+            className="c-event__pastevents"
+            title="See Past Events"
+            url="/eventlist"
+          />
         </section>
       </EventWrapper>
     </Layout>
@@ -63,14 +70,20 @@ export const query = graphql`
       eventTitle
       eventSubheading
       eventTags
-      eventStart(formatString: "DDM MMMM YYYY")
-      eventEnd(formatString: "DDM MMMM YYYY")
+      eventStart(formatString: "DD MMMM YYYY")
+      eventEnd(formatString: "DD MMMM YYYY")
       eventLocation
       eventImage {
-        gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+        gatsbyImageData(
+          aspectRatio: 1.5
+          placeholder: TRACED_SVG
+          layout: CONSTRAINED
+        )
       }
       eventContent {
-        eventContent
+        childMarkdownRemark {
+          content: html
+        }
       }
       eventBlurb
       contentful_id
@@ -154,13 +167,107 @@ const EventWrapper = styled.main`
 
   .c-eventschedule__container {
     background-color: var(--primary-clr-50);
-    padding: 2vh 4vw;
+    padding: 0vh 4vw;
 
     /* styling */
-    border-radius: calc(5vw + 4px);
+    border-radius: calc(1.5rem + 4px);
     border: 2px solid var(--primary-clr-200);
+  }
+
+  .c-event__title {
+    font-size: 1.8rem;
+  }
+
+  .c-event__subheading,
+  .c-event__date,
+  .c-event__location {
+    font-size: 1rem;
+  }
+
+  ////////////////////////////////
+  //////// Tablet ////////////////
+  ///////////////////////////////
+
+  @media (min-width: 992px) {
+    section {
+      padding: 5vh var(--padding-desktop);
+      display: grid;
+      grid-column-gap: 2vw;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "title title title"
+        "subheading subheading subheading"
+        "date image image"
+        "location image image"
+        "content image image"
+        "signup signup signup "
+        "details details details"
+        "schedule schedule schedule "
+        "pastevents pastevents pastevents";
+    }
+
+    .l-events > * {
+      margin: 0; // disable inherited mobile padding
+    }
+
+    .c-event__image {
+      grid-area: image;
+      margin: 1vh 2vw;
+    }
+
+    .c-event__title {
+      grid-area: title;
+      font-size: 2.125rem;
+      padding-bottom: 2.5vh;
+    }
+
+    .c-event__subheading {
+      grid-area: subheading;
+      font-size: 1.125rem;
+      padding-bottom: 2.5vh;
+    }
+
+    .c-event__date {
+      grid-area: date;
+      align-self: center;
+      margin: 1vh 0vw;
+    }
+
+    .c-event__location {
+      grid-area: location;
+      align-self: center;
+      margin: 1vh 0vw;
+    }
+
+    .c-event__content {
+      grid-area: content;
+      align-self: center;
+
+      p {
+        margin: 1vh 0vw;
+      }
+    }
+
+    .c-event__signup {
+      grid-area: signup;
+      margin: 1vh 0vw;
+    }
+
+    .c-event__details {
+      grid-area: details;
+      padding-top: 4vh;
+      padding-bottom: 2vh;
+    }
+
+    .c-eventschedule__container {
+      grid-area: schedule;
+    }
+
+    .c-event__pastevents {
+      grid-area: pastevents;
+    }
   }
 `
 
 export default EventsTemplate
-//export default EventsTest
