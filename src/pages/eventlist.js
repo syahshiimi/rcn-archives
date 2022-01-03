@@ -28,7 +28,6 @@ const query = graphql`
 const Events = () => {
   const data = useStaticQuery(query)
   const events = data.allContentfulEventsWorkshops.nodes
-  console.log(events)
   return (
     <Layout>
       <EventWrapper>

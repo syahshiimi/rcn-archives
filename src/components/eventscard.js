@@ -20,7 +20,7 @@ export const EventsCard = ({ events = [] }) => {
         } = events
         const slug = slugify(eventTitle, { lower: true })
         return (
-          <EventsCard key={id} className="c-pastevents__card">
+          <EventsCardWrapper key={id} className="c-pastevents__card">
             <Link
               to={`/${slug}`}
               className="c-pastevents__button"
@@ -34,7 +34,7 @@ export const EventsCard = ({ events = [] }) => {
               <p className="c-pastevents__content">{eventBlurb}</p>
               <h4 className="c-pastevents__location">{eventLocation}</h4>
             </Link>
-          </EventsCard>
+          </EventsCardWrapper>
         )
       })}
     </div>
@@ -124,7 +124,7 @@ export const EventScheduleCard = ({ items = [] }) => {
 ////////////////////////////////////////
 ////////////////////////////////////////
   
-const PastEventsWrapper = styled.div`
+const EventsCardWrapper = styled.div`
 
   display: flex;
   padding: 1vh 8vw;
