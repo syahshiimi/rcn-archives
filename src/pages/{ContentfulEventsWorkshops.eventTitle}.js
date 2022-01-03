@@ -179,6 +179,10 @@ const EventWrapper = styled.main`
     margin: 4vh 0vw;
   }
 
+  .c-event__details {
+    padding: 2vh 0vw;
+
+  }
   .c-event__content {
     p {
       margin: 1vh 0vw;
@@ -226,13 +230,13 @@ const EventWrapper = styled.main`
     .c-event__title {
       grid-area: title;
       font-size: 2.125rem;
-      margin-bottom: 2.5vh;
+      margin-bottom: 4vh;
     }
 
     .c-event__subheading {
       grid-area: subheading;
       font-size: 1.125rem;
-      padding-bottom: 2.5vh;
+      padding-bottom: 4vh;
     }
 
     .c-event__date {
@@ -249,18 +253,16 @@ const EventWrapper = styled.main`
 
     .c-event__content {
       grid-area: content;
-      align-self: center;
     }
 
     .c-event__signup {
       grid-area: signup;
-      margin: 1vh 0vw;
+      margin: 2vh 0vw;
     }
 
     .c-event__details {
       grid-area: details;
-      padding-top: 4vh;
-      padding-bottom: 2vh;
+      padding: 4vh 0vw;
     }
 
     .c-eventschedule__container {
@@ -269,6 +271,7 @@ const EventWrapper = styled.main`
 
     .c-event__pastevents {
       grid-area: pastevents;
+      margin: 1vh 0vw;
     }
   }
 
@@ -279,30 +282,53 @@ const EventWrapper = styled.main`
   @media (min-width: 1280px) {
     section {
       padding: 10vh var(--padding-desktop);
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "title title title"
+        "subheading subheading subheading"
+        " . image image"
+        "date image image"
+        "location image image"
+        "content image image"
+        " signup image image"
+        " . image image"
+        "details details details"
+        "schedule schedule schedule "
+        "pastevents pastevents pastevents";
     }
 
     .c-event__title {
       margin-bottom: 8vh;
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     .c-event__subheading {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       margin-bottom: 4vh;
     }
 
+    .c-event__image {
+      justify-self: end;
+    }
+
     .c-event__date {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
+      margin: 3vh 0vw;
     }
     .c-event__location {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
+      margin: 3vh 0vw;
     }
 
-      .c-eventschedule__container {
-        margin: 0vh 8vw;
-        padding: 2vh 2vw;
+    .c-event__details {
+      margin: 6vh 0vw;
+    }
 
-      }
+    .c-eventschedule__container {
+      margin: 0vh 8vw;
+      padding: 2vh 2vw;
+    }
   }
 `
 

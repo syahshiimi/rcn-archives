@@ -230,20 +230,19 @@ const EventScheduleWrapper = styled.div`
     @media (max-width: 992px) {
 
     h3 {
-    text-align: left;
     margin: 1.5vh 0vw;
     font-family: 'Lora', serif;
     }
 
     h5 {
-      text-align: right;
     margin: 1.5vh 0vw;
+        font-size: 0.75rem;
+        font-weight: 400;
 
     }
 
     p {
       margin: 1vh 0vw;
-        text-align: left;
       }
     }
 
@@ -267,7 +266,9 @@ const EventScheduleWrapper = styled.div`
         text-decoration: underline;
     }
         h5 {
+        font-size: inherit;
         text-align: right;
+        font-weight: inherit;
       }
 
       p {

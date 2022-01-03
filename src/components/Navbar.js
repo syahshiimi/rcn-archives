@@ -93,7 +93,7 @@ const NavStyle = styled.nav`
 
   .nav__title {
     font-size: 1rem;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Lora', sans-serif;
     font-style: normal;
     font-weight: bold;
     text-align: center;
@@ -289,12 +289,12 @@ const NavStyle = styled.nav`
   /* Desktop Display */
 
   @media (min-width: 1280px) {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
 
-    padding: 4vh var(--padding-desktop);
+    padding: 3vh var(--padding-desktop);
 
     .nav__title {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
     .nav__search {
       display: flex;

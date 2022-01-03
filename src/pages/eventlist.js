@@ -28,7 +28,7 @@ const query = graphql`
 const Events = () => {
   const data = useStaticQuery(query)
   const events = data.allContentfulEventsWorkshops.nodes
-  console.log(events);
+  console.log(events)
   return (
     <Layout>
       <EventWrapper>
@@ -93,6 +93,13 @@ const EventWrapper = styled.main`
     }
 
     .l-pastevents > * {
+      margin: 4vh 6vw;
+    }
+    .l-pastevents__list {
+      padding: 4vh 6vw;
+    }
+
+    .l-pastevents__container > * {
       margin: 4vh 0vw;
     }
   }

@@ -20,6 +20,7 @@ const query = graphql`
         eventTitle
         eventBlurb
         eventEnd
+        eventSubheading
         eventStart(formatString: "MMMM Do, YYYY")
         eventImage {
           gatsbyImageData(
@@ -106,7 +107,8 @@ const Index = () => {
         {/* Featured Event */}
         <section className="l-events bg--gray">
           {featuredEvents.map(item => {
-            const { id, eventTitle, eventBlurb, eventImage } = item
+            const { id, eventTitle, eventSubheading, eventBlurb, eventImage } =
+              item
             const pathToImage = getImage(eventImage)
             return (
               <article className="c-events" key={id}>
@@ -121,8 +123,8 @@ const Index = () => {
 
                 <h2 className="c-events__heading mobile">{eventTitle}</h2>
                 <h2 className="c-events__heading desktop">{eventTitle}</h2>
-                <p>{eventBlurb}</p>
-                {/* feed mapped out featuredevents as props*/}
+                <h3 className="c-events__subheading">{eventSubheading}</h3>
+                <p className="c-events_blurb">{eventBlurb}</p>
                 <EventsCard item={item} />
               </article>
             )
@@ -306,12 +308,12 @@ const HomeWrapper = styled.section`
       grid-area: title;
       text-align: right;
     }
-    h2 {
+    .c-events__heading {
       grid-area: heading;
       place-self: center;
     }
 
-    p {
+      .c-events__blurb {
       grid-area: content;
       text-align: left;
       align-self: center;
