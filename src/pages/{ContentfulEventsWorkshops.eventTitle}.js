@@ -47,7 +47,7 @@ const EventsTemplate = ({ data }) => {
             {eventStart} - {eventEnd}
           </h3>
           <h3 className="c-event__location">{eventLocation}</h3>
-          <p className="c-event__content">{parse(`${content}`)}</p>
+          <div className="c-event__content">{parse(`${content}`)}</div>
           <DefaultButton className="c-event__signup" title="Sign Up" url="/" />
           <h1 className="c-event__details">Event Details</h1>
           <div className="c-eventschedule__container">
@@ -181,7 +181,6 @@ const EventWrapper = styled.main`
 
   .c-event__details {
     padding: 2vh 0vw;
-
   }
   .c-event__content {
     p {

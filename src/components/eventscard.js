@@ -4,6 +4,8 @@ import styled from "styled-components"
 import slugify from "slugify"
 import parse from "html-react-parser"
 
+
+{/* Events List Page */}
 export const EventsCard = ({ events = [] }) => {
   return (
     <div className="l-pastevents__container">
@@ -18,7 +20,7 @@ export const EventsCard = ({ events = [] }) => {
         } = events
         const slug = slugify(eventTitle, { lower: true })
         return (
-          <PastEventsWrapper key={id} className="c-pastevents__card">
+          <EventsCard key={id} className="c-pastevents__card">
             <Link
               to={`/${slug}`}
               className="c-pastevents__button"
@@ -32,12 +34,14 @@ export const EventsCard = ({ events = [] }) => {
               <p className="c-pastevents__content">{eventBlurb}</p>
               <h4 className="c-pastevents__location">{eventLocation}</h4>
             </Link>
-          </PastEventsWrapper>
+          </EventsCard>
         )
       })}
     </div>
   )
 }
+
+{/* Workshop Events Details Cards */}
 
 export const EventScheduleCard = ({ items = [] }) => {
   // create filtered array to object
@@ -114,7 +118,14 @@ export const EventScheduleCard = ({ items = [] }) => {
   )
 }
 
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+  
 const PastEventsWrapper = styled.div`
+
   display: flex;
   padding: 1vh 8vw;
   justify-content: center;
@@ -157,6 +168,8 @@ const PastEventsWrapper = styled.div`
   ///////////////////////////////
   ///////////////////////////////
   ///// Tablet Layout ///////////
+  ///////////////////////////////
+  ///////////////////////////////
 
   @media (min-width: 992px) {
     .c-pastevents__content {
@@ -217,6 +230,12 @@ const PastEventsWrapper = styled.div`
   }
 `
 
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+
 const EventScheduleWrapper = styled.div`
   .c-eventschedule__card {
     margin: 4vh 2vw;
@@ -251,7 +270,9 @@ const EventScheduleWrapper = styled.div`
 
   }
 
-  // tablet styling 
+  //////////////////////
+  // tablet styling //// 
+  //////////////////////
   @media (min-width: 992px) {
     .c-eventschedule__card {
       margin: 3vh 2vw;
@@ -277,7 +298,9 @@ const EventScheduleWrapper = styled.div`
           }
   }
 
-    // desktop styling
+  //////////////////////
+  // desktop styling ///
+  //////////////////////
     @media (min-width: 1280px) {
 
       .c-eventschedule__card {
