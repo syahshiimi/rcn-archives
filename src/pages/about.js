@@ -94,6 +94,10 @@ const AboutWrapper = styled.main`
   }
 
   // apply to each parent block's child element
+
+  .l-hero {
+      padding-top: 0;
+  }
   .l-hero > * {
     margin: 2vh 0vw;
     text-align: center;
@@ -160,6 +164,7 @@ const AboutWrapper = styled.main`
 
     // Hero Section
     .l-hero {
+      padding-top: 6vh;
       display: grid;
       grid-column-gap: 6vw;
       grid-template-columns: 1fr 1fr;

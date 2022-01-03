@@ -199,6 +199,7 @@ const HomeWrapper = styled.section`
   /* Hero Section */
 
   .c-hero {
+    padding-top: 0;
   }
 
   .l-hero__details > * {

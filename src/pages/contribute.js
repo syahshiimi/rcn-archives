@@ -52,7 +52,7 @@ const ContributeWrapper = styled.article`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
   .c-contribute__title {
     flex: 1;
