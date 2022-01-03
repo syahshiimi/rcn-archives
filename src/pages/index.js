@@ -112,7 +112,7 @@ const Index = () => {
             const pathToImage = getImage(eventImage)
             return (
               <article className="c-events" key={id}>
-                <h1>Workshops & {"\n"}Events</h1>
+                <h1 className="c-events__title">Workshops & {"\n"}Events</h1>
                 <ImageWrapper>
                   <GatsbyImage
                     image={pathToImage}
@@ -123,8 +123,8 @@ const Index = () => {
 
                 <h2 className="c-events__heading mobile">{eventTitle}</h2>
                 <h2 className="c-events__heading desktop">{eventTitle}</h2>
-                <h3 className="c-events__subheading">{eventSubheading}</h3>
-                <p className="c-events_blurb">{eventBlurb}</p>
+                <h5 className="c-events__subheading">{eventSubheading}</h5>
+                <p className="c-events__blurb">{eventBlurb}</p>
                 <EventsCard item={item} />
               </article>
             )
@@ -287,13 +287,15 @@ const HomeWrapper = styled.section`
 
     .c-events {
       display: grid;
-      grid-row-gap: 3vh;
-      grid-template-columns: 2fr auto 1fr;
-      grid-template-rows: 1fr auto auto;
+      grid-row-gap: 3vw;
+      grid-column-gap: 1vh;
+      grid-template-columns: auto auto auto;
+      grid-template-rows: auto auto auto auto auto;
       grid-template-areas:
         "image . title "
-        "heading heading heading "
-        "content content eventCard";
+        "heading heading heading"
+        "subheading subheading subheading"
+        "content . eventCard";
     }
 
     .c-events > * {
@@ -304,7 +306,7 @@ const HomeWrapper = styled.section`
       grid-area: image;
     }
 
-    h1 {
+    .c-events__title {
       grid-area: title;
       text-align: right;
     }
@@ -313,7 +315,11 @@ const HomeWrapper = styled.section`
       place-self: center;
     }
 
-      .c-events__blurb {
+    .c-events__subheading {
+      grid-area: subheading;
+    }
+
+    .c-events__blurb {
       grid-area: content;
       text-align: left;
       align-self: center;
@@ -362,11 +368,10 @@ const HomeWrapper = styled.section`
       margin-left: auto;
     }
 
-    /* featured documents layout */
-
     /* events section */
     .c-events {
-      grid-row-gap: 4vh;
+      grid-row-gap: 6vh;
+      grid-column-gap: 8vh;
     }
 
     .c-events__heading {
