@@ -89,7 +89,7 @@ const AboutWrapper = styled.main`
   section {
     padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
     display: flex;
-    jusitfy-content: center;
+    justify-content: center;
     flex-direction: column;
   }
 
