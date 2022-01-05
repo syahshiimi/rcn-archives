@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/Layout"
 import styled from "styled-components"
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
+import { IconContext } from "@react-icons/all-files/lib"
 
 const BrowseArchives = () => {
   return (
@@ -16,7 +17,11 @@ const BrowseArchives = () => {
               placeholder="Browse by keywords, topics themes or #tags"
             />
             <button className="c-browsearchives__searchbutton" type="submit">
-              <BiSearchAlt />
+              <IconContext.Provider
+                value={{ className: "c-browsearchives__searchicon" }}
+              >
+                <BiSearchAlt />
+              </IconContext.Provider>
             </button>
           </form>
           <div className="c-browsearchives__filtercontainer">
@@ -24,7 +29,7 @@ const BrowseArchives = () => {
               for="c-browsearchives__filterbykeywords"
               className="c-browsearchives__keywordscheckbox"
             >
-              <input type="checkbox" value="keywords" />
+              <input type="checkbox" value="keywords"  />
               Filter by keywords
             </label>
             <label
@@ -79,15 +84,14 @@ const BrowseArchivesWrapper = styled.main`
     width: 100%;
     height: 6vh;
     border: none;
-     border-radius: calc(4rem + 3px) 0 0 calc(4rem + 3px);
+    border-radius: calc(4rem + 3px) 0 0 calc(4rem + 3px);
     background-color: var(--primary-clr-50);
 
     ::placeholder {
       font-size: 0.625rem;
       text-align: left;
       padding-left: 8vw;
-      opacity: 50%;
-      align-self: center;
+      opacity: 40%;
     }
   }
 
@@ -96,6 +100,11 @@ const BrowseArchivesWrapper = styled.main`
     width: 20%;
     border: none;
     border-radius: 0 calc(4rem + 3px) calc(4rem + 3px) calc(4rem + 3px);
+  }
+
+  .c-browsearchives__searchicon {
+    height: 1.7em;
+    width: 1.7em;
   }
 
   .c-browsearchives__filtercontainer {
@@ -116,12 +125,43 @@ const BrowseArchivesWrapper = styled.main`
   }
 
   .c-browsearchives__keywordscheckbox > input {
-    margin: 0vh 1vw;
+    margin: 0vh 1.8vw;
   }
 
   .c-browsearchives__tagscheckbox > input {
-    margin: 0vh 1vw;
-  }_
+    margin: 0vh 1.8vw;
+  }
 
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+
+    // custom styling
+    font: inherit;
+    width: 1.2rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--primary-clr-200);
+    background-color: var(--secondary-clr-250);
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.6rem;
+    border-radius: inherit;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1rem 1rem var(--primary-clr-100);
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
 `
 export default BrowseArchives
