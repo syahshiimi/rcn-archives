@@ -351,6 +351,7 @@ const HomeWrapper = styled.section`
     }
 
     .c-hero {
+          padding-top: 10vh;
     }
 
     /* Hero Section */

@@ -207,8 +207,6 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchinput {
       height: 4vh;
-      display: flex;
-      justify-content: self;
 
       ::placeholder {
         text-align: center;
@@ -246,9 +244,53 @@ const BrowseArchivesWrapper = styled.main`
       font-size: 0.825rem;
     }
     .l-browsearchivesmap {
-      width: 100%;
-      height: 100%;
     }
+  }
+
+  ////////////////////////////
+  ////////////////////////////
+  ////////////////////////////
+  //////// Desktop ///////////
+  ////////////////////////////
+  ////////////////////////////
+
+  @media (min-width: 1280px) {
+    section {
+      padding: 10vh var(--padding-desktop);
+    }
+
+    .c-browsearchives__heading {
+      font-size: 4rem; // 64px
+    }
+
+    .c-browsearchives__searchbar {
+      margin-bottom: 3vh;
+    }
+    .c-browsearchives__searchinput {
+      height: 8vh;
+
+      ::placeholder {
+        text-align: center;
+        font-size: 1.125rem;
+        padding-left: 20%;
+      }
+    }
+
+    .c-browsearchives__searchbutton {
+      width: 15%;
+    }
+
+    .c-browsearchives__searchicon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .c-browsearchives__filtercontainer > label {
+      font-size: 0.925rem;
+    }
+
+      .c-browsearchives__content {
+        margin: 0vh 12vw;
+      }
   }
 `
 export default BrowseArchives
