@@ -159,13 +159,13 @@ const AboutWrapper = styled.main`
 
   @media (min-width: 992px) {
     section {
-      padding: 6vh var(--padding-desktop);
+      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     }
 
     // Hero Section
     .l-hero {
-      padding-top: 6vh;
       display: grid;
+      padding-top: 4vh;
       grid-column-gap: 6vw;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto auto;

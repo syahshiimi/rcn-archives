@@ -29,7 +29,7 @@ const BrowseArchives = () => {
               for="c-browsearchives__filterbykeywords"
               className="c-browsearchives__keywordscheckbox"
             >
-              <input type="checkbox" value="keywords"  />
+              <input type="checkbox" value="keywords" />
               Filter by keywords
             </label>
             <label
@@ -46,6 +46,9 @@ const BrowseArchives = () => {
             comprehensive approach towards understanding the cold war from a
             grassroots perspective.
           </p>
+        </section>
+        <section className="l-browsearchivesmap bg--gray desktop">
+          <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
       </BrowseArchivesWrapper>
     </Layout>
@@ -67,13 +70,12 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__heading {
     text-align: center;
-    font-size: 1.5rem;
   }
 
   .c-browsearchives__searchbar {
-    justify-content: center;
-    text-align: center;
     display: flex;
+    text-align: center;
+    justify-content: center;
     margin: 2vh 0vw 1vh 0vw;
     border: 3px solid var(--primary-clr-200);
     border-radius: calc(4rem + 3px);
@@ -88,16 +90,22 @@ const BrowseArchivesWrapper = styled.main`
     background-color: var(--primary-clr-50);
 
     ::placeholder {
-      font-size: 0.625rem;
+      font-size: 0.6rem;
       text-align: left;
       padding-left: 8vw;
       opacity: 40%;
     }
   }
 
+  // disable input field border highlighting
+
+  input[type='text']: focus {
+    outline: none;
+  }
+
   .c-browsearchives__searchbutton {
     background-color: var(--primary-clr-100);
-    width: 20%;
+    width: 25%;
     border: none;
     border-radius: 0 calc(4rem + 3px) calc(4rem + 3px) calc(4rem + 3px);
   }
@@ -162,6 +170,85 @@ const BrowseArchivesWrapper = styled.main`
 
   input[type="checkbox"]:checked::before {
     transform: scale(1);
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  ////////////////////////////
+  ////////////////////////////
+  ////////////////////////////
+  ///////// Tablet ///////////
+  ////////////////////////////
+  ////////////////////////////
+
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // Enable archives
+    .desktop {
+      display: grid;
+    }
+
+    section {
+      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+    }
+
+    .l-browsearchives {
+    }
+
+    .c-browsearchives__searchbar {
+      margin-left: 12vw;
+      margin-right: 12vw;
+    }
+
+    .c-browsearchives__searchinput {
+      height: 4vh;
+      display: flex;
+      justify-content: self;
+
+      ::placeholder {
+        text-align: center;
+        font-size: 1rem;
+        padding-left: 20%;
+      }
+    }
+
+    .c-browsearchives__searchbutton {
+      width: 20%;
+    }
+    .c-browsearchives__searchicon {
+      height: 2.2rem;
+      width: 2.2rem;
+    }
+
+    .c-browsearchives__filtercontainer {
+      margin-right: 12vw;
+      margin-top: 0;
+      justify-content: end;
+    }
+
+    .c-browsearchives__filtercontainer > * {
+      margin: 0vh 0.8vw;
+    }
+
+    .c-browsearchives__keywordscheckbox > input {
+      margin: 0vh 0.5vw;
+    }
+
+    .c-browsearchives__tagscheckbox > input {
+      margin: 0vh 0.5vw;
+    }
+    .c-browsearchives__filtercontainer > label {
+      font-size: 0.825rem;
+    }
+    .l-browsearchivesmap {
+      width: 100%;
+      height: 100%;
+    }
   }
 `
 export default BrowseArchives
