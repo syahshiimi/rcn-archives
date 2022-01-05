@@ -148,7 +148,7 @@ export const query = graphql`
 `
 const EventWrapper = styled.main`
   section {
-    padding: 2vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
     display: flex;
     flex-direction: column;
   }
@@ -200,7 +200,7 @@ const EventWrapper = styled.main`
 
   @media (min-width: 992px) {
     section {
-      padding: 5vh var(--padding-desktop);
+      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
       display: grid;
       grid-column-gap: 2vw;
       grid-template-columns: auto;

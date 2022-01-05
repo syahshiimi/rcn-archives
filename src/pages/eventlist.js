@@ -44,7 +44,7 @@ const Events = () => {
 
 const EventWrapper = styled.main`
   section {
-    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
   .l-pastevents {
     display: flex;
