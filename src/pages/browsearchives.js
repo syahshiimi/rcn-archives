@@ -81,11 +81,9 @@ const BrowseArchives = () => {
         <section className="l-browsearchivesmap bg--gray desktop">
           <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
+        <h1 className="c-browsearchives__searchresults">Search Results</h1>
         <section className="c-browsearchives__searchcontainer">
-          <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <section className="c-browsearchives__resultscontainer">
-            <SearchCard transcript={transcript} />
-          </section>
+          <SearchCard transcript={transcript} />
         </section>
       </BrowseArchivesWrapper>
     </Layout>
@@ -211,6 +209,13 @@ const BrowseArchivesWrapper = styled.main`
 
   .desktop {
     display: none;
+  }
+
+  .c-browsearchives__searchcontainer {
+    background-color: var(--primary-clr-50);
+    margin: 0 var(--padding-mobile) 6vh var(--padding-mobile); // use mobile padding value to dampen sides
+    padding: 2vw 2vh;
+    border-radius: calc(5vw + 4px);
   }
 
   ////////////////////////////
