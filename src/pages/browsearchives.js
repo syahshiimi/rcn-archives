@@ -3,8 +3,39 @@ import Layout from "../components/Layout"
 import styled from "styled-components"
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
 import { IconContext } from "@react-icons/all-files/lib"
+import { graphql, useStaticQuery } from "gatsby"
+import { SearchCard } from "../components/searchcard"
 
+const query = graphql`
+  {
+    allContentfulInterviewTranscripts {
+      nodes {
+        id
+        discussionQuestions {
+          raw
+        }
+        englishFullTranscript {
+          raw
+        }
+        englishTranscriptSummary {
+          raw
+        }
+        transcriptTags
+        transcriptTitle
+        oneLineTeaser {
+          childMarkdownRemark {
+            html
+          }
+        }
+        interviewee
+        interviewer
+      }
+    }
+  }
+`
 const BrowseArchives = () => {
+  const data = useStaticQuery(query)
+  const transcript = data.allContentfulInterviewTranscripts.nodes
   return (
     <Layout>
       <BrowseArchivesWrapper>
@@ -26,14 +57,14 @@ const BrowseArchives = () => {
           </form>
           <div className="c-browsearchives__filtercontainer">
             <label
-              for="c-browsearchives__filterbykeywords"
+              htmlFor="c-browsearchives__filterbykeywords"
               className="c-browsearchives__keywordscheckbox"
             >
               <input type="checkbox" value="keywords" />
               Filter by keywords
             </label>
             <label
-              for="c-browsearchives__filterbytags"
+              htmlFor="c-browsearchives__filterbytags"
               className="c-browsearchives__tagscheckbox"
             >
               <input type="checkbox" value="tags" />
@@ -50,6 +81,12 @@ const BrowseArchives = () => {
         <section className="l-browsearchivesmap bg--gray desktop">
           <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
+        <section className="c-browsearchives__searchcontainer">
+          <h1 className="c-browsearchives__searchresults">Search Results</h1>
+          <section className="c-browsearchives__resultscontainer">
+            <SearchCard transcript={transcript} />
+          </section>
+        </section>
       </BrowseArchivesWrapper>
     </Layout>
   )
@@ -60,7 +97,7 @@ const BrowseArchivesWrapper = styled.main`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 4vh var(--padding-mobile) 16vh var(--padding-mobile);
+    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
 
     * {
       // apply text align center to all //
@@ -243,8 +280,6 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__filtercontainer > label {
       font-size: 0.825rem;
     }
-    .l-browsearchivesmap {
-    }
   }
 
   ////////////////////////////
@@ -288,9 +323,9 @@ const BrowseArchivesWrapper = styled.main`
       font-size: 0.925rem;
     }
 
-      .c-browsearchives__content {
-        margin: 0vh 12vw;
-      }
+    .c-browsearchives__content {
+      margin: 0vh 12vw;
+    }
   }
 `
 export default BrowseArchives
