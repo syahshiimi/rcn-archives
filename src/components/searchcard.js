@@ -1,6 +1,8 @@
 import React from "react"
 import parse from "html-react-parser"
 import styled from "styled-components"
+import slugify from "slugify"
+import { Link } from "gatsby"
 
 export const SearchCard = ({ transcript = [] }) => {
   return (
@@ -14,17 +16,19 @@ export const SearchCard = ({ transcript = [] }) => {
             childMarkdownRemark: { html },
           },
         } = item
+        const slug = slugify(transcriptTitle, { lower: true })
+        const SortTags = transcriptTags.sort() // sort tags
         return (
           <div className="l-searchcard" key={id}>
-            <h3 className="c-searchcard__title">{transcriptTitle}</h3>
+            <Link to={`/${slug}`} className="c-searchcard__title">
+              {transcriptTitle}
+            </Link>
             <div className="c-searchcard__summary">{parse(`${html}`)}</div>
             <div className="c-searchcard__tagscontainer">
-              {transcriptTags.map((item, index) => {
+              {SortTags.map((item, index) => {
                 return (
-                  <div className="c-searchcard__tagpill">
-                    <p className="c-searchcard__tag" key={index}>
-                      {item}
-                    </p>
+                  <div className="c-searchcard__tagpill" key={index}>
+                    <p className="c-searchcard__tag">{item}</p>
                   </div>
                 )
               })}
@@ -38,7 +42,7 @@ export const SearchCard = ({ transcript = [] }) => {
 
 const SearchCardWrapper = styled.main`
   background-color: var(--primary-clr-100);
-  padding: 2vh 8vw;
+  padding: 4vh 8vw;
   margin: 2vh 2vw;
 
   /* styling */
@@ -53,8 +57,9 @@ const SearchCardWrapper = styled.main`
 
   .c-searchcard__title {
     font-family: "Lora", Serif;
-    text-decoration: underline;
-    margin-bottom: 3vh;
+    font-weight: bold;
+    font-size: 1.15rem;
+
   }
 
   .c-searchcard__summary {

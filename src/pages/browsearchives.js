@@ -211,6 +211,10 @@ const BrowseArchivesWrapper = styled.main`
     display: none;
   }
 
+  .c-browsearchives__searchresults {
+    text-align: center;
+  }
+
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
     margin: 0 var(--padding-mobile) 6vh var(--padding-mobile); // use mobile padding value to dampen sides
