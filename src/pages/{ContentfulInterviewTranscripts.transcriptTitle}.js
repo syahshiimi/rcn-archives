@@ -24,11 +24,8 @@ const TranscriptTemplate = ({ data }) => {
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
-    contentful_id,
     transcriptTitle,
-    transcriptTags,
     englishTranscriptSummary: { raw },
-    englishFullTranscript,
   } = transcript
 
   return (
@@ -48,17 +45,19 @@ const TranscriptTemplate = ({ data }) => {
 export const query = graphql`
   query getSingleTranscript($transcriptTitle: String) {
     contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
+      interviewer
+      interviewee
       transcriptTitle
       transcriptTags
       contentful_id
       englishTranscriptSummary {
-        raw
+        transcriptsummary: raw
       }
       englishFullTranscript {
-        raw
+        fulltranscript: raw
       }
       discussionQuestions {
-        raw
+        discussionqns: raw
       }
       onelinerteaser: childContentfulInterviewTranscriptsOneLineTeaserTextNode {
         childMarkdownRemark {
@@ -74,6 +73,7 @@ const TranscriptWrapper = styled.section`
   justify-content: center;
   flex-direction: column;
   padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
+  max-width: 100%;
 
   .c-transcript__title {
     text-align: center;
