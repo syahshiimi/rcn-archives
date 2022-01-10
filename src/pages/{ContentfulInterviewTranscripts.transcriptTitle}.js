@@ -25,8 +25,7 @@ const TranscriptTemplate = ({ data }) => {
       childMarkdownRemark: { oneliner },
     },
     transcriptTitle,
-    englishTranscriptSummary: { raw },
-  } = transcript
+  } = filteredTranscriptObj 
 
   return (
     <Layout>

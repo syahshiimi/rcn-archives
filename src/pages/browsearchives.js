@@ -81,9 +81,11 @@ const BrowseArchives = () => {
         <section className="l-browsearchivesmap bg--gray desktop">
           <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
-        <h1 className="c-browsearchives__searchresults">Search Results</h1>
-        <section className="c-browsearchives__searchcontainer">
-          <SearchCard transcript={transcript} />
+        <section className="l-browsearchives__search">
+          <h1 className="c-browsearchives__searchresults">Search Results</h1>
+          <section className="c-browsearchives__searchcontainer">
+            <SearchCard transcript={transcript} />
+          </section>
         </section>
       </BrowseArchivesWrapper>
     </Layout>
@@ -211,13 +213,14 @@ const BrowseArchivesWrapper = styled.main`
     display: none;
   }
 
+
+
   .c-browsearchives__searchresults {
     text-align: center;
   }
 
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
-    margin: 0 var(--padding-mobile) 6vh var(--padding-mobile); // use mobile padding value to dampen sides
     padding: 2vw 2vh;
     border-radius: calc(5vw + 4px);
   }
@@ -243,7 +246,8 @@ const BrowseArchivesWrapper = styled.main`
       padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     }
 
-    .l-browsearchives {
+      .l-browsearchives__search > *  {
+        margin: 2vh 0vw;
     }
 
     .c-browsearchives__searchbar {

@@ -4,6 +4,19 @@ import styled from "styled-components"
 import slugify from "slugify"
 import { Link } from "gatsby"
 
+// Create list of countries for color tagging
+const ListofCountries = [
+  "Cambodia",
+  "China",
+  "Indonesia",
+  "Japan",
+  "Malaya_Malaysia",
+  "Philippines",
+  "Singapore",
+  "Taiwan",
+  "Vietnmam",
+]
+
 export const SearchCard = ({ transcript = [] }) => {
   return (
     <SearchCardWrapper>
@@ -59,7 +72,6 @@ const SearchCardWrapper = styled.main`
     font-family: "Lora", Serif;
     font-weight: bold;
     font-size: 1.15rem;
-
   }
 
   .c-searchcard__summary {
@@ -90,5 +102,22 @@ const SearchCardWrapper = styled.main`
     line-height: 20px;
     color: var(--primary-clr-50);
     padding: 1vh 2vw;
+  }
+
+  ////////////////////
+  ////// Tablet //////
+
+  @media (min-width: 992px) {
+    .c-searchcard__title {
+      font-size: 1.5rem;
+    }
+
+    .c-searchcard__summary {
+      font-size: 1rem;
+    }
+
+    .c-searchcard__tag {
+      font-size: 0.875rem;
+    }
   }
 `

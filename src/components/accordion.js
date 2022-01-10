@@ -1,26 +1,21 @@
 import React, { useState } from "react"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "styled-components"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { HiArrowCircleDown } from "@react-icons/all-files/hi/HiArrowCircleDown"
 import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown"
 import { IconContext } from "@react-icons/all-files/lib"
-
-
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 export const Accordion = ({ transcript = [], type }) => {
   const {
     discussionQuestions: { discussionqns },
     englishFullTranscript: { fulltranscript },
-    englishTranscriptSummary: {  transcriptsummary },
+    englishTranscriptSummary: { transcriptsummary },
     transcriptTags,
     interviewer,
     interviewee,
   } = transcript
-  console.log(transcriptsummary);
 
   // create separate functions to render content conditionally
   function DocumentSummary(props) {
-    return <p className="c-accordion__summary">{transcriptsummary}</p>
+    return <p className="c-accordion__summary">none</p>
   }
 
   function DocumentTranscript(props) {
@@ -58,7 +53,7 @@ export const Accordion = ({ transcript = [], type }) => {
           <TiArrowDown />
         </IconContext.Provider>
       </div>
-      <div className="c-accordion__body closed">{component}</div>
+      <div className="c-accordion__body closed"></div>
     </AccordionWrapper>
   )
 }
