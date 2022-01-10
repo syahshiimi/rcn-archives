@@ -116,8 +116,32 @@ const SearchCardWrapper = styled.main`
       font-size: 1rem;
     }
 
+    .c-searchcard__tagpil {
+      font-size: 0.875rem;
+      flex: 1 1 auto;
+    }
+
     .c-searchcard__tag {
       font-size: 0.875rem;
     }
+  }
+
+
+  //////////////////////
+  ///// Desktop ////////
+  //////////////////////
+
+  @media (min-width: 1280px) {
+
+    .l-searchcard > * {
+      margin: 4vh 0vw;
+    }
+
+    .c-searchcard__tagscontainer {
+      justify-content: center;
+    }
+    .c-searchcard__tagpill {
+      align-items: flex-start;
+      flex: 0 1 auto;
   }
 `
