@@ -108,11 +108,15 @@ const SearchCardWrapper = styled.main`
   ////// Tablet //////
 
   @media (min-width: 992px) {
+    .l-searchcard > * {
+    margin: 0;
+    }
     .c-searchcard__title {
       font-size: 1.5rem;
     }
 
     .c-searchcard__summary {
+      margin: 2vh 0vw;
       font-size: 1rem;
     }
 
@@ -133,12 +137,20 @@ const SearchCardWrapper = styled.main`
 
   @media (min-width: 1280px) {
 
+    padding: 6vh 4vw;
     .l-searchcard > * {
-      margin: 4vh 0vw;
+      margin: 0;
+    }
+
+
+    .c-searchcard__summary > p {
+      text-align: left;
+      margin: 6vh 0vw;
     }
 
     .c-searchcard__tagscontainer {
-      justify-content: center;
+      justify-content: end;
+
     }
     .c-searchcard__tagpill {
       align-items: flex-start;
