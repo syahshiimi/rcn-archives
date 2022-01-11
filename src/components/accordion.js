@@ -2,36 +2,73 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown"
 import { IconContext } from "@react-icons/all-files/lib"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import {
+  renderRichText,
+} from "gatsby-source-contentful/rich-text"
+import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
+
 export const Accordion = ({ transcript = [], type }) => {
   const {
-    discussionQuestions: { discussionqns },
-    englishFullTranscript: { fulltranscript },
-    englishTranscriptSummary: { transcriptsummary },
+    discussionQuestions,
+    englishFullTranscript,
+    englishTranscriptSummary,
     transcriptTags,
     interviewer,
     interviewee,
   } = transcript
 
+  // Rich Text Rendering
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: text => <b className="font-bold">{text}</b>,
+    },
+    renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => {
+        const { uri } = node.data
+        return (
+          <a href={uri} className="underline">
+            {children}
+          </a>
+        )
+      },
+      [BLOCKS.HEADING_2]: (node, children) => {
+        return <h2>{children}</h2>
+      },
+    },
+  }
+
   // create separate functions to render content conditionally
   function DocumentSummary(props) {
-    return <p className="c-accordion__summary">none</p>
+    return (
+      <span className="c-accordion__summary">
+        {renderRichText(englishTranscriptSummary, options)}
+      </span>
+    )
   }
 
   function DocumentTranscript(props) {
-    return <p className="c-accordion__transcript">{fulltranscript}</p>
+    return (
+      <span className="c-accordion__transcript">
+        {renderRichText(englishFullTranscript, options)}
+      </span>
+    )
   }
 
   function DocumentInfo(props) {
     return (
-      <p className="c-accordion__info">
+      <span className="c-accordion__info">
         {interviewer}, {interviewee}, {transcriptTags}
-      </p>
+      </span>
     )
   }
 
   function DocumentQns(props) {
-    return <p className="c-accordion__qns">{discussionqns}</p>
+    return (
+      <span className="c-accordion__qns">
+        {renderRichText(discussionQuestions, options)}
+      </span>
+    )
   }
 
   let component
@@ -53,7 +90,7 @@ export const Accordion = ({ transcript = [], type }) => {
           <TiArrowDown />
         </IconContext.Provider>
       </div>
-      <div className="c-accordion__body closed"></div>
+      <div className="c-accordion__body closed">{component}</div>
     </AccordionWrapper>
   )
 }
@@ -96,13 +133,10 @@ const AccordionWrapper = styled.div`
   .c-accordion__summary {
     }
 .c-accordion__transcript {
-      width: 100%;
     }
 .c-accordion__info {
-      width: 100%;
     }
 .c-accordion__qns {
-      width: 100%;
     }
 
 `

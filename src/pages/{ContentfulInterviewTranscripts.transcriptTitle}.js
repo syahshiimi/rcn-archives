@@ -20,12 +20,16 @@ const TranscriptTemplate = ({ data }) => {
   )
   const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr)
 
+  const FilteringNull = function(transcript) {
+  }
+
+  // Destructure Filtered Object
   const {
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
     transcriptTitle,
-  } = filteredTranscriptObj 
+  } = filteredTranscriptObj
 
   return (
     <Layout>
@@ -50,13 +54,13 @@ export const query = graphql`
       transcriptTags
       contentful_id
       englishTranscriptSummary {
-        transcriptsummary: raw
+        raw
       }
       englishFullTranscript {
-        fulltranscript: raw
+        raw
       }
       discussionQuestions {
-        discussionqns: raw
+        raw
       }
       onelinerteaser: childContentfulInterviewTranscriptsOneLineTeaserTextNode {
         childMarkdownRemark {
