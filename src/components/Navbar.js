@@ -19,9 +19,6 @@ const Navbar = () => {
   const handleClick = () => {
     setShow(!show) // this returns opposite of the initial value which is false to true
   }
-  //create CSS modiifer
-  // const listState = show ? "nav__list show--container" : "nav__list"
-
   // useRef instead
   const linksContainerRef = useRef(null)
   const linksRef = useRef(null)
