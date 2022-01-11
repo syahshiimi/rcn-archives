@@ -15,6 +15,11 @@ export const Accordion = ({ transcript = [], type }) => {
     interviewee,
   } = transcript
 
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+
   // Rich Text Rendering
   const options = {
     renderMark: {
@@ -34,8 +39,12 @@ export const Accordion = ({ transcript = [], type }) => {
       },
     },
   }
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
 
-  // create separate functions to render content conditionally
+  // Conditional Rendering
   function DocumentSummary(props) {
     return (
       <span className="c-accordion__summary">
@@ -52,10 +61,25 @@ export const Accordion = ({ transcript = [], type }) => {
     )
   }
 
-  function DocumentInfo(props) {
+  function DocumentInfo() {
     return (
       <span className="c-accordion__info">
-        {interviewer}, {interviewee}, {transcriptTags}
+        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
+        <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
+        <p className="c-accordion__tagsandkeys">Tags & Keywords</p>
+        <hr className="c-accordion__tagsandkeysline"></hr>
+        <div className="c-accordion__transcripttags">
+          {transcriptTags.map((item, index) => {
+            return (
+              <div className="c-accordion__tagpill" key={index}>
+                <p className="c-accordion__tag">{item}</p>
+              </div>
+            )
+          })}
+        </div>
+        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
+        <hr className="c-accordion__transcriptnotesline"></hr>
+        <p className="c-accordion__transcriptnotes">None</p>
       </span>
     )
   }
@@ -79,6 +103,11 @@ export const Accordion = ({ transcript = [], type }) => {
     component = <DocumentQns />
   }
 
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+
   // Dropdown on click
   // 1. Hide accordion content as the intiai state where show = false
   const [show, setShow] = useState(false)
@@ -100,6 +129,7 @@ export const Accordion = ({ transcript = [], type }) => {
       accordionBody.current.style.height = `${accordionHeight}px`
       accordionBody.current.style.paddingBottom = `8vh`
       accordionBody.current.style.border = `1px solid var(--primary-clr-200)`
+      accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
       accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`
     } else {
@@ -111,9 +141,10 @@ export const Accordion = ({ transcript = [], type }) => {
     }
   }, [show])
 
-  // Rotate with State Hooks
-  // Declare a state variable, which we will call "normal"
-  //
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
+  //////////////////////////////////////////////////
 
   return (
     <AccordionWrapper className="c-accordion">
@@ -151,7 +182,7 @@ const AccordionWrapper = styled.div`
     background-color: var(--primary-clr-100);
     border-radius: calc(2rem + 1px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: all 1.2s ease-in-out; 
+    transition: all 1.2s ease-in-out;
   }
 
   .c-accordion__arrow {
@@ -180,16 +211,57 @@ const AccordionWrapper = styled.div`
     display: none;
   }
   .c-accordion__summary > p {
-    flex: 1 1 auto;
     margin: 2vh 6vw;
     text-align: center;
   }
   .c-accordion__transcript > p {
     margin: 2vh 6vw;
   }
-  .c-accordion__info > p {
-    margin: 4vh 6vw;
+  .c-accordion__info > * {
+    margin: 2vh 6vw;
   }
+
+  .c-accordion__tagsandkeys {
+    font-weight: bold;
+  }
+  .c-accordion__tagsandkeysline {
+    border: 1px solid var(--primary-clr-200);
+    border-radius: 1px;
+  }
+
+  .c-accordion__transcripttags {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .c-accordion__tagpill {
+    margin: 0.5vh 1vw;
+    background-color: var(--primary-clr-200);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: calc(2rem);
+    flex: 0 1 auto;
+  }
+  .c-accordion__tag {
+    font-family: Ubuntu;
+    font-size: 0.75rem;
+    line-height: 20px;
+    color: var(--primary-clr-50);
+    padding: 1vh 3vw;
+  }
+
+  .c-accordion__transcriptnotesheader {
+    font-weight: bold;
+  }
+
+  .c-accordion__transcriptnotesline {
+    border: 1px solid var(--primary-clr-200);
+    border-radius: 1px;
+  }
+
   .c-accordion__qns > p {
     margin: 4vh 6vw;
     width: 100%;
