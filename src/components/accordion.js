@@ -82,30 +82,46 @@ export const Accordion = ({ transcript = [], type }) => {
   // Dropdown on click
   // 1. Hide accordion content as the intiai state where show = false
   const [show, setShow] = useState(false)
+  const [normal, setRotate] = useState(true)
   // 2. Creat button handler to listen to button state change
   const handleClick = () => {
     setShow(!show) // returns opposte; where show is now TRUE
+    setRotate(normal)
   }
   // 3. Create CSS Modifier
   const accordionBody = useRef(null)
   const accordionRef = useRef(null)
+  const accordionHeader = useRef(null)
 
   useEffect(() => {
     const accordionHeight = accordionRef.current.getBoundingClientRect().height
     if (show) {
       console.log(`${accordionHeight}`)
       accordionBody.current.style.height = `${accordionHeight}px`
+      accordionBody.current.style.paddingBottom = `8vh`
       accordionBody.current.style.border = `1px solid var(--primary-clr-200)`
+      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
+      accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`
     } else {
       accordionBody.current.style.height = "0px"
       accordionBody.current.style.padding = `0rem`
       accordionBody.current.style.border = `0px`
+      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
+      accordionHeader.current.style.borderRadius = `calc(2rem + 1px)`
     }
   }, [show])
 
+  // Rotate with State Hooks
+  // Declare a state variable, which we will call "normal"
+  //
+
   return (
-    <AccordionWrapper className="c-accordion__container">
-      <button className="c-accordion__header" onClick={handleClick}>
+    <AccordionWrapper className="c-accordion">
+      <button
+        className="c-accordion__header"
+        ref={accordionHeader}
+        onClick={handleClick}
+      >
         <h5 className="c-accordion__title">{type}</h5>
         <IconContext.Provider value={{ className: "c-accordion__arrow" }}>
           <TiArrowDown />
@@ -133,9 +149,9 @@ const AccordionWrapper = styled.div`
 
     /* styling */
     background-color: var(--primary-clr-100);
-    border: 1px solid var(--primary-clr-200);
     border-radius: calc(2rem + 1px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 1.2s ease-in-out; 
   }
 
   .c-accordion__arrow {
@@ -164,7 +180,9 @@ const AccordionWrapper = styled.div`
     display: none;
   }
   .c-accordion__summary > p {
-    margin: 4vh 6vw;
+    flex: 1 1 auto;
+    margin: 2vh 6vw;
+    text-align: center;
   }
   .c-accordion__transcript > p {
     margin: 2vh 6vw;
