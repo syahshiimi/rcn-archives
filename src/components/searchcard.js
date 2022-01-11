@@ -38,7 +38,7 @@ export const SearchCard = ({ transcript = [] }) => {
             </Link>
             <div className="c-searchcard__summary">{parse(`${html}`)}</div>
             <div className="c-searchcard__tagscontainer">
-              {SortTags.map((item, index) => {
+              {transcriptTags.map((item, index) => {
                 return (
                   <div className="c-searchcard__tagpill" key={index}>
                     <p className="c-searchcard__tag">{item}</p>
@@ -138,6 +138,7 @@ const SearchCardWrapper = styled.main`
   @media (min-width: 1280px) {
 
     padding: 6vh 4vw;
+    margin: 0vh 8vw;
     .l-searchcard > * {
       margin: 0;
     }
@@ -149,11 +150,12 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-searchcard__tagscontainer {
-      justify-content: end;
+      justify-content: center;
 
     }
     .c-searchcard__tagpill {
       align-items: flex-start;
+      margin: 1vh 1vw;
       flex: 0 1 auto;
   }
 `

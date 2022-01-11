@@ -339,6 +339,15 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__content {
       margin: 0vh 12vw;
     }
+
+    .c-browsearchives__searchresults {
+      margin-bottom: 8vh;
+  }
+    
+
+      .c-browsearchives__searchcontainer {
+        
+  margin: 0vh 8vw;
   }
 `
 export default BrowseArchives

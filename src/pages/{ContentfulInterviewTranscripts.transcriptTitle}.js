@@ -9,7 +9,7 @@ const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts
 
   // filter through passed object to remove null values
-  //
+  ////////////////////////////////////////////////////////////
   // 1. convert default objects to array with key value pairs
   // 2. filter through key/value pairs to remove 'null' and produce new arr
   // 3. convert filtered array to object
@@ -20,8 +20,7 @@ const TranscriptTemplate = ({ data }) => {
   )
   const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr)
 
-  const FilteringNull = function(transcript) {
-  }
+  const FilteringNull = function (transcript) {}
 
   // Destructure Filtered Object
   const {
@@ -81,11 +80,17 @@ const TranscriptWrapper = styled.section`
   .c-transcript__title {
     text-align: center;
     margin: 2vh 0vw;
+    font-size: 1.5rem;
   }
 
   .c-transcript__oneliner {
     margin: 2vh 0vw 4vh 0vw;
     text-align: center;
+  }
+  .c-transcript__oneliner {
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-style: normal;
   }
 `
 

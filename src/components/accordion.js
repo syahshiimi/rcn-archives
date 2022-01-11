@@ -2,9 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown"
 import { IconContext } from "@react-icons/all-files/lib"
-import {
-  renderRichText,
-} from "gatsby-source-contentful/rich-text"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 
 export const Accordion = ({ transcript = [], type }) => {
@@ -90,7 +88,7 @@ export const Accordion = ({ transcript = [], type }) => {
           <TiArrowDown />
         </IconContext.Provider>
       </div>
-      <div className="c-accordion__body closed">{component}</div>
+      <div className="c-accordion__body ">{component}</div>
     </AccordionWrapper>
   )
 }
@@ -125,18 +123,29 @@ const AccordionWrapper = styled.div`
   .c-accordion__body {
     display: flex;
     flex-grow: 0;
-    width: 100%;
+    background-color: var(--primary-clr-50);
+    border: 1px solid var(--primary-clr-200);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
   .closed {
     display: none;
   }
+  .c-accordion__summary > p {
+    margin: 4vh 6vw;
+  }
+  .c-accordion__transcript > p {
+    margin: 2vh 6vw;
+  }
+  .c-accordion__info > p {
+    margin: 4vh 6vw;
+  }
+  .c-accordion__qns > p {
+    margin: 4vh 6vw;
+    width: 100%;
+  }
 
-  .c-accordion__summary {
-    }
-.c-accordion__transcript {
-    }
-.c-accordion__info {
-    }
-.c-accordion__qns {
-    }
-
+  p {
+    font-family: Ubuntu;
+  }
 `
