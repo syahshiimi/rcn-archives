@@ -37,6 +37,9 @@ export const Accordion = ({ transcript = [], type }) => {
       [BLOCKS.HEADING_2]: (node, children) => {
         return <h2>{children}</h2>
       },
+      [BLOCKS.OL_LIST]: (node, children) => {
+        return <ol>{children}</ol>
+      },
     },
   }
   //////////////////////////////////////////////////
@@ -86,9 +89,9 @@ export const Accordion = ({ transcript = [], type }) => {
 
   function DocumentQns(props) {
     return (
-      <span className="c-accordion__qns">
+      <div className="c-accordion__qns">
         {renderRichText(discussionQuestions, options)}
-      </span>
+      </div>
     )
   }
 
@@ -115,12 +118,15 @@ export const Accordion = ({ transcript = [], type }) => {
   // 2. Creat button handler to listen to button state change
   const handleClick = () => {
     setShow(!show) // returns opposte; where show is now TRUE
-    setRotate(normal)
+    setRotate(!normal)
   }
   // 3. Create CSS Modifier
   const accordionBody = useRef(null)
   const accordionRef = useRef(null)
   const accordionHeader = useRef(null)
+  const rotateArrowIcon = normal
+    ? "c-accordion__arrow"
+    : "c-accordion__arrow pulled"
 
   useEffect(() => {
     const accordionHeight = accordionRef.current.getBoundingClientRect().height
@@ -154,7 +160,7 @@ export const Accordion = ({ transcript = [], type }) => {
         onClick={handleClick}
       >
         <h5 className="c-accordion__title">{type}</h5>
-        <IconContext.Provider value={{ className: "c-accordion__arrow" }}>
+        <IconContext.Provider value={{ className: rotateArrowIcon }}>
           <TiArrowDown />
         </IconContext.Provider>
       </button>
@@ -182,12 +188,18 @@ const AccordionWrapper = styled.div`
     background-color: var(--primary-clr-100);
     border-radius: calc(2rem + 1px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: all 1.2s ease-in-out;
+    transition: all 0.5s ease-in-out 0.2s;
   }
 
   .c-accordion__arrow {
     height: 2rem;
     width: 2rem;
+    transition: var(--transition)
+  }
+
+  .pulled {
+    transform: rotate(180deg);
+    transition: var(--transition)
   }
 
   .c-accordion__title {
@@ -197,6 +209,7 @@ const AccordionWrapper = styled.div`
   }
 
   .c-accordion__bodycontainer {
+    transition: all 0.5s ease-in-out 0.2s;
     display: flex;
     flex-grow: 1 1 auto;
     overflow: hidden;
@@ -262,9 +275,14 @@ const AccordionWrapper = styled.div`
     border-radius: 1px;
   }
 
-  .c-accordion__qns > p {
-    margin: 4vh 6vw;
-    width: 100%;
+  .c-accordion__qns {
+    margin: 4vh 9vw;
+    padding: 0vh 4vw;
+    list-style: square;
+
+    ol > li {
+      margin: 2vh 0vw;
+    }
   }
 
   p {
