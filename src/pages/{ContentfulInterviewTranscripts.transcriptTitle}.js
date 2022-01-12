@@ -77,10 +77,10 @@ const TranscriptTemplate = ({ data }) => {
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         {imgComponent}
         <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
-        <div className="c-transcript__tagsandkeywords desktop">
+        <div className="c-transcript__tagsandkeywords">
           <h5>Tags and Keywords</h5>
         </div>
-        <div className="c-transcript__tagscontainer desktop">
+        <div className="c-transcript__tagscontainer">
           <TagsContainer tags={transcriptTags} />
         </div>
 
@@ -187,6 +187,10 @@ const TranscriptWrapper = styled.section`
     display: none;
   }
 
+  .c-transcript__tagscontainer {
+    display: none;
+  }
+
   ///////////////////////////
   ////// Tablet /////////////
   ///////////////////////////
@@ -206,15 +210,8 @@ const TranscriptWrapper = styled.section`
       "summary summary"
       "info questions";
 
-    .desktop {
-      display: flex;
-    }
-
-    .non-mobile {
-      display: none;
-    }
-
     .c-transcript__title {
+      margin: 0vh 0vw 2vh 0vw;
       font-size: 2.5rem;
       grid-area: title;
     }
@@ -238,6 +235,7 @@ const TranscriptWrapper = styled.section`
       margin: 1vh 0vw;
     }
     .c-transcript__tagscontainer {
+      display: flex;
       margin: 1vh 0vw;
       grid-area: tags;
 
@@ -258,6 +256,9 @@ const TranscriptWrapper = styled.section`
       grid-area: summary;
     }
 
+    .document__transcript {
+      display: none;
+    }
     .document__information {
       grid-area: info;
     }
