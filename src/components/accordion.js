@@ -141,7 +141,7 @@ export const Accordion = ({ transcript = [], type }) => {
     } else {
       accordionBody.current.style.height = "0px"
       accordionBody.current.style.padding = `0rem`
-      accordionBody.current.style.border = `0px`
+      accordionBody.current.style.border = `0px solid var(--primary-clr-200)`
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
       accordionHeader.current.style.borderRadius = `calc(2rem + 1px)`
     }
@@ -209,7 +209,6 @@ const AccordionWrapper = styled.div`
   }
 
   .c-accordion__bodycontainer {
-    transition: all 0.5s ease-in-out 0.2s;
     display: flex;
     flex-grow: 1 1 auto;
     overflow: hidden;
