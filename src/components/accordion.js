@@ -4,6 +4,7 @@ import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown"
 import { IconContext } from "@react-icons/all-files/lib"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { TagsContainer } from "./tags"
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -69,16 +70,11 @@ export const Accordion = ({ transcript = [], type, name }) => {
       <span className="c-accordion__info">
         <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
         <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
-        <p className="c-accordion__tagsandkeys">Tags & Keywords</p>
-        <hr className="c-accordion__tagsandkeysline"></hr>
-        <div className="c-accordion__transcripttags">
-          {transcriptTags.map((item, index) => {
-            return (
-              <div className="c-accordion__tagpill" key={index}>
-                <p className="c-accordion__tag">{item}</p>
-              </div>
-            )
-          })}
+
+        <div className="c-accordion__tagsandkeyscontainer">
+          <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
+          <hr className="c-accordion__tagsandkeysline"></hr>
+          <TagsContainer tags={transcriptTags} />
         </div>
         <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
         <hr className="c-accordion__transcriptnotesline"></hr>
@@ -231,37 +227,19 @@ const AccordionWrapper = styled.div`
   .c-accordion__info > * {
     margin: 2vh 6vw;
   }
+  .c-accordion__tagsandkeyscontainer {
+    display: flex;
+    flex-direction: column;
 
-  .c-accordion__tagsandkeys {
+  }
+
+  .c-accordion__tagsandkeystitle {
     font-weight: bold;
   }
   .c-accordion__tagsandkeysline {
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
-  }
-
-  .c-accordion__transcripttags {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .c-accordion__tagpill {
-    margin: 0.5vh 1vw;
-    background-color: var(--primary-clr-200);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border-radius: calc(2rem);
-    flex: 0 1 auto;
-  }
-  .c-accordion__tag {
-    font-family: Ubuntu;
-    font-size: 0.75rem;
-    line-height: 20px;
-    color: var(--primary-clr-50);
-    padding: 1vh 3vw;
+    margin: 2vh 0vw;
   }
 
   .c-accordion__transcriptnotesheader {
@@ -283,16 +261,12 @@ const AccordionWrapper = styled.div`
     }
   }
 
-  p {
-    font-family: Ubuntu;
-  }
-
   ////////////////////////////
   ////// Tablet //////////////
   ////////////////////////////
   @media (min-width: 992px) {
     .c-accordion__header {
-      padding: 1vh 6vw;
+      padding: 0.9vh 3vw;
     }
     .c-accordion__title {
       font-size: 1.25rem;
@@ -300,6 +274,47 @@ const AccordionWrapper = styled.div`
     .c-accordion__arrow {
       height: 2.8rem;
       width: 2.8rem;
+    }
+    .c-accordion__summary > p {
+      margin: 2vh 3vw;
+      text-align: center;
+    }
+    .c-accordion__info > * {
+      margin: 2vh 3vw;
+    }
+
+    .c-accordion__transcripttags {
+      justify-content: stretch;
+    }
+
+    .c-accordion__tagsandkeyscontainer {
+      display: none;
+    }
+    .c-accordion__tag {
+      font-size: 0.85rem;
+    }
+
+    .c-accordion__transcriptnotesheader {
+      font-weight: bold;
+    }
+
+    .c-accordion__transcriptnotesline {
+      border: 1px solid var(--primary-clr-200);
+      border-radius: 1px;
+    }
+
+    .c-accordion__qns {
+      margin: 2vh 3vw;
+      padding: 0vh 4vw;
+      list-style: square;
+
+      ol > li {
+        margin: 2vh 0vw;
+      }
+
+      ol > li > p {
+        font-size: 1rem;
+      }
     }
   }
 `

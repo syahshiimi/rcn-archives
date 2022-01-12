@@ -57,19 +57,19 @@ const TranscriptTemplate = ({ data }) => {
   /////////////////////////////
   ////////// Tags Utils ///////
   /////////////////////////////
-  //  function TagsContainer(props) {
-  //    return (
-  //      <div className="c-transcript__tagscontainer">
-  //        {transcriptTags.map((item, index) => {
-  //          return (
-  //            <div className="c-transcript__tagpill" key={index}>
-  //              <p className="c-transcript__tag">{item}</p>
-  //            </div>
-  //          )
-  //        })}
-  //      </div>
-  //    )
-  //  }
+//  function TagsContainer(props) {
+//    return (
+//      <div className="c-transcript__tagscontainer">
+//        {transcriptTags.map((item, index) => {
+//          return (
+//            <div className="c-transcript__tagpill" key={index}>
+//              <p className="c-transcript__tag">{item}</p>
+//            </div>
+//          )
+//        })}
+//      </div>
+//    )
+//  }
 
   return (
     <Layout>
@@ -77,12 +77,10 @@ const TranscriptTemplate = ({ data }) => {
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         {imgComponent}
         <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
-        <div className="c-transcript__tagsandkeywords desktop">
+        <div className="c-transcript__tagsandkeywords">
           <h5>Tags and Keywords</h5>
         </div>
-        <div className="c-transcript__tagscontainer desktop">
-          <TagsContainer tags={transcriptTags} />
-        </div>
+        <div className="c-transcript__tagscontainer"><TagsContainer/></div>
 
         <hr className="c-transcript__border"></hr>
         <Accordion
@@ -150,10 +148,6 @@ const TranscriptWrapper = styled.section`
   padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
   max-width: 100%;
 
-  .desktop {
-    display: none;
-  }
-
   .c-transcript__title {
     text-align: center;
     margin: 2vh 0vw;
@@ -174,7 +168,7 @@ const TranscriptWrapper = styled.section`
     text-align: center;
   }
   .c-transcript__oneliner {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
     font-style: normal;
   }
@@ -194,21 +188,17 @@ const TranscriptWrapper = styled.section`
   @media (min-width: 992px) {
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     display: grid;
-    column-gap: 2vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto auto auto auto;
     grid-template-areas:
-      "title title"
+      ". image"
+      "title image"
       "oneliner image"
       "tagsandkeywords image"
-      "tags image"
+      "tagscontainer image"
       "border border"
       "summary summary"
       "info questions";
-
-    .desktop {
-      display: flex;
-    }
 
     .non-mobile {
       display: none;
@@ -217,6 +207,7 @@ const TranscriptWrapper = styled.section`
     .c-transcript__title {
       font-size: 2.5rem;
       grid-area: title;
+      text-align: left;
     }
 
     .c-transcript__image {
@@ -226,24 +217,9 @@ const TranscriptWrapper = styled.section`
 
     .c-transcript__oneliner {
       font-size: 1rem;
-      margin: 1vh 0vw;
+      text-align: left;
+      margin: 2vh 0vw;
       grid-area: oneliner;
-    }
-    .c-transcript__tagsandkeywords {
-      display: block;
-      grid-area: tagsandkeywords;
-      text-align: center;
-      font-size: 1rem;
-      text-decoration: underline;
-      margin: 1vh 0vw;
-    }
-    .c-transcript__tagscontainer {
-      margin: 1vh 0vw;
-      grid-area: tags;
-
-      .c-tagscontainer {
-        justify-content: space-evenly;
-      }
     }
 
     .c-transcript__border {
@@ -263,6 +239,14 @@ const TranscriptWrapper = styled.section`
     }
     .document__questions {
       grid-area: questions;
+    }
+    .c-transcript__tagsandkeywords {
+      display: block;
+      grid-area: tagsandkeywords;
+      font-size: 1rem;
+      text-decoration: underline;
+    }
+    .c-transcript__tagscontainer {
     }
   }
 
