@@ -56,9 +56,9 @@ const TranscriptTemplate = ({ data }) => {
     <Layout>
       <TranscriptWrapper>
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
+        {imgComponent}
         <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
 
-        {imgComponent}
         <hr className="c-transcript__border"></hr>
         <Accordion
           transcript={transcript}
@@ -131,8 +131,17 @@ const TranscriptWrapper = styled.section`
     font-size: 1.5rem;
   }
 
+  .c-transcript__image {
+    margin: 2vh 0vw;
+  }
+  .std-style {
+    border-radius: calc(1.5rem + 4px);
+    border: 1px solid var(--primary-clr-200);
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  }
+
   .c-transcript__oneliner {
-    margin: 2vh 0vw 4vh 0vw;
+    margin: 2vh 0vw;
     text-align: center;
   }
   .c-transcript__oneliner {
@@ -151,6 +160,18 @@ const TranscriptWrapper = styled.section`
 
   @media (min-width: 992px) {
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4vw;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+      ". image"
+      "title image"
+      "oneliner image"
+      ". image"
+      "border border"
+      "summary summary"
+      "info questions";
 
     .non-mobile {
       display: none;
@@ -158,12 +179,20 @@ const TranscriptWrapper = styled.section`
 
     .c-transcript__title {
       font-size: 2.5rem;
+      grid-area: title;
+      text-align: left;
+    }
+
+    .c-transcript__image {
+      grid-area: image;
+      margin: 2vh 2vw;
     }
 
     .c-transcript__oneliner {
       font-size: 1rem;
-      margin: 2vh 0vw;
       text-align: left;
+      margin: 2vh 0vw;
+      grid-area: oneliner;
     }
 
     .c-transcript__border {
@@ -171,6 +200,18 @@ const TranscriptWrapper = styled.section`
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
       margin: 4vh 0vw;
+      grid-area: border;
+    }
+
+    .document__summary {
+      grid-area: summary;
+    }
+
+    .document__information {
+      grid-area: info;
+    }
+    .document__questions {
+      grid-area: questions;
     }
   }
 `

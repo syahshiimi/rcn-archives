@@ -186,7 +186,6 @@ const AccordionWrapper = styled.div`
 
     /* styling */
     background-color: var(--primary-clr-100);
-    border-radius: calc(2rem + 1px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all 0.5s ease-in-out 0.2s;
   }
@@ -292,9 +291,15 @@ const AccordionWrapper = styled.div`
   ////// Tablet //////////////
   ////////////////////////////
   @media (min-width: 992px) {
+    .c-accordion__header {
+      padding: 1vh 6vw;
+    }
     .c-accordion__title {
       font-size: 1.25rem;
     }
-
+    .c-accordion__arrow {
+      height: 2.8rem;
+      width: 2.8rem;
+    }
+  }
 `
-
