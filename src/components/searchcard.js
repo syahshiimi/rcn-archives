@@ -54,6 +54,9 @@ export const SearchCard = ({ transcript = [] }) => {
 }
 
 const SearchCardWrapper = styled.main`
+
+
+  .l-searchcard {
   background-color: var(--primary-clr-100);
   padding: 4vh 8vw;
   margin: 2vh 2vw;
@@ -63,6 +66,7 @@ const SearchCardWrapper = styled.main`
   display: flex;
   box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
   flex-direction: column;
+  }
 
   .l-searchcard > * {
     margin: 2vh 0vw;
@@ -120,9 +124,12 @@ const SearchCardWrapper = styled.main`
       font-size: 1rem;
     }
 
-    .c-searchcard__tagpil {
-      font-size: 0.875rem;
-      flex: 1 1 auto;
+      .c-searchcard__tagscontainer {
+        justify-content: center;
+      }
+
+    .c-searchcard__tagpill {
+      flex: 0 1 auto;
     }
 
     .c-searchcard__tag {

@@ -1,9 +1,11 @@
 import { graphql } from "gatsby"
+import { getImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/Layout"
 import parse from "html-react-parser"
 import { Accordion } from "../components/accordion"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts
@@ -19,26 +21,65 @@ const TranscriptTemplate = ({ data }) => {
     ([key, value]) => value != null
   )
   const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr)
-
-  const FilteringNull = function (transcript) {}
-
   // Destructure Filtered Object
   const {
+    transcriptImage,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
     transcriptTitle,
   } = filteredTranscriptObj
 
+  //////////////////////////
+  ////// Image Utils ///////
+  //////////////////////////
+  // Conditionally render gatsby image
+  const pathToImage = getImage(transcriptImage)
+
+  function TranscriptImage(props) {
+    return (
+      <GatsbyImage
+        image={pathToImage}
+        alt={transcriptTitle}
+        className="c-transcript__image std-style"
+      />
+    )
+  }
+
+  let imgComponent
+  if (transcriptImage != undefined) {
+    imgComponent = <TranscriptImage />
+  } else {
+  }
+
   return (
     <Layout>
       <TranscriptWrapper>
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
-        <Accordion transcript={transcript} type="Document Summary" />
-        <Accordion transcript={transcript} type="Document Transcript" />
-        <Accordion transcript={transcript} type="Document Information" />
-        <Accordion transcript={transcript} type="Document Questions" />
+
+        {imgComponent}
+        <hr className="c-transcript__border"></hr>
+        <Accordion
+          transcript={transcript}
+          type="Document Summary"
+          name="document__summary"
+        />
+        <Accordion
+          transcript={transcript}
+          type="Document Transcript"
+          name="document__transcript non-mobile"
+        />
+        <Accordion
+          transcript={transcript}
+          type="Document Information"
+          name="document__information"
+        />
+        <Accordion
+          transcript={transcript}
+          type="Document Questions"
+          name="document__questions"
+        />
       </TranscriptWrapper>
     </Layout>
   )
@@ -66,6 +107,13 @@ export const query = graphql`
           oneliner: html
         }
       }
+      transcriptImage {
+        gatsbyImageData(
+          placeholder: TRACED_SVG
+          layout: CONSTRAINED
+          aspectRatio: 1.5
+        )
+      }
     }
   }
 `
@@ -91,6 +139,39 @@ const TranscriptWrapper = styled.section`
     font-size: 0.75rem;
     font-weight: 500;
     font-style: normal;
+  }
+
+  .c-transcript__border {
+    display: none;
+  }
+
+  ///////////////////////////
+  ////// Tablet /////////////
+  ///////////////////////////
+
+  @media (min-width: 992px) {
+    padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+
+    .non-mobile {
+      display: none;
+    }
+
+    .c-transcript__title {
+      font-size: 2.5rem;
+    }
+
+    .c-transcript__oneliner {
+      font-size: 1rem;
+      margin: 2vh 0vw;
+      text-align: left;
+    }
+
+    .c-transcript__border {
+      display: block;
+      border: 1px solid var(--primary-clr-200);
+      border-radius: 1px;
+      margin: 4vh 0vw;
+    }
   }
 `
 

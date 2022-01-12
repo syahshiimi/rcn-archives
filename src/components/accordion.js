@@ -5,7 +5,7 @@ import { IconContext } from "@react-icons/all-files/lib"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 
-export const Accordion = ({ transcript = [], type }) => {
+export const Accordion = ({ transcript = [], type, name }) => {
   const {
     discussionQuestions,
     englishFullTranscript,
@@ -133,7 +133,7 @@ export const Accordion = ({ transcript = [], type }) => {
     if (show) {
       console.log(`${accordionHeight}`)
       accordionBody.current.style.height = `${accordionHeight}px`
-      accordionBody.current.style.paddingBottom = `8vh`
+      accordionBody.current.style.paddingBottom = `4vh`
       accordionBody.current.style.border = `1px solid var(--primary-clr-200)`
       accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
@@ -153,7 +153,7 @@ export const Accordion = ({ transcript = [], type }) => {
   //////////////////////////////////////////////////
 
   return (
-    <AccordionWrapper className="c-accordion">
+    <AccordionWrapper className={`c-accordion ${name}`}>
       <button
         className="c-accordion__header"
         ref={accordionHeader}
@@ -194,12 +194,12 @@ const AccordionWrapper = styled.div`
   .c-accordion__arrow {
     height: 2rem;
     width: 2rem;
-    transition: var(--transition)
+    transition: var(--transition);
   }
 
   .pulled {
     transform: rotate(180deg);
-    transition: var(--transition)
+    transition: var(--transition);
   }
 
   .c-accordion__title {
@@ -287,4 +287,14 @@ const AccordionWrapper = styled.div`
   p {
     font-family: Ubuntu;
   }
+
+  ////////////////////////////
+  ////// Tablet //////////////
+  ////////////////////////////
+  @media (min-width: 992px) {
+    .c-accordion__title {
+      font-size: 1.25rem;
+    }
+
 `
+
