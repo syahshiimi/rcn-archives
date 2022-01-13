@@ -293,6 +293,15 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__filtercontainer > label {
       font-size: 0.825rem;
     }
+
+    .c-browsearchives__searchresults {
+      margin: 3vh 0vw;
+    }
+
+    .c-browsearchives__searchcontainer {
+      margin: 0vh 15vw;
+    }
+
   }
 
   ////////////////////////////
@@ -343,11 +352,9 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__searchresults {
       margin-bottom: 8vh;
   }
-    
 
-      .c-browsearchives__searchcontainer {
-        
-  margin: 0vh 8vw;
-  }
+    .c-browsearchives__searchcontainer {
+      margin: 0vh 8vw;
+    }
 `
 export default BrowseArchives

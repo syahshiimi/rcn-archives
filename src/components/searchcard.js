@@ -116,6 +116,11 @@ const SearchCardWrapper = styled.main`
     .l-searchcard > * {
     margin: 0;
     }
+
+    .l-searchcard {
+      padding: 3vh 4vw;
+    }
+
     .c-searchcard__title {
       font-size: 1.5rem;
     }
@@ -145,12 +150,14 @@ const SearchCardWrapper = styled.main`
 
   @media (min-width: 1280px) {
 
-    padding: 6vh 4vw;
-    margin: 0vh 8vw;
+    padding: 2vh 4vw;
     .l-searchcard > * {
       margin: 0;
     }
 
+      .l-searchcard {
+        padding: 4vh 6vw;
+      }
 
     .c-searchcard__summary > p {
       text-align: left;
