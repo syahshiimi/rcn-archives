@@ -23,7 +23,7 @@ const TagsWrapper = styled.div`
 
   .c-tagscontainer__tagpill {
     margin: 0.5vh 1vw;
-    background-color: var(--primary-clr-200);
+    background-color: var(--primary-clr-150);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

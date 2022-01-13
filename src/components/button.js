@@ -12,6 +12,14 @@ const DefaultButton = ({ title, url, className }) => {
   )
 }
 
+export const BackTTButton = ({ title }) => {
+  return (
+    <ButtonWrapper>
+      <button className="button_totop">{title}</button>
+    </ButtonWrapper>
+  )
+}
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;

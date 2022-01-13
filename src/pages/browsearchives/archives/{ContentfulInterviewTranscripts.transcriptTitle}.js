@@ -6,6 +6,7 @@ import Layout from "../../../components/Layout"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { BackTTButton } from "../../../components/button"
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
@@ -49,7 +50,6 @@ const FullTranscript = ({ data }) => {
     },
   }
 
-
   ////////////////////////////////////////
   /////////// Component Render ///////////
   ////////////////////////////////////////
@@ -57,20 +57,20 @@ const FullTranscript = ({ data }) => {
     <Layout>
       <FullTranscriptWrapper>
         <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
-        <div className="c-fulltranscript__oneliner">
-          {parse(`${oneliner}`)}
-        </div>
+        <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
+        <hr className="c-fulltranscript__border"></hr>
         <div className="c-fulltranscript__content">
           {renderRichText(englishFullTranscript, options)}
         </div>
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
-        <TagsContainer tags={transcriptTags}/>
+        <TagsContainer tags={transcriptTags} />
         <div className="c-fulltranscript__footnotescontainer">
           <h5 className="c-fulltranscript__footnotes">Footnotes</h5>
           <hr className="c-fulltranscript__footnotesborder"></hr>
           <p className="c-fulltranscript__footnotes"></p>
         </div>
+        <BackTTButton title="Back to Top" />
       </FullTranscriptWrapper>
     </Layout>
   )
@@ -117,14 +117,13 @@ const FullTranscriptWrapper = styled.section`
     display: flex;
     flex-direction: column;
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
-    row-gap: 2vh;
+    row-gap: 1vh;
   }
 
-
   hr {
-      display: block;
-      border: 1px solid var(--primary-clr-200);
-      border-radius: 1px;
+    display: block;
+    border: 1px solid var(--primary-clr-200);
+    border-radius: 1px;
   }
   .c-fulltranscript__title {
     text-align: center;
@@ -133,23 +132,53 @@ const FullTranscriptWrapper = styled.section`
   .c-fulltranscript__oneliner {
     text-align: center;
   }
-  
 
-  .c-fulltranscript__footnotesborder {
-    margin: 2vh 0vw;
+  .c-fulltranscript__border {
+    margin: 1vh 0vw;
   }
 
   .c-fulltranscript__content {
-
     p {
-      font-family: 'Lora', serif;
+      font-family: "Lora", serif;
       font-weight: 500;
       font-style: normal;
       margin: 1vh 0vw;
     }
   }
 
+  .c-fulltranscript__tagsandkeywords {
+    font-family: "Lora", serif;
+    text-decoration: underline;
+    font-size: 1.5rem;
+  }
 
+  .c-tagscontainer {
+    justify-content: left;
+    margin: 1vh 0vw;
+  }
+
+  .c-fulltranscript__footnotes {
+  }
+  .c-fulltranscript__footnotesborder {
+    margin: 1vh 0vw;
+    width: 25vw;
+  }
+
+  @media (min-width: 1280px) {
+    .c-fulltranscript__border {
+      margin: 4vh 0vw;
+    }
+.c-tagscontainer {
+    margin: 3vh 0vw;
+  }
+    .c-fulltranscript__footnotescontainer {
+      margin: 2vh 0vw;
+    }
+    .c-fulltranscript__footnotesborder {
+      margin: 2vh 0vw;
+      width: 25vw;
+    }
+  }
 `
 
 export default FullTranscript
