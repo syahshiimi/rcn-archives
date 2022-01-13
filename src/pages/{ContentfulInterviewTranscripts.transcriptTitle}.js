@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { TagsContainer } from "../components/tags"
 import { getImage } from "gatsby-plugin-image"
 import React from "react"
@@ -7,9 +7,11 @@ import Layout from "../components/Layout"
 import parse from "html-react-parser"
 import { Accordion } from "../components/accordion"
 import { GatsbyImage } from "gatsby-plugin-image"
+import slugify from "slugify"
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts
+  console.log(transcript)
 
   // filter through passed object to remove null values
   ////////////////////////////////////////////////////////////
@@ -24,6 +26,7 @@ const TranscriptTemplate = ({ data }) => {
   const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr)
   // Destructure Filtered Object
   const {
+    contentful_id,
     transcriptTags,
     transcriptImage,
     onelinerteaser: {
@@ -54,23 +57,8 @@ const TranscriptTemplate = ({ data }) => {
   } else {
   }
 
-  /////////////////////////////
-  ////////// Tags Utils ///////
-  /////////////////////////////
-  //  function TagsContainer(props) {
-  //    return (
-  //      <div className="c-transcript__tagscontainer">
-  //        {transcriptTags.map((item, index) => {
-  //          return (
-  //            <div className="c-transcript__tagpill" key={index}>
-  //              <p className="c-transcript__tag">{item}</p>
-  //            </div>
-  //          )
-  //        })}
-  //      </div>
-  //    )
-  //  }
-
+  const slug = slugify(transcriptTitle, { lower: true })
+  console.log(slug)
   return (
     <Layout>
       <TranscriptWrapper>
@@ -101,6 +89,9 @@ const TranscriptTemplate = ({ data }) => {
           type="Document Transcript"
           name="document__transcript non-mobile"
         />
+        <Link to={`/archives/${slug}`}className="c-transcript__readtrans">
+          Read Full Transcript 
+        </Link>
         <Accordion
           transcript={transcript}
           type="Document Information"
@@ -197,6 +188,9 @@ const TranscriptWrapper = styled.section`
     display: none;
   }
 
+  .c-transcript__readtrans {
+    display: none;
+  }
   ///////////////////////////
   ////// Tablet /////////////
   ///////////////////////////
@@ -212,13 +206,14 @@ const TranscriptWrapper = styled.section`
       "title title"
       "container container"
       "border border"
+      " . read"
       "summary summary"
       "info questions";
 
     .c-transcript__title {
       font-size: 2.5rem;
       grid-area: title;
-      margin:0;
+      margin: 0;
     }
 
     .c-transcript__container {
@@ -258,7 +253,7 @@ const TranscriptWrapper = styled.section`
       align-self: center;
 
       h5 {
-        font-family: 'Lora', Serif;
+        font-family: "Lora", Serif;
         font-size: 1.125rem;
       }
     }
@@ -276,10 +271,13 @@ const TranscriptWrapper = styled.section`
       display: block;
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
-      margin: 2vh 0vw;
       grid-area: border;
     }
-
+    .c-transcript__readtrans {
+      display: flex;
+      grid-area: read;
+      justify-self: end;
+    }
     .document__summary {
       grid-area: summary;
     }
