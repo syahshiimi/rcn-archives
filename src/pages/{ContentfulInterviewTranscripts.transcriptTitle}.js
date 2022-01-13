@@ -204,7 +204,8 @@ const TranscriptWrapper = styled.section`
   @media (min-width: 992px) {
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     display: grid;
-    column-gap: 2vh;
+    column-gap: 4vw;
+    row-gap: 2vh;
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
@@ -217,6 +218,7 @@ const TranscriptWrapper = styled.section`
     .c-transcript__title {
       font-size: 2.5rem;
       grid-area: title;
+      margin:0;
     }
 
     .c-transcript__container {
@@ -225,6 +227,7 @@ const TranscriptWrapper = styled.section`
       flex-direction: row-reverse;
       flex-grow: 1 1 auto;
       column-gap: 4vh;
+      margin: 1vh 0vw;
     }
 
     .c-transcript__subcontainer {
@@ -256,6 +259,7 @@ const TranscriptWrapper = styled.section`
 
       h5 {
         font-family: 'Lora', Serif;
+        font-size: 1.125rem;
       }
     }
     .c-transcript__tagscontainer {
