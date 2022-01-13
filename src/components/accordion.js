@@ -317,4 +317,14 @@ const AccordionWrapper = styled.div`
       }
     }
   }
+
+  ////////////////////////////
+  ///////// Desktop //////////
+  ////////////////////////////
+  
+  @media (min-width: 1280px) {
+    .c-accordion__qns {
+      padding: 0;
+      margin: 2vh 3vw;
+    }
 `
