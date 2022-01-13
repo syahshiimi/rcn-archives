@@ -75,13 +75,19 @@ const TranscriptTemplate = ({ data }) => {
     <Layout>
       <TranscriptWrapper>
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
-        {imgComponent}
-        <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
-        <div className="c-transcript__tagsandkeywords">
-          <h5>Tags and Keywords</h5>
-        </div>
-        <div className="c-transcript__tagscontainer">
-          <TagsContainer tags={transcriptTags} />
+        {/* container  to create flexible grid + blox layout */}
+        <div className="c-transcript__container">
+          {imgComponent}
+          {/* sub-container to create flexible grid + blox layout */}
+          <div className="c-transcript__subcontainer">
+            <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
+            <div className="c-transcript__tagsandkeywords">
+              <h5>Tags and Keywords</h5>
+            </div>
+            <div className="c-transcript__tagscontainer">
+              <TagsContainer tags={transcriptTags} />
+            </div>
+          </div>
         </div>
 
         <hr className="c-transcript__border"></hr>
@@ -199,40 +205,58 @@ const TranscriptWrapper = styled.section`
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     display: grid;
     column-gap: 2vh;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
       "title title"
-      "oneliner image"
-      "tagsandkeywords image"
-      "tags image"
+      "container container"
       "border border"
       "summary summary"
       "info questions";
 
     .c-transcript__title {
-      margin: 0vh 0vw 2vh 0vw;
       font-size: 2.5rem;
       grid-area: title;
     }
 
+    .c-transcript__container {
+      grid-area: container;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-grow: 1 1 auto;
+      column-gap: 4vh;
+    }
+
+    .c-transcript__subcontainer {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      row-gap: 1vh;
+    }
+
     .c-transcript__image {
       grid-area: image;
-      margin: 2vh 2vw;
+      padding: 4vh 8vw;
     }
 
     .c-transcript__oneliner {
       font-size: 1rem;
       margin: 1vh 0vw;
       grid-area: oneliner;
+      align-self: center;
+      text-align: center;
     }
     .c-transcript__tagsandkeywords {
       display: block;
       grid-area: tagsandkeywords;
       text-align: center;
-      font-size: 1rem;
       text-decoration: underline;
-      margin: 1vh 0vw;
+      margin: 0.1vh 0vw;
+      align-self: center;
+
+      h5 {
+        font-family: 'Lora', Serif;
+      }
     }
     .c-transcript__tagscontainer {
       display: flex;
@@ -248,7 +272,7 @@ const TranscriptWrapper = styled.section`
       display: block;
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
-      margin: 4vh 0vw;
+      margin: 2vh 0vw;
       grid-area: border;
     }
 
