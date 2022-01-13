@@ -34,7 +34,7 @@ export const SearchCard = ({ transcript = [] }) => {
         const SortTags = transcriptTags.sort() // sort tags
         return (
           <div className="l-searchcard" key={id}>
-            <Link to={`/${slug}`} className="c-searchcard__title">
+            <Link to={`${slug}`} className="c-searchcard__title">
               {transcriptTitle}
             </Link>
             <div className="c-searchcard__summary">{parse(`${html}`)}</div>

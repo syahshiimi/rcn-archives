@@ -1,11 +1,11 @@
 import { graphql, Link } from "gatsby"
-import { TagsContainer } from "../components/tags"
+import { TagsContainer } from "../../components/tags"
 import { getImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
-import Layout from "../components/Layout"
+import Layout from "../../components/Layout"
 import parse from "html-react-parser"
-import { Accordion } from "../components/accordion"
+import { Accordion } from "../../components/accordion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import slugify from "slugify"
 
@@ -59,6 +59,7 @@ const TranscriptTemplate = ({ data }) => {
 
   const slug = slugify(transcriptTitle, { lower: true })
   console.log(slug)
+
   return (
     <Layout>
       <TranscriptWrapper>
@@ -89,7 +90,7 @@ const TranscriptTemplate = ({ data }) => {
           type="Document Transcript"
           name="document__transcript non-mobile"
         />
-        <Link to={`/archives/${slug}`}className="c-transcript__readtrans">
+        <Link to={`/browsearchives/archives/${slug}`}className="c-transcript__readtrans">
           Read Full Transcript 
         </Link>
         <Accordion
