@@ -288,7 +288,7 @@ const NavStyle = styled.nav`
   @media (min-width: 1280px) {
     font-size: 1.125rem;
 
-    padding: 3vh var(--padding-desktop);
+    padding: 3vh 4.5vw;
 
     .nav__title {
       font-size: 1.5rem;

@@ -157,10 +157,7 @@ const ImageWrapper = styled.div`
     border-radius: var(--imagecard-border-radius);
     justify-content: center;
 
-    @media (min-width: 992px) {
-      grid-area: image;
-      width: 75%;
-    }
+    
   }
 
   /* drop shadow */
@@ -328,6 +325,10 @@ const HomeWrapper = styled.section`
       grid-area: content;
       text-align: left;
       align-self: center;
+     } 
+
+    .c-event__image {
+      grid-area: image;
     }
 
     .c-event__card {
@@ -347,7 +348,7 @@ const HomeWrapper = styled.section`
     }
 
     .desktop {
-      display: flex;
+      display: grid;
     }
 
     .c-hero {
@@ -376,9 +377,24 @@ const HomeWrapper = styled.section`
 
     /* events section */
     .c-events {
-      grid-row-gap: 6vh;
+      grid-row-gap: 4vh;
       grid-column-gap: 8vh;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "image . title "
+        "image . heading "
+        "subheading subheading subheading"
+        "content . eventCard";
+
     }
+
+      .c-events__heading {
+        place-self: start;
+      }
+      .c-event__image {
+      }
+
 
     .c-events__heading {
       margin-top: 2vh;

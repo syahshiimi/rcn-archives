@@ -111,7 +111,7 @@ const FooterStyle = styled.footer`
   ////  Desktop //////////
   /////////////////////////
   @media (min-width: 1280px) {
-    padding: 9vh var(--padding-desktop);
+    padding: 6vh var(--padding-desktop);
     font-size: 1rem;
 
     p {
