@@ -71,7 +71,7 @@ const TranscriptTemplate = ({ data }) => {
           <div className="c-transcript__subcontainer">
             <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
             <div className="c-transcript__tagsandkeywords">
-              <h5>Tags and Keywords</h5>
+              <h5>Tags & Keywords</h5>
             </div>
             <div className="c-transcript__tagscontainer">
               <TagsContainer tags={transcriptTags} />
@@ -90,8 +90,11 @@ const TranscriptTemplate = ({ data }) => {
           type="Document Transcript"
           name="document__transcript non-mobile"
         />
-        <Link to={`/browsearchives/archives/${slug}`}className="c-transcript__readtrans">
-          Read Full Transcript 
+        <Link
+          to={`/browsearchives/archives/${slug}`}
+          className="c-transcript__readtrans"
+        >
+          Read Full Transcript
         </Link>
         <Accordion
           transcript={transcript}
@@ -302,6 +305,22 @@ const TranscriptWrapper = styled.section`
     padding: 10vh var(--padding-desktop);
     row-gap: 4vh;
   }
+
+  .c-transcript__container {
+    column-gap: 6vw;
+    margin: 2vh 2vw;
+  }
+
+  .c-transcript__subcontainer {
+    align-items: stretch;
+    row-gap: 2vh;
+  }
+    .c-transcript__tagscontainer > .c-tagscontainer {
+      justify-content: space-evenly;
+      row-gap: 0.5vh;
+    }
+}
+
 `
 
 export default TranscriptTemplate

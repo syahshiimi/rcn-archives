@@ -1,4 +1,6 @@
+import { IconContext } from "@react-icons/all-files/lib"
 import { Link } from "gatsby"
+import { TiArrowLeft } from "@react-icons/all-files/ti/TiArrowLeft"
 import React from "react"
 import styled from "styled-components"
 
@@ -12,11 +14,35 @@ const DefaultButton = ({ title, url, className }) => {
   )
 }
 
-export const BackTTButton = ({ title }) => {
+export const BackTopButton = () => {
+  const ScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }
   return (
     <ButtonWrapper>
-      <button className="button_totop">{title}</button>
+      <button className="button_totop" onClick={ScrollTop}>
+        Scroll To Top
+      </button>
     </ButtonWrapper>
+  )
+}
+
+export const BackToSummaryBtn = () => {
+  const BTS = () => {
+    history.back()
+  }
+  return (
+    <AltButtonWrapper>
+      <button onClick={BTS} className="c-button">
+        Back To Summary
+        <IconContext.Provider value={{ className: "c-button__icon" }}>
+          <TiArrowLeft />
+        </IconContext.Provider>
+      </button>
+    </AltButtonWrapper>
   )
 }
 
@@ -46,5 +72,33 @@ const ButtonWrapper = styled.div`
     color: var(--primary-clr-200) !important;
   }
 `
+
+const AltButtonWrapper = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+
+  .c-button {
+    /* display */
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    border: none;
+    text-decoration: underline;
+    font-family: 'Ubuntu',sans-serif;
+    font-style: normal;
+    font-weight: bold;
+
+    /* styling */
+    background-color: transparent;
+  }
+
+  .c-button__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+    
+
+  `
 
 export default DefaultButton

@@ -6,7 +6,7 @@ import Layout from "../../../components/Layout"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { BackTTButton } from "../../../components/button"
+import { BackTopButton, BackToSummaryBtn } from "../../../components/button"
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
@@ -58,6 +58,7 @@ const FullTranscript = ({ data }) => {
       <FullTranscriptWrapper>
         <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
+        <BackToSummaryBtn/>
         <hr className="c-fulltranscript__border"></hr>
         <div className="c-fulltranscript__content">
           {renderRichText(englishFullTranscript, options)}
@@ -70,7 +71,7 @@ const FullTranscript = ({ data }) => {
           <hr className="c-fulltranscript__footnotesborder"></hr>
           <p className="c-fulltranscript__footnotes"></p>
         </div>
-        <BackTTButton title="Back to Top" />
+        <BackTopButton/>
       </FullTranscriptWrapper>
     </Layout>
   )
