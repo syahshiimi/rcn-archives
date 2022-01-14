@@ -18,40 +18,6 @@ export const query = graphql`
 `
 
 //////////////////////////////
-/////// Sub Filters //////////
-/////////////////////////////
-
-function InterviewerFilter(props) {
-  const data = useStaticQuery(query)
-  const interviewers = data.allContentfulInterviewerList.nodes
-  const [item] = interviewers
-  const { interviewerList } = item
-  console.log(interviewerList)
-
-  return (
-    <InterviewerFilterWrapper className="c-interviewerlist">
-      <h5 className="c-interviewerlist__title">Interviewer</h5>
-      <div className="c-interviewerlist__header">
-        <p className="c-interviwerlist__selected">None</p>
-      <IconContext.Provider value={{ className: "c-interviwerlist__icon" }}>
-        <TiArrowDown />
-      </IconContext.Provider>
-        </div>
-
-      <div className="c-interviewerlist__list">
-        {interviewerList.map((item, index) => {
-          return (
-            <p className="c-subfilter__${item}" key={index}>
-              {item}
-            </p>
-          )
-        })}
-      </div>
-    </InterviewerFilterWrapper>
-  )
-}
-
-//////////////////////////////
 /// Main Filter Component ///
 //////////////////////////////
 export const SearchFilter = () => {
@@ -70,6 +36,39 @@ export const SearchFilter = () => {
   )
 }
 
+//////////////////////////////
+/////// Sub Filters //////////
+/////////////////////////////
+
+function InterviewerFilter(props) {
+  const data = useStaticQuery(query)
+  const interviewers = data.allContentfulInterviewerList.nodes
+  const [item] = interviewers
+  const { interviewerList } = item
+  console.log(interviewerList)
+
+  return (
+    <InterviewerFilterWrapper className="c-interviewerlist">
+      <h5 className="c-interviewerlist__title">Interviewer</h5>
+      <div className="c-interviewerlist__header">
+        <p className="c-interviewerlist__selected">None</p>
+        <IconContext.Provider value={{ className: "c-interviewerlist__icon" }}>
+          <TiArrowDown />
+        </IconContext.Provider>
+      </div>
+
+      <div className="c-interviewerlist__list">
+        {interviewerList.map((item, index) => {
+          return (
+            <p className="c-subfilter__${item}" key={index}>
+              {item}
+            </p>
+          )
+        })}
+      </div>
+    </InterviewerFilterWrapper>
+  )
+}
 const SearchFilterWrapper = styled.div`
   @media (min-width: 1280px) {
     margin: 4vh 8vw !important;
@@ -112,18 +111,45 @@ const InterviewerFilterWrapper = styled.section`
   flex-direction: column;
   flex: 1 1 auto;
   padding: 0 !important;
+  width: 25vw;
   @media (min-width: 1280px) {
     .c-interviewerlist__title {
       text-decoration: underline;
     }
+    .c-interviewerlist__title {
+      text-align: left;
+      margin: 0vh 2vw;
+    }
 
     .c-interviewerlist__header {
       background-color: var(--secondary-clr-250);
+      border-radius: calc(2rem + 2px);
+      border: 2px solid var(--primary-clr-200);
       display: flex;
       flex-direction: row;
+      flex-grow: 1;
+      margin: 1vh 0vw;
+      padding: 2vh 4vw;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+      .c-interviewerlist__icon {
+      height: 2rem;
+      width: 2rem;
+      }
+
+    .c-interviewerlist__selected {
+      font-size: 1rem;
     }
     .c-interviewerlist__list {
       background-color: var(--primary-clr-100);
+      padding: 2vh 2vw;
+      border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
+      border: 2px solid var(--primary-clr-200);
+      p {
+        margin: 1vh 0vw;
+      }
     }
   }
 `
