@@ -30,7 +30,6 @@ export const SearchCard = ({ transcript = [] }) => {
           },
         } = item
         const slug = slugify(transcriptTitle, { lower: true })
-        console.log(slug)
         const SortTags = transcriptTags.sort() // sort tags
         return (
           <div className="l-searchcard" key={id}>

@@ -5,6 +5,7 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
 import { IconContext } from "@react-icons/all-files/lib"
 import { graphql, useStaticQuery } from "gatsby"
 import { SearchCard } from "../components/searchcard"
+import {SearchFilter} from "../components/searchfilter"
 
 const query = graphql`
   {
@@ -83,6 +84,7 @@ const BrowseArchives = () => {
         </section>
         <section className="l-browsearchives__search">
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
+          <SearchFilter/>
           <section className="c-browsearchives__searchcontainer">
             <SearchCard transcript={transcript} />
           </section>
