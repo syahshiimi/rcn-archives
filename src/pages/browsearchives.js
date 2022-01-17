@@ -1,11 +1,11 @@
-import React from "react"
+import React, {useEffect, useRef, useState} from "react"
 import Layout from "../components/Layout"
 import styled from "styled-components"
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
 import { IconContext } from "@react-icons/all-files/lib"
 import { graphql, useStaticQuery } from "gatsby"
 import { SearchCard } from "../components/searchcard"
-import {SearchFilter} from "../components/searchfilter"
+import { SearchFilter } from "../components/searchfilter"
 
 const query = graphql`
   {
@@ -37,6 +37,35 @@ const query = graphql`
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
   const transcript = data.allContentfulInterviewTranscripts.nodes
+
+  // Hide Search Section 
+  // 1. We set the default as false, meaning we hide the search section
+  const [show, setShow] = useState(false) 
+
+  // 2. Create a button handler for on click events
+  const SubmitClick = (e) => {
+    e.preventDefault()
+    setShow(!show)
+  }
+
+  // 3. We create variables for useRef vals.
+  const SearchRef = useRef(null)
+  const SearchResults = useRef(null)
+  const SearchInput = useRef(null)
+
+  // 4. Hide Search Results Section via CSS + useEffects
+  useEffect(() => {
+    SearchInput.current.focus();
+      SearchRef.current.style.display = `none`
+
+    if (show) {
+      SearchRef.current.style.display = `flex`
+      console.log(SearchInput.current.value)
+    } else {
+    }
+  }, [show])
+
+
   return (
     <Layout>
       <BrowseArchivesWrapper>
@@ -47,8 +76,13 @@ const BrowseArchives = () => {
               type="text"
               className="c-browsearchives__searchinput"
               placeholder="Browse by keywords, topics themes or #tags"
+              ref={SearchInput}
             />
-            <button className="c-browsearchives__searchbutton" type="submit">
+            <button
+              className="c-browsearchives__searchbutton"
+              type="submit"
+              onClick={SubmitClick}
+            >
               <IconContext.Provider
                 value={{ className: "c-browsearchives__searchicon" }}
               >
@@ -82,10 +116,10 @@ const BrowseArchives = () => {
         <section className="l-browsearchivesmap bg--gray desktop">
           <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
-        <section className="l-browsearchives__search">
+        <section className="l-browsearchives__search" ref={SearchRef}>
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <SearchFilter/>
-          <section className="c-browsearchives__searchcontainer">
+          <SearchFilter />
+          <section className="c-browsearchives__searchcontainer" >
             <SearchCard transcript={transcript} />
           </section>
         </section>
@@ -301,7 +335,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
-      margin: 0vh 10vw;
+      margin: 2vh 10vw;
     }
 
   }

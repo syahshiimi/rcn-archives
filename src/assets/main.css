@@ -19,7 +19,7 @@
 	--secondary-clr-250: #c4c4c4;
 
 	/* transition */
-	--transition: all 0.7s ease-in-out;
+	--transition: all 0.7s ease-in-out .2s;
 
 	/* global padding values */
 	/* USED ONLY FOR RIGHT AND LEFT PADDING */
