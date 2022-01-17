@@ -79,13 +79,12 @@ function SubFilter({ type }) {
   // 4.1 Hide filter accordion as the initial state, where show = false
   // and also for icon direction where we start wtih southfacing
   const [show, setShow] = useState(false)
-  const [normal, setRotate] = useState(true)
+  const [normal, setRorate] = useState(true)
 
   // 4.2 Create button handler for onclick events
   const handleClick = () => {
     setShow(!show) // returns the opposite upon click
     //    setRotate(!normal) // returns the opposite upon click
-  setRotate(!normal) // reverse thhe arrow position
   }
 
   // 4.3  Create CSS Modifiers with useRef
@@ -93,9 +92,10 @@ function SubFilter({ type }) {
   const FilterHeader = useRef(null)
   const FilterRef = useRef(null)
   const FilterBody = useRef(null)
+  const ArrowIcon = useRef(null)
   const rotateArrowIcon = normal
-    ? "c-subfilter__icon"
-    : "c-subfilter__icon pulled"
+    ? "c-accordion__arrow"
+    : "c-accordion__arrow pulled"
 
   // 4.4 useEffect() to apply effects onto selected DOM tags
   useEffect(() => {
@@ -124,7 +124,7 @@ function SubFilter({ type }) {
         onClick={handleClick}
       >
         <p className="c-subfilter__selected">None</p>
-        <IconContext.Provider value={{ className: rotateArrowIcon }}>
+        <IconContext.Provider value={{ className: "c-subfilter__icon" }}>
           <TiArrowDown />
         </IconContext.Provider>
       </button>
@@ -152,7 +152,7 @@ const SearchFilterWrapper = styled.div`
 
       /* styling */
       background-color: var(--primary-clr-200);
-      border-radius: 40px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       transition: all 0.5s ease-in-out 0.2s;
     }
 
@@ -168,8 +168,7 @@ const SearchFilterWrapper = styled.div`
 
     .c-searchfilter__bodycontainer {
       display: flex;
-      margin-top: 1vh;
-      box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.35);
+      margin-toop: 2vh;
       column-gap: 4vw;
       padding: 2vh 4vw;
       background-color: var(--primary-clr-50);
@@ -202,25 +201,17 @@ const SubFilterWrapper = styled.section`
       justify-content: space-between;
       align-items: center;
       column-gap: 5vw;
-      transition: var(--transition);
     }
 
     .c-subfilter__icon {
       height: 2rem;
-      transition: var(--transition);
       width: 2rem;
-      
     }
-    .pulled {
-        transform: rotate(180deg);
-      transition: var(--transition);
-      }
 
     .c-subfilter__selected {
       font-size: 1rem;
     }
     .c-subfilter__listcontainer {
-      transition: var(--transition);
       background-color: var(--primary-clr-100);
       border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
       border: 2px solid var(--primary-clr-200);
