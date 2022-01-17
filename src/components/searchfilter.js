@@ -22,17 +22,60 @@ export const query = graphql`
 /// Main Filter Component ///
 //////////////////////////////
 export const SearchFilter = () => {
+  // Drodpown Filter Effects
+  // 4.1 Hide filter accordion as the initial state, where show = false
+  // and also for icon direction where we start wtih southfacing
+  const [show, setShow] = useState(false)
+  const [normal, setRotate] = useState(true)
+
+  // 4.2 Create button handler for onclick events
+  const SearchClick = () => {
+    setShow(!show) // returns the opposite upon click
+    //    setRotate(!normal) // returns the opposite upon click
+    setRotate(!normal) // reverse thhe arrow position
+  }
+
+  // 4.3  Create CSS Modifiers with useRef
+
+  const SearchFilter = useRef(null)
+  const SearchRef = useRef(null)
+  const SearchBody = useRef(null)
+  const MainrotateArrowIcon = normal
+    ? "c-searchfilter__icon"
+    : "c-searchfilter__icon pulled"
+
+  // 4.4 useEffect() to apply effects onto selected DOM tags
+  useEffect(() => {
+    const SearchBodyHeight = SearchRef.current.getBoundingClientRect().height
+
+    if (show) {
+      console.log(`${SearchBodyHeight}`)
+      SearchBody.current.style.height = `100%`
+      SearchBody.current.style.padding = `2vh 4vw`
+    } else {
+      SearchBody.current.style.height = `0`
+      SearchBody.current.style.paddingTop = `0`
+      SearchBody.current.style.paddingBottom = `0`
+    }
+  }, [show])
+
   return (
     <SearchFilterWrapper>
-      <button className="c-searchfilter___header">
+      <button
+        className="c-searchfilter___header"
+        onClick={SearchClick}
+        ref={SearchFilter}
+      >
         <h5 className="c-searchfilter__title">Search Filter</h5>
-        <IconContext.Provider value={{ className: "c-searchfilter__icon" }}>
+        <IconContext.Provider value={{ className: MainrotateArrowIcon }}>
           <TiArrowDown />
         </IconContext.Provider>
       </button>
-      <div className="c-searchfilter__bodycontainer">
-        <SubFilter type="Interviewer" />
-        <SubFilter type="Countries" />
+      <div className="c-searchfilter__bodycontainer" ref={SearchBody}>
+        <div className="c-searchfilter__body" ref={SearchRef}>
+          <SubFilter type="Interviewer" />
+          <SubFilter type="Countries" />
+        </div>
       </div>
     </SearchFilterWrapper>
   )
@@ -85,7 +128,7 @@ function SubFilter({ type }) {
   const handleClick = () => {
     setShow(!show) // returns the opposite upon click
     //    setRotate(!normal) // returns the opposite upon click
-  setRotate(!normal) // reverse thhe arrow position
+    setRotate(!normal) // reverse thhe arrow position
   }
 
   // 4.3  Create CSS Modifiers with useRef
@@ -107,11 +150,11 @@ function SubFilter({ type }) {
       FilterBody.current.style.paddingBottom = `3vh`
       FilterBody.current.style.paddingTop = `1vh`
       FilterBody.current.style.border = `2px solid var(--primary-clr-200)`
-      FilterHeader.current.style.borderRadius = ` calc(2rem + 1px) calc(2rem + 1px) 0px 0px`
+      FilterHeader.current.style.borderRadius = `calc(2rem + 1px)`
     } else {
       FilterBody.current.style.height = "0px"
       FilterBody.current.style.padding = `0px`
-      FilterBody.current.style.border = `0px`
+      FilterBody.current.style.border = `0px solid var(--primary-clr-200)`
       FilterHeader.current.style.borderRadius = `calc(2rem + 2px)`
     }
   }, [show])
@@ -138,13 +181,13 @@ function SubFilter({ type }) {
   )
 }
 const SearchFilterWrapper = styled.div`
-  @media (min-width: 1280px) {
+  @media (min-width: 992px) {
     margin: 4vh 8vw !important;
 
     .c-searchfilter___header {
       display: flex;
       flex-direction: row-reverse;
-      padding: 1.5vh 4vw;
+      padding: 1vh 4vw;
       align-items: center;
       justify-content: space-between;
       width: 100%;
@@ -152,8 +195,8 @@ const SearchFilterWrapper = styled.div`
 
       /* styling */
       background-color: var(--primary-clr-200);
-      border-radius: 40px;
-      transition: all 0.5s ease-in-out 0.2s;
+      border-radius: calc(8vh + 4px);
+      outline: none;
     }
 
     .c-searchfilter__title {
@@ -164,32 +207,55 @@ const SearchFilterWrapper = styled.div`
       color: var(--primary-clr-100);
       width: 3rem;
       height: 3rem;
+      transition: all 0.5s ease-in-out 0.2s;
+    }
+
+    .pulled {
+      transform: rotate(180deg);
+      transition: all 0.5s ease-in-out 0.2s;
     }
 
     .c-searchfilter__bodycontainer {
       display: flex;
+      flex-direction: row;
       margin-top: 1vh;
       box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.35);
       column-gap: 4vw;
-      padding: 2vh 4vw;
+      transition: var(--transition);
       background-color: var(--primary-clr-50);
       border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
       align-items: start;
+      transition: var(--transition);
+      overflow: hidden;
+      justify-content: space-evenly;
+      flex: 1 1 auto;
     }
+
+    .c-searchfilter__body {
+      display: flex;
+      flex-direction: row;
+      column-gap: 4vw;
+      transition: var(--transition);
+      align-items: start;
+
   }
 `
 
 const SubFilterWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 auto;
-  padding: 0 !important;
-  @media (min-width: 1280px) {
+
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    padding: 0 !important;
+      transition: var(--transition);
+
     .c-subfilter__title {
       text-decoration: underline;
     }
     .c-subfilter__title {
       text-align: left;
+        margin-left: 2vw;
     }
 
     .c-subfilter__header {
@@ -198,7 +264,7 @@ const SubFilterWrapper = styled.section`
       display: flex;
       flex-direction: row;
       margin: 1vh 0vw;
-      padding: 1vh 2vw;
+      padding: 1vh 3vw;
       justify-content: space-between;
       align-items: center;
       column-gap: 5vw;
@@ -209,12 +275,11 @@ const SubFilterWrapper = styled.section`
       height: 2rem;
       transition: var(--transition);
       width: 2rem;
-      
     }
     .pulled {
-        transform: rotate(180deg);
+      transform: rotate(180deg);
       transition: var(--transition);
-      }
+    }
 
     .c-subfilter__selected {
       font-size: 1rem;
@@ -223,7 +288,6 @@ const SubFilterWrapper = styled.section`
       transition: var(--transition);
       background-color: var(--primary-clr-100);
       border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
-      border: 2px solid var(--primary-clr-200);
       overflow: hidden;
       p {
         margin: 1vh 0vw;

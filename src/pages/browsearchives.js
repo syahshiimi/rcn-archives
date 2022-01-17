@@ -301,7 +301,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
-      margin: 0vh 15vw;
+      margin: 0vh 10vw;
     }
 
   }
