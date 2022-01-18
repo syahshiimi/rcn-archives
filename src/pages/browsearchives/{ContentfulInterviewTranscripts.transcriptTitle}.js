@@ -281,6 +281,9 @@ const TranscriptWrapper = styled.section`
       display: flex;
       grid-area: read;
       justify-self: end;
+      font-size: 1.15rem;
+      font-weight: 500;
+      font-style: normal;
     }
     .document__summary {
       grid-area: summary;

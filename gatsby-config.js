@@ -57,13 +57,5 @@ module.exports = {
         plugins: [],
       },
     },
-    {
-      resolve: `gatsby-plugin-local-search`,
-      options : {
-        name: `archives`,
-        engine: 'flexsearch',
-        engineOptions: 'speed',
-      },
-    }
   ],
 }

@@ -66,10 +66,10 @@ const FullTranscript = ({ data }) => {
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <TagsContainer tags={transcriptTags} />
-        <div className="c-fulltranscript__footnotescontainer">
-          <h5 className="c-fulltranscript__footnotes">Footnotes</h5>
-          <hr className="c-fulltranscript__footnotesborder"></hr>
-          <p className="c-fulltranscript__footnotes"></p>
+jjj        <div className="c-fulltranscript__endnotescontainer">
+          <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
+          <hr className="c-fulltranscript__endnotesborder"></hr>
+          <p className="c-fulltranscript__endnotescontent"></p>
         </div>
         <BackTopButton />
       </FullTranscriptWrapper>
@@ -161,9 +161,9 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh 0vw !important;
   }
 
-  .c-fulltranscript__footnotes {
+  .c-fulltranscript__endnotes {
   }
-  .c-fulltranscript__footnotesborder {
+  .c-fulltranscript__endnotesborder {
     margin: 1vh 0vw;
     width: 25vw;
   }
@@ -178,10 +178,10 @@ const FullTranscriptWrapper = styled.section`
     .c-tagscontainer {
       margin: 3vh 0vw;
     }
-    .c-fulltranscript__footnotescontainer {
+    .c-fulltranscript__endnotescontainer {
       margin: 2vh 0vw;
     }
-    .c-fulltranscript__footnotesborder {
+    .c-fulltranscript__endnotesborder {
       margin: 2vh 0vw;
       width: 25vw;
     }

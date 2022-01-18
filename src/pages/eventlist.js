@@ -95,7 +95,8 @@ const EventWrapper = styled.main`
       margin: 4vh 6vw;
     }
     .l-pastevents__list {
-      padding: 4vh 6vw;
+      padding: 4vh 4vw;
+      margin: 4vh 0vw;
     }
 
     .l-pastevents__container > * {

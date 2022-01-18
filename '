@@ -60,18 +60,19 @@ const BrowseArchives = () => {
     SearchInput.current.focus()
 
     // Set default values before Side Effect kicks in
-    MapRef.current.style.display = `none`
+    SearchRef.current.style.display = `none`
+    MapRef.current.style.display = `flex`
 
     if (show) {
       SearchRef.current.style.display = `flex`
       MapRef.current.style.display = `none`
       window.scrollTo({
         behavior: 'smooth',
-        top: 700 
+        top: 500 
       })
     } else {
       SearchRef.current.style.display = `none`
-      MapRef.current.style.display = `flex`
+      MapRef.current.style.display = `none`
 window.scrollTo({
         behavior: 'smooth',
         top: 0
