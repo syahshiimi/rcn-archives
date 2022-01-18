@@ -244,7 +244,7 @@ const SearchFilterWrapper = styled.div`
   }
 
     @media (min-width: 1280px) {
-      margin: 2vh 9vw !important;
+      margin: 0vh 9vw 4vh 9vw !important;
 
      .c-searchfilter___header {
         padding: 1vh 4vw;

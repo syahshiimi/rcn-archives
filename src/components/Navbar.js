@@ -191,17 +191,9 @@ const NavStyle = styled.nav`
   }
 
   ///////////////////////////////
-  /////// NEW TABLET ////////////
+  /////// TABLET ////////////////
   ///////////////////////////////
   
-//  @media (min-width: 992px) {
-//    font-size: 1.125rem;
-//
-//    .nav__title {
-//      font-size: 1.5rem;
-//    }
-//  }
-  /* Tablet Layout */
 
   @media (min-width: 992px) {
     margin: 0;
@@ -209,7 +201,7 @@ const NavStyle = styled.nav`
     flex-direction: row;
     background-color: var(--primary-clr-150);
     height: 15vh !important;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
 
     .nav__title {
       color: var(--primary-clr-50);
@@ -246,6 +238,10 @@ const NavStyle = styled.nav`
     .nav__links a {
       color: var(--primary-clr-50);
     }
+
+      .nav__links > li {
+        margin: 0.8vw;
+      }
 
     .active--link {
       color: var(--primary-clr-100) !important;

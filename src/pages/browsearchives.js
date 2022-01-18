@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Layout from "../components/Layout"
 import styled from "styled-components"
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
@@ -37,34 +37,38 @@ const query = graphql`
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
   const transcript = data.allContentfulInterviewTranscripts.nodes
+  console.log(transcript)
 
-  // Hide Search Section 
+  // Hide Search Section
   // 1. We set the default as false, meaning we hide the search section
-  const [show, setShow] = useState(false) 
+  const [show, setShow] = useState(false)
 
   // 2. Create a button handler for on click events
-  const SubmitClick = (e) => {
+  const SubmitClick = e => {
     e.preventDefault()
     setShow(!show)
   }
 
   // 3. We create variables for useRef vals.
   const SearchRef = useRef(null)
+  const MapRef = useRef(null)
   const SearchResults = useRef(null)
   const SearchInput = useRef(null)
 
   // 4. Hide Search Results Section via CSS + useEffects
   useEffect(() => {
-    SearchInput.current.focus();
-      SearchRef.current.style.display = `none`
+    SearchInput.current.focus()
+
+    // Set default values before Side Effect kicks in
+    SearchRef.current.style.display = `none`
+    MapRef.current.style.display = `flex`
 
     if (show) {
       SearchRef.current.style.display = `flex`
-      console.log(SearchInput.current.value)
+      MapRef.current.style.display = `none`
     } else {
     }
   }, [show])
-
 
   return (
     <Layout>
@@ -113,13 +117,13 @@ const BrowseArchives = () => {
             grassroots perspective.
           </p>
         </section>
-        <section className="l-browsearchivesmap bg--gray desktop">
+        <section className="l-browsearchivesmap bg--gray desktop" ref={MapRef}>
           <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
         </section>
         <section className="l-browsearchives__search" ref={SearchRef}>
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
           <SearchFilter />
-          <section className="c-browsearchives__searchcontainer" >
+          <section className="c-browsearchives__searchcontainer">
             <SearchCard transcript={transcript} />
           </section>
         </section>
@@ -335,7 +339,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
-      margin: 2vh 10vw;
+      margin: 2vh 0vw;
     }
 
   }
@@ -353,7 +357,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__heading {
-      font-size: 4rem; // 64px
+      font-size: 3rem; // 64px
     }
 
     .c-browsearchives__searchbar {
@@ -390,7 +394,7 @@ const BrowseArchivesWrapper = styled.main`
   }
 
     .c-browsearchives__searchcontainer {
-      margin: 0vh 8vw;
+      margin: 0vh 1vw;
     }
 `
 export default BrowseArchives

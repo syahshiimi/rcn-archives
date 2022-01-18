@@ -32,7 +32,7 @@ export const SearchCard = ({ transcript = [] }) => {
         const slug = slugify(transcriptTitle, { lower: true })
         const SortTags = transcriptTags.sort() // sort tags
         return (
-          <div className="l-searchcard" key={id}>
+          <div className="l-searchcard" key={id} >
             <Link to={`${slug}`} className="c-searchcard__title">
               {transcriptTitle}
             </Link>
@@ -117,7 +117,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 3vh 4vw;
+      padding: 3vh 5vw;
     }
 
     .c-searchcard__title {
@@ -149,9 +149,15 @@ const SearchCardWrapper = styled.main`
 
   @media (min-width: 1280px) {
 
-    padding: 2vh 4vw;
+    .l-searchcard {
+      margin: 4vh 2vw;
+    }
     .l-searchcard > * {
       margin: 0;
+    }
+
+    .l-searchcard > a {
+      margin: 1vh;
     }
 
       .l-searchcard {
@@ -160,7 +166,7 @@ const SearchCardWrapper = styled.main`
 
     .c-searchcard__summary > p {
       text-align: left;
-      margin: 6vh 0vw;
+      margin: 4vh 0vw;
     }
 
     .c-searchcard__tagscontainer {
