@@ -29,6 +29,37 @@ module.exports = {
         // Add any options here
       },
     },
+    {
+      resolve: "gatsby-plugin-local-search",
+      options: {
+        name: "archives",
+        engine: "flexsearch",
+        engineOptions: "speed",
+        query: `
+                {
+                    allContentfulInterviewTranscripts {
+                          nodes {
+                                  id
+                                          transcriptTitle
+                                                  transcriptTags
+                                                          interviewer
+                                                                  interviewee
+                                                                          contentful_id
+                                                                                }
+                                                                                    }
+                                                                                      }
+                                                                                      `,
+        ref: "id",
+        index: ['id', 'title', 'tags'],
+        store: ['id', 'title', 'tags'],
+        normalizer: ({ data }) =>
+          data.allContentfulInterviewTranscripts.nodes.map(node => ({
+            id: node.id,
+            title: node.transcriptTitle,
+            tags: node.transcriptTags,
+          })),
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,

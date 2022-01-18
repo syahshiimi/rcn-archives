@@ -5,8 +5,8 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
 import { IconContext } from "@react-icons/all-files/lib"
 import { graphql, useStaticQuery } from "gatsby"
 import { SearchCard } from "../components/searchcard"
-import scrollTo from "gatsby-plugin-smoothscroll"
 import { SearchFilter } from "../components/searchfilter"
+import { useFlexSeach } from "react-use-flexsearch"
 
 const query = graphql`
   {
@@ -33,11 +33,16 @@ const query = graphql`
         interviewer
       }
     }
+    localSearchArchives {
+      index
+      store
+    }
   }
 `
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
   const transcript = data.allContentfulInterviewTranscripts.nodes
+  const search = data.localSearchArchives
 
   // Hide Search Section
   // 1. We set the default as false, meaning we hide the search section
@@ -66,20 +71,34 @@ const BrowseArchives = () => {
       SearchRef.current.style.display = `flex`
       MapRef.current.style.display = `none`
       window.scrollTo({
-        behavior: 'smooth',
-        top: 700 
+        behavior: "smooth",
+        top: 700,
       })
     } else {
       SearchRef.current.style.display = `none`
       MapRef.current.style.display = `flex`
-window.scrollTo({
-        behavior: 'smooth',
-        top: 0
+      window.scrollTo({
+        behavior: "smooth",
+        top: 0,
       })
-
     }
-
   }, [show])
+
+  /////////////////////////////
+  //////// Search Query ///////
+  /////////////////////////////
+
+  const {
+    index,
+    store
+  } = search
+  console.log(store)
+  
+  
+
+  /////////////////////////////
+  //////// Render Comp. ///////
+  /////////////////////////////
 
   return (
     <Layout>
@@ -96,7 +115,7 @@ window.scrollTo({
             <button
               className="c-browsearchives__searchbutton"
               type="submit"
-              onClick={SubmitClick} 
+              onClick={SubmitClick}
             >
               <IconContext.Provider
                 value={{ className: "c-browsearchives__searchicon" }}
