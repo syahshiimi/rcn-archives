@@ -225,13 +225,12 @@ const SearchFilterWrapper = styled.div`
       flex-direction: row;
       margin-top: .5vh;
       box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.35);
-      column-gap: 4vw;
+      column-gap: 3vw;
       transition: var(--transition);
       background-color: var(--primary-clr-50);
       border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
       align-items: start;
       overflow: hidden;
-      justify-content: space-evenly;
       flex: 1 1 auto;
     }
 
@@ -245,7 +244,7 @@ const SearchFilterWrapper = styled.div`
   }
 
     @media (min-width: 1280px) {
-      margin: 2vh 10vw !important;
+      margin: 2vh 9vw !important;
 
      .c-searchfilter___header {
         padding: 1vh 4vw;
@@ -290,6 +289,7 @@ const SubFilterWrapper = styled.section`
       transform: rotate(180deg);
       transition: var(--transition);
     }
+
 
     .c-subfilter__selected {
       font-size: 1rem;

@@ -58,7 +58,7 @@ const FullTranscript = ({ data }) => {
       <FullTranscriptWrapper>
         <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
-        <BackToSummaryBtn/>
+        <BackToSummaryBtn />
         <hr className="c-fulltranscript__border"></hr>
         <div className="c-fulltranscript__content">
           {renderRichText(englishFullTranscript, options)}
@@ -71,7 +71,7 @@ const FullTranscript = ({ data }) => {
           <hr className="c-fulltranscript__footnotesborder"></hr>
           <p className="c-fulltranscript__footnotes"></p>
         </div>
-        <BackTopButton/>
+        <BackTopButton />
       </FullTranscriptWrapper>
     </Layout>
   )
@@ -118,7 +118,7 @@ const FullTranscriptWrapper = styled.section`
     display: flex;
     flex-direction: column;
     padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
-    row-gap: 1vh;
+    row-gap: 1.2vh;
   }
 
   hr {
@@ -128,6 +128,9 @@ const FullTranscriptWrapper = styled.section`
   }
   .c-fulltranscript__title {
     text-align: center;
+    font-size: 2.5rem;
+    margin: 0;
+    margin-bottom: 2vh;
   }
 
   .c-fulltranscript__oneliner {
@@ -155,7 +158,7 @@ const FullTranscriptWrapper = styled.section`
 
   .c-tagscontainer {
     justify-content: left;
-    margin: 1vh 0vw;
+    margin: 1vh 0vw !important;
   }
 
   .c-fulltranscript__footnotes {
@@ -166,12 +169,15 @@ const FullTranscriptWrapper = styled.section`
   }
 
   @media (min-width: 1280px) {
+    padding:  10vh var(--padding-desktop);
     .c-fulltranscript__border {
       margin: 4vh 0vw;
     }
-.c-tagscontainer {
-    margin: 3vh 0vw;
-  }
+
+      }
+    .c-tagscontainer {
+      margin: 3vh 0vw;
+    }
     .c-fulltranscript__footnotescontainer {
       margin: 2vh 0vw;
     }

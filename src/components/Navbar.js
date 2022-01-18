@@ -190,6 +190,17 @@ const NavStyle = styled.nav`
     display: none;
   }
 
+  ///////////////////////////////
+  /////// NEW TABLET ////////////
+  ///////////////////////////////
+  
+//  @media (min-width: 992px) {
+//    font-size: 1.125rem;
+//
+//    .nav__title {
+//      font-size: 1.5rem;
+//    }
+//  }
   /* Tablet Layout */
 
   @media (min-width: 992px) {
