@@ -23,7 +23,6 @@ export const SearchBar = ({ query, setSearchQuery }) => {
           className="c-browsearchives__searchinput"
           placeholder="Browse by keywords, topics themes or #tags"
           name="s"
-          value={query}
           onInput={e => setSearchQuery(e.target.value)}
           onSubmit={onSubmit}
         />

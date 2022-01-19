@@ -36,29 +36,31 @@ module.exports = {
         engine: "flexsearch",
         engineOptions: "speed",
         query: `
-                {
-                    allContentfulInterviewTranscripts {
-                          nodes {
-                                  id
-                                          transcriptTitle
-                                                  transcriptTags
-                                                          interviewer
-                                                                  interviewee
-                                                                          contentful_id
-                                                                                }
-                                                                                    }
-                                                                                      }
-                                                                                      `,
+        query MyQuery {
+          allContentfulInterviewTranscripts {
+              nodes {
+                      interviewer
+                      interviewee
+                      transcriptTags
+                      transcriptTitle
+                      id
+                      oneLineTeaser {
+                                oneLineTeaser
+                              }
+                    }
+              }
+        }
+
+        `,
         ref: "id",
-        index: ['title', 'tags', 'interviewee', 'interviewer'],
-        store: ['id', 'title', 'tags', 'interviewee', 'interviewer'],
+        index: ["title", "tags", "interviewee", "interviewer"],
+        store: ["id", "title", "tags", "oneLineTeaser"],
         normalizer: ({ data }) =>
           data.allContentfulInterviewTranscripts.nodes.map(node => ({
             id: node.id,
             title: node.transcriptTitle,
             tags: node.transcriptTags,
-            interviewee: node.interviewee,
-            interviwer: node.interviewer
+            oneLineTeaser: node.oneLineTeaser.oneLineTeaser
           })),
       },
     },

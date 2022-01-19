@@ -18,7 +18,7 @@ const ListofCountries = [
   "Vietnmam",
 ]
 
-export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
+export const SearchCard = ({ id, transcriptTitle, transcriptTags, oneliner }) => {
   const slug = slugify(transcriptTitle, { lower: true })
   return (
     <SearchCardWrapper >
@@ -26,7 +26,7 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
         <Link to={`${slug}`} className="c-searchcard__title">
           {transcriptTitle}
         </Link>
-        <div className="c-searchcard__summary">{parse(`${html}`)}</div>
+        <p className="c-searchcard__summary">{oneliner}</p>
         <div className="c-searchcard__tagscontainer">
           <TagsContainer tags={transcriptTags} />
         </div>

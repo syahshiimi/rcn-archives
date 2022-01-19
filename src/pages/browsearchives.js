@@ -26,6 +26,7 @@ const query = graphql`
         transcriptTags
         transcriptTitle
         oneLineTeaser {
+          oneLineTeaser
           childMarkdownRemark {
             html
           }
@@ -41,20 +42,8 @@ const query = graphql`
   }
 `
 
-const filterPosts = (transcript, query) => {
-  if (!query) {
-    return transcript
-  }
-
-  return transcript.filter(post => {
-    const postName = post.transcriptTitle.toLowerCase()
-    return postName.includes(query)
-  })
-}
-
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
-  const transcript = data.allContentfulInterviewTranscripts.nodes
   const find = data.localSearchArchives
   const { index, store } = find
 
@@ -66,17 +55,16 @@ const BrowseArchives = () => {
   const searchQuery = new URLSearchParams(search).get("s")
   const [queryState, setSearchQuery] = useState(searchQuery || "")
   const results = useFlexSearch(queryState, index, store)
-  console.log(queryState, index, store)
 
   // Flatten Results
   const unFlattenResults = results =>
     results.map(item => {
-      const { id, title, tags } = item
-      return { title }
+      const { id, title, tags, oneLineTeaser } = item
+      return { title, tags, id, oneLineTeaser }
     })
 
-  const Ftrans = unFlattenResults(results)
-  console.log(Ftrans)
+  const FilteredTranscript = unFlattenResults(results)
+  console.log(FilteredTranscript)
 
   ////////////////////////////////
   ////////////////////////////////
@@ -152,21 +140,14 @@ const BrowseArchives = () => {
             <h1 className="c-browsearchives__searchresults">Search Results</h1>
             <SearchFilter />
             <section className="c-browsearchives__searchcontainer">
-              {transcript.map(item => {
-                const {
-                  id,
-                  transcriptTitle,
-                  transcriptTags,
-                  oneLineTeaser: {
-                    childMarkdownRemark: { html },
-                  },
-                } = item
+              {FilteredTranscript.map(item => {
+                const { title, tags, id, oneLineTeaser } = item
                 return (
                   <SearchCard
                     id={id}
-                    transcriptTitle={transcriptTitle}
-                    transcriptTags={transcriptTags}
-                    html={html}
+                    transcriptTitle={title}
+                    transcriptTags={tags}
+                    oneliner={oneLineTeaser}
                     key={id}
                   />
                 )
