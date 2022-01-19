@@ -156,7 +156,7 @@ const BrowseArchivesWrapper = styled.main`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
 
     * {
       // apply text align center to all //
@@ -166,6 +166,7 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__heading {
     text-align: center;
+    font-size: 1.85rem;
   }
 
   .c-browsearchives__filtercontainer {
@@ -231,6 +232,7 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__searchresults {
     text-align: center;
+    margin-bottom: 4vh;
   }
 
   .c-browsearchives__searchcontainer {

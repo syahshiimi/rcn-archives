@@ -23,13 +23,11 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
   return (
     <SearchCardWrapper>
       <div className="l-searchcard">
-        <Link to={`${slug}`} className="c-searchcard__title">
-          {transcriptTitle}
-        </Link>
+        <div className="c-searchcard__title">{transcriptTitle}</div>
         <div className="c-searchcard__summary">{parse(`${html}`)}</div>
-        <div className="c-searchcard__tagscontainer">
-          <TagsContainer tags={transcriptTags} />
-        </div>
+        <span className="c-searchcard__read">
+          <Link to={`${slug}`}>Read More </Link>
+        </span>
       </div>
     </SearchCardWrapper>
   )
@@ -48,45 +46,26 @@ const SearchCardWrapper = styled.main`
     flex-direction: column;
   }
 
-  .l-searchcard > * {
-    margin: 2vh 0vw;
-  }
-
   .c-searchcard__title {
     font-family: "Lora", Serif;
     font-weight: bold;
-    font-size: 1.15rem;
+    font-size: 1rem;
+    margin: 0.45vh 0vw;
   }
 
-  .c-searchcard__summary  {
-    font-size: 0.85rem;
-    margin: 3vh;
+  .c-searchcard__summary {
+    font-size: 0.75rem;
+    margin: 2vh 0vw;
   }
 
-  .c-searchcard__tagscontainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+  .c-searchcard__read {
+    font-family: 'Ubuntu', Serif,
+    font-weight: normal;
+    text-align: right;
+    font-size: .75rem;
+    margin: 1vh 0vw;
+    color: var(--primary-clr-150);
   }
-  //  .c-searchcard__tagpill {
-  //    margin: 0.5vh 1vw;
-  //    background-color: var(--primary-clr-200);
-  //    display: flex;
-  //    flex-direction: row;
-  //    flex-wrap: wrap;
-  //    justify-content: center;
-  //    align-items: center;
-  //    border-radius: calc(2rem);
-  //    flex: 1 1 auto;
-  //  }
-  //
-  //  .c-searchcard__tag {
-  //    font-family: Ubuntu;
-  //    font-size: 0.75rem;
-  //    line-height: 20px;
-  //    color: var(--primary-clr-50);
-  //    padding: 1vh 2vw;
-  //  }
 
   ////////////////////
   ////// Tablet //////
