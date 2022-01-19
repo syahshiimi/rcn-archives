@@ -20,7 +20,6 @@ const ListofCountries = [
 
 export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
   const slug = slugify(transcriptTitle, { lower: true })
-  console.log(id)
   return (
     <SearchCardWrapper >
       <div className="l-searchcard" >

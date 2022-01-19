@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react"
+import { BrowserRouter as Router } from "react-router-dom"
 import Layout from "../components/Layout"
 import styled from "styled-components"
-import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
-import { IconContext } from "@react-icons/all-files/lib"
 import { graphql, useStaticQuery } from "gatsby"
 import { SearchCard } from "../components/searchcard"
 import { SearchFilter } from "../components/searchfilter"
-import { useFlexSeach } from "react-use-flexsearch"
 import { SearchBar } from "../components/search"
+import { useFlexSearch } from "react-use-flexsearch"
+import { ArchivesMap } from "../components/maps"
 
 const query = graphql`
   {
@@ -47,7 +47,7 @@ const filterPosts = (transcript, query) => {
   }
 
   return transcript.filter(post => {
-    const postName = post.name.toLowerCase()
+    const postName = post.transcriptTitle.toLowerCase()
     return postName.includes(query)
   })
 }
@@ -55,8 +55,8 @@ const filterPosts = (transcript, query) => {
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
   const transcript = data.allContentfulInterviewTranscripts.nodes
-  console.log(transcript)
-  // const search = data.localSearchArchives
+  const find = data.localSearchArchives
+  const { index, store } = find
 
   /////////////////////////////////
   //////// Search Function ////////
@@ -64,7 +64,23 @@ const BrowseArchives = () => {
 
   const { search } = window.location
   const searchQuery = new URLSearchParams(search).get("s")
-  console.log(searchQuery)
+  const [queryState, setSearchQuery] = useState(searchQuery || "")
+  const results = useFlexSearch(queryState, index, store)
+  console.log(queryState, index, store)
+
+  // Flatten Results
+  const unFlattenResults = results =>
+    results.map(item => {
+      const { id, title, tags } = item
+      return { title }
+    })
+
+  const Ftrans = unFlattenResults(results)
+  console.log(Ftrans)
+
+  ////////////////////////////////
+  ////////////////////////////////
+  ////////////////////////////////
 
   // Hide Search Section
   // 1. We set the default as false, meaning we hide the search section
@@ -80,99 +96,85 @@ const BrowseArchives = () => {
   // 3. We create variables for useRef vals.
   const SearchRef = useRef(null)
   const MapRef = useRef(null)
-  const SearchInput = useRef(null)
 
   // 4. Hide Search Results Section via CSS + useEffects
-  //  useEffect(() => {
-  //    // Set default values before Side Effect kicks in
-  //    MapRef.current.style.display = `none`
-  //
-  //    if (show) {
-  //      SearchRef.current.style.display = `flex`
-  //      MapRef.current.style.display = `none`
-  //      window.scrollTo({
-  //        behavior: "smooth",
-  //        top: 700,
-  //      })
-  //    } else {
-  //      SearchRef.current.style.display = `none`
-  //      MapRef.current.style.display = `flex`
-  //      window.scrollTo({
-  //        behavior: "smooth",
-  //        top: 0,
-  //      })
-  //    }
-  //  }, [show])
+  useEffect(() => {
+    // Set default values before Side Effect kicks in
+
+    if (show) {
+    } else {
+    }
+  }, [show])
 
   /////////////////////////////
   //////// Search Query ///////
   /////////////////////////////
 
-  //  const { index, store } = search
-  //  console.log(store)
-
+  //
   /////////////////////////////
   //////// Render Comp. ///////
   /////////////////////////////
 
   return (
     <Layout>
-      <BrowseArchivesWrapper>
-        <section className="l-browsearchives">
-          <h1 className="c-browsearchives__heading">Search The Archives</h1>
-          <SearchBar />
-          <div className="c-browsearchives__filtercontainer">
-            <label
-              htmlFor="c-browsearchives__filterbykeywords"
-              className="c-browsearchives__keywordscheckbox"
-            >
-              <input type="checkbox" value="keywords" />
-              Filter by keywords
-            </label>
-            <label
-              htmlFor="c-browsearchives__filterbytags"
-              className="c-browsearchives__tagscheckbox"
-            >
-              <input type="checkbox" value="tags" />
-              Filter by tags
-            </label>
-          </div>
-          <p className="c-browsearchives__content">
-            Browse through our carefully curated oral archives. Working with
-            on-the-ground experiences, we aim to provide a wholesome and
-            comprehensive approach towards understanding the cold war from a
-            grassroots perspective.
-          </p>
-        </section>
-        <section className="l-browsearchivesmap bg--gray desktop" ref={MapRef}>
-          <h1 className="c-browsearchivesmap__heading">Archives Map</h1>
-        </section>
-        <section className="l-browsearchives__search" ref={SearchRef}>
-          <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <SearchFilter />
-          <section className="c-browsearchives__searchcontainer">
-            {transcript.map(item => {
-              const {
-                id,
-                transcriptTitle,
-                transcriptTags,
-                oneLineTeaser: {
-                  childMarkdownRemark: { html },
-                },
-              } = item
-              return (
-                <SearchCard
-                  id={id}
-                  transcriptTitle={transcriptTitle}
-                  transcriptTags={transcriptTags}
-                  html={html}
-                  key={id}
-                />
-              )
-            })}
+      <Router>
+        <BrowseArchivesWrapper>
+          <section className="l-browsearchives">
+            <h1 className="c-browsearchives__heading">Search The Archives</h1>
+            <SearchBar query={queryState} setSearchQuery={setSearchQuery} />
+            <div className="c-browsearchives__filtercontainer">
+              <label
+                htmlFor="c-browsearchives__filterbykeywords"
+                className="c-browsearchives__keywordscheckbox"
+              >
+                <input type="checkbox" value="keywords" />
+                Filter by keywords
+              </label>
+              <label
+                htmlFor="c-browsearchives__filterbytags"
+                className="c-browsearchives__tagscheckbox"
+              >
+                <input type="checkbox" value="tags" />
+                Filter by tags
+              </label>
+            </div>
+            <p className="c-browsearchives__content">
+              Browse through our carefully curated oral archives. Working with
+              on-the-ground experiences, we aim to provide a wholesome and
+              comprehensive approach towards understanding the cold war from a
+              grassroots perspective.
+            </p>
           </section>
-        </section>
-      </BrowseArchivesWrapper>
+          <section className="l-browsearchives__map" ref={MapRef}>
+            <ArchivesMap />
+          </section>
+          <section className="l-browsearchives__search" ref={SearchRef}>
+            <h1 className="c-browsearchives__searchresults">Search Results</h1>
+            <SearchFilter />
+            <section className="c-browsearchives__searchcontainer">
+              {transcript.map(item => {
+                const {
+                  id,
+                  transcriptTitle,
+                  transcriptTags,
+                  oneLineTeaser: {
+                    childMarkdownRemark: { html },
+                  },
+                } = item
+                return (
+                  <SearchCard
+                    id={id}
+                    transcriptTitle={transcriptTitle}
+                    transcriptTags={transcriptTags}
+                    html={html}
+                    key={id}
+                  />
+                )
+              })}
+            </section>
+          </section>
+        </BrowseArchivesWrapper>
+      </Router>
     </Layout>
   )
 }
@@ -251,7 +253,7 @@ const BrowseArchivesWrapper = styled.main`
     transform: scale(1);
   }
 
-  .desktop {
+  .l-browsearchives__map {
     display: none;
   }
 
@@ -264,6 +266,7 @@ const BrowseArchivesWrapper = styled.main`
     padding: 2vw 2vh;
     border-radius: calc(5vw + 4px);
   }
+
 
   ////////////////////////////
   ////////////////////////////

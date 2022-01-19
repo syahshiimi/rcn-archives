@@ -50,13 +50,15 @@ module.exports = {
                                                                                       }
                                                                                       `,
         ref: "id",
-        index: ['id', 'title', 'tags'],
-        store: ['id', 'title', 'tags'],
+        index: ['title', 'tags', 'interviewee', 'interviewer'],
+        store: ['id', 'title', 'tags', 'interviewee', 'interviewer'],
         normalizer: ({ data }) =>
           data.allContentfulInterviewTranscripts.nodes.map(node => ({
             id: node.id,
             title: node.transcriptTitle,
             tags: node.transcriptTags,
+            interviewee: node.interviewee,
+            interviwer: node.interviewer
           })),
       },
     },

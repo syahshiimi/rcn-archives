@@ -2,11 +2,17 @@ import React from "react"
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
 import { IconContext } from "@react-icons/all-files/lib"
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
 
-export const SearchBar = () => {
+export const SearchBar = ({ query, setSearchQuery }) => {
+  const history = useNavigate()
+  const onSubmit = e => {
+    history.push(`?s=${query}`)
+    e.preventDefault()
+  }
   return (
     <SeaerchBarWrapper>
-      <form className="c-browsearchives__searchbar">
+      <form className="c-browsearchives__searchbar" action="/" method="get">
         <label htmlFor="c-browsearchives__searchinput">
           <span className="visually-hidden">
             Browse by keywords, topic themes or #tags
@@ -17,6 +23,9 @@ export const SearchBar = () => {
           className="c-browsearchives__searchinput"
           placeholder="Browse by keywords, topics themes or #tags"
           name="s"
+          value={query}
+          onInput={e => setSearchQuery(e.target.value)}
+          onSubmit={onSubmit}
         />
         <button className="c-browsearchives__searchbutton" type="submit">
           <IconContext.Provider
