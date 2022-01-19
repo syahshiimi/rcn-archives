@@ -18,20 +18,19 @@ const ListofCountries = [
   "Vietnmam",
 ]
 
-export const SearchCard = ({ id, transcriptTitle, transcriptTags, oneliner }) => {
+export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
   const slug = slugify(transcriptTitle, { lower: true })
   return (
-    <SearchCardWrapper >
-      <div className="l-searchcard" >
+    <SearchCardWrapper>
+      <div className="l-searchcard">
         <Link to={`${slug}`} className="c-searchcard__title">
           {transcriptTitle}
         </Link>
-        <p className="c-searchcard__summary">{oneliner}</p>
+        <div className="c-searchcard__summary">{parse(`${html}`)}</div>
         <div className="c-searchcard__tagscontainer">
           <TagsContainer tags={transcriptTags} />
         </div>
       </div>
-      
     </SearchCardWrapper>
   )
 }
@@ -59,9 +58,9 @@ const SearchCardWrapper = styled.main`
     font-size: 1.15rem;
   }
 
-  .c-searchcard__summary {
-    font-size: 0.75rem;
-    margin-bottom: 3vh;
+  .c-searchcard__summary > p  {
+    font-size: 0.85rem;
+    margin: 3vh;
   }
 
   .c-searchcard__tagscontainer {
@@ -145,8 +144,8 @@ const SearchCardWrapper = styled.main`
 
     .c-searchcard__summary > p {
       text-align: left;
-      margin: 2vh 0vw;
-      font-size: 0.85rem;
+      margin: 2.2vh 0vw;
+      font-size: 1rem;
     }
 
     //    .c-searchcard__tagscontainer {

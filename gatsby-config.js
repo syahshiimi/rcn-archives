@@ -46,6 +46,9 @@ module.exports = {
                       id
                       oneLineTeaser {
                                 oneLineTeaser
+                                childMarkdownRemark {
+                                html
+                                }
                               }
                     }
               }
@@ -53,14 +56,15 @@ module.exports = {
 
         `,
         ref: "id",
-        index: ["title", "tags", "interviewee", "interviewer"],
-        store: ["id", "title", "tags", "oneLineTeaser"],
+        index: ["title", "tags", "interviewee", "interviewer", "oneLineTeaser"],
+        store: ["id", "title", "tags", "oneLineTeaser", "html"],
         normalizer: ({ data }) =>
           data.allContentfulInterviewTranscripts.nodes.map(node => ({
             id: node.id,
             title: node.transcriptTitle,
             tags: node.transcriptTags,
-            oneLineTeaser: node.oneLineTeaser.oneLineTeaser
+            oneLineTeaser: node.oneLineTeaser.oneLineTeaser,
+            html: node.oneLineTeaser.childMarkdownRemark.html,
           })),
       },
     },

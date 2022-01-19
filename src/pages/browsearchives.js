@@ -59,8 +59,8 @@ const BrowseArchives = () => {
   // Flatten Results
   const unFlattenResults = results =>
     results.map(item => {
-      const { id, title, tags, oneLineTeaser } = item
-      return { title, tags, id, oneLineTeaser }
+      const { id, title, tags, oneLineTeaser, html } = item
+      return { title, tags, id, oneLineTeaser, html }
     })
 
   const FilteredTranscript = unFlattenResults(results)
@@ -141,13 +141,13 @@ const BrowseArchives = () => {
             <SearchFilter />
             <section className="c-browsearchives__searchcontainer">
               {FilteredTranscript.map(item => {
-                const { title, tags, id, oneLineTeaser } = item
+                const { title, tags, id, html } = item
                 return (
                   <SearchCard
                     id={id}
                     transcriptTitle={title}
                     transcriptTags={tags}
-                    oneliner={oneLineTeaser}
+                    html={html}
                     key={id}
                   />
                 )
