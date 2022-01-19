@@ -90,7 +90,6 @@ const BrowseArchives = () => {
 
   return (
     <Layout>
-      <Router>
         <BrowseArchivesWrapper>
           <section className="l-browsearchives">
             <h1 className="c-browsearchives__heading">Search The Archives</h1>
@@ -146,7 +145,6 @@ const BrowseArchives = () => {
             </section>
           </section>
         </BrowseArchivesWrapper>
-      </Router>
     </Layout>
   )
 }
