@@ -56,15 +56,21 @@ module.exports = {
 
         `,
         ref: "id",
-        index: ["title", "tags", "interviewee", "interviewer", "oneLineTeaser"],
-        store: ["id", "title", "tags", "oneLineTeaser", "html"],
+        index: ["transcriptTitle", "transcriptTags", "oneLineTeaser"],
+        store: [
+          "id",
+          "transcriptTitle",
+          "transcriptTags",
+          "oneLiner",
+          "oneLineTeaser",
+        ],
         normalizer: ({ data }) =>
           data.allContentfulInterviewTranscripts.nodes.map(node => ({
             id: node.id,
-            title: node.transcriptTitle,
-            tags: node.transcriptTags,
-            oneLineTeaser: node.oneLineTeaser.oneLineTeaser,
-            html: node.oneLineTeaser.childMarkdownRemark.html,
+            transcriptTitle: node.transcriptTitle,
+            transcriptTags: node.transcriptTags,
+            oneLiner: node.oneLineTeaser.oneLineTeaser,
+            oneLineTeaser: node.oneLineTeaser,
           })),
       },
     },

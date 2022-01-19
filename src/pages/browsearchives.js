@@ -44,6 +44,7 @@ const query = graphql`
 
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
+  const transcript = data.allContentfulInterviewTranscripts.nodes
   const find = data.localSearchArchives
   const { index, store } = find
 
@@ -56,49 +57,33 @@ const BrowseArchives = () => {
   const [queryState, setSearchQuery] = useState(searchQuery || "")
   const results = useFlexSearch(queryState, index, store)
 
-  // Flatten Results
+  // Unflatten  Results
   const unFlattenResults = results =>
     results.map(item => {
-      const { id, title, tags, oneLineTeaser, html } = item
-      return { title, tags, id, oneLineTeaser, html }
+      const {
+        oneLiner,
+        id,
+        transcriptTitle,
+        transcriptTags,
+        oneLineTeaser: {
+          childMarkdownRemark: { html },
+        },
+      } = item
+      return {
+        oneLiner,
+        id,
+        transcriptTitle,
+        transcriptTags,
+        oneLineTeaser: {
+          childMarkdownRemark: { html },
+        },
+      }
     })
 
-  const FilteredTranscript = unFlattenResults(results)
-  console.log(FilteredTranscript)
+  // set defaults where if empty or nothing in search
+  // we return the entire transcript
+  const FilteredTranscript =  queryState ? unFlattenResults(results) : transcript
 
-  ////////////////////////////////
-  ////////////////////////////////
-  ////////////////////////////////
-
-  // Hide Search Section
-  // 1. We set the default as false, meaning we hide the search section
-  const [show, setShow] = useState(false)
-
-  // 2. Create a button handler for on click events
-  const SubmitClick = e => {
-    e.preventDefault()
-    console.log(SearchRef.current)
-    setShow(!show)
-  }
-
-  // 3. We create variables for useRef vals.
-  const SearchRef = useRef(null)
-  const MapRef = useRef(null)
-
-  // 4. Hide Search Results Section via CSS + useEffects
-  useEffect(() => {
-    // Set default values before Side Effect kicks in
-
-    if (show) {
-    } else {
-    }
-  }, [show])
-
-  /////////////////////////////
-  //////// Search Query ///////
-  /////////////////////////////
-
-  //
   /////////////////////////////
   //////// Render Comp. ///////
   /////////////////////////////
@@ -133,20 +118,26 @@ const BrowseArchives = () => {
               grassroots perspective.
             </p>
           </section>
-          <section className="l-browsearchives__map" ref={MapRef}>
+          <section className="l-browsearchives__map">
             <ArchivesMap />
           </section>
-          <section className="l-browsearchives__search" ref={SearchRef}>
+          <section className="l-browsearchives__search">
             <h1 className="c-browsearchives__searchresults">Search Results</h1>
             <SearchFilter />
             <section className="c-browsearchives__searchcontainer">
               {FilteredTranscript.map(item => {
-                const { title, tags, id, html } = item
+                const {
+                  id,
+                  transcriptTitle,
+                  transcriptTags,
+                  oneLineTeaser: {
+                    childMarkdownRemark: { html },
+                  },
+                } = item
                 return (
                   <SearchCard
-                    id={id}
-                    transcriptTitle={title}
-                    transcriptTags={tags}
+                    transcriptTitle={transcriptTitle}
+                    transcriptTags={transcriptTags}
                     html={html}
                     key={id}
                   />

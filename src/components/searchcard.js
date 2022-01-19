@@ -58,7 +58,7 @@ const SearchCardWrapper = styled.main`
     font-size: 1.15rem;
   }
 
-  .c-searchcard__summary > p  {
+  .c-searchcard__summary  {
     font-size: 0.85rem;
     margin: 3vh;
   }

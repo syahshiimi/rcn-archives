@@ -66,10 +66,11 @@ const SeaerchBarWrapper = styled.div`
     background-color: var(--primary-clr-50);
 
     ::placeholder {
-      font-size: 0.645rem;
+      font-size: 0.745rem;
       text-align: left;
       padding-left: 4vw;
-      opacity: 40%;
+      opacity: 60%;
+      margin: 0;
     }
   }
 
