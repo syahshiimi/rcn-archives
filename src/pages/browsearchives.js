@@ -40,10 +40,31 @@ const query = graphql`
     }
   }
 `
+
+const filterPosts = (transcript, query) => {
+  if (!query) {
+    return transcript
+  }
+
+  return transcript.filter(post => {
+    const postName = post.name.toLowerCase()
+    return postName.includes(query)
+  })
+}
+
 const BrowseArchives = () => {
   const data = useStaticQuery(query)
   const transcript = data.allContentfulInterviewTranscripts.nodes
-  const search = data.localSearchArchives
+  console.log(transcript)
+  // const search = data.localSearchArchives
+
+  /////////////////////////////////
+  //////// Search Function ////////
+  /////////////////////////////////
+
+  const { search } = window.location
+  const searchQuery = new URLSearchParams(search).get("s")
+  console.log(searchQuery)
 
   // Hide Search Section
   // 1. We set the default as false, meaning we hide the search section
@@ -62,33 +83,33 @@ const BrowseArchives = () => {
   const SearchInput = useRef(null)
 
   // 4. Hide Search Results Section via CSS + useEffects
-  useEffect(() => {
-    // Set default values before Side Effect kicks in
-    MapRef.current.style.display = `none`
-
-    if (show) {
-      SearchRef.current.style.display = `flex`
-      MapRef.current.style.display = `none`
-      window.scrollTo({
-        behavior: "smooth",
-        top: 700,
-      })
-    } else {
-      SearchRef.current.style.display = `none`
-      MapRef.current.style.display = `flex`
-      window.scrollTo({
-        behavior: "smooth",
-        top: 0,
-      })
-    }
-  }, [show])
+  //  useEffect(() => {
+  //    // Set default values before Side Effect kicks in
+  //    MapRef.current.style.display = `none`
+  //
+  //    if (show) {
+  //      SearchRef.current.style.display = `flex`
+  //      MapRef.current.style.display = `none`
+  //      window.scrollTo({
+  //        behavior: "smooth",
+  //        top: 700,
+  //      })
+  //    } else {
+  //      SearchRef.current.style.display = `none`
+  //      MapRef.current.style.display = `flex`
+  //      window.scrollTo({
+  //        behavior: "smooth",
+  //        top: 0,
+  //      })
+  //    }
+  //  }, [show])
 
   /////////////////////////////
   //////// Search Query ///////
   /////////////////////////////
 
-  const { index, store } = search
-  console.log(store)
+  //  const { index, store } = search
+  //  console.log(store)
 
   /////////////////////////////
   //////// Render Comp. ///////
@@ -130,7 +151,25 @@ const BrowseArchives = () => {
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
           <SearchFilter />
           <section className="c-browsearchives__searchcontainer">
-            <SearchCard transcript={transcript} />
+            {transcript.map(item => {
+              const {
+                id,
+                transcriptTitle,
+                transcriptTags,
+                oneLineTeaser: {
+                  childMarkdownRemark: { html },
+                },
+              } = item
+              return (
+                <SearchCard
+                  id={id}
+                  transcriptTitle={transcriptTitle}
+                  transcriptTags={transcriptTags}
+                  html={html}
+                  key={id}
+                />
+              )
+            })}
           </section>
         </section>
       </BrowseArchivesWrapper>

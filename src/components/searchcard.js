@@ -18,32 +18,21 @@ const ListofCountries = [
   "Vietnmam",
 ]
 
-export const SearchCard = ({ transcript = [] }) => {
+export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
+  const slug = slugify(transcriptTitle, { lower: true })
+  console.log(id)
   return (
-    <SearchCardWrapper>
-      {transcript.map(item => {
-        const {
-          id,
-          transcriptTitle,
-          transcriptTags,
-          oneLineTeaser: {
-            childMarkdownRemark: { html },
-          },
-        } = item
-        const slug = slugify(transcriptTitle, { lower: true })
-        const SortTags = transcriptTags.sort() // sort tags
-        return (
-          <div className="l-searchcard" key={id}>
-            <Link to={`${slug}`} className="c-searchcard__title">
-              {transcriptTitle}
-            </Link>
-            <div className="c-searchcard__summary">{parse(`${html}`)}</div>
-            <div className="c-searchcard__tagscontainer">
-              <TagsContainer tags={transcriptTags} />
-            </div>
-          </div>
-        )
-      })}
+    <SearchCardWrapper >
+      <div className="l-searchcard" >
+        <Link to={`${slug}`} className="c-searchcard__title">
+          {transcriptTitle}
+        </Link>
+        <div className="c-searchcard__summary">{parse(`${html}`)}</div>
+        <div className="c-searchcard__tagscontainer">
+          <TagsContainer tags={transcriptTags} />
+        </div>
+      </div>
+      
     </SearchCardWrapper>
   )
 }
@@ -161,17 +150,17 @@ const SearchCardWrapper = styled.main`
       font-size: 0.85rem;
     }
 
-//    .c-searchcard__tagscontainer {
-//      justify-content: center;
-//
-//      p {
-//        font-size: 0.8rem;
-//      }
-//    }
-//    .c-searchcard__tagpill {
-//      align-items: flex-start;
-//      margin: 1vh 1vw;
-//      flex: 0 1 auto;
-//    }
+    //    .c-searchcard__tagscontainer {
+    //      justify-content: center;
+    //
+    //      p {
+    //        font-size: 0.8rem;
+    //      }
+    //    }
+    //    .c-searchcard__tagpill {
+    //      align-items: flex-start;
+    //      margin: 1vh 1vw;
+    //      flex: 0 1 auto;
+    //    }
   }
 `

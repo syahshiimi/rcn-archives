@@ -7,10 +7,16 @@ export const SearchBar = () => {
   return (
     <SeaerchBarWrapper>
       <form className="c-browsearchives__searchbar">
+        <label htmlFor="c-browsearchives__searchinput">
+          <span className="visually-hidden">
+            Browse by keywords, topic themes or #tags
+          </span>
+        </label>
         <input
           type="text"
           className="c-browsearchives__searchinput"
           placeholder="Browse by keywords, topics themes or #tags"
+          name="s"
         />
         <button className="c-browsearchives__searchbutton" type="submit">
           <IconContext.Provider
@@ -25,6 +31,15 @@ export const SearchBar = () => {
 }
 
 const SeaerchBarWrapper = styled.div`
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
   .c-browsearchives__searchbar {
     display: flex;
     text-align: center;
@@ -43,9 +58,9 @@ const SeaerchBarWrapper = styled.div`
     background-color: var(--primary-clr-50);
 
     ::placeholder {
-      font-size: 0.6rem;
+      font-size: 0.645rem;
       text-align: left;
-      padding-left: 8vw;
+      padding-left: 4vw;
       opacity: 40%;
     }
   }
