@@ -9,15 +9,10 @@ export const SearchBar = ({ query, setSearchQuery }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    scrollTo(".c-browsearchives__searchcontainer");
-    //   window.scrollTo({
-    //     behavior: "smooth",
-    //     top: 800,
-    //   });
+    scrollTo(".c-browsearchives__searchresults");
   };
 
   useEffect(() => {
-    console.log(refContainer.current);
     refContainer.current.focus();
   });
 
