@@ -166,7 +166,6 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__heading {
     text-align: center;
-    font-size: 1.85rem;
   }
 
   .c-browsearchives__filtercontainer {
