@@ -97,7 +97,7 @@ const SearchCardWrapper = styled.main`
 
     .c-searchcard__summary {
       margin: 1.5vh 0vw;
-      font-size: 1rem;
+      font-size: 0.85rem;
     }
 
     .c-searchcard__read {
@@ -123,9 +123,6 @@ const SearchCardWrapper = styled.main`
   //////////////////////
 
   @media (min-width: 1280px) {
-    .l-searchcard {
-      margin: 4vh 2vw;
-    }
     .l-searchcard > * {
       margin: 0;
     }
@@ -136,11 +133,16 @@ const SearchCardWrapper = styled.main`
 
     .l-searchcard {
       padding: 4vh 6vw;
+      margin: 2vh 2vw;
     }
 
     .c-searchcard__summary {
       text-align: left;
       margin: 2.2vh 0vw;
+
+      p {
+        font-size: 0.85rem;
+      }
     }
 
     .c-searchcard__tagscontainer {
