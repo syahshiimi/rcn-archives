@@ -2,7 +2,6 @@ import { IconContext } from "@react-icons/all-files/lib"
 import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { TiArrowDown } from "@react-icons/all-files/Ti/TiArrowDown"
-
 import { useStaticQuery } from "gatsby"
 import { graphql } from "gatsby"
 
