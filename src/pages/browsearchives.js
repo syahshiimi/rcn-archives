@@ -123,7 +123,7 @@ const BrowseArchives = () => {
           <section className="l-browsearchives__search">
             <h1 className="c-browsearchives__searchresults">Search Results</h1>
             <SearchFilter />
-            <section className="c-browsearchives__searchcontainer">
+      <section className="c-browsearchives__searchcontainer">
               {FilteredTranscript.map(item => {
                 const {
                   id,
@@ -143,8 +143,9 @@ const BrowseArchives = () => {
                 )
               })}
             </section>
+
           </section>
-        </BrowseArchivesWrapper>
+            </BrowseArchivesWrapper>
     </Layout>
   )
 }
@@ -235,7 +236,7 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
-    padding: 2vw 2vh;
+    padding: 2vh 2vw;
     border-radius: calc(5vw + 4px);
   }
 
@@ -287,7 +288,11 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
-      margin: 2vh 0vw;
+      width: 75vw;
+    }
+    
+    .l-browsearchives__search {
+      padding-top 0vh;
     }
 
   }

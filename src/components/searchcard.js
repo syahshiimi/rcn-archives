@@ -28,6 +28,9 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
         <span className="c-searchcard__read">
           <Link to={`${slug}`}>Read More </Link>
         </span>
+        <span className="c-searchcard__tagscontainer">
+    <TagsContainer tags={transcriptTags}/>
+        </span>
       </div>
     </SearchCardWrapper>
   )
@@ -35,6 +38,7 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
 
 const SearchCardWrapper = styled.main`
   .l-searchcard {
+    display: flex;
     background-color: var(--primary-clr-100);
     padding: 4vh 8vw;
     margin: 2vh 2vw;
@@ -59,12 +63,16 @@ const SearchCardWrapper = styled.main`
   }
 
   .c-searchcard__read {
-    font-family: 'Ubuntu', Serif,
+    font-family: 'Ubuntu', Serif;
     font-weight: normal;
     text-align: right;
     font-size: .75rem;
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
+  }
+
+  .c-searchcard__tagscontainer {
+    display: none;
   }
 
   ////////////////////
@@ -77,19 +85,29 @@ const SearchCardWrapper = styled.main`
 
     .l-searchcard {
       padding: 3vh 5vw;
+      margin: 1vh 1vw;
     }
+    
 
     .c-searchcard__title {
       font-size: 1.5rem;
     }
+    
+    .c-searchcard__summary {
+    }
 
     .c-searchcard__summary {
-      margin: 2vh 0vw;
+      margin: 1.5vh 0vw;
       font-size: 1rem;
+    }
+    
+    .c-searchcard__read   {
+      font-size: 0.85rem;
     }
 
     .c-searchcard__tagscontainer {
-      justify-content: center;
+      display: flex;
+      margin-top: 1vh;
     }
 
     //    .c-searchcard__tagpill {
@@ -111,7 +129,7 @@ const SearchCardWrapper = styled.main`
     }
     .l-searchcard > * {
       margin: 0;
-    }
+}
 
     .l-searchcard > a {
       margin: 1vh;
@@ -121,23 +139,14 @@ const SearchCardWrapper = styled.main`
       padding: 4vh 6vw;
     }
 
-    .c-searchcard__summary > p {
+    .c-searchcard__summary {
       text-align: left;
       margin: 2.2vh 0vw;
-      font-size: 1rem;
+    }
+    
+    .c-searchcard__tagscontainer {
+      margin: 2vh 0vw;
     }
 
-    //    .c-searchcard__tagscontainer {
-    //      justify-content: center;
-    //
-    //      p {
-    //        font-size: 0.8rem;
-    //      }
-    //    }
-    //    .c-searchcard__tagpill {
-    //      align-items: flex-start;
-    //      margin: 1vh 1vw;
-    //      flex: 0 1 auto;
-    //    }
   }
 `

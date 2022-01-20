@@ -186,6 +186,7 @@ const SearchFilterWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 1vh 10vw !important;
+    flex: 0 0 0;
 
     .c-searchfilter___header {
       display: flex;
@@ -194,7 +195,6 @@ const SearchFilterWrapper = styled.div`
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      flex: 1 1 auto;
       transition: var(--transition);
 
       /* styling */
@@ -207,7 +207,6 @@ const SearchFilterWrapper = styled.div`
       color: var(--primary-clr-100);
       font-weight: normal;
     }
-
     .c-searchfilter__icon {
       color: var(--primary-clr-100);
       width: 2.5rem;
@@ -231,7 +230,7 @@ const SearchFilterWrapper = styled.div`
       border-radius: 0 0 calc(2rem + 2px) calc(2rem + 2px);
       align-items: start;
       overflow: hidden;
-      flex: 1 1 auto;
+      padding: 2vh 4vw;
     }
 
     .c-searchfilter__body {
@@ -239,7 +238,7 @@ const SearchFilterWrapper = styled.div`
       flex-direction: row;
       column-gap: 4vw;
       transition: var(--transition);
-      align-items: start;
+      align-items: start
 
   }
 
