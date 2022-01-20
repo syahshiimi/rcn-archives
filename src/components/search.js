@@ -1,23 +1,25 @@
-import React, { useEffect, useRef } from "react"
-import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt"
-import { IconContext } from "@react-icons/all-files/lib"
-import styled from "styled-components"
+import React, { useEffect, useRef } from "react";
+import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
+import { IconContext } from "@react-icons/all-files/lib";
+import styled from "styled-components";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 export const SearchBar = ({ query, setSearchQuery }) => {
-  const refContainer = useRef(null)
-  
-  const handleSubmit = e => {
-    e.preventDefault()
-    window.scrollTo({
-      behavior: 'smooth',
-      top: 800
-    })
-  }
+  const refContainer = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    scrollTo(".c-browsearchives__searchcontainer");
+    //   window.scrollTo({
+    //     behavior: "smooth",
+    //     top: 800,
+    //   });
+  };
 
   useEffect(() => {
-    console.log(refContainer.current)
-    refContainer.current.focus()
-  })
+    console.log(refContainer.current);
+    refContainer.current.focus();
+  });
 
   return (
     <SeaerchBarWrapper>
@@ -38,7 +40,8 @@ export const SearchBar = ({ query, setSearchQuery }) => {
           placeholder="Browse by keywords, topics themes or #tags"
           name="s"
           ref={refContainer}
-          onInput={e => setSearchQuery(e.target.value)}
+          value={query}
+          onInput={(e) => setSearchQuery(e.target.value)}
         />
         <button className="c-browsearchives__searchbutton" type="submit">
           <IconContext.Provider
@@ -49,8 +52,8 @@ export const SearchBar = ({ query, setSearchQuery }) => {
         </button>
       </form>
     </SeaerchBarWrapper>
-  )
-}
+  );
+};
 
 const SeaerchBarWrapper = styled.div`
   .visually-hidden {
@@ -154,4 +157,4 @@ const SeaerchBarWrapper = styled.div`
       height: 2.5rem;
     }
   }
-`
+`;

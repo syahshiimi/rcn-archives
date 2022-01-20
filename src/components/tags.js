@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 export const TagsContainer = ({ tags = [] }) => {
   return (
@@ -9,11 +9,11 @@ export const TagsContainer = ({ tags = [] }) => {
           <div className="c-tagscontainer__tagpill" key={index}>
             <p className="c-tagscontainer__tag">{item}</p>
           </div>
-        )
+        );
       })}
     </TagsWrapper>
-  )
-}
+  );
+};
 
 const TagsWrapper = styled.div`
   display: flex;
@@ -40,10 +40,10 @@ const TagsWrapper = styled.div`
 
   @media (min-width: 992px) {
     .c-tagscontainer__tagpill {
-      margin: 0.2vh .3vw;
+      margin: 0.2vh 0.3vw;
     }
     .c-tagscontainer__tag {
       padding: 0.5vh 1vw;
     }
   }
-`
+`;

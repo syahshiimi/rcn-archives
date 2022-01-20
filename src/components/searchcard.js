@@ -1,9 +1,9 @@
-import React from "react"
-import parse from "html-react-parser"
-import styled from "styled-components"
-import slugify from "slugify"
-import { Link } from "gatsby"
-import { TagsContainer } from "./tags"
+import React from "react";
+import parse from "html-react-parser";
+import styled from "styled-components";
+import slugify from "slugify";
+import { Link } from "gatsby";
+import { TagsContainer } from "./tags";
 
 // Create list of countries for color tagging
 const ListofCountries = [
@@ -16,10 +16,10 @@ const ListofCountries = [
   "Singapore",
   "Taiwan",
   "Vietnmam",
-]
+];
 
 export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
-  const slug = slugify(transcriptTitle, { lower: true })
+  const slug = slugify(transcriptTitle, { lower: true });
   return (
     <SearchCardWrapper>
       <div className="l-searchcard">
@@ -29,12 +29,12 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
           <Link to={`${slug}`}>Read More </Link>
         </span>
         <span className="c-searchcard__tagscontainer">
-    <TagsContainer tags={transcriptTags}/>
+          <TagsContainer tags={transcriptTags} />
         </span>
       </div>
     </SearchCardWrapper>
-  )
-}
+  );
+};
 
 const SearchCardWrapper = styled.main`
   .l-searchcard {
@@ -63,10 +63,10 @@ const SearchCardWrapper = styled.main`
   }
 
   .c-searchcard__read {
-    font-family: 'Ubuntu', Serif;
+    font-family: "Ubuntu", Serif;
     font-weight: normal;
     text-align: right;
-    font-size: .75rem;
+    font-size: 0.75rem;
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
   }
@@ -87,12 +87,11 @@ const SearchCardWrapper = styled.main`
       padding: 3vh 5vw;
       margin: 1vh 1vw;
     }
-    
 
     .c-searchcard__title {
       font-size: 1.5rem;
     }
-    
+
     .c-searchcard__summary {
     }
 
@@ -100,8 +99,8 @@ const SearchCardWrapper = styled.main`
       margin: 1.5vh 0vw;
       font-size: 1rem;
     }
-    
-    .c-searchcard__read   {
+
+    .c-searchcard__read {
       font-size: 0.85rem;
     }
 
@@ -129,7 +128,7 @@ const SearchCardWrapper = styled.main`
     }
     .l-searchcard > * {
       margin: 0;
-}
+    }
 
     .l-searchcard > a {
       margin: 1vh;
@@ -143,10 +142,9 @@ const SearchCardWrapper = styled.main`
       text-align: left;
       margin: 2.2vh 0vw;
     }
-    
+
     .c-searchcard__tagscontainer {
       margin: 2vh 0vw;
     }
-
   }
-`
+`;

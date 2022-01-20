@@ -1,39 +1,39 @@
-import React, { useState, useRef, useEffect } from "react"
-import styled from "styled-components"
-import { Link } from "gatsby"
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "gatsby";
 
 // Import Data
-import { pageLinks } from "../data"
+import { pageLinks } from "../data";
 
 // Icons
-import { BiSearchAlt } from "@react-icons/all-files/Bi/BiSearchAlt"
-import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu"
+import { BiSearchAlt } from "@react-icons/all-files/Bi/BiSearchAlt";
+import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu";
 
 // Variables
-const title = "Reconceptualizing \n The Cold War"
+const title = "Reconceptualizing \n The Cold War";
 
 const Navbar = () => {
   // hide list first by initial state of show = false
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   // create button handler to change state
   const handleClick = () => {
-    setShow(!show) // this returns opposite of the initial value which is false to true
-  }
+    setShow(!show); // this returns opposite of the initial value which is false to true
+  };
   // useRef instead
-  const linksContainerRef = useRef(null)
-  const linksRef = useRef(null)
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
 
   useEffect(() => {
-    const linksHeight = linksRef.current.getBoundingClientRect().height
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
 
     if (show) {
-      linksContainerRef.current.style.height = `${linksHeight}px`
-      linksContainerRef.current.style.padding = `0.5rem 3rem 1rem 3rem`
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+      linksContainerRef.current.style.padding = `0.5rem 3rem 1rem 3rem`;
     } else {
-      linksContainerRef.current.style.height = "0px"
-      linksContainerRef.current.style.padding = `0rem`
+      linksContainerRef.current.style.height = "0px";
+      linksContainerRef.current.style.padding = `0rem`;
     }
-  }, [show])
+  }, [show]);
 
   return (
     <NavStyle>
@@ -53,15 +53,15 @@ const Navbar = () => {
         </div>
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
-            {pageLinks.map(link => {
-              const { pageID, url, text } = link
+            {pageLinks.map((link) => {
+              const { pageID, url, text } = link;
               return (
                 <li key={pageID}>
                   <Link activeClassName="active--link" to={url}>
                     {text}
                   </Link>
                 </li>
-              )
+              );
             })}
           </ul>
           <form className="nav__search">
@@ -77,8 +77,8 @@ const Navbar = () => {
         </div>
       </div>
     </NavStyle>
-  )
-}
+  );
+};
 
 const NavStyle = styled.nav`
   grid-area: header;
@@ -90,7 +90,7 @@ const NavStyle = styled.nav`
 
   .nav__title {
     font-size: 1rem;
-    font-family: 'Lora', sans-serif;
+    font-family: "Lora", sans-serif;
     font-style: normal;
     font-weight: bold;
     text-align: center;
@@ -193,7 +193,6 @@ const NavStyle = styled.nav`
   ///////////////////////////////
   /////// TABLET ////////////////
   ///////////////////////////////
-  
 
   @media (min-width: 992px) {
     margin: 0;
@@ -239,9 +238,9 @@ const NavStyle = styled.nav`
       color: var(--primary-clr-50);
     }
 
-      .nav__links > li {
-        margin: 0.8vw;
-      }
+    .nav__links > li {
+      margin: 0.8vw;
+    }
 
     .active--link {
       color: var(--primary-clr-100) !important;
@@ -331,6 +330,6 @@ const NavStyle = styled.nav`
       }
     }
   }
-`
+`;
 
-export default Navbar
+export default Navbar;

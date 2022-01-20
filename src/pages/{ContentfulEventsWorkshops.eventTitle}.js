@@ -1,22 +1,22 @@
-import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import React from "react"
-import styled from "styled-components"
-import parse from "html-react-parser"
+import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React from "react";
+import styled from "styled-components";
+import parse from "html-react-parser";
 
-import { EventScheduleCard } from "../components/eventscard"
-import Layout from "../components/Layout"
-import DefaultButton from "../components/button"
+import { EventScheduleCard } from "../components/eventscard";
+import Layout from "../components/Layout";
+import DefaultButton from "../components/button";
 
 const EventsTemplate = ({ data }) => {
-  const events = data.contentfulEventsWorkshops
+  const events = data.contentfulEventsWorkshops;
 
   // 1. convert default objects to array with key value pairs
   // 2. filter through key/value pairs to remove 'null' and produce new arr
   // 3. convert filtered array to object
-  const eventArr = Object.entries(events)
-  const filteredArr = eventArr.filter(([key, value]) => value != null)
-  const filteredEvents = Object.fromEntries(filteredArr)
+  const eventArr = Object.entries(events);
+  const filteredArr = eventArr.filter(([key, value]) => value != null);
+  const filteredEvents = Object.fromEntries(filteredArr);
 
   // destructure object for quick access
   const {
@@ -29,9 +29,9 @@ const EventsTemplate = ({ data }) => {
     eventLocation,
     eventStart,
     eventEnd,
-  } = filteredEvents
+  } = filteredEvents;
 
-  const pathToImage = getImage(eventImage)
+  const pathToImage = getImage(eventImage);
   return (
     <Layout>
       <EventWrapper>
@@ -61,8 +61,8 @@ const EventsTemplate = ({ data }) => {
         </section>
       </EventWrapper>
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query getSingleEvent($eventTitle: String) {
@@ -145,7 +145,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 const EventWrapper = styled.main`
   section {
     padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
@@ -329,6 +329,6 @@ const EventWrapper = styled.main`
       padding: 2vh 2vw;
     }
   }
-`
+`;
 
-export default EventsTemplate
+export default EventsTemplate;

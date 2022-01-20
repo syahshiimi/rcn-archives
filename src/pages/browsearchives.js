@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react"
-import { BrowserRouter as Router } from "react-router-dom"
-import Layout from "../components/Layout"
-import styled from "styled-components"
-import { graphql, useStaticQuery } from "gatsby"
-import { SearchCard } from "../components/searchcard"
-import { SearchFilter } from "../components/searchfilter"
-import { SearchBar } from "../components/search"
-import { useFlexSearch } from "react-use-flexsearch"
-import { ArchivesMap } from "../components/maps"
+import React, { useEffect, useRef, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "../components/Layout";
+import styled from "styled-components";
+import { graphql, useStaticQuery } from "gatsby";
+import { SearchCard } from "../components/searchcard";
+import { SearchFilter } from "../components/searchfilter";
+import { SearchBar } from "../components/search";
+import { useFlexSearch } from "react-use-flexsearch";
+import { ArchivesMap } from "../components/maps";
 
 const query = graphql`
   {
@@ -40,26 +40,26 @@ const query = graphql`
       store
     }
   }
-`
+`;
 
 const BrowseArchives = () => {
-  const data = useStaticQuery(query)
-  const transcript = data.allContentfulInterviewTranscripts.nodes
-  const find = data.localSearchArchives
-  const { index, store } = find
+  const data = useStaticQuery(query);
+  const transcript = data.allContentfulInterviewTranscripts.nodes;
+  const find = data.localSearchArchives;
+  const { index, store } = find;
 
   /////////////////////////////////
   //////// Search Function ////////
   /////////////////////////////////
 
-  const { search } = window.location
-  const searchQuery = new URLSearchParams(search).get("s")
-  const [queryState, setSearchQuery] = useState(searchQuery || "")
-  const results = useFlexSearch(queryState, index, store)
+  const { search } = window.location;
+  const searchQuery = new URLSearchParams(search).get("s");
+  const [queryState, setSearchQuery] = useState(searchQuery || "");
+  const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results
-  const unFlattenResults = results =>
-    results.map(item => {
+  const unFlattenResults = (results) =>
+    results.map((item) => {
       const {
         oneLiner,
         id,
@@ -68,7 +68,7 @@ const BrowseArchives = () => {
         oneLineTeaser: {
           childMarkdownRemark: { html },
         },
-      } = item
+      } = item;
       return {
         oneLiner,
         id,
@@ -77,12 +77,14 @@ const BrowseArchives = () => {
         oneLineTeaser: {
           childMarkdownRemark: { html },
         },
-      }
-    })
+      };
+    });
 
   // set defaults where if empty or nothing in search
   // we return the entire transcript
-  const FilteredTranscript =  queryState ? unFlattenResults(results) : transcript
+  const FilteredTranscript = queryState
+    ? unFlattenResults(results)
+    : transcript;
 
   /////////////////////////////
   //////// Render Comp. ///////
@@ -90,65 +92,64 @@ const BrowseArchives = () => {
 
   return (
     <Layout>
-        <BrowseArchivesWrapper>
-          <section className="l-browsearchives">
-            <h1 className="c-browsearchives__heading">Search The Archives</h1>
-            <SearchBar query={queryState} setSearchQuery={setSearchQuery} />
-            <div className="c-browsearchives__filtercontainer">
-              <label
-                htmlFor="c-browsearchives__filterbykeywords"
-                className="c-browsearchives__keywordscheckbox"
-              >
-                <input type="checkbox" value="keywords" />
-                Filter by keywords
-              </label>
-              <label
-                htmlFor="c-browsearchives__filterbytags"
-                className="c-browsearchives__tagscheckbox"
-              >
-                <input type="checkbox" value="tags" />
-                Filter by tags
-              </label>
-            </div>
-            <p className="c-browsearchives__content">
-              Browse through our carefully curated oral archives. Working with
-              on-the-ground experiences, we aim to provide a wholesome and
-              comprehensive approach towards understanding the cold war from a
-              grassroots perspective.
-            </p>
+      <BrowseArchivesWrapper>
+        <section className="l-browsearchives">
+          <h1 className="c-browsearchives__heading">Search The Archives</h1>
+          <SearchBar query={queryState} setSearchQuery={setSearchQuery} />
+          <div className="c-browsearchives__filtercontainer">
+            <label
+              htmlFor="c-browsearchives__filterbykeywords"
+              className="c-browsearchives__keywordscheckbox"
+            >
+              <input type="checkbox" value="keywords" />
+              Filter by keywords
+            </label>
+            <label
+              htmlFor="c-browsearchives__filterbytags"
+              className="c-browsearchives__tagscheckbox"
+            >
+              <input type="checkbox" value="tags" />
+              Filter by tags
+            </label>
+          </div>
+          <p className="c-browsearchives__content">
+            Browse through our carefully curated oral archives. Working with
+            on-the-ground experiences, we aim to provide a wholesome and
+            comprehensive approach towards understanding the cold war from a
+            grassroots perspective.
+          </p>
+        </section>
+        <section className="l-browsearchives__map">
+          <ArchivesMap />
+        </section>
+        <section className="l-browsearchives__search">
+          <h1 className="c-browsearchives__searchresults">Search Results</h1>
+          <SearchFilter />
+          <section className="c-browsearchives__searchcontainer">
+            {FilteredTranscript.map((item) => {
+              const {
+                id,
+                transcriptTitle,
+                transcriptTags,
+                oneLineTeaser: {
+                  childMarkdownRemark: { html },
+                },
+              } = item;
+              return (
+                <SearchCard
+                  transcriptTitle={transcriptTitle}
+                  transcriptTags={transcriptTags}
+                  html={html}
+                  key={id}
+                />
+              );
+            })}
           </section>
-          <section className="l-browsearchives__map">
-            <ArchivesMap />
-          </section>
-          <section className="l-browsearchives__search">
-            <h1 className="c-browsearchives__searchresults">Search Results</h1>
-            <SearchFilter />
-      <section className="c-browsearchives__searchcontainer">
-              {FilteredTranscript.map(item => {
-                const {
-                  id,
-                  transcriptTitle,
-                  transcriptTags,
-                  oneLineTeaser: {
-                    childMarkdownRemark: { html },
-                  },
-                } = item
-                return (
-                  <SearchCard
-                    transcriptTitle={transcriptTitle}
-                    transcriptTags={transcriptTags}
-                    html={html}
-                    key={id}
-                  />
-                )
-              })}
-            </section>
-
-          </section>
-            </BrowseArchivesWrapper>
+        </section>
+      </BrowseArchivesWrapper>
     </Layout>
-  )
-}
+  );
+};
 
 const BrowseArchivesWrapper = styled.main`
   section {
@@ -329,5 +330,5 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__searchcontainer {
       margin: 0vh 1vw;
     }
-`
-export default BrowseArchives
+`;
+export default BrowseArchives;
