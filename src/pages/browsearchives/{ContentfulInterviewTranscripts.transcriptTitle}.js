@@ -118,6 +118,9 @@ export const query = graphql`
     contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
       interviewer
       interviewee
+      transcriptNotes {
+        raw
+      }
       transcriptTitle
       transcriptTags
       contentful_id

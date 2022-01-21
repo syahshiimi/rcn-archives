@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from "react"
-import styled from "styled-components"
-import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown"
-import { IconContext } from "@react-icons/all-files/lib"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { TagsContainer } from "./tags"
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown";
+import { IconContext } from "@react-icons/all-files/lib";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { TagsContainer } from "./tags";
+import { render } from "react-dom";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -14,7 +15,8 @@ export const Accordion = ({ transcript = [], type, name }) => {
     transcriptTags,
     interviewer,
     interviewee,
-  } = transcript
+    transcriptNotes,
+  } = transcript;
 
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
@@ -24,25 +26,25 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // Rich Text Rendering
   const options = {
     renderMark: {
-      [MARKS.BOLD]: text => <b className="font-bold">{text}</b>,
+      [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
-        const { uri } = node.data
+        const { uri } = node.data;
         return (
           <a href={uri} className="underline">
             {children}
           </a>
-        )
+        );
       },
       [BLOCKS.HEADING_2]: (node, children) => {
-        return <h2>{children}</h2>
+        return <h2>{children}</h2>;
       },
       [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol>{children}</ol>
+        return <ol>{children}</ol>;
       },
     },
-  }
+  };
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
@@ -54,7 +56,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
       <span className="c-accordion__summary">
         {renderRichText(englishTranscriptSummary, options)}
       </span>
-    )
+    );
   }
 
   function DocumentTranscript(props) {
@@ -62,7 +64,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
       <span className="c-accordion__transcript">
         {renderRichText(englishFullTranscript, options)}
       </span>
-    )
+    );
   }
 
   function DocumentInfo() {
@@ -78,9 +80,11 @@ export const Accordion = ({ transcript = [], type, name }) => {
         </div>
         <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
         <hr className="c-accordion__transcriptnotesline"></hr>
-        <p className="c-accordion__transcriptnotes">None</p>
+        <p className="c-accordion__transcriptnotes">
+          {renderRichText(transcriptNotes, options)}
+        </p>
       </span>
-    )
+    );
   }
 
   function DocumentQns(props) {
@@ -88,18 +92,18 @@ export const Accordion = ({ transcript = [], type, name }) => {
       <div className="c-accordion__qns">
         {renderRichText(discussionQuestions, options)}
       </div>
-    )
+    );
   }
 
-  let component
+  let component;
   if (type == "Document Summary") {
-    component = <DocumentSummary />
+    component = <DocumentSummary />;
   } else if (type == "Document Transcript") {
-    component = <DocumentTranscript />
+    component = <DocumentTranscript />;
   } else if (type == "Document Information") {
-    component = <DocumentInfo />
+    component = <DocumentInfo />;
   } else if (type == "Document Questions") {
-    component = <DocumentQns />
+    component = <DocumentQns />;
   }
 
   //////////////////////////////////////////////////
@@ -109,39 +113,39 @@ export const Accordion = ({ transcript = [], type, name }) => {
 
   // Dropdown on click
   // 1. Hide accordion content as the intiai state where show = false
-  const [show, setShow] = useState(false)
-  const [normal, setRotate] = useState(true)
+  const [show, setShow] = useState(false);
+  const [normal, setRotate] = useState(true);
   // 2. Creat button handler to listen to button state change
   const handleClick = () => {
-    setShow(!show) // returns opposte; where show is now TRUE
-    setRotate(!normal)
-  }
+    setShow(!show); // returns opposte; where show is now TRUE
+    setRotate(!normal);
+  };
   // 3. Create CSS Modifier
-  const accordionBody = useRef(null)
-  const accordionRef = useRef(null)
-  const accordionHeader = useRef(null)
+  const accordionBody = useRef(null);
+  const accordionRef = useRef(null);
+  const accordionHeader = useRef(null);
   const rotateArrowIcon = normal
     ? "c-accordion__arrow"
-    : "c-accordion__arrow pulled"
+    : "c-accordion__arrow pulled";
 
   useEffect(() => {
-    const accordionHeight = accordionRef.current.getBoundingClientRect().height
+    const accordionHeight = accordionRef.current.getBoundingClientRect().height;
     if (show) {
-      console.log(`${accordionHeight}`)
-      accordionBody.current.style.height = `${accordionHeight}px`
-      accordionBody.current.style.paddingBottom = `4vh`
-      accordionBody.current.style.border = `1px solid var(--primary-clr-200)`
-      accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`
-      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
-      accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`
+      console.log(`${accordionHeight}`);
+      accordionBody.current.style.height = `${accordionHeight}px`;
+      accordionBody.current.style.paddingBottom = `4vh`;
+      accordionBody.current.style.border = `1px solid var(--primary-clr-200)`;
+      accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`;
+      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`;
+      accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`;
     } else {
-      accordionBody.current.style.height = "0px"
-      accordionBody.current.style.padding = `0rem`
-      accordionBody.current.style.border = `0px solid var(--primary-clr-200)`
-      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`
-      accordionHeader.current.style.borderRadius = `calc(2rem + 1px)`
+      accordionBody.current.style.height = "0px";
+      accordionBody.current.style.padding = `0rem`;
+      accordionBody.current.style.border = `0px solid var(--primary-clr-200)`;
+      accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`;
+      accordionHeader.current.style.borderRadius = `calc(2rem + 1px)`;
     }
-  }, [show])
+  }, [show]);
 
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
@@ -166,8 +170,8 @@ export const Accordion = ({ transcript = [], type, name }) => {
         </div>
       </div>
     </AccordionWrapper>
-  )
-}
+  );
+};
 const AccordionWrapper = styled.div`
   margin: 1vh 0vw;
 
@@ -327,4 +331,4 @@ const AccordionWrapper = styled.div`
       padding: 0;
       margin: 2vh 3vw;
     }
-`
+`;
