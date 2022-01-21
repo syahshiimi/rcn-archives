@@ -48,7 +48,6 @@ const EventsTemplate = ({ data }) => {
           </h3>
           <h3 className="c-event__location">{eventLocation}</h3>
           <div className="c-event__content">{parse(`${content}`)}</div>
-          <DefaultButton className="c-event__signup" title="Sign Up" url="/" />
           <h1 className="c-event__details">Event Details</h1>
           <div className="c-eventschedule__container">
             <EventScheduleCard items={filteredArr} />
@@ -284,17 +283,16 @@ const EventWrapper = styled.main`
       grid-template-columns: auto;
       grid-template-rows: auto;
       grid-template-areas:
-        "title title title"
-        "subheading subheading subheading"
-        " . image image"
-        "date image image"
-        "location image image"
-        "content image image"
-        " signup image image"
-        " . image image"
-        "details details details"
-        "schedule schedule schedule "
-        "pastevents pastevents pastevents";
+        "title  title"
+        "subheading  subheading"
+        " .  image"
+        "date  image"
+        "location  image"
+        "content  image"
+        " .  image"
+        "details  details"
+        "schedule  schedule "
+        "pastevents  pastevents";
     }
 
     .c-event__title {

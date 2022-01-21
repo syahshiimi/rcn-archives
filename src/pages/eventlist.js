@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import { EventsCard } from "../components/eventscard"
-import Layout from "../components/Layout"
-import { graphql, useStaticQuery } from "gatsby"
+import React from "react";
+import styled from "styled-components";
+import { EventsCard } from "../components/eventscard";
+import Layout from "../components/Layout";
+import { graphql, useStaticQuery } from "gatsby";
 
 const query = graphql`
   {
@@ -24,10 +24,10 @@ const query = graphql`
       }
     }
   }
-`
+`;
 const Events = () => {
-  const data = useStaticQuery(query)
-  const events = data.allContentfulEventsWorkshops.nodes
+  const data = useStaticQuery(query);
+  const events = data.allContentfulEventsWorkshops.nodes;
   return (
     <Layout>
       <EventWrapper>
@@ -39,8 +39,8 @@ const Events = () => {
         </section>
       </EventWrapper>
     </Layout>
-  )
-}
+  );
+};
 
 const EventWrapper = styled.main`
   section {
@@ -96,13 +96,13 @@ const EventWrapper = styled.main`
     }
     .l-pastevents__list {
       padding: 4vh 4vw;
-      margin: 4vh 0vw;
+      margin: 4vh 8vw;
     }
 
     .l-pastevents__container > * {
       margin: 4vh 0vw;
     }
   }
-`
+`;
 
-export default Events
+export default Events;

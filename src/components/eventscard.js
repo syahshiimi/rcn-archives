@@ -198,19 +198,29 @@ const EventsCardWrapper = styled.div`
   ////////// Desktop ////////
   ///////////////////////////
   @media (min-width: 1280px) {
-    padding: 2vh 6vw;
-    a > * {
-      margin: 6vh 0vw;
+    padding: 3vh 4vw;
+    .c-pastevents__button {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1 1 auto;
     }
     .c-pastevents__details {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       text-align: left;
+      margin: 2vh 0vw;
     }
     .c-pastevents__date {
-      font-size: 1.125rem;
+      font-size: 0.9rem;
+      margin: 2vh 0vw;
+    }
+    .c-pastevents__content {
+      font-size: 0.95rem;
+      margin: 2vh 0vw;
     }
     .c-pastevents__location {
-      font-size: 1.125rem;
+      font-size: 0.85rem;
+      margin: 3vh 0vw;
     }
   }
 

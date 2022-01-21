@@ -193,6 +193,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     </AccordionWrapper>
   );
 };
+
 const AccordionWrapper = styled.div`
   margin: 1vh 0vw;
 
