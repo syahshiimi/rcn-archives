@@ -175,6 +175,10 @@ const TranscriptWrapper = styled.section`
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   }
 
+  .c-transcript__container {
+    justify-content: center;
+  }
+
   .c-transcript__oneliner {
     margin: 2vh 0vw;
     text-align: center;
