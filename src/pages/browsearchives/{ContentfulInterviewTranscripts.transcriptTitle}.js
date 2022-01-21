@@ -1,17 +1,17 @@
-import { graphql, Link } from "gatsby"
-import { TagsContainer } from "../../components/tags"
-import { getImage } from "gatsby-plugin-image"
-import React from "react"
-import styled from "styled-components"
-import Layout from "../../components/Layout"
-import parse from "html-react-parser"
-import { Accordion } from "../../components/accordion"
-import { GatsbyImage } from "gatsby-plugin-image"
-import slugify from "slugify"
+import { graphql, Link } from "gatsby";
+import { TagsContainer } from "../../components/tags";
+import { getImage } from "gatsby-plugin-image";
+import React from "react";
+import styled from "styled-components";
+import Layout from "../../components/Layout";
+import parse from "html-react-parser";
+import { Accordion } from "../../components/accordion";
+import { GatsbyImage } from "gatsby-plugin-image";
+import slugify from "slugify";
 
 const TranscriptTemplate = ({ data }) => {
-  const transcript = data.contentfulInterviewTranscripts
-  console.log(transcript)
+  const transcript = data.contentfulInterviewTranscripts;
+  console.log(transcript);
 
   // filter through passed object to remove null values
   ////////////////////////////////////////////////////////////
@@ -19,11 +19,11 @@ const TranscriptTemplate = ({ data }) => {
   // 2. filter through key/value pairs to remove 'null' and produce new arr
   // 3. convert filtered array to object
 
-  const transcriptArr = Object.entries(transcript)
+  const transcriptArr = Object.entries(transcript);
   const filteredTranscriptArr = transcriptArr.filter(
     ([key, value]) => value != null
-  )
-  const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr)
+  );
+  const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr);
   // Destructure Filtered Object
   const {
     contentful_id,
@@ -33,13 +33,13 @@ const TranscriptTemplate = ({ data }) => {
       childMarkdownRemark: { oneliner },
     },
     transcriptTitle,
-  } = filteredTranscriptObj
+  } = filteredTranscriptObj;
 
   //////////////////////////
   ////// Image Utils ///////
   //////////////////////////
   // Conditionally render gatsby image
-  const pathToImage = getImage(transcriptImage)
+  const pathToImage = getImage(transcriptImage);
 
   function TranscriptImage(props) {
     return (
@@ -48,17 +48,19 @@ const TranscriptTemplate = ({ data }) => {
         alt={transcriptTitle}
         className="c-transcript__image std-style"
       />
-    )
+    );
   }
 
-  let imgComponent
+  let imgComponent;
   if (transcriptImage != undefined) {
-    imgComponent = <TranscriptImage />
+    imgComponent = <TranscriptImage />;
   } else {
   }
 
-  const slug = slugify(transcriptTitle, { lower: true })
-  console.log(slug)
+  // remove dots in strings (if exists)
+  const cleanString = transcriptTitle.replace(".", " ");
+  // use slugify to return a string in a slug format
+  const slug = slugify(cleanString, { lower: true });
 
   return (
     <Layout>
@@ -108,8 +110,8 @@ const TranscriptTemplate = ({ data }) => {
         />
       </TranscriptWrapper>
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query getSingleTranscript($transcriptTitle: String) {
@@ -142,7 +144,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const TranscriptWrapper = styled.section`
   display: flex;
@@ -324,6 +326,6 @@ const TranscriptWrapper = styled.section`
     }
 }
 
-`
+`;
 
-export default TranscriptTemplate
+export default TranscriptTemplate;

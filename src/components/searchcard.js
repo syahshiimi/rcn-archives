@@ -19,7 +19,10 @@ const ListofCountries = [
 ];
 
 export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
-  const slug = slugify(transcriptTitle, { lower: true });
+  // remove dots in strings (if exists)
+  const cleanString = transcriptTitle.replace(".", " ");
+  // use slugify to return a string in a slug format
+  const slug = slugify(cleanString, { lower: true });
   return (
     <SearchCardWrapper>
       <div className="l-searchcard">

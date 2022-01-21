@@ -1,18 +1,18 @@
-import React from "react"
-import { TagsContainer } from "../../../components/tags"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { graphql } from "gatsby"
-import Layout from "../../../components/Layout"
-import styled from "styled-components"
-import parse from "html-react-parser"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { BackTopButton, BackToSummaryBtn } from "../../../components/button"
+import React from "react";
+import { TagsContainer } from "../../../components/tags";
+import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { graphql } from "gatsby";
+import Layout from "../../../components/Layout";
+import styled from "styled-components";
+import parse from "html-react-parser";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
   ////////////////////////////////////////
-  const transcript = data.contentfulInterviewTranscripts
+  const transcript = data.contentfulInterviewTranscripts;
   const {
     transcriptTitle,
     transcriptTags,
@@ -22,7 +22,7 @@ const FullTranscript = ({ data }) => {
     },
 
     discussionQuestions,
-  } = transcript
+  } = transcript;
 
   ////////////////////////////////////////
   ////////  Rich Text Render    //////////
@@ -30,25 +30,25 @@ const FullTranscript = ({ data }) => {
 
   const options = {
     renderMark: {
-      [MARKS.BOLD]: text => <b className="font-bold">{text}</b>,
+      [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => {
-        const { uri } = node.data
+        const { uri } = node.data;
         return (
           <a href={uri} className="underline">
             {children}
           </a>
-        )
+        );
       },
       [BLOCKS.HEADING_2]: (node, children) => {
-        return <h2>{children}</h2>
+        return <h2>{children}</h2>;
       },
       [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol>{children}</ol>
+        return <ol>{children}</ol>;
       },
     },
-  }
+  };
 
   ////////////////////////////////////////
   /////////// Component Render ///////////
@@ -66,7 +66,7 @@ const FullTranscript = ({ data }) => {
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <TagsContainer tags={transcriptTags} />
-jjj        <div className="c-fulltranscript__endnotescontainer">
+        <div className="c-fulltranscript__endnotescontainer">
           <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
           <hr className="c-fulltranscript__endnotesborder"></hr>
           <p className="c-fulltranscript__endnotescontent"></p>
@@ -74,8 +74,8 @@ jjj        <div className="c-fulltranscript__endnotescontainer">
         <BackTopButton />
       </FullTranscriptWrapper>
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query ($transcriptTitle: String) {
@@ -108,7 +108,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const FullTranscriptWrapper = styled.section`
   // DO NOT DISPLAY ON MOBILE
@@ -186,6 +186,6 @@ const FullTranscriptWrapper = styled.section`
       width: 25vw;
     }
   }
-`
+`;
 
-export default FullTranscript
+export default FullTranscript;
