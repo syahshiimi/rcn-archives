@@ -6,6 +6,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { TagsContainer } from "./tags";
 import { render } from "react-dom";
+import { getImage } from "gatsby-plugin-image";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -67,22 +68,42 @@ export const Accordion = ({ transcript = [], type, name }) => {
     );
   }
 
+  ////////////////////////////
+  // C.render Trans. Notes ///
+  ////////////////////////////
+
+  // 1. We create a component to render the transcript notes
+  // 2. We check if the component returns undefined or not
+  // 3. If component returns undefined, we do not render aka render null
+  // 4. If component returns, we render the return data
+
+  function TranscriptNotes(props) {
+    return (
+      <p className="c-accordion__transcriptnotes">
+        {renderRichText(transcriptNotes, options)}
+      </p>
+    );
+  }
+
+  let transcriptNotesComponent;
+  if (transcriptNotes != undefined) {
+    transcriptNotesComponent = <TranscriptNotes />;
+  } else {
+  }
+
   function DocumentInfo() {
     return (
       <span className="c-accordion__info">
         <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
         <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
-
         <div className="c-accordion__tagsandkeyscontainer">
           <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
           <hr className="c-accordion__tagsandkeysline"></hr>
           <TagsContainer tags={transcriptTags} />
         </div>
         <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
+        <TranscriptNotes />
         <hr className="c-accordion__transcriptnotesline"></hr>
-        <p className="c-accordion__transcriptnotes">
-          {renderRichText(transcriptNotes, options)}
-        </p>
       </span>
     );
   }

@@ -87,7 +87,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 3vh 5vw;
+      padding: 3vh 5vw 1.5vh 5vw;
       margin: 1vh 1vw;
     }
 
@@ -135,7 +135,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 4vh 6vw;
+      padding: 4vh 6vw 2vh 6vw;
       margin: 2vh 2vw;
     }
 

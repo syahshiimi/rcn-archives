@@ -1,15 +1,16 @@
-import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
-import slugify from "slugify"
-import parse from "html-react-parser"
+import { Link } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import slugify from "slugify";
+import parse from "html-react-parser";
 
-
-{/* Events List Page */}
+{
+  /* Events List Page */
+}
 export const EventsCard = ({ events = [] }) => {
   return (
     <div className="l-pastevents__container">
-      {events.map(events => {
+      {events.map((events) => {
         const {
           id,
           eventTitle,
@@ -17,8 +18,10 @@ export const EventsCard = ({ events = [] }) => {
           eventBlurb,
           eventStart,
           eventEnd,
-        } = events
-        const slug = slugify(eventTitle, { lower: true })
+        } = events;
+        // Clean string to remove spaces and quotation marks
+        const cleanString = eventTitle.replace(/['"]+/g, " ");
+        const slug = slugify(cleanString, { lower: true });
         return (
           <EventsCardWrapper key={id} className="c-pastevents__card">
             <Link
@@ -35,97 +38,98 @@ export const EventsCard = ({ events = [] }) => {
               <h4 className="c-pastevents__location">{eventLocation}</h4>
             </Link>
           </EventsCardWrapper>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-{/* Workshop Events Details Cards */}
+{
+  /* Workshop Events Details Cards */
+}
 
 export const EventScheduleCard = ({ items = [] }) => {
   // create filtered array to object
-  const filteredItems = Object.fromEntries(items)
+  const filteredItems = Object.fromEntries(items);
 
   // create empty array to store new schedule
-  const scheduleArr = []
+  const scheduleArr = [];
 
   // map over items array
   // in each iteration, find matching string value
   // if value matches, push into scheduleArr
-  items.map(item => {
+  items.map((item) => {
     if (item[0] === "eventScheduleOne") {
       return scheduleArr.push(
         filteredItems.eventScheduleOne.childMarkdownRemark.scheduleOne
-      )
+      );
     } else if (item[0] === "eventScheduleTwo") {
       return scheduleArr.push(
         filteredItems.eventScheduleTwo.childMarkdownRemark.scheduleTwo
-      )
+      );
     } else if (item[0] === "eventScheduleThree") {
       return scheduleArr.push(
         filteredItems.eventScheduleThree.childMarkdownRemark.scheduleThree
-      )
+      );
     } else if (item[0] === "eventScheduleFour") {
       return scheduleArr.push(
         filteredItems.eventScheduleFour.childMarkdownRemark.scheduleFour
-      )
+      );
     } else if (item[0] === "eventScheduleFive") {
       return scheduleArr.push(
         filteredItems.eventScheduleFive.childMarkdownRemark.scheduleFive
-      )
+      );
     } else if (item[0] === "eventScheduleSix") {
       return scheduleArr.push(
         filteredItems.eventScheduleSix.childMarkdownRemark.scheduleSix
-      )
+      );
     } else if (item[0] === "eventScheduleSeven") {
       return scheduleArr.push(
         filteredItems.eventScheduleSeven.childMarkdownRemark.scheduleSeven
-      )
+      );
     } else if (item[0] === "eventScheduleEight") {
       return scheduleArr.push(
         filteredItems.eventScheduleEight.childMarkdownRemark.scheduleEight
-      )
+      );
     } else if (item[0] === "eventScheduleNine") {
       return scheduleArr.push(
         filteredItems.eventScheduleNine.childMarkdownRemark.scheduleNine
-      )
+      );
     } else if (item[0] === "eventScheduleTen") {
       return scheduleArr.push(
         filteredItems.eventScheduleTen.childMarkdownRemark.scheduleTen
-      )
+      );
     } else if (item[0] === "eventScheduleEleven") {
       return scheduleArr.push(
         filteredItems.eventScheduleEleven.childMarkdownRemark.scheduleEleven
-      )
+      );
     } else if (item[0] === "eventScheduleTwelve") {
       return scheduleArr.push(
         filteredItems.eventScheduleTwelve.childMarkdownRemark.scheduleTwelve
-      )
+      );
     } else {
-      return null
+      return null;
     }
-  })
+  });
 
   return (
     <div>
-      {scheduleArr.map(event => (
+      {scheduleArr.map((event) => (
         <EventScheduleWrapper key={event + 1}>
           <div className="c-eventschedule__card">{parse(`${event}`)}</div>
         </EventScheduleWrapper>
       ))}
     </div>
-  )
-}
+  );
+};
 
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
-  
+
 const EventsCardWrapper = styled.div`
-
   display: flex;
   padding: 1vh 8vw;
   justify-content: center;
@@ -228,7 +232,7 @@ const EventsCardWrapper = styled.div`
       font-size: 1.85rem;
     }
   }
-`
+`;
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -315,4 +319,4 @@ const EventScheduleWrapper = styled.div`
 
 
     }
-`
+`;
