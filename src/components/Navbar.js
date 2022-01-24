@@ -293,7 +293,6 @@ const NavStyle = styled.nav`
 
   @media (min-width: 1280px) {
     font-size: 1.125rem;
-
     padding: 3vh 4.5vw;
 
     .nav__title {
@@ -301,11 +300,11 @@ const NavStyle = styled.nav`
     }
     .nav__search {
       display: flex;
-      margin: 0.875rem 0rem;
+      margin: 0.5rem 0rem;
 
       input {
         ::placeholder {
-          font-size: 1.125rem;
+          font-size: 0.95rem;
         }
       }
     }

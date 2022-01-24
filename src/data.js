@@ -27,9 +27,9 @@ export const pageLinks = [
   {
     pageID: 6,
     url: "/contribute",
-    text: "Contribute",
+    text: "Contact Us",
   },
-]
+];
 
 export const featuredDocs = [
   {
@@ -68,7 +68,7 @@ export const featuredDocs = [
     text: "Ba X recalls her transition into adulthood in the midst of the Second Indochina War.",
     imgsrc: undefined,
   },
-]
+];
 
 export const eventList = [
   {
@@ -103,4 +103,4 @@ export const eventList = [
     eventBlurb:
       "I organized the first Cold War Oral History Workshop “Reconceptualizing the Cold War: On-the-ground Experiences in Asia,” which was held at NUS Utown on 21-22 May 2019. Ten scholars from abroad (Japan, China, Hong Kong, Taiwan, Vietnam, India, France, the U.K., and the U.S.), seven scholars and researchers from local institutions (NUS, NTU, and Singapore Chinese Chamber of Commerce), and six graduate students from our Department participated in this workshop, and had lively discussions",
   },
-]
+];

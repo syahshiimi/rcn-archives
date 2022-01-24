@@ -137,9 +137,9 @@ export const query = graphql`
           scheduleTen: html
         }
       }
-      eventScheduleTwelve {
+      eventScheduleEleven {
         childMarkdownRemark {
-          scheduleTwelve: html
+          scheduleEleven: html
         }
       }
     }
@@ -296,13 +296,12 @@ const EventWrapper = styled.main`
     }
 
     .c-event__title {
-      margin-bottom: 8vh;
-      font-size: 2.5rem;
+      margin: 0vh 5.5vw 5vh 5.5vw;
     }
 
     .c-event__subheading {
       font-size: 1.25rem;
-      margin-bottom: 4vh;
+      margin-bottom: 2vh;
     }
 
     .c-event__image {
@@ -319,7 +318,8 @@ const EventWrapper = styled.main`
     }
 
     .c-event__details {
-      margin: 6vh 0vw;
+      margin: 4vh 0vw;
+      font-size: 2rem;
     }
 
     .c-eventschedule__container {

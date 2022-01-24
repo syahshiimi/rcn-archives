@@ -13,6 +13,7 @@ const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
   const transcript = data.contentfulInterviewTranscripts;
+  console.log(transcript);
   const {
     transcriptTitle,
     transcriptTags,
@@ -86,6 +87,9 @@ export const query = graphql`
       transcriptTags
       contentful_id
       englishTranscriptSummary {
+        raw
+      }
+      originalFullTranscript {
         raw
       }
       englishFullTranscript {

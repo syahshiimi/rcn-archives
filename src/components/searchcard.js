@@ -139,6 +139,10 @@ const SearchCardWrapper = styled.main`
       margin: 2vh 2vw;
     }
 
+    .c-searchcard__title {
+      font-size: 1.25rem;
+    }
+
     .c-searchcard__summary {
       text-align: left;
       margin: 2.2vh 0vw;

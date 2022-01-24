@@ -44,14 +44,15 @@ export const Accordion = ({ transcript = [], type, name }) => {
       [BLOCKS.OL_LIST]: (node, children) => {
         return <ol>{children}</ol>;
       },
+      [BLOCKS.LIST_ITEM]: (node, children) => {
+        return <li>{children}</li>;
+      },
     },
   };
   //////////////////////////////////////////////////
-  //////////////////////////////////////////////////
-  //////////////////////////////////////////////////
+  ///////////// Conditional Rendering //////////////
   //////////////////////////////////////////////////
 
-  // Conditional Rendering
   function DocumentSummary(props) {
     return (
       <span className="c-accordion__summary">
@@ -79,9 +80,9 @@ export const Accordion = ({ transcript = [], type, name }) => {
 
   function TranscriptNotes(props) {
     return (
-      <p className="c-accordion__transcriptnotes">
+      <div className="c-accordion__transcriptnotes">
         {renderRichText(transcriptNotes, options)}
-      </p>
+      </div>
     );
   }
 
@@ -101,9 +102,9 @@ export const Accordion = ({ transcript = [], type, name }) => {
           <hr className="c-accordion__tagsandkeysline"></hr>
           <TagsContainer tags={transcriptTags} />
         </div>
+        <hr className="c-accordion__transcriptnotesline"></hr>
         <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
         <TranscriptNotes />
-        <hr className="c-accordion__transcriptnotesline"></hr>
       </span>
     );
   }
@@ -276,7 +277,17 @@ const AccordionWrapper = styled.div`
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
   }
-
+  
+  .c-accordion__transcriptnotes {
+    margin: 2vh 6vw 2vh 10vw;
+    
+    li {
+      padding: 1vh 0vw;
+    }
+    
+    
+  }
+  
   .c-accordion__qns {
     margin: 4vh 9vw;
     padding: 0vh 4vw;
@@ -327,6 +338,12 @@ const AccordionWrapper = styled.div`
     .c-accordion__transcriptnotesline {
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
+    }
+    
+    .c-accordion__transcriptnotes {
+      margin-left: 5vw;
+
+      }
     }
 
     .c-accordion__qns {

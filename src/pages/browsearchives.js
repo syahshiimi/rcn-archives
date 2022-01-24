@@ -288,7 +288,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
-      width: 75vw;
+      max-width: 75vw;
     }
     
     .l-browsearchives__search {

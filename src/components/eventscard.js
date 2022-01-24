@@ -20,7 +20,7 @@ export const EventsCard = ({ events = [] }) => {
           eventEnd,
         } = events;
         // Clean string to remove spaces and quotation marks
-        const cleanString = eventTitle.replace(/['"]+/g, " ");
+        const cleanString = eventTitle.replace(/['"]+/g, " ").replace(":", " ");
         const slug = slugify(cleanString, { lower: true });
         return (
           <EventsCardWrapper key={id} className="c-pastevents__card">
@@ -30,7 +30,7 @@ export const EventsCard = ({ events = [] }) => {
               alt={eventTitle}
               key={id}
             >
-              <h3 className="c-pastevents__details">{eventTitle}</h3>
+              <h3 className="c-pastevents__title">{eventTitle}</h3>
               <p className="c-pastevents__date">
                 {eventStart} to {eventEnd}
               </p>
@@ -151,7 +151,7 @@ const EventsCardWrapper = styled.div`
     display: none;
   }
 
-  .c-pastevents__details {
+  .c-pastevents__title {
     font-size: 1rem;
     font-family: Lora;
     font-style: normal;
@@ -182,7 +182,7 @@ const EventsCardWrapper = styled.div`
     a > * {
       margin: 2vh 0vw;
     }
-    .c-pastevents__details {
+    .c-pastevents__title {
       font-size: 1.25rem;
     }
     .c-pastevents__date {
@@ -205,8 +205,8 @@ const EventsCardWrapper = styled.div`
       justify-content: space-between;
       flex: 1 1 auto;
     }
-    .c-pastevents__details {
-      font-size: 1.1rem;
+    .c-pastevents__title {
+      font-size: 1.2rem;
       text-align: left;
       margin: 2vh 0vw;
     }
@@ -322,6 +322,10 @@ const EventScheduleWrapper = styled.div`
 
         * {
           margin: 4vh 0vw;
+        }
+        
+        h3 {
+          font-size: 1.25rem;
         }
 
       }
