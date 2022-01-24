@@ -8,64 +8,64 @@
 /* Variables */
 
 :root {
-	/* colors */
-	--primary-clr-0: #cfdbd5;
-	--primary-clr-50: #e8eddf;
-	--primary-clr-100: #f5cb5c;
-	--primary-clr-150: #333533;
-	--primary-clr-200: #242423;
+  /* colors */
+  --primary-clr-0: #cfdbd5;
+  --primary-clr-50: #e8eddf;
+  --primary-clr-100: #f5cb5c;
+  --primary-clr-150: #333533;
+  --primary-clr-200: #242423;
 
-	/* grays */
-	--secondary-clr-250: #c4c4c4;
+  /* grays */
+  --secondary-clr-250: #c4c4c4;
 
-	/* transition */
-	--transition: all 0.7s ease-in-out .2s;
+  /* transition */
+  --transition: all 0.7s ease-in-out 0.2s;
 
-	/* global padding values */
-	/* USED ONLY FOR RIGHT AND LEFT PADDING */
-	--padding-mobile: 10vw;
-	--padding-desktop: 10vw;
+  /* global padding values */
+  /* USED ONLY FOR RIGHT AND LEFT PADDING */
+  --padding-mobile: 10vw;
+  --padding-desktop: 10vw;
 
-	/* global image card values */
-	--imagecard-border-clr: 0.125rem solid var(--primary-clr-200);
-	--imagecard-border-radius: calc(2rem + 0.125rem);
+  /* global image card values */
+  --imagecard-border-clr: 0.125rem solid var(--primary-clr-200);
+  --imagecard-border-radius: calc(2rem + 0.125rem);
 }
 
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-	height: 100%;
-	width: 100%;
-	background-color: #cfdbd5;
-	overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  background-color: #cfdbd5;
+  overflow-y: scroll;
 }
 
 h1 {
-	font-family: "Lora", serif;
-	text-decoration: underline;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 2rem;
-	color: var(--primary-clr-200);
+  font-family: "Lora", serif;
+  text-decoration: underline;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--primary-clr-200);
 }
 
 h2 {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 h3 {
-	font-size: 1.15rem;
+  font-size: 1.15rem;
 }
 
 h4 {
-	font-size: 1.125rem;
+  font-size: 1.125rem;
 }
 
 h5 {
-	font-size: 1.05rem;
+  font-size: 1.05rem;
 }
 
 a,
@@ -74,75 +74,75 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: "Ubuntu", sans-serif;
-	color: var(--primary-clr-200);
+  font-family: "Ubuntu", sans-serif;
+  color: var(--primary-clr-200);
 }
 
 input {
-	font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 /* tablet displays wide 992px */
 @media (min-width: 992px) {
-	h1 {
-		font-size: 2.5rem;
-	}
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
 /* desktop displays 1280px wide */
 
 @media (min-width: 1280px) {
-	h1 {
-		font-size: 3rem;
-	}
+  h1 {
+    font-size: 3rem;
+  }
 
-	h2 {
-		font-size: 1.7rem;
-	}
+  h2 {
+    font-size: 1.7rem;
+  }
 
-	h3 {
-		font-size: 1.5rem;
-	}
+  h3 {
+    font-size: 1.5rem;
+  }
 
-	h4 {
-		font-size: 1.25rem;
-	}
-	h5 {
-		font-size: 1.125rem;
-	}
+  h4 {
+    font-size: 1.25rem;
+  }
+  h5 {
+    font-size: 1.125rem;
+  }
 
-	p {
-		font-size: 1rem;
-	}
+  p {
+    font-size: 1rem;
+  }
 }
 
 /* 4k dispalys 2550px wide */
 
 @media (min-width: 2560px) {
-	h1 {
-		font-size: 6rem;
-	}
+  h1 {
+    font-size: 6rem;
+  }
 
-	h2 {
-		font-size: 2.5rem;
-	}
-	h3 {
-		font-size: 2rem;
-	}
-	h4 {
-		font-size: 1.85rem;
-	}
-	p {
-		font-size: 1.8rem;
-	}
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.85rem;
+  }
+  p {
+    font-size: 1.8rem;
+  }
 }
 
 .bg--std {
-	background-color: var(--primary-clr-0);
+  background-color: var(--primary-clr-0);
 }
 .bg--light {
-	background-color: var(--primary-clr-100);
+  background-color: var(--primary-clr-100);
 }
 .bg--gray {
-	background-color: var(--secondary-clr-250);
+  background-color: var(--secondary-clr-250);
 }

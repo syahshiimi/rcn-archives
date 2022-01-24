@@ -1,8 +1,8 @@
-import { IconContext } from "@react-icons/all-files/lib"
-import { Link } from "gatsby"
-import { TiArrowLeft } from "@react-icons/all-files/ti/TiArrowLeft"
-import React from "react"
-import styled from "styled-components"
+import { IconContext } from "@react-icons/all-files/lib";
+import { Link } from "gatsby";
+import { TiArrowLeft } from "@react-icons/all-files/ti/TiArrowLeft";
+import React from "react";
+import styled from "styled-components";
 
 const DefaultButton = ({ title, url, className }) => {
   return (
@@ -11,29 +11,29 @@ const DefaultButton = ({ title, url, className }) => {
         <Link to={url}>{title}</Link>
       </button>
     </ButtonWrapper>
-  )
-}
+  );
+};
 
 export const BackTopButton = () => {
   const ScrollTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  }
+    });
+  };
   return (
     <ButtonWrapper>
       <button className="button_totop" onClick={ScrollTop}>
         Scroll To Top
       </button>
     </ButtonWrapper>
-  )
-}
+  );
+};
 
 export const BackToSummaryBtn = () => {
   const BTS = () => {
-    history.back()
-  }
+    history.back();
+  };
   return (
     <AltButtonWrapper>
       <button onClick={BTS} className="c-button">
@@ -43,8 +43,8 @@ export const BackToSummaryBtn = () => {
         </IconContext.Provider>
       </button>
     </AltButtonWrapper>
-  )
-}
+  );
+};
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -70,8 +70,9 @@ const ButtonWrapper = styled.div`
 
   a {
     color: var(--primary-clr-200) !important;
+    text-decoration: none;
   }
-`
+`;
 
 const AltButtonWrapper = styled.div`
   display: flex;
@@ -84,7 +85,7 @@ const AltButtonWrapper = styled.div`
     align-items: center;
     border: none;
     text-decoration: underline;
-    font-family: 'Ubuntu',sans-serif;
+    font-family: "Ubuntu", sans-serif;
     font-style: normal;
     font-weight: bold;
 
@@ -96,9 +97,6 @@ const AltButtonWrapper = styled.div`
     width: 2rem;
     height: 2rem;
   }
+`;
 
-    
-
-  `
-
-export default DefaultButton
+export default DefaultButton;
