@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import DefaultButton from "../components/button";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { BgImage } from "gbimage-bridge";
 
 import parse from "html-react-parser";
@@ -17,7 +17,11 @@ export const query = graphql`
         }
       }
       firstImage {
-        gatsbyImageData(placeholder: TRACED_SVG, layout: FULL_WIDTH)
+        gatsbyImageData(
+          placeholder: TRACED_SVG
+          layout: FULL_WIDTH
+          breakpoints: 992
+        )
       }
       id
       principalInvestigator
@@ -45,6 +49,13 @@ export const query = graphql`
           ourfocus: html
         }
       }
+      ourFocusImage {
+        gatsbyImageData(
+          placeholder: TRACED_SVG
+          layout: CONSTRAINED
+          aspectRatio: 1.5
+        )
+      }
     }
   }
 `;
@@ -56,6 +67,7 @@ const About = ({ data }) => {
   const {
     firstImage,
     secondImage,
+    ourFocusImage,
     principalInvestigator,
     projectMembersList,
     researchAssistant,
@@ -76,20 +88,30 @@ const About = ({ data }) => {
 
   // use getImage function to provide fallback class if NO iamge exists
   const pathToFirstImage = getImage(firstImage);
+  const pathToFocusImage = getImage(ourFocusImage);
   const pathToSecondImage = getImage(secondImage);
 
   return (
     <Layout>
       <AboutWrapper>
-        <BgImage image={pathToFirstImage} style={{}}>
+        <StyledBackgroundImage
+          Tag="div"
+          image={pathToFirstImage}
+          className="c-whoweare__bgimage"
+        >
           <section className="l-whoweare">
             <h1 className="c-whoweare__title">Who We Are</h1>
             <div className="c-whoweare__content">{parse(`${whoweare}`)}</div>
           </section>
-        </BgImage>
+        </StyledBackgroundImage>
 
         <section className="l-ourfocus bg--light">
           <h1 className="c-ourfocus__title">Our Focus</h1>
+          <GatsbyImage
+            image={pathToFocusImage}
+            alt="our_focus_image"
+            className="c-ourfocus__image"
+          ></GatsbyImage>
           <div className="c-ourfocus__content">{parse(`${ourfocus}`)}</div>
         </section>
         <BgImage image={pathToSecondImage}>
@@ -126,10 +148,15 @@ const About = ({ data }) => {
               </h4>
               {projectMembersList.map((item, index) => {
                 return (
-                  <p className="c-projectmembmers__researcherNames">{item}</p>
+                  <p className="c-projectmembmers__researcherNames" key={index}>
+                    {item}
+                  </p>
                 );
               })}
             </div>
+            <button className="c-projectmembers__contributebtn">
+              <Link to="/contribute">Looking to contribute?</Link>
+            </button>
           </article>
         </section>
       </AboutWrapper>
@@ -137,32 +164,36 @@ const About = ({ data }) => {
   );
 };
 
+const StyledBackgroundImage = styled(BgImage)`
+  ::after {
+    background-image: none !important;
+    background: none !important;
+  }
+`;
 const AboutWrapper = styled.main`
-  ////////////////////
-  ////// Mobile //////
-  ////////////////////
   section {
     padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
-
   .c-whoweare__title {
     text-align: center;
     margin-bottom: 6vh;
-    color: var(--primary-clr-50);
   }
 
   .c-whoweare__content {
     font-size: 0.875rem;
     text-align: center;
-    padding-bottom: 8vh;
-    p {
-      color: var(--primary-clr-50);
-    }
   }
 
   .c-ourfocus__title {
     text-align: center;
     margin-bottom: 6vh;
+  }
+
+  .c-ourfocus__image {
+    border: var(--imagecard-border-clr);
+    border-radius: var(--imagecard-border-radius);
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+    margin-bottom: 4vh;
   }
 
   .c-ourfocus__content {
@@ -184,7 +215,6 @@ const AboutWrapper = styled.main`
       color: var(--primary-clr-50);
     }
   }
-
   .c-projectmembers__title {
     text-align: center;
     margin-bottom: 6vh;
@@ -205,6 +235,17 @@ const AboutWrapper = styled.main`
       text-align: center;
       margin: 1vh 0vw;
     }
+  }
+  .c-projectmembers__contributebtn {
+    margin: 4vh 0vw;
+    display: flex;
+    align-items: center;
+    font-family: "Lora", serif;
+    font-style: normal;
+    font-weight: bold;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
   }
 `;
 
