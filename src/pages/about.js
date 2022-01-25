@@ -5,8 +5,8 @@ import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import DefaultButton from "../components/button";
 import { graphql, Link } from "gatsby";
 import { BgImage } from "gbimage-bridge";
-
 import parse from "html-react-parser";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 export const query = graphql`
   {
@@ -63,7 +63,8 @@ export const query = graphql`
 
 const About = ({ data }) => {
   const aboutUs = data.contentfulAboutUsPage;
-  console.log(aboutUs);
+
+  ///// Auto Scroll
 
   const {
     firstImage,
@@ -378,7 +379,7 @@ const AboutWrapper = styled.main`
   /////////// Desktop ///////////////////
   ///////////////////////////////////////
   @media (min-width: 1280px) {
-    line-height: 1.235rem;
+    line-height: 1.85rem;
 
     section {
       padding: 10vh 10vh;
@@ -392,10 +393,10 @@ const AboutWrapper = styled.main`
     }
 
     .c-whoweare__content {
-      margin: 12vh 18vw 18vh 18vw;
+      margin: 8vh 18vw 8vh 18vw;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -404,6 +405,7 @@ const AboutWrapper = styled.main`
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 8vh 10vw;
     }
 
     .c-ourfocus__title {
@@ -412,10 +414,10 @@ const AboutWrapper = styled.main`
     }
 
     .c-ourfocus__content {
-      margin: 8vh 4vw;
+      margin: 2vh 0vw;
       p {
-        font-size: 1.125rem;
-        margin: 2.2vh;
+        font-size: 1.15rem;
+        margin: 2vh;
       }
     }
 
@@ -427,9 +429,9 @@ const AboutWrapper = styled.main`
     }
 
     .c-thearchives__content {
-      margin: 18vh 18vw 18vh 18vw;
+      margin: 8vh 18vw 8vh 18vw;
       p {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -438,6 +440,7 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__content {
+      margin: 2vh 0vw;
       p {
         font-size: 1.125rem;
         margin: 0vh 4vw;
