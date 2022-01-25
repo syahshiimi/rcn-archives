@@ -139,6 +139,7 @@ const FullTranscriptWrapper = styled.section`
 
   .c-fulltranscript__oneliner {
     text-align: center;
+    margin: 4vh 0vw;
   }
 
   .c-fulltranscript__border {

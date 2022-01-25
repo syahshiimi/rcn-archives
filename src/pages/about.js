@@ -52,8 +52,9 @@ export const query = graphql`
       ourFocusImage {
         gatsbyImageData(
           placeholder: TRACED_SVG
-          layout: CONSTRAINED
+          layout: FIXED
           aspectRatio: 1.5
+          breakpoints: [200, 300, 992]
         )
       }
     }
@@ -100,8 +101,10 @@ const About = ({ data }) => {
           className="c-whoweare__bgimage"
         >
           <section className="l-whoweare">
-            <h1 className="c-whoweare__title">Who We Are</h1>
-            <div className="c-whoweare__content">{parse(`${whoweare}`)}</div>
+            <div className="c-whoweare__container">
+              <h1 className="c-whoweare__title">Who We Are</h1>
+              <div className="c-whoweare__content">{parse(`${whoweare}`)}</div>
+            </div>
           </section>
         </FirstStyledBackgroundImage>
 
@@ -117,11 +120,14 @@ const About = ({ data }) => {
         <SecondStyledBackgroundImage Tag="div" image={pathToSecondImage}>
           {" "}
           <section className="l-thearchives">
-            <h1 className="c-thearchives__title">The Archives</h1>
-            <div className="c-thearchives__content">
-              {parse(`${thearchives}`)}
+            <div className="c-thearchives__container">
+              {" "}
+              <h1 className="c-thearchives__title">The Archives</h1>
+              <div className="c-thearchives__content">
+                {parse(`${thearchives}`)}
+              </div>
+              <DefaultButton url="/browsearchives" title="Browse Archives" />
             </div>
-            <DefaultButton url="/browsearchives" title="Browse Archives" />
           </section>
         </SecondStyledBackgroundImage>
 
@@ -165,12 +171,18 @@ const About = ({ data }) => {
 };
 
 const FirstStyledBackgroundImage = styled(BgImage)`
+  ::before {
+    filter: brightness(45%) blur(1px) !important;
+  }
   ::after {
-    filter: brightness(65%) blur(1px) !important;
+    filter: brightness(45%) blur(1px) !important;
   }
 `;
 
 const SecondStyledBackgroundImage = styled(BgImage)`
+  ::before {
+    filter: brightness(65%) blur(1px) !important;
+  }
   ::after {
     filter: brightness(65%) blur(1px) !important;
   }
@@ -182,6 +194,7 @@ const SecondStyledBackgroundImage = styled(BgImage)`
   }
 `;
 const AboutWrapper = styled.main`
+  line-height: 1.125rem;
   section {
     padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
@@ -193,11 +206,13 @@ const AboutWrapper = styled.main`
 
   .c-whoweare__content {
     font-size: 0.875rem;
-    text-align: center;
+    margin: 9vh 0vw;
+
     p {
       color: var(--primary-clr-50);
+      font-size: 0.875rem;
+      text-align: justify;
     }
-    margin: 9vh 0vw;
   }
 
   .c-ourfocus__title {
@@ -210,11 +225,12 @@ const AboutWrapper = styled.main`
     border-radius: var(--imagecard-border-radius);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
     margin-bottom: 4vh;
+    display: none;
   }
 
   .c-ourfocus__content {
     font-size: 0.875rem;
-    text-align: center;
+    text-align: justify;
     margin: 4vh 0vw;
   }
 
@@ -226,7 +242,7 @@ const AboutWrapper = styled.main`
 
   .c-thearchives__content {
     font-size: 0.875rem;
-    text-align: center;
+    text-align: justify;
     margin: 9vh 0vw;
     p {
       color: var(--primary-clr-50);
@@ -246,7 +262,8 @@ const AboutWrapper = styled.main`
 
   .c-projectmembers__content {
     font-size: 0.875rem;
-    text-align: center;
+    text-align: justify;
+    margin: 2vh 0vw;
   }
 
   .c-projectmembers__info {
@@ -284,8 +301,6 @@ const AboutWrapper = styled.main`
     .l-whoweare {
       padding: 10vh;
     }
-    .c-whoweare__title {
-    }
     .c-whoweare__content {
       font-size: 1.1rem;
       margin: 4vh 0vw;
@@ -300,10 +315,9 @@ const AboutWrapper = styled.main`
     .c-ourfocus__title {
       margin-bottom: 3vh;
     }
-
     .c-ourfocus__image {
-      margin: 1vh 6vw;
-      padding: 1vh 0vw;
+      margin: 0;
+      padding: 0;
     }
 
     .c-ourfocus__content {
@@ -325,12 +339,14 @@ const AboutWrapper = styled.main`
 
     .c-projectmembers__content {
       font-size: 1rem;
+      margin: 0;
     }
     .c-projectmembers__info {
       flex: 1 1 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
+      row-gap: 4vh;
       grid-template-areas:
         "pi researchers"
         "ra researchers";
@@ -339,12 +355,13 @@ const AboutWrapper = styled.main`
     .c-projectmembers__pi {
       margin: 0vh 4vw;
       grid-area: pi;
-      align-self: center;
+      align-self: end;
     }
 
     .c-projectmembers__RA {
       margin: 0vh 4vw;
       grid-area: ra;
+      align-self: start;
     }
 
     .c-projectmembers__researchers {
@@ -354,6 +371,86 @@ const AboutWrapper = styled.main`
 
     .c-projectmembers__contributebtn {
       margin: 2vh 0vw 0vh 0vw;
+    }
+  }
+
+  ///////////////////////////////////////
+  /////////// Desktop ///////////////////
+  ///////////////////////////////////////
+  @media (min-width: 1280px) {
+    line-height: 1.235rem;
+
+    section {
+      padding: 10vh 10vh;
+    }
+
+    .l-whoweare {
+      padding: 0;
+      display: grid;
+      min-height: 100vh;
+      align-content: center;
+    }
+
+    .c-whoweare__content {
+      margin: 12vh 18vw 18vh 18vw;
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .l-ourfocus {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .c-ourfocus__title {
+      margin-top: 0;
+      margin-bottom: 3vh;
+    }
+
+    .c-ourfocus__content {
+      margin: 8vh 4vw;
+      p {
+        font-size: 1.125rem;
+        margin: 2.2vh;
+      }
+    }
+
+    .l-thearchives {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .c-thearchives__content {
+      margin: 18vh 18vw 18vh 18vw;
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .c-projectmembers__title {
+      margin-top: 0;
+    }
+
+    .c-projectmembers__content {
+      p {
+        font-size: 1.125rem;
+        margin: 0vh 4vw;
+      }
+    }
+    .c-projectmembers__info {
+      margin: 7vh 0vw;
+    }
+
+    .c-projectmembers__contributebtn {
+      margin: a {
+        font-size: 1.25rem;
+      }
     }
   }
 `;

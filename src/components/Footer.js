@@ -1,13 +1,13 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 // Imports
-import { FaUniversity } from "@react-icons/all-files/fa/FaUniversity"
-import { SiFacebook } from "@react-icons/all-files/si/SiFacebook"
+import { FaUniversity } from "@react-icons/all-files/fa/FaUniversity";
+import { SiFacebook } from "@react-icons/all-files/si/SiFacebook";
 
-const designer = "Designed and deployed by Syahrul Anuar"
-const supportDetails = "Supported by NUS FASS"
-const masudaWebsite = "http://masudahajimu.com/"
+const designer = "Designed and deployed by Syahrul Anuar";
+const supportDetails = "Supported by NUS FASS";
+const masudaWebsite = "http://masudahajimu.com/";
 
 const Footer = () => {
   return (
@@ -22,8 +22,8 @@ const Footer = () => {
         <div className="footer__copyright">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <a href={masudaWebsite}>Masuda Hajimu</a> and the
-            National University of Singapore
+            <a href={masudaWebsite}>Masuda Hajimu</a> and the National
+            University of Singapore
           </p>
         </div>
         <div className="footer__designer">{designer}</div>
@@ -32,8 +32,8 @@ const Footer = () => {
         </div>
       </section>
     </FooterStyle>
-  )
-}
+  );
+};
 
 // Content Styling
 
@@ -112,10 +112,10 @@ const FooterStyle = styled.footer`
   /////////////////////////
   @media (min-width: 1280px) {
     padding: 7vh 4.5vw;
-    font-size: 1rem;
+    font-size: 0.75rem;
 
     p {
-      font-size: 1rem;
+      font-size: 0.75rem;
     }
   }
 
@@ -130,6 +130,6 @@ const FooterStyle = styled.footer`
       font-size: 1.5rem;
     }
   }
-`
+`;
 
-export default Footer
+export default Footer;

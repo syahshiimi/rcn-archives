@@ -141,6 +141,7 @@ const SearchCardWrapper = styled.main`
 
     .c-searchcard__title {
       font-size: 1.25rem;
+      margin: 1vh 0vw;
     }
 
     .c-searchcard__summary {
