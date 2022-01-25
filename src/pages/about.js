@@ -299,12 +299,15 @@ const AboutWrapper = styled.main`
   /////////////////////////////////////////
 
   @media (min-width: 992px) {
+    line-height: 1.5rem;
     .l-whoweare {
       padding: 10vh;
     }
     .c-whoweare__content {
-      font-size: 1.1rem;
       margin: 4vh 0vw;
+      p {
+        font-size: 1.225rem;
+      }
     }
 
     .l-ourfocus {
@@ -323,7 +326,7 @@ const AboutWrapper = styled.main`
 
     .c-ourfocus__content {
       margin: 2vh 0vw;
-      font-size: 1rem;
+      font-size: 1.125rem;
 
       p {
         margin: 1.2vh 0vw;
@@ -335,11 +338,11 @@ const AboutWrapper = styled.main`
     }
 
     .c-thearchives__content {
-      font-size: 1.1rem;
+      font-size: 1.225rem;
     }
 
     .c-projectmembers__content {
-      font-size: 1rem;
+      font-size: 1.125rem;
       margin: 0;
     }
     .c-projectmembers__info {
