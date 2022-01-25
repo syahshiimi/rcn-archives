@@ -94,7 +94,7 @@ const About = ({ data }) => {
   return (
     <Layout>
       <AboutWrapper>
-        <StyledBackgroundImage
+        <FirstStyledBackgroundImage
           Tag="div"
           image={pathToFirstImage}
           className="c-whoweare__bgimage"
@@ -103,7 +103,7 @@ const About = ({ data }) => {
             <h1 className="c-whoweare__title">Who We Are</h1>
             <div className="c-whoweare__content">{parse(`${whoweare}`)}</div>
           </section>
-        </StyledBackgroundImage>
+        </FirstStyledBackgroundImage>
 
         <section className="l-ourfocus bg--light">
           <h1 className="c-ourfocus__title">Our Focus</h1>
@@ -114,7 +114,7 @@ const About = ({ data }) => {
           ></GatsbyImage>
           <div className="c-ourfocus__content">{parse(`${ourfocus}`)}</div>
         </section>
-        <BgImage image={pathToSecondImage}>
+        <SecondStyledBackgroundImage Tag="div" image={pathToSecondImage}>
           {" "}
           <section className="l-thearchives">
             <h1 className="c-thearchives__title">The Archives</h1>
@@ -123,11 +123,11 @@ const About = ({ data }) => {
             </div>
             <DefaultButton url="/browsearchives" title="Browse Archives" />
           </section>
-        </BgImage>
+        </SecondStyledBackgroundImage>
 
         <section className="l-projectmembers">
           <h1 className="c-projectmembers__title">Project Members</h1>
-          <div className="c-ourfocus__content">
+          <div className="c-projectmembers__content">
             {parse(`${projectmembers}`)}
           </div>
           <article className="c-projectmembers__info">
@@ -154,20 +154,31 @@ const About = ({ data }) => {
                 );
               })}
             </div>
-            <button className="c-projectmembers__contributebtn">
-              <Link to="/contribute">Looking to contribute?</Link>
-            </button>
           </article>
+          <button className="c-projectmembers__contributebtn">
+            <Link to="/contribute">Looking to contribute?</Link>
+          </button>
         </section>
       </AboutWrapper>
     </Layout>
   );
 };
 
-const StyledBackgroundImage = styled(BgImage)`
+const FirstStyledBackgroundImage = styled(BgImage)`
   ::after {
-    background-image: none !important;
-    background: none !important;
+    filter: brightness(65%) blur(1px) !important;
+  }
+`;
+
+const SecondStyledBackgroundImage = styled(BgImage)`
+  ::after {
+    filter: brightness(65%) blur(1px) !important;
+  }
+
+  @media (min-width: 992px) {
+    ::after {
+      filter: brightness(50%) !important;
+    }
   }
 `;
 const AboutWrapper = styled.main`
@@ -177,11 +188,16 @@ const AboutWrapper = styled.main`
   .c-whoweare__title {
     text-align: center;
     margin-bottom: 6vh;
+    color: var(--primary-clr-50);
   }
 
   .c-whoweare__content {
     font-size: 0.875rem;
     text-align: center;
+    p {
+      color: var(--primary-clr-50);
+    }
+    margin: 9vh 0vw;
   }
 
   .c-ourfocus__title {
@@ -199,6 +215,7 @@ const AboutWrapper = styled.main`
   .c-ourfocus__content {
     font-size: 0.875rem;
     text-align: center;
+    margin: 4vh 0vw;
   }
 
   .c-thearchives__title {
@@ -210,10 +227,17 @@ const AboutWrapper = styled.main`
   .c-thearchives__content {
     font-size: 0.875rem;
     text-align: center;
-    margin: 6vh 0vw;
+    margin: 9vh 0vw;
     p {
       color: var(--primary-clr-50);
     }
+  }
+
+  .l-projectmembers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   .c-projectmembers__title {
     text-align: center;
@@ -246,6 +270,91 @@ const AboutWrapper = styled.main`
     justify-content: center;
     background-color: transparent;
     border: none;
+
+    a {
+      text-align: center;
+    }
+  }
+
+  /////////////////////////////////////////
+  //////////// Tablet /////////////////////
+  /////////////////////////////////////////
+
+  @media (min-width: 992px) {
+    .l-whoweare {
+      padding: 10vh;
+    }
+    .c-whoweare__title {
+    }
+    .c-whoweare__content {
+      font-size: 1.1rem;
+      margin: 4vh 0vw;
+    }
+
+    .l-ourfocus {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .c-ourfocus__title {
+      margin-bottom: 3vh;
+    }
+
+    .c-ourfocus__image {
+      margin: 1vh 6vw;
+      padding: 1vh 0vw;
+    }
+
+    .c-ourfocus__content {
+      margin: 2vh 0vw;
+      font-size: 1rem;
+
+      p {
+        margin: 1.2vh 0vw;
+      }
+    }
+
+    .l-thearchives {
+      padding: 10vh;
+    }
+
+    .c-thearchives__content {
+      font-size: 1.1rem;
+    }
+
+    .c-projectmembers__content {
+      font-size: 1rem;
+    }
+    .c-projectmembers__info {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "pi researchers"
+        "ra researchers";
+    }
+
+    .c-projectmembers__pi {
+      margin: 0vh 4vw;
+      grid-area: pi;
+      align-self: center;
+    }
+
+    .c-projectmembers__RA {
+      margin: 0vh 4vw;
+      grid-area: ra;
+    }
+
+    .c-projectmembers__researchers {
+      margin: 0vh 4vw;
+      grid-area: researchers;
+    }
+
+    .c-projectmembers__contributebtn {
+      margin: 2vh 0vw 0vh 0vw;
+    }
   }
 `;
 

@@ -207,6 +207,7 @@ const NavStyle = styled.nav`
       white-space: pre-line;
       text-align: left;
       font-size: 1.5rem;
+      padding: 0;
     }
 
     .nav__separator {
