@@ -75,10 +75,13 @@ const ButtonWrapper = styled.div`
   }
 
   @media (min-width: 992px) {
-    
+   button {
+    font-size: 1rem;
   }
-
-@media (min-width: 1280px) {
+  
+  }
+  
+  @media (min-width: 1280px) {
   button {
     font-size: 1rem;
   }
