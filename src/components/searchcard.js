@@ -143,11 +143,11 @@ const SearchCardWrapper = styled.main`
       }
 
       .c-searchcard__tagscontainer {
-        margin: 2vh 0vw;
+        margin: 1vh 0vw;
       }
 
       .c-searchcard__read {
-        margin: 1vh;
+        margin: 1.2vh;
         font-size: 1.125rem;
       }
     }
