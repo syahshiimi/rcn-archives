@@ -327,12 +327,12 @@ const TranscriptWrapper = styled.section`
     align-items: stretch;
     row-gap: 2vh;
   }
-    .c-transcript__tagscontainer > .c-tagscontainer {
-      justify-content: space-evenly;
-      row-gap: 0.5vh;
-    }
-}
+  .c-transcript__tagscontainer > .c-tagscontainer {
+    row-gap: 0.5vh;
+    justify-content: center;
 
+   }
+  }
 `;
 
 export default TranscriptTemplate;

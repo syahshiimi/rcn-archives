@@ -40,10 +40,23 @@ const TagsWrapper = styled.div`
 
   @media (min-width: 992px) {
     .c-tagscontainer__tagpill {
-      margin: 0.2vh 0.3vw;
+      margin: 0.325vh 0.3vw;
     }
     .c-tagscontainer__tag {
       padding: 0.5vh 1vw;
+      margin: 0.2vh 0.5vw;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .c-tagscontainer__tag {
+      font-size: 1rem;
+      padding: 1.2vh 1vw;
+    }
+
+    .c-tagscontainer__tagpill {
+      margin: 0.8vh 0.3vw;
     }
   }
 `;
