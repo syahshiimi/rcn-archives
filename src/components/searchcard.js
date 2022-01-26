@@ -14,7 +14,7 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
     <SearchCardWrapper>
       <div className="l-searchcard">
         <div className="c-searchcard__title">{transcriptTitle}</div>
-        <div className="c-searchcard__summary">{parse(`${html}`)}</div>
+        <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
         <span className="c-searchcard__tagscontainer">
           <TagsContainer tags={transcriptTags} />
         </span>
@@ -47,12 +47,11 @@ const SearchCardWrapper = styled.main`
     margin: 0.45vh 0vw;
   }
 
-  .c-searchcard__summary {
-    margin: 1vh 0vw;
+  .c-searchcard__oneliner {
+    margin: 2vh 1vw;
     p {
-      font-size: 0.75rem;
+      font-size: 0.95rem;
       line-height: 1.25;
-      text-align: justify;
     }
   }
 
@@ -60,7 +59,7 @@ const SearchCardWrapper = styled.main`
     font-family: "Ubuntu", Serif;
     font-weight: normal;
     text-align: right;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
     text-align: center;
@@ -88,10 +87,10 @@ const SearchCardWrapper = styled.main`
       font-size: 1.25rem;
     }
 
-    .c-searchcard__summary {
+    .c-searchcard__oneliner {
     }
 
-    .c-searchcard__summary {
+    .c-searchcard__oneliner {
       margin: 1vh 0vw;
       p {
         font-size: 1.025rem;
@@ -133,7 +132,7 @@ const SearchCardWrapper = styled.main`
         margin: 1vh 0vw;
       }
 
-      .c-searchcard__summary {
+      .c-searchcard__oneliner {
         text-align: left;
         margin: 1vh 0vw;
 
