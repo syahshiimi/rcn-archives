@@ -1,55 +1,19 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
-import { StaticImage } from "gatsby-plugin-image"
-import { featuredDocs} from "../data"
-import slugify from "slugify"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
+import { featuredDocs } from "../data";
+import slugify from "slugify";
 
 // Icons
-import { FaSearchPlus } from "@react-icons/all-files/fa/FaSearchPlus"
-import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt"
-import { BsArrowRight } from "@react-icons/all-files/Bs/BsArrowRight"
+import { BsArrowRight } from "@react-icons/all-files/Bs/BsArrowRight";
 
-/////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
-// Browse Archives Card (Mobile Only)
-/////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
-export const BACard = props => {
-  const { type } = props
-  const Icon =
-    type === "Search" ? (
-      <FaSearchPlus size={90} />
-    ) : (
-      <FaMapMarkerAlt size={90} />
-    )
-
-  return (
-    <CardWrapper>
-      <button type="button" className="c-browse__card">
-        <>{Icon}</>
-        <h3>Browse By {type}</h3>
-        <p>
-          Browse through the history of the Cold War within Asia through oral
-          archives.
-        </p>
-      </button>
-    </CardWrapper>
-  )
-}
-
-/////////////////////////////////
-/////////////////////////////////
 /////////////////////////////////
 //// Featured Documents Card ////
 /////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
 export const FeatureCard = () => {
-  return featuredDocs.map(item => {
-    const { docID, interviewer, title, text } = item
+  return featuredDocs.map((item) => {
+    const { docID, interviewer, title, text } = item;
     return (
       <CardWrapper key={docID}>
         <button type="button" className="c-featured__card">
@@ -67,9 +31,9 @@ export const FeatureCard = () => {
           <p>{text}</p>
         </button>
       </CardWrapper>
-    )
-  })
-}
+    );
+  });
+};
 
 ////////////////////////////////////
 ////////////////////////////////////
@@ -79,8 +43,8 @@ export const FeatureCard = () => {
 ////////////////////////////////////
 ////////////////////////////////////
 export const EventsCard = ({ item = [] }) => {
-  const { eventTitle, eventStart, eventLocation } = item
-  const slug = slugify(eventTitle, { lower: true })
+  const { eventTitle, eventStart, eventLocation } = item;
+  const slug = slugify(eventTitle, { lower: true });
   return (
     <CardWrapper className="c-event__card">
       <button type="button" className="c-event__button">
@@ -95,8 +59,8 @@ export const EventsCard = ({ item = [] }) => {
         </Link>
       </button>
     </CardWrapper>
-  )
-}
+  );
+};
 ///////////////////////////////
 //////////STYLING//////////////
 ///////////////////////////////
@@ -118,7 +82,7 @@ const ImageWrapper = styled.div`
     flex-grow: 1;
     width: 100%;
   }
-`
+`;
 
 ///////////////////////////////
 ///////////////////////////////
@@ -271,4 +235,4 @@ const CardWrapper = styled.div`
       margin: 2vh 0vw;
     }
   }
-`
+`;

@@ -62,7 +62,7 @@ const ButtonWrapper = styled.div`
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
 
     /* Button DS */
     box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
