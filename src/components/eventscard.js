@@ -152,20 +152,21 @@ const EventsCardWrapper = styled.div`
   }
 
   .c-pastevents__title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-family: Lora;
     font-style: normal;
+    text-align: start;
     font-weight: bold;
     text-decoration-line: underline;
   }
 
   .c-pastevents__date {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-align: right;
   }
   .c-pastevents__location {
     font-size: 0.85rem;
-    text-align: left;
+    text-align: center;
   }
 
   ///////////////////////////////

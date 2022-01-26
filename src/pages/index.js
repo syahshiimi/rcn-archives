@@ -10,6 +10,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import DefaultButton from "../components/button";
 import { BACard } from "../components/ba-cards";
 import { FeatureCard } from "../components/feature-cards";
+import { RecentlyAdd } from "../components/recently-added";
 
 export const query = graphql`
   {
@@ -53,13 +54,11 @@ export const query = graphql`
 const Index = () => {
   const data = useStaticQuery(query);
   const homepage = data.allContentfulHomePage.nodes;
-  console.log(homepage);
 
   // 1. Destructure homepage GraphQL query
   // homepage query returns an array which has a single object
   // we destructure the array first
   const [HomeItems] = homepage;
-  console.log(HomeItems);
 
   // 2. Afterward,s we can proceed to destructure the HomeItems obj.
 
@@ -106,6 +105,10 @@ const Index = () => {
         </section>
         <section className="l-recentlyadded">
           <h1 className="c-recentlyadded__title">Recently Added</h1>
+          <div className="c-recentlyadded__container">
+            {" "}
+            <RecentlyAdd />
+          </div>
         </section>
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__title">Browse Archives</h1>
@@ -179,24 +182,30 @@ const IndexWrapper = styled.main`
   .c-welcome__blurb {
     text-align: justify;
     margin: 2vh 0vw;
+    font-style: normal;
+    font-weight: 500;
   }
 
   .l-featureddocs {
     margin: 6vh 0vw;
   }
-
-  .c-featureddocs__title {
-    text-align: center;
-  }
-
   .c-featureddocs__container {
     background-color: var(--primary-clr-50);
     padding: 2vh 2vw;
     border-radius: calc(5vw + 4px);
   }
+  .c-featureddocs__title {
+    text-align: center;
+  }
 
   .l-recentlyadded {
     margin: 6vh 0vw;
+  }
+
+  .c-recentlyadded__container {
+    background-color: var(--primary-clr-50);
+    padding: 2vh 2vw;
+    border-radius: calc(5vw + 4px);
   }
 
   .c-recentlyadded__title {
@@ -224,6 +233,8 @@ const IndexWrapper = styled.main`
 
   .c-workshops__blurb {
     margin: 2vh 0vw;
+    font-style: normal;
+    font-weight: 500;
     text-align: center;
   }
 
@@ -237,6 +248,8 @@ const IndexWrapper = styled.main`
 
   .c-projectmembers__blurb {
     text-align: center;
+    font-style: normal;
+    font-weight: 500;
     margin: 2vh 0vw;
   }
 `;

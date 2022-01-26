@@ -8,7 +8,10 @@ import parse from "html-react-parser";
 
 const query = graphql`
   {
-    allContentfulInterviewTranscripts(filter: { featured: { eq: true } }) {
+    allContentfulInterviewTranscripts(
+      sort: { order: DESC, fields: createdAt }
+      limit: 5
+    ) {
       nodes {
         featured
         transcriptImage {
@@ -26,15 +29,15 @@ const query = graphql`
   }
 `;
 
-export const FeatureCard = () => {
+export const RecentlyAdd = () => {
   const data = useStaticQuery(query);
-  const featured = data.allContentfulInterviewTranscripts.nodes;
-  console.log(featured);
+  const recentadded = data.allContentfulInterviewTranscripts.nodes;
+  console.log(recentadded);
 
   return (
-    <article className="l-featurecard">
+    <article className="l-recentlyaddedcardcard">
       {" "}
-      {featured.map((item) => {
+      {recentadded.map((item) => {
         const {
           transcriptImage,
           transcriptTitle,
@@ -55,7 +58,7 @@ export const FeatureCard = () => {
               <GatsbyImage
                 image={pathToImage}
                 alt=""
-                className="c-featurecard__image"
+                className="c-recentlyaddedcard__image"
               ></GatsbyImage>
             </FeatureImageWrapper>
           ) : null;
@@ -63,11 +66,15 @@ export const FeatureCard = () => {
         const pathToImage = getImage(transcriptImage);
         return (
           <FeatureCardWrapper key={transcriptTitle}>
-            <div className="c-featurecard">
-              <div className="c-featurecard__title">{transcriptTitle}</div>
+            <div className="c-recentlyaddedcard">
+              <div className="c-recentlyaddedcard__title">
+                {transcriptTitle}
+              </div>
               {ImgComponenet}
-              <div className="c-featurecard__oneliner">{parse(`${html}`)}</div>
-              <span className="c-featurecard__read">
+              <div className="c-recentlyaddedcard__oneliner">
+                {parse(`${html}`)}
+              </div>
+              <span className="c-recentlyaddedcard__read">
                 <Link to={`browsearchives/${slug}`}>Read More </Link>
               </span>
             </div>
@@ -80,7 +87,7 @@ export const FeatureCard = () => {
 
 const FeatureImageWrapper = styled.article``;
 const FeatureCardWrapper = styled.section`
-  .c-featurecard {
+  .c-recentlyaddedcard {
     display: flex;
     background-color: var(--primary-clr-100);
     padding: 3vh 7vw;
@@ -93,7 +100,7 @@ const FeatureCardWrapper = styled.section`
     flex-direction: column;
   }
 
-  .c-featurecard__title {
+  .c-recentlyaddedcard__title {
     text-align: center;
     font-family: "Lora", Serif;
     font-weight: bold;
@@ -101,7 +108,7 @@ const FeatureCardWrapper = styled.section`
     margin: 0.45vh 0vw;
   }
 
-  .c-featurecard__oneliner {
+  .c-recentlyaddedcard__oneliner {
     margin: 2vh 1vw;
     text-align: center;
     p {
@@ -109,7 +116,7 @@ const FeatureCardWrapper = styled.section`
       line-height: 1.25;
     }
   }
-  .c-featurecard__read {
+  .c-recentlyaddedcard__read {
     font-family: "Ubuntu", Serif;
     font-weight: normal;
     text-align: right;
