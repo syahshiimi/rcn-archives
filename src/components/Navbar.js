@@ -7,7 +7,7 @@ import { pageLinks } from "../data";
 
 // Icons
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
-import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu";
+import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 
 // Variables
 const title = "Reconceptualizing \n The Cold War";
