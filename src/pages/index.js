@@ -9,6 +9,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 // components
 import DefaultButton from "../components/button";
 import { BACard } from "../components/ba-cards";
+import { FeatureCard } from "../components/feature-cards";
 
 export const query = graphql`
   {
@@ -94,12 +95,14 @@ const Index = () => {
               className="c-welcome__image"
             ></GatsbyImage>
           </ImageWrapper>
-
           <div className="c-welcome__blurb">{parse(`${html}`)}</div>
           <DefaultButton url="/about" title="See More"></DefaultButton>
         </section>
         <section className="l-featureddocs">
           <h1 className="c-featureddocs__title">Featured Documents</h1>
+          <div className="c-featureddocs__container">
+            <FeatureCard />
+          </div>
         </section>
         <section className="l-recentlyadded">
           <h1 className="c-recentlyadded__title">Recently Added</h1>
@@ -178,6 +181,7 @@ const IndexWrapper = styled.main`
     text-align: justify;
     margin: 2vh 0vw;
   }
+
   .l-featureddocs {
     margin: 6vh 0vw;
   }
@@ -185,6 +189,13 @@ const IndexWrapper = styled.main`
   .c-featureddocs__title {
     text-align: center;
   }
+
+  .c-featureddocs__container {
+    background-color: var(--primary-clr-50);
+    padding: 2vh 2vw;
+    border-radius: calc(5vw + 4px);
+  }
+
   .l-recentlyadded {
     margin: 6vh 0vw;
   }

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IconContext } from "@react-icons/all-files/lib";
 import { Link } from "gatsby";
 
-export const BACard = ({ type, url }) => {
+export const BACard = ({ type }) => {
   // Create subcomponent based on type (conditional render)
   let subComp;
   if (type == "Search") {
