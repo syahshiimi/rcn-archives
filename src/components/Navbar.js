@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import { pageLinks } from "../data";
 
 // Icons
-import { BiSearchAlt } from "@react-icons/all-files/Bi/BiSearchAlt";
+import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/Gi/GiHamburgerMenu";
 
 // Variables
