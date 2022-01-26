@@ -10,20 +10,24 @@ export const BACard = ({ type, url }) => {
   let subComp;
   if (type == "Search") {
     subComp = (
-      <button type="button" className="c-browse__card">
+      <button type="submit" className="c-browse__card">
         <IconContext.Provider value={{ className: "c-browse__icon" }}>
           <FaSearchPlus />
         </IconContext.Provider>
-        <h3>Browse By {type}</h3>
+        <Link to="/browsearchives">
+          <h3>Browse By {type}</h3>
+        </Link>
       </button>
     );
   } else {
     subComp = (
-      <button type="button" className="c-browse__card">
+      <button type="submit" className="c-browse__card">
         <IconContext.Provider value={{ className: "c-browse__icon" }}>
           <FaMapMarkerAlt />
         </IconContext.Provider>
-        <h3>Browse By {type}</h3>
+        <Link to="#">
+          <h3>Browse By {type}</h3>
+        </Link>
       </button>
     );
   }
@@ -40,7 +44,7 @@ const CardWrapper = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4vh 3vw;
+    padding: 5vh 3vw;
 
     /* styling */
     background: #f5cb5c;
@@ -53,7 +57,7 @@ const CardWrapper = styled.article`
   }
 
   .c-browse__icon {
-    height: 4rem;
-    width: 4rem;
+    height: 5rem;
+    width: 5rem;
   }
 `;
