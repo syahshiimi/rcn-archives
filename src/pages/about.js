@@ -413,7 +413,7 @@ const AboutWrapper = styled.main`
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 8vh 10vw;
+      padding: 7vh 10vw;
     }
 
     .c-ourfocus__title {
