@@ -3,26 +3,32 @@ import { FaSearchPlus } from "@react-icons/all-files/fa/FaSearchPlus";
 import { FaMapMarkerAlt } from "@react-icons/all-files/fa/FaMapMarkerAlt";
 import styled from "styled-components";
 import { IconContext } from "@react-icons/all-files/lib";
+import { Link } from "gatsby";
 
-export const BACard = (props) => {
-  const { type } = props;
-  const Icon =
-    type === "Search" ? (
-      <FaSearchPlus size={90} />
-    ) : (
-      <FaMapMarkerAlt size={90} />
-    );
-
-  return (
-    <CardWrapper>
+export const BACard = ({ type, url }) => {
+  // Create subcomponent based on type (conditional render)
+  let subComp;
+  if (type == "Search") {
+    subComp = (
       <button type="button" className="c-browse__card">
         <IconContext.Provider value={{ className: "c-browse__icon" }}>
-          {Icon}
+          <FaSearchPlus />
         </IconContext.Provider>
         <h3>Browse By {type}</h3>
       </button>
-    </CardWrapper>
-  );
+    );
+  } else {
+    subComp = (
+      <button type="button" className="c-browse__card">
+        <IconContext.Provider value={{ className: "c-browse__icon" }}>
+          <FaMapMarkerAlt />
+        </IconContext.Provider>
+        <h3>Browse By {type}</h3>
+      </button>
+    );
+  }
+
+  return <CardWrapper>{subComp}</CardWrapper>;
 };
 
 const CardWrapper = styled.article`
@@ -44,5 +50,10 @@ const CardWrapper = styled.article`
 
     // Set gap between the icon and text
     row-gap: 4vh;
+  }
+
+  .c-browse__icon {
+    height: 4rem;
+    width: 4rem;
   }
 `;

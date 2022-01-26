@@ -172,7 +172,6 @@ const IndexWrapper = styled.main`
 
   .c-welcome__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
 
   .c-welcome__blurb {
@@ -185,7 +184,6 @@ const IndexWrapper = styled.main`
 
   .c-featureddocs__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
   .l-recentlyadded {
     margin: 6vh 0vw;
@@ -201,7 +199,6 @@ const IndexWrapper = styled.main`
   }
   .c-browsearchives__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
 
   .c-browsearchives__container {
@@ -213,7 +210,6 @@ const IndexWrapper = styled.main`
   }
   .c-workshops__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
 
   .c-workshops__blurb {
@@ -227,7 +223,6 @@ const IndexWrapper = styled.main`
 
   .c-projectmembers__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
 
   .c-projectmembers__blurb {
