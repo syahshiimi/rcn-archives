@@ -124,7 +124,6 @@ const Index = () => {
               className="c-workshops__image"
             ></GatsbyImage>
           </ImageWrapper>
-
           <p className="c-workshops__blurb">{browseArchivesBlurb}</p>
           <DefaultButton url="/eventlist" title="See More"></DefaultButton>
         </section>
@@ -225,7 +224,7 @@ const IndexWrapper = styled.main`
 
   .c-workshops__blurb {
     margin: 2vh 0vw;
-    text-align: justify;
+    text-align: center;
   }
 
   .l-projectmembers {
@@ -237,7 +236,7 @@ const IndexWrapper = styled.main`
   }
 
   .c-projectmembers__blurb {
-    text-align: justify;
+    text-align: center;
     margin: 2vh 0vw;
   }
 `;
