@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { StaticImage } from "gatsby-plugin-image";
 
 // Import Wrapper Components
 import Layout from "../components/Layout";
@@ -18,13 +17,6 @@ const ContactUs = () => {
       <ContributeWrapper>
         <section className="l-contactus">
           <h1 className="c-contactus__header">Contact Us</h1>
-          <StaticImage
-            src="../assets/img/rcw_workshops/rcw_2nd_workshop.jpg"
-            alt="RCN Workshop"
-            layout="constrained"
-            className="c-contactus__image"
-            objectFit="cover"
-          />
           <p className="c-contactus__subheading">{ContributeSub}</p>
           <div className="c-contactus__form">
             <input type="text" className="name" placeholder="Name" />
@@ -36,7 +28,7 @@ const ContactUs = () => {
             />
           </div>
           <div className="c-contactus__btn">
-            <DefaultButton title="Submit" />
+            <DefaultButton url="#" title="Submit" />
           </div>
         </section>
       </ContributeWrapper>

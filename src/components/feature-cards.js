@@ -29,7 +29,6 @@ const query = graphql`
 export const FeatureCard = () => {
   const data = useStaticQuery(query);
   const featured = data.allContentfulInterviewTranscripts.nodes;
-  console.log(featured);
 
   return (
     <article className="l-featurecard">
