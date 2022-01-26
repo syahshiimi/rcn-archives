@@ -64,13 +64,6 @@ export const query = graphql`
 const About = ({ data }) => {
   const aboutUs = data.contentfulAboutUsPage;
 
-  ///// Auto Scroll
-  function scrollDown() {
-    scrollTo(".l-whoweare");
-  }
-
-  window.onload = scrollDown;
-
   const {
     firstImage,
     secondImage,
