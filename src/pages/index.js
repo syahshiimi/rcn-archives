@@ -103,6 +103,7 @@ const Index = () => {
             <FeatureCard />
           </div>
         </section>
+        <hr className="c-divider__one"></hr>{" "}
         <section className="l-recentlyadded">
           <h1 className="c-recentlyadded__title">Recently Added</h1>
           <div className="c-recentlyadded__container">
@@ -110,6 +111,7 @@ const Index = () => {
             <RecentlyAdd />
           </div>
         </section>
+        <hr className="c-divider__two"></hr>{" "}
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__title">Browse Archives</h1>
           <div className="c-browsearchives__container">
@@ -174,6 +176,13 @@ const ImageWrapper = styled.article`
 
 const IndexWrapper = styled.main`
   padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
+
+  .c-divider__one {
+    display: none;
+  }
+  .c-divider__two {
+    display: none;
+  }
 
   .c-welcome__title {
     text-align: center;
@@ -257,89 +266,134 @@ const IndexWrapper = styled.main`
   ///////////////////////////////////
   /////////// Tablet ////////////////
   ///////////////////////////////////
-  @media (min-width: 922px) {
+  @media (min-width: 992px) {
     padding: 4vh 5vw 6vh 5vw;
-    max-width: 100vh;
+    max-width: 100vw;
     display: grid;
-    column-gap: 2vh;
-    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr auto 1fr auto 1.5fr;
     grid-template-auto: auto;
     grid-template-areas:
-      "featured recentlyadded welcome"
-      "featured recentlyadded browsearchives"
-      "featured recentlyadded workshops"
-      "featured recentlyadded projectmembers";
-  }
+      "featured divider recentlyadded dividertwo welcome"
+      "featured divider recentlyadded dividertwo browsearchives"
+      "featured divider recentlyadded dividertwo workshops"
+      "featured divider recentlyadded dividertwo projectmembers";
 
-  .l-welcome {
-    grid-area: welcome;
-    margin-bottom: 2vh;
-  }
+    .c-divider__one {
+      display: flex;
+      opacity: 0.2;
+      grid-area: divider;
+      height: 80%;
+      margin: 5vh 2vw 20vh 2vw;
+      border: 1px solid var(--primary-clr-150);
+    }
 
-  .c-welcome__title {
-    font-size: 2rem;
-  }
-  .l-featureddocs {
-    grid-area: featured;
-    margin: 0;
-  }
+    .c-divider__two {
+      opacity: 0.2;
+      display: flex;
+      grid-area: dividertwo;
+      height: 80%;
+      margin: 5vh 2vw 20vh 2vw;
+      border: 1px solid var(--primary-clr-150);
+    }
 
-  .c-featureddocs__title {
-    font-size: 2rem;
-  }
+    .l-welcome {
+      grid-area: welcome;
+      margin-bottom: 2vh;
+    }
 
-  .c-featureddocs__container {
-    background-color: transparent;
-    padding: 0;
-  }
+    .c-welcome__title {
+      font-size: 2rem;
+    }
+    .l-featureddocs {
+      grid-area: featured;
+      margin: 0;
+    }
 
-  .l-recentlyadded {
-    grid-area: recentlyadded;
-    margin: 0;
-  }
+    .c-featureddocs__title {
+      font-size: 2rem;
+    }
 
-  .c-recentlyadded__title {
-    font-size: 2rem;
-  }
+    .c-featureddocs__container {
+      background-color: transparent;
+      padding: 0;
+    }
 
-  .c-recentlyadded__container {
-    background-color: transparent;
-    padding: 0;
-  }
-  .l-browsearchives {
-    grid-area: browsearchives;
-    margin-bottom: 2vh;
-    margin: 0;
-  }
+    .l-recentlyadded {
+      grid-area: recentlyadded;
+      margin: 0;
+    }
 
-  .c-browsearchives__title {
-    font-size: 2rem;
-  }
+    .c-recentlyadded__title {
+      font-size: 2rem;
+    }
 
-  .c-bacard__Search {
-    display: none;
-  }
-  .c-bacard__Geography {
-    display: none;
-  }
+    .c-recentlyadded__container {
+      background-color: transparent;
+      padding: 0;
+    }
+    .l-browsearchives {
+      grid-area: browsearchives;
+      margin-bottom: 2vh;
+      margin: 0;
+    }
 
-  .l-workshops {
-    grid-area: workshops;
-    margin: 0;
-    margin-bottom: 2vh;
-  }
+    .c-browsearchives__title {
+      font-size: 2rem;
+    }
 
-  .c-workshops__title {
-    font-size: 2rem;
-  }
-  .l-projectmembers {
-    grid-area: projectmembers;
-    margin: 0;
-    margin-bottom: 2vh;
-  }
+    .c-bacard__Search {
+      display: none;
+    }
+    .c-bacard__Geography {
+      display: none;
+    }
 
-  .c-projectmembers__title {
-    font-size: 2rem;
+    .l-workshops {
+      grid-area: workshops;
+      margin: 0;
+      margin-bottom: 2vh;
+    }
+
+    .c-workshops__title {
+      font-size: 2rem;
+    }
+    .l-projectmembers {
+      grid-area: projectmembers;
+      margin: 0;
+      margin-bottom: 2vh;
+    }
+
+    .c-projectmembers__title {
+      font-size: 2rem;
+    }
+  }
+  ////////////////////////////////
+  ////////// Desktop /////////////
+  ////////////////////////////////
+  @media (min-width: 1280px) {
+    padding: 8vh 4.5vw;
+
+    .c-welcome__title {
+      margin-bottom: 6vh;
+    }
+    .c-featureddocs__title {
+      margin-bottom: 6vh;
+    }
+    .c-recentlyadded__title {
+      margin-bottom: 6vh;
+    }
+
+    .c-browsearchives__container {
+      margin-bottom: 6vh;
+    }
+
+    .c-workshops__title {
+      margin-bottom: 6vh;
+    }
+
+    .c-projectmembers__title {
+      margin-bottom: 6vh;
+    }
   }
 `;
 

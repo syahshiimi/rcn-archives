@@ -383,7 +383,7 @@ const AboutWrapper = styled.main`
     line-height: 1.85rem;
 
     section {
-      padding: 10vh 10vh;
+      padding: 10vh 10vw;
     }
 
     .l-whoweare {

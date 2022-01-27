@@ -131,4 +131,19 @@ const FeatureCardWrapper = styled.section`
       margin: 0.5vh 0vw;
     }
   }
+
+  @media (min-width: 1280px) {
+    .c-featurecard {
+      margin: 2vh 0vw;
+      padding: 3vh 1.5vh;
+    }
+
+    .c-featurecard__oneliner {
+      margin: 1.5vh 2vw;
+    }
+
+    .c-featurecard__read {
+      margin: 1vh 0vw;
+    }
+  }
 `;

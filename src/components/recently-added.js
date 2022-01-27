@@ -124,6 +124,9 @@ const FeatureCardWrapper = styled.section`
     color: var(--primary-clr-150);
     text-align: center;
   }
+  /////////////////////////////
+  //////// Tablet /////////////
+  /////////////////////////////
 
   @media (min-width: 992px) {
     .c-recentlyaddedcard {
@@ -137,6 +140,25 @@ const FeatureCardWrapper = styled.section`
 
     .c-recentlyaddedcard__read {
       margin: 0.5vh 0vw;
+    }
+  }
+
+  /////////////////////////////
+  /////// Desktop /////////////
+  /////////////////////////////
+
+  @media (min-width: 1280px) {
+    .c-recentlyaddedcard {
+      margin: 2vh 0vw;
+      padding: 3vh 1.5vh;
+    }
+
+    .c-recentlyaddedcard__oneliner {
+      margin: 1.5vh 2vw;
+    }
+
+    .c-recentlyaddedcard__read {
+      margin: 1vh 0vw;
     }
   }
 `;
