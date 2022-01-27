@@ -24,6 +24,7 @@
   /* global padding values */
   /* USED ONLY FOR RIGHT AND LEFT PADDING */
   --padding-mobile: 10vw;
+  --padding-tablet: 5vw;
   --padding-desktop: 10vw;
 
   /* global image card values */

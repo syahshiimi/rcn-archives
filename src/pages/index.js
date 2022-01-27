@@ -192,6 +192,7 @@ const IndexWrapper = styled.main`
   .c-featureddocs__container {
     background-color: var(--primary-clr-50);
     padding: 2vh 2vw;
+    margin: 2vh 0vw;
     border-radius: calc(5vw + 4px);
   }
   .c-featureddocs__title {
@@ -205,12 +206,12 @@ const IndexWrapper = styled.main`
   .c-recentlyadded__container {
     background-color: var(--primary-clr-50);
     padding: 2vh 2vw;
+    margin: 2vh 0vw;
     border-radius: calc(5vw + 4px);
   }
 
   .c-recentlyadded__title {
     text-align: center;
-    margin: 2vh 0vw;
   }
 
   .l-browsearchives {
@@ -251,6 +252,94 @@ const IndexWrapper = styled.main`
     font-style: normal;
     font-weight: 500;
     margin: 2vh 0vw;
+  }
+
+  ///////////////////////////////////
+  /////////// Tablet ////////////////
+  ///////////////////////////////////
+  @media (min-width: 922px) {
+    padding: 4vh 5vw 6vh 5vw;
+    max-width: 100vh;
+    display: grid;
+    column-gap: 2vh;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-auto: auto;
+    grid-template-areas:
+      "featured recentlyadded welcome"
+      "featured recentlyadded browsearchives"
+      "featured recentlyadded workshops"
+      "featured recentlyadded projectmembers";
+  }
+
+  .l-welcome {
+    grid-area: welcome;
+    margin-bottom: 2vh;
+  }
+
+  .c-welcome__title {
+    font-size: 2rem;
+  }
+  .l-featureddocs {
+    grid-area: featured;
+    margin: 0;
+  }
+
+  .c-featureddocs__title {
+    font-size: 2rem;
+  }
+
+  .c-featureddocs__container {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .l-recentlyadded {
+    grid-area: recentlyadded;
+    margin: 0;
+  }
+
+  .c-recentlyadded__title {
+    font-size: 2rem;
+  }
+
+  .c-recentlyadded__container {
+    background-color: transparent;
+    padding: 0;
+  }
+  .l-browsearchives {
+    grid-area: browsearchives;
+    margin-bottom: 2vh;
+    margin: 0;
+  }
+
+  .c-browsearchives__title {
+    font-size: 2rem;
+  }
+
+  .c-bacard__Search {
+    display: none;
+  }
+  .c-bacard__Geography {
+    display: none;
+  }
+
+  .l-workshops {
+    grid-area: workshops;
+    margin: 0;
+    margin-bottom: 2vh;
+  }
+
+  .c-workshops__title {
+    font-size: 2rem;
+  }
+  .l-projectmembers {
+    grid-area: projectmembers;
+    margin: 0;
+    margin-bottom: 2vh;
+  }
+
+  .c-projectmembers__title {
+    font-size: 2rem;
   }
 `;
 

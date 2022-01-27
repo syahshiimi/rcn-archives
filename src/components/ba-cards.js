@@ -32,7 +32,7 @@ export const BACard = ({ type }) => {
     );
   }
 
-  return <CardWrapper>{subComp}</CardWrapper>;
+  return <CardWrapper className={`c-bacard__${type}`}>{subComp}</CardWrapper>;
 };
 
 const CardWrapper = styled.article`

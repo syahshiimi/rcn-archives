@@ -124,4 +124,19 @@ const FeatureCardWrapper = styled.section`
     color: var(--primary-clr-150);
     text-align: center;
   }
+
+  @media (min-width: 992px) {
+    .c-recentlyaddedcard {
+      padding: 2vh 1.5vh;
+      margin: 1vh 0vw;
+    }
+
+    .c-recentlyaddedcard__oneliner {
+      margin: 1vh 0vw;
+    }
+
+    .c-recentlyaddedcard__read {
+      margin: 0.5vh 0vw;
+    }
+  }
 `;

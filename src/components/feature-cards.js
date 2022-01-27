@@ -117,4 +117,18 @@ const FeatureCardWrapper = styled.section`
     color: var(--primary-clr-150);
     text-align: center;
   }
+
+  @media (min-width: 992px) {
+    .c-featurecard {
+      padding: 2vh 1.5vh;
+      margin: 1vh 0vw;
+    }
+    .c-featurecard__oneliner {
+      margin: 1vh 0vw;
+    }
+
+    .c-featurecard__read {
+      margin: 0.5vh 0vw;
+    }
+  }
 `;

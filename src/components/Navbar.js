@@ -196,7 +196,7 @@ const NavStyle = styled.nav`
 
   @media (min-width: 992px) {
     margin: 0;
-    padding: 0vh 8vw;
+    padding: 0vh var(--padding-tablet);
     flex-direction: row;
     background-color: var(--primary-clr-150);
     height: 15vh !important;
