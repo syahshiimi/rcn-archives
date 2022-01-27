@@ -134,12 +134,19 @@ const FeatureCardWrapper = styled.section`
 
   @media (min-width: 1280px) {
     .c-featurecard {
-      margin: 2vh 0vw;
-      padding: 3vh 1.5vh;
+      margin: 2vh 1vw;
+      padding: 3vh 0.5vh;
+    }
+
+    .c-featurecard__title {
+      font-size: 0.85rem;
     }
 
     .c-featurecard__oneliner {
-      margin: 1.5vh 2vw;
+      margin: 1.5vh 1.2vw;
+      p {
+        font-size: 0.75rem;
+      }
     }
 
     .c-featurecard__read {

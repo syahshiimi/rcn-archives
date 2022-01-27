@@ -17,6 +17,14 @@ export const query = graphql`
     allContentfulHomePage {
       nodes {
         browseArchivesBlurb
+        browseArchiveImageCard {
+          gatsbyImageData(
+            resizingBehavior: FILL
+            placeholder: TRACED_SVG
+            layout: CONSTRAINED
+          )
+          browsearchivesalt: title
+        }
         workshopsImageCard {
           gatsbyImageData(
             resizingBehavior: FILL
@@ -25,6 +33,7 @@ export const query = graphql`
           )
           workshopalt: title
         }
+        workshopBlurb
         welcomeMessageImageCard {
           gatsbyImageData(
             layout: CONSTRAINED
@@ -63,11 +72,14 @@ const Index = () => {
   // 2. Afterward,s we can proceed to destructure the HomeItems obj.
 
   const {
-    browseArchivesBlurb,
-    workshopsImageCard,
     welcomeMessageImageCard,
-    workshopsImageCard: { workshopalt },
     welcomeMessageImageCard: { welcomealt },
+    browseArchivesBlurb,
+    workshopBlurb,
+    workshopsImageCard,
+    browseArchiveImageCard,
+    browseArchiveImageCard: { browsearchivesalt },
+    workshopsImageCard: { workshopalt },
     welcomeMessage: {
       childMarkdownRemark: { html },
     },
@@ -80,6 +92,7 @@ const Index = () => {
   const pathToWelcomeImage = getImage(welcomeMessageImageCard);
   const pathToWorkshopsImage = getImage(workshopsImageCard);
   const pathToProjectMembersImage = getImage(projectMembersImageCard);
+  const pathToBrowseArchivesImage = getImage(browseArchiveImageCard);
 
   return (
     <Layout>
@@ -118,6 +131,20 @@ const Index = () => {
             <BACard type="Search" />
             <BACard type="Geography" />
           </div>
+          <ImageWrapper>
+            {" "}
+            <GatsbyImage
+              image={pathToBrowseArchivesImage}
+              alt={browsearchivesalt}
+              className="c-browsearchives__image"
+            ></GatsbyImage>
+          </ImageWrapper>
+          <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
+          <DefaultButton
+            url="#"
+            title="See More"
+            className="c-browsearchives__button"
+          ></DefaultButton>
         </section>
         <section className="l-workshops">
           <h1 className="c-workshops__title">Workshops</h1>
@@ -129,7 +156,7 @@ const Index = () => {
               className="c-workshops__image"
             ></GatsbyImage>
           </ImageWrapper>
-          <p className="c-workshops__blurb">{browseArchivesBlurb}</p>
+          <p className="c-workshops__blurb">{workshopBlurb}</p>
           <DefaultButton url="/eventlist" title="See More"></DefaultButton>
         </section>
         <section className="l-projectmembers">
@@ -152,6 +179,7 @@ const Index = () => {
 
 const ImageWrapper = styled.article`
   margin: 0;
+
   .c-welcome__image {
     margin: 2vh 0vw;
     border-radius: calc(1.5rem + 4px);
@@ -171,6 +199,35 @@ const ImageWrapper = styled.article`
     border-radius: calc(1.5rem + 4px);
     border: 1px solid var(--primary-clr-200);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  }
+
+  .c-browsearchives__image {
+    display: none; // display in mobile
+    margin: 2vh 0vw;
+    border-radius: calc(1.5rem + 4px);
+    border: 1px solid var(--primary-clr-200);
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  }
+
+  @media (min-width: 992px) {
+    .c-welcome__image {
+      margin: 1vh 0vw;
+    }
+    .c-workshops__image {
+      margin: 1vh 0vw;
+    }
+    .c-projectmembers__image {
+      margin: 1vh 0vw;
+    }
+    .c-browsearchives__image {
+      display: inline-block; //enable in non-mobile layouts
+      margin: 1vh 0vw;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .c-browsearchives__image {
+    }
   }
 `;
 
@@ -206,6 +263,7 @@ const IndexWrapper = styled.main`
   }
   .c-featureddocs__title {
     text-align: center;
+    margin-bottom: 4vh;
   }
 
   .l-recentlyadded {
@@ -221,6 +279,7 @@ const IndexWrapper = styled.main`
 
   .c-recentlyadded__title {
     text-align: center;
+    margin-bottom: 4vh;
   }
 
   .l-browsearchives {
@@ -230,11 +289,22 @@ const IndexWrapper = styled.main`
     text-align: center;
   }
 
+  .c-browsearchives__blurb {
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+    margin: 2vh 0vw;
+  }
+
   .c-browsearchives__container {
     margin: 2vh 0vw;
   }
 
-  .l-workshops {
+  .c-browsearchives__button {
+    display: none;
+  }
+
+  .c-br .l-workshops {
     margin: 6vh 0vw;
   }
   .c-workshops__title {
@@ -302,15 +372,21 @@ const IndexWrapper = styled.main`
     }
 
     .c-welcome__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
+
+    .c-welcome__blurb {
+      margin: 1vh 0vw;
+    }
+
     .l-featureddocs {
       grid-area: featured;
       margin: 0;
     }
 
     .c-featureddocs__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0;
     }
 
     .c-featureddocs__container {
@@ -324,21 +400,37 @@ const IndexWrapper = styled.main`
     }
 
     .c-recentlyadded__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0;
     }
 
     .c-recentlyadded__container {
       background-color: transparent;
       padding: 0;
     }
+
     .l-browsearchives {
       grid-area: browsearchives;
-      margin-bottom: 2vh;
       margin: 0;
+      margin-bottom: 2vh;
     }
 
     .c-browsearchives__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .c-browsearchives__container {
+      display: none;
+    }
+
+    .c-browsearchives__blurb {
+      display: flex;
+      margin: 1vh 0vw;
+      text-align: center;
+    }
+
+    .c-browsearchives__button {
+      display: flex;
     }
 
     .c-bacard__Search {
@@ -355,7 +447,11 @@ const IndexWrapper = styled.main`
     }
 
     .c-workshops__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .c-workshops__blurb {
+      margin: 1vh 0vw;
     }
     .l-projectmembers {
       grid-area: projectmembers;
@@ -364,35 +460,90 @@ const IndexWrapper = styled.main`
     }
 
     .c-projectmembers__title {
-      font-size: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .c-projectmembers__blurb {
+      margin: 1vh 0vw;
     }
   }
   ////////////////////////////////
   ////////// Desktop /////////////
   ////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 8vh 4.5vw;
+    padding: 8vh 6.5vw;
+    .c-divider__one {
+      margin: 5vh 1vh 20vh 1vw; // top, right, bottom, left
+    }
+    .c-divider__two {
+      margin: 5vh 3vh 20vh 1vw; // top, right, bottom, left
+    }
 
+    .l-welcome {
+      margin-bottom: 4vh;
+    }
     .c-welcome__title {
       margin-bottom: 6vh;
+      font-size: 1.7rem;
+    }
+    .c-welcome__blurb {
+      margin: 3vh 0vw;
+      p {
+        line-height: 1.215;
+        font-size: 0.9rem;
+      }
     }
     .c-featureddocs__title {
       margin-bottom: 6vh;
+      font-size: 1.7rem;
     }
     .c-recentlyadded__title {
       margin-bottom: 6vh;
+      font-size: 1.7rem;
     }
 
+    .l-browsearchives {
+      margin-bottom: 4vh;
+    }
+    .c-browsearchives__title {
+      margin-bottom: 4vh;
+      font-size: 2rem;
+    }
     .c-browsearchives__container {
+      margin-bottom: 6vh;
+    }
+    .c-browsearchives__blurb {
+      margin: 3vh 0vw;
+      text-align: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .l-workshops {
       margin-bottom: 6vh;
     }
 
     .c-workshops__title {
-      margin-bottom: 6vh;
+      margin-bottom: 4vh;
+      font-size: 2rem;
     }
 
+    .c-workshops__blurb {
+      margin: 3vh 0vw;
+      font-size: 0.9rem;
+    }
+
+    .l-projectmembers {
+      margin-bottom: 4vh;
+    }
     .c-projectmembers__title {
-      margin-bottom: 6vh;
+      margin-bottom: 4vh;
+      font-size: 2rem;
+    }
+
+    .c-projectmembers__blurb {
+      font-size: 0.9rem;
+      margin: 3vh 0vw;
     }
   }
 `;

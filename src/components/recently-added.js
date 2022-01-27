@@ -149,12 +149,15 @@ const FeatureCardWrapper = styled.section`
 
   @media (min-width: 1280px) {
     .c-recentlyaddedcard {
-      margin: 2vh 0vw;
-      padding: 3vh 1.5vh;
+      margin: 2vh 1vw;
+      padding: 3vh 0.5vh;
     }
 
     .c-recentlyaddedcard__oneliner {
-      margin: 1.5vh 2vw;
+      margin: 1.5vh 1.2vw;
+      p {
+        font-size: 0.75rem;
+      }
     }
 
     .c-recentlyaddedcard__read {
