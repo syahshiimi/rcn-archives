@@ -201,7 +201,7 @@ const AccordionWrapper = styled.div`
   .c-accordion__header {
     display: flex;
     flex-direction: row;
-    padding: 1.5vh 6vw;
+    padding: 1.2vh 6vw;
     align-items: center;
     justify-content: space-between;
     width: 100%;

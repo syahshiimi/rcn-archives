@@ -8,10 +8,10 @@ import parse from "html-react-parser";
 import { Accordion } from "../../components/accordion";
 import { GatsbyImage } from "gatsby-plugin-image";
 import slugify from "slugify";
+import { ReadFullButton } from "../../components/read-full";
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
-  console.log(transcript);
 
   // filter through passed object to remove null values
   ////////////////////////////////////////////////////////////
@@ -92,12 +92,7 @@ const TranscriptTemplate = ({ data }) => {
           type="Document Transcript"
           name="document__transcript non-mobile"
         />
-        <Link
-          to={`/browsearchives/archives/${slug}`}
-          className="c-transcript__readtrans"
-        >
-          Read Full Transcript
-        </Link>
+        <ReadFullButton slug={slug} />
         <Accordion
           transcript={transcript}
           type="Document Information"
@@ -219,7 +214,7 @@ const TranscriptWrapper = styled.section`
       "title title"
       "container container"
       "border border"
-      " . read"
+      "read read"
       "summary summary"
       "info questions";
 
