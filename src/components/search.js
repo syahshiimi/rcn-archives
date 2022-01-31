@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
 import styled from "styled-components";
@@ -26,7 +25,7 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
         className="c-browsearchives__searchbar"
         action="/"
         method="get"
-        autoComplete="off"
+        autoComplete="on"
         onSubmit={handleSubmit}
       >
         <label htmlFor="c-browsearchives__searchinput">

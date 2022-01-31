@@ -55,7 +55,6 @@ const BrowseArchives = () => {
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
-  console.log(queryState);
   const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results

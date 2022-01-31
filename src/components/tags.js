@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "gatsby";
 
 export const TagsContainer = ({ tags = [] }) => {
   return (
     <TagsWrapper className="c-tagscontainer">
       {tags.map((item, index) => {
+        const searchLink = `/browsearchives?s=${item}`;
+
         return (
-          <div className="c-tagscontainer__tagpill" key={index}>
+          <button className="c-tagscontainer__tagpill" key={index}>
             <p className="c-tagscontainer__tag">{item}</p>
-          </div>
+          </button>
         );
       })}
     </TagsWrapper>
