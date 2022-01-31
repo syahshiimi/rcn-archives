@@ -47,6 +47,7 @@ const BrowseArchives = () => {
   const transcript = data.allContentfulInterviewTranscripts.nodes;
   const find = data.localSearchArchives;
   const { index, store } = find;
+  console.log(find);
 
   /////////////////////////////////
   //////// Search Function ////////
@@ -55,6 +56,7 @@ const BrowseArchives = () => {
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
+  console.log(queryState);
   const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results
@@ -63,6 +65,8 @@ const BrowseArchives = () => {
       const {
         oneLiner,
         id,
+        interviewer,
+        interviewee,
         transcriptTitle,
         transcriptTags,
         oneLineTeaser: {
@@ -70,18 +74,19 @@ const BrowseArchives = () => {
         },
       } = item;
       return {
-        oneLiner,
+        oneLiner, // this is for search
         id,
+        interviewer,
+        interviewee,
         transcriptTitle,
         transcriptTags,
         oneLineTeaser: {
-          childMarkdownRemark: { html },
+          childMarkdownRemark: { html }, // this is for parsing in the searchcard during render
         },
       };
     });
 
-  // set defaults where if empty or nothing in search
-  // we return the entire transcript
+  // set defaults where we return the entire transcript
   const FilteredTranscript = queryState
     ? unFlattenResults(results)
     : transcript;

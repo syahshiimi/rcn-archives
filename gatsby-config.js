@@ -5,7 +5,7 @@
  */
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -56,21 +56,31 @@ module.exports = {
 
         `,
         ref: "id",
-        index: ["transcriptTitle", "transcriptTags", "oneLineTeaser"],
+        index: [
+          "transcriptTitle",
+          "transcriptTags",
+          "oneLineTeaser",
+          "interviewer",
+          "interviewee",
+        ],
         store: [
           "id",
           "transcriptTitle",
           "transcriptTags",
           "oneLiner",
           "oneLineTeaser",
+          "interviewer",
+          "interviewee",
         ],
         normalizer: ({ data }) =>
-          data.allContentfulInterviewTranscripts.nodes.map(node => ({
+          data.allContentfulInterviewTranscripts.nodes.map((node) => ({
             id: node.id,
             transcriptTitle: node.transcriptTitle,
             transcriptTags: node.transcriptTags,
             oneLiner: node.oneLineTeaser.oneLineTeaser,
             oneLineTeaser: node.oneLineTeaser,
+            interviewer: node.interviewer,
+            interviewee: node.interviewee,
           })),
       },
     },
@@ -103,4 +113,4 @@ module.exports = {
       },
     },
   ],
-}
+};
