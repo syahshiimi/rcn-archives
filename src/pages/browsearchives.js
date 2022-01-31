@@ -63,7 +63,7 @@ const BrowseArchives = () => {
   const unFlattenResults = (results) =>
     results.map((item) => {
       const {
-        oneLiner,
+        oneLiner, // this is for search
         id,
         interviewer,
         interviewee,
@@ -129,12 +129,8 @@ const BrowseArchives = () => {
               grassroots perspective.
             </p>
           </section>
-          <section className="l-browsearchives__map">
-            <ArchivesMap />
-          </section>
           <section className="l-browsearchives__search">
             <h1 className="c-browsearchives__searchresults">Search Results</h1>
-            <SearchFilter />
             <section className="c-browsearchives__searchcontainer">
               {FilteredTranscript.map((item) => {
                 const {
@@ -236,10 +232,6 @@ const BrowseArchivesWrapper = styled.main`
     transform: scale(1);
   }
 
-  .l-browsearchives__map {
-    display: none;
-  }
-
   .c-browsearchives__searchresults {
     text-align: center;
     margin-bottom: 4vh;
@@ -263,7 +255,8 @@ const BrowseArchivesWrapper = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    flex: 1 1 auto;
+    
     // Enable archives
     .desktop {
       display: grid;
@@ -272,7 +265,7 @@ const BrowseArchivesWrapper = styled.main`
     section {
       padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     }
-
+    
     .c-browsearchives__filtercontainer {
       margin-right: 12vw;
       margin-top: 0;
@@ -293,18 +286,27 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__filtercontainer > label {
       font-size: 0.825rem;
     }
+    
+    .c-browsearchives__content {
+      margin: 0vh 2vw;
+    }
+
+    .l-browsearchives__search {
+      padding-top: 0;
+      display: flex;
+      justify-content: stretch;
+      flex: 1 1 auto;
+    }
 
     .c-browsearchives__searchresults {
       margin: 3vh 0vw;
     }
 
     .c-browsearchives__searchcontainer {
-      max-width: 75vw;
+      width: 75vw;
+
     }
     
-    .l-browsearchives__search {
-      padding-top 0vh;
-    }
 
   }
 

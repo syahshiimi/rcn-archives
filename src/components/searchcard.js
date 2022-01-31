@@ -29,6 +29,7 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
 const SearchCardWrapper = styled.main`
   .l-searchcard {
     display: flex;
+    justify-content: center;
     background-color: var(--primary-clr-100);
     padding: 3vh 7vw;
     margin: 0.85vh 2vw;
