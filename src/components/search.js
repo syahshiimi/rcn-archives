@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
@@ -6,15 +6,17 @@ import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
-  const LiveSearch = useNavigate();
   const refContainer = useRef(null);
 
   const handleSubmit = (e) => {
-    LiveSearch(`?s=${queryState}`);
     e.preventDefault();
-    scrollTo(".c-browsearchives__searchresults");
+    LiveSearch(`?s=${queryState}`); // concatenate url with search query value
+    scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
 
+  // We use use useState to shift between to value states
+  // The default initial state will be the queryState, passed from browsearchives.js
+  // where it is the user-typed input
   useEffect(() => {
     refContainer.current.focus();
   });
@@ -39,7 +41,7 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
           placeholder="Browse by keywords, topics themes or #tags"
           name="s"
           ref={refContainer}
-          value={queryState}
+          value={queryState} // this is the input value in the form itself!
           onInput={(e) => setSearchQuery(e.target.value)}
         />
         <button className="c-browsearchives__searchbutton" type="submit">

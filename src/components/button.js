@@ -1,7 +1,8 @@
 import { IconContext } from "@react-icons/all-files/lib";
 import { Link } from "gatsby";
 import { TiArrowLeft } from "@react-icons/all-files/ti/TiArrowLeft";
-import React from "react";
+import { TiArrowUp } from "@react-icons/all-files/ti/TiArrowUp";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const DefaultButton = ({ title, url, className }) => {
@@ -43,6 +44,27 @@ export const BackToSummaryBtn = () => {
         </IconContext.Provider>
       </button>
     </AltButtonWrapper>
+  );
+};
+
+export const BackToSearchBtn = () => {
+  const BTS = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <BackToSearchBtnWrapper>
+      {" "}
+      <button onClick={BTS} className="c-button">
+        <p className="c-button__text">Back To Search</p>
+        <IconContext.Provider value={{ className: "c-button__icon" }}>
+          <TiArrowUp />
+        </IconContext.Provider>
+      </button>
+    </BackToSearchBtnWrapper>
   );
 };
 
@@ -110,6 +132,40 @@ const AltButtonWrapper = styled.div`
   .c-button__icon {
     width: 2rem;
     height: 2rem;
+  }
+`;
+
+const BackToSearchBtnWrapper = styled.div`
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  .c-button {
+    /* display */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 2vw;
+    flex-direction: column-reverse;
+
+    /* styling */
+    background-color: var(--primary-clr-250);
+    border: none;
+  }
+
+  .c-button__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-shadow: ;
+  }
+
+  .c-button__text {
+    font-size: 0.85rem;
   }
 `;
 

@@ -8,6 +8,7 @@ import { SearchFilter } from "../components/searchfilter";
 import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
 import { ArchivesMap } from "../components/maps";
+import { BackToSearchBtn } from "../components/button";
 
 const query = graphql`
   {
@@ -47,7 +48,6 @@ const BrowseArchives = () => {
   const transcript = data.allContentfulInterviewTranscripts.nodes;
   const find = data.localSearchArchives;
   const { index, store } = find;
-  console.log(find);
 
   /////////////////////////////////
   //////// Search Function ////////
@@ -56,8 +56,12 @@ const BrowseArchives = () => {
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
-  console.log(queryState);
   const results = useFlexSearch(queryState, index, store);
+
+  // use ternary operator to control value input for the search.js
+  console.log(search);
+  console.log(queryState);
+  //  console.log(setSearchQuery);
 
   // Unflatten  Results
   const unFlattenResults = (results) =>
@@ -100,6 +104,7 @@ const BrowseArchives = () => {
       {" "}
       <Layout>
         <BrowseArchivesWrapper>
+          <BackToSearchBtn />
           <section className="l-browsearchives">
             <h1 className="c-browsearchives__heading">Search The Archives</h1>
             <SearchBar
@@ -296,6 +301,7 @@ const BrowseArchivesWrapper = styled.main`
       display: flex;
       justify-content: stretch;
       flex: 1 1 auto;
+      max-width: 100%;
     }
 
     .c-browsearchives__searchresults {
@@ -336,7 +342,7 @@ const BrowseArchivesWrapper = styled.main`
     }
     
     .l-browsearchives__search {
-      max-width: 100vw;
+      max-width: 100%;
     }
 
     .c-browsearchives__searchresults {
@@ -344,7 +350,6 @@ const BrowseArchivesWrapper = styled.main`
   }
     
     .c-browsearchives__searchcontainer {
-      margin: 0vh 1vw;
     }
 `;
 export default BrowseArchives;
