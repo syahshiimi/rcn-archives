@@ -1,24 +1,19 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { navigate } from "gatsby";
 
-export const TagsContainer = ({ tags = [] }) => {
-  const TagClick = () => {
-    location.reload();
-  };
+export const TagsContainer = ({ tags = [], func }) => {
+
   return (
     <TagsWrapper className="c-tagscontainer">
       {tags.map((item, index) => {
-        // Create function for tags
-        const searchLink = `/browsearchives?s=${item}`;
         return (
-          <Link to={searchLink} key={index}>
-            {" "}
-            <button className="c-tagscontainer__tagpill" onClick={TagClick}>
-              <p className="c-tagscontainer__tag">{item}</p>
-            </button>
-          </Link>
+          <button
+            className="c-tagscontainer__tagpill"
+            key={index}
+            onClick={() => func({ item })}
+          >
+            ><p className="c-tagscontainer__tag">{item}</p>
+          </button>
         );
       })}
     </TagsWrapper>

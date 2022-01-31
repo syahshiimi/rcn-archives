@@ -4,10 +4,8 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 import { SearchCard } from "../components/searchcard";
-import { SearchFilter } from "../components/searchfilter";
 import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
-import { ArchivesMap } from "../components/maps";
 import { BackToSearchBtn } from "../components/button";
 
 const query = graphql`
@@ -52,16 +50,23 @@ const BrowseArchives = () => {
   /////////////////////////////////
   //////// Search Function ////////
   /////////////////////////////////
+  // Create function in this parent to extract from child props
+  // In this function, we want to get the query value based on the
+  // tag pill that was clicked.
+  //. The idea here is to have use interject in the query state value
+  // in order to have the tags pill search function working.
+
+  let searchTag;
+  const getItem = function (value) {
+    const { item } = value;
+    console.log(item);
+    searchTag = item;
+  };
 
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
   const results = useFlexSearch(queryState, index, store);
-
-  // use ternary operator to control value input for the search.js
-  console.log(search);
-  console.log(queryState);
-  //  console.log(setSearchQuery);
 
   // Unflatten  Results
   const unFlattenResults = (results) =>
@@ -152,6 +157,7 @@ const BrowseArchives = () => {
                     transcriptTags={transcriptTags}
                     html={html}
                     key={id}
+                    func={getItem}
                   />
                 );
               })}

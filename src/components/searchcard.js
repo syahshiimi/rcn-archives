@@ -5,7 +5,7 @@ import slugify from "slugify";
 import { Link } from "gatsby";
 import { TagsContainer } from "./tags";
 
-export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
+export const SearchCard = ({ id, transcriptTitle, transcriptTags, html, func }) => {
   // remove dots in strings (if exists)
   const cleanString = transcriptTitle.replace(".", " ");
   // use slugify to return a string in a slug format
@@ -16,7 +16,7 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html }) => {
         <div className="c-searchcard__title">{transcriptTitle}</div>
         <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
         <span className="c-searchcard__tagscontainer">
-          <TagsContainer tags={transcriptTags} />
+          <TagsContainer tags={transcriptTags} func={func} />
         </span>
         <span className="c-searchcard__read">
           <Link to={`${slug}`}>Read More </Link>

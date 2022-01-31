@@ -7,6 +7,7 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
+  const LiveSearch = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,12 +15,9 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
     scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
 
-  // We use use useState to shift between to value states
-  // The default initial state will be the queryState, passed from browsearchives.js
-  // where it is the user-typed input
   useEffect(() => {
     refContainer.current.focus();
-  });
+  }, []);
 
   return (
     <SeaerchBarWrapper>
