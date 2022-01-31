@@ -5,7 +5,7 @@ import { IconContext } from "@react-icons/all-files/lib";
 import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
 
-export const SearchBar = ({ queryState, setSearchQuery }) => {
+export const SearchBar = ({ queryState, setSearchQuery, getItem }) => {
   const refContainer = useRef(null);
   const LiveSearch = useNavigate();
 
@@ -19,11 +19,14 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
     refContainer.current.focus();
   }, []);
 
+  const [inputValue, setInputValue] = useState(queryState);
+  const changeValue = () => {
+    setInputValue("dog");
+  };
   return (
     <SeaerchBarWrapper>
       <form
         className="c-browsearchives__searchbar"
-        action="/"
         method="get"
         autoComplete="on"
         onSubmit={handleSubmit}

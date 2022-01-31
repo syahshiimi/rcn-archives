@@ -50,22 +50,24 @@ const BrowseArchives = () => {
   /////////////////////////////////
   //////// Search Function ////////
   /////////////////////////////////
-  // Create function in this parent to extract from child props
-  // In this function, we want to get the query value based on the
-  // tag pill that was clicked.
-  //. The idea here is to have use interject in the query state value
-  // in order to have the tags pill search function working.
 
-  let searchTag;
-  const getItem = function (value) {
+  // We create a function that grabs the name of the tag that was selectged
+  // Afterwards, we store this as a variable
+  // We will use this new variable and pass it as a search query
+  const getItem = (value = []) => {
     const { item } = value;
-    console.log(item);
-    searchTag = item;
+    let searchTag = item;
+    if (searchTag == undefined) {
+      return null;
+    } else {
+      console.log("search tag is defined");
+      return searchTag;
+    }
   };
 
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
-  const [queryState, setSearchQuery] = useState(searchQuery || "");
+  const [queryState, setSearchQuery] = useState("");
   const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results
@@ -115,6 +117,7 @@ const BrowseArchives = () => {
             <SearchBar
               queryState={queryState}
               setSearchQuery={setSearchQuery}
+              getItem={getItem}
             />
             <div className="c-browsearchives__filtercontainer">
               <label
