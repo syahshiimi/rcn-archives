@@ -88,7 +88,8 @@ const FeatureImageWrapper = styled.article``;
 const FeatureCardWrapper = styled.section`
   .c-recentlyaddedcard {
     display: flex;
-    background-color: var(--primary-clr-100);
+    background-color: var(--primary-clr-50);
+    opacity: 0.8;
     padding: 3vh 7vw;
     margin: 2vh 2vw;
 

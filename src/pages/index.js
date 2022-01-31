@@ -214,25 +214,37 @@ const ImageWrapper = styled.article`
   @media (min-width: 992px) {
     .c-welcome__image {
       margin: 1vh 0vw;
-      width: 85%;
+      width: 95%;
     }
     .c-workshops__image {
       margin: 1vh 0vw;
-      width: 85%;
+      width: 95%;
     }
     .c-projectmembers__image {
       margin: 1vh 0vw;
-      width: 85%;
+      width: 95%;
     }
     .c-browsearchives__image {
       display: inline-block; //enable in non-mobile layouts
-      width: 85%;
+      width: 95%;
       margin: 1vh 0vw;
     }
   }
 
   @media (min-width: 1280px) {
+    .c-welcome__image {
+      width: 100%;
+    }
     .c-browsearchives__image {
+      width: 100%;
+    }
+
+    .c-workshops__image {
+      width: 100%;
+    }
+
+    .c-projectmembers__image {
+      width: 100%;
     }
   }
 `;
@@ -477,23 +489,24 @@ const IndexWrapper = styled.main`
   ////////// Desktop /////////////
   ////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 8vh 6.5vw;
+    padding: 8vh 10vw;
+
     .c-divider__one {
       margin: 5vh 1vh 20vh 1vw; // top, right, bottom, left
     }
     .c-divider__two {
-      margin: 5vh 0vh 20vh 1vw; // top, right, bottom, left
+      margin: 5vh 1vh 20vh 1vw; // top, right, bottom, left
     }
 
     .l-welcome {
-      margin-bottom: 2vh;
+      margin: 0vh 1vw 2vh 1vw;
     }
     .c-welcome__title {
       margin-bottom: 6vh;
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
-      margin: 3vh 3vw;
+      margin: 3vh 0vw;
       p {
         line-height: 1.215;
         font-size: 0.9rem;
@@ -509,7 +522,7 @@ const IndexWrapper = styled.main`
     }
 
     .l-browsearchives {
-      margin-bottom: 2vh;
+      margin: 0vh 1vw 2vh 1vw;
     }
     .c-browsearchives__title {
       margin-bottom: 4vh;
@@ -526,7 +539,8 @@ const IndexWrapper = styled.main`
     }
 
     .l-workshops {
-      margin-bottom: 2vh;
+      margin: 0vh 1vw 2vh 1vw;
+    }
     }
 
     .c-workshops__title {
@@ -540,7 +554,7 @@ const IndexWrapper = styled.main`
     }
 
     .l-projectmembers {
-      margin-bottom: 2vh;
+      margin: 0vh 1vw 2vh 1vw;
     }
     .c-projectmembers__title {
       margin-bottom: 4vh;
