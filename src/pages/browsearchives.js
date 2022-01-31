@@ -55,6 +55,7 @@ const BrowseArchives = () => {
   const { search } = window.location;
   const searchQuery = new URLSearchParams(search).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
+  console.log(queryState);
   const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results
@@ -91,63 +92,69 @@ const BrowseArchives = () => {
   /////////////////////////////
 
   return (
-    <Layout>
-      <BrowseArchivesWrapper>
-        <section className="l-browsearchives">
-          <h1 className="c-browsearchives__heading">Search The Archives</h1>
-          <SearchBar query={queryState} setSearchQuery={setSearchQuery} />
-          <div className="c-browsearchives__filtercontainer">
-            <label
-              htmlFor="c-browsearchives__filterbykeywords"
-              className="c-browsearchives__keywordscheckbox"
-            >
-              <input type="checkbox" value="keywords" />
-              Filter by keywords
-            </label>
-            <label
-              htmlFor="c-browsearchives__filterbytags"
-              className="c-browsearchives__tagscheckbox"
-            >
-              <input type="checkbox" value="tags" />
-              Filter by tags
-            </label>
-          </div>
-          <p className="c-browsearchives__content">
-            Browse through our carefully curated oral archives. Working with
-            on-the-ground experiences, we aim to provide a wholesome and
-            comprehensive approach towards understanding the cold war from a
-            grassroots perspective.
-          </p>
-        </section>
-        <section className="l-browsearchives__map">
-          <ArchivesMap />
-        </section>
-        <section className="l-browsearchives__search">
-          <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <SearchFilter />
-          <section className="c-browsearchives__searchcontainer">
-            {FilteredTranscript.map((item) => {
-              const {
-                id,
-                transcriptTitle,
-                transcriptTags,
-                oneLineTeaser: {
-                  childMarkdownRemark: { html },
-                },
-              } = item;
-              return (
-                <SearchCard
-                  transcriptTitle={transcriptTitle}
-                  transcriptTags={transcriptTags}
-                  html={html}
-                  key={id}
-                />
-              );
-            })}
+    <Router>
+      {" "}
+      <Layout>
+        <BrowseArchivesWrapper>
+          <section className="l-browsearchives">
+            <h1 className="c-browsearchives__heading">Search The Archives</h1>
+            <SearchBar
+              queryState={queryState}
+              setSearchQuery={setSearchQuery}
+            />
+            <div className="c-browsearchives__filtercontainer">
+              <label
+                htmlFor="c-browsearchives__filterbykeywords"
+                className="c-browsearchives__keywordscheckbox"
+              >
+                <input type="checkbox" value="keywords" />
+                Filter by keywords
+              </label>
+              <label
+                htmlFor="c-browsearchives__filterbytags"
+                className="c-browsearchives__tagscheckbox"
+              >
+                <input type="checkbox" value="tags" />
+                Filter by tags
+              </label>
+            </div>
+            <p className="c-browsearchives__content">
+              Browse through our carefully curated oral archives. Working with
+              on-the-ground experiences, we aim to provide a wholesome and
+              comprehensive approach towards understanding the cold war from a
+              grassroots perspective.
+            </p>
           </section>
-        </section>
-      </BrowseArchivesWrapper>
-    </Layout>
+          <section className="l-browsearchives__map">
+            <ArchivesMap />
+          </section>
+          <section className="l-browsearchives__search">
+            <h1 className="c-browsearchives__searchresults">Search Results</h1>
+            <SearchFilter />
+            <section className="c-browsearchives__searchcontainer">
+              {FilteredTranscript.map((item) => {
+                const {
+                  id,
+                  transcriptTitle,
+                  transcriptTags,
+                  oneLineTeaser: {
+                    childMarkdownRemark: { html },
+                  },
+                } = item;
+                return (
+                  <SearchCard
+                    transcriptTitle={transcriptTitle}
+                    transcriptTags={transcriptTags}
+                    html={html}
+                    key={id}
+                  />
+                );
+              })}
+            </section>
+          </section>
+        </BrowseArchivesWrapper>
+      </Layout>
+    </Router>
   );
 };
 

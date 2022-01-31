@@ -24,8 +24,8 @@ export const ReadFullButton = ({ slug }) => {
 const ReadFullButtonWrapper = styled.article`
   display: none;
   @media (min-width: 992px) {
+    display: flex;
     grid-area: read;
-    flex: 1 1 auto;
     flex-direction: row;
     /* styling */
     background-color: var(--secondary-clr-250);
@@ -39,6 +39,7 @@ const ReadFullButtonWrapper = styled.article`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
     }
     a {
       text-decoration: none;
@@ -52,8 +53,8 @@ const ReadFullButtonWrapper = styled.article`
     }
 
     .c-readfullbutton__icon {
-      height: 2.5rem;
-      width: 2.5rem;
+      height: 2.8rem;
+      width: 2.8rem;
     }
   }
 `;

@@ -196,9 +196,6 @@ const TranscriptWrapper = styled.section`
     display: none;
   }
 
-  .c-transcript__readtrans {
-    display: none;
-  }
   ///////////////////////////
   ////// Tablet /////////////
   ///////////////////////////
@@ -281,14 +278,7 @@ const TranscriptWrapper = styled.section`
       border-radius: 1px;
       grid-area: border;
     }
-    .c-transcript__readtrans {
-      display: flex;
-      grid-area: read;
-      justify-self: end;
-      font-size: 1.15rem;
-      font-weight: 500;
-      font-style: normal;
-    }
+
     .document__summary {
       grid-area: summary;
     }
