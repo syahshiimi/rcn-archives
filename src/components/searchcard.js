@@ -5,7 +5,13 @@ import slugify from "slugify";
 import { Link } from "gatsby";
 import { TagsContainer } from "./tags";
 
-export const SearchCard = ({ id, transcriptTitle, transcriptTags, html, func }) => {
+export const SearchCard = ({
+  id,
+  transcriptTitle,
+  transcriptTags,
+  html,
+  func,
+}) => {
   // remove dots in strings (if exists)
   const cleanString = transcriptTitle.replace(".", " ");
   // use slugify to return a string in a slug format
@@ -13,14 +19,18 @@ export const SearchCard = ({ id, transcriptTitle, transcriptTags, html, func }) 
   return (
     <SearchCardWrapper>
       <div className="l-searchcard">
-        <div className="c-searchcard__title">{transcriptTitle}</div>
+        <div className="c-searchcard__title">
+          <Link to={`${slug}`}>{transcriptTitle}</Link>
+          {/* {transcriptTitle} */}
+        </div>
+
         <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
         <span className="c-searchcard__tagscontainer">
           <TagsContainer tags={transcriptTags} func={func} />
         </span>
-        <span className="c-searchcard__read">
-          <Link to={`${slug}`}>Read More </Link>
-        </span>
+        {/* <span className="c-searchcard__read"> */}
+        {/* <Link to={`${slug}`}>Read More </Link> */}
+        {/* </span> */}
       </div>
     </SearchCardWrapper>
   );
@@ -42,10 +52,12 @@ const SearchCardWrapper = styled.main`
   }
 
   .c-searchcard__title {
-    font-family: "Lora", Serif;
-    font-weight: bold;
     font-size: 0.95rem;
     margin: 0.45vh 0vw;
+    a {
+      font-family: "Lora", Serif !important;
+      font-weight: bold !important;
+    }
   }
 
   .c-searchcard__oneliner {
@@ -142,13 +154,16 @@ const SearchCardWrapper = styled.main`
         }
       }
 
-      .c-searchcard__tagscontainer {
-        margin: 1vh 0vw;
-      }
-
       .c-searchcard__read {
         margin: 1.2vh;
         font-size: 1.125rem;
+      }
+      .c-searchcard__tagscontainer {
+        margin: 1.25vh 0vw;
+      }
+
+      .c-tagscontainer__tag {
+        font-size: 0.875rem;
       }
     }
   }

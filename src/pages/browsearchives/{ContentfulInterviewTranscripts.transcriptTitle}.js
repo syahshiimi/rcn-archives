@@ -1,5 +1,4 @@
 import { graphql, Link } from "gatsby";
-import { TagsContainer } from "../../components/tags";
 import { getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
@@ -9,6 +8,7 @@ import { Accordion } from "../../components/accordion";
 import { GatsbyImage } from "gatsby-plugin-image";
 import slugify from "slugify";
 import { ReadFullButton } from "../../components/read-full";
+import { NestedTagsContainer } from "../../components/tags";
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
@@ -76,7 +76,7 @@ const TranscriptTemplate = ({ data }) => {
               <h5>Tags & Keywords</h5>
             </div>
             <div className="c-transcript__tagscontainer">
-              <TagsContainer tags={transcriptTags} />
+              <NestedTagsContainer tags={transcriptTags} />
             </div>
           </div>
         </div>

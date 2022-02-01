@@ -1,5 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
+
+////////////////////////////////////////////
+/////////// Search Cards ///////////////////
+////////////////////////////////////////////
 
 export const TagsContainer = ({ tags = [], func }) => {
   return (
@@ -19,6 +23,20 @@ export const TagsContainer = ({ tags = [], func }) => {
   );
 };
 
+export const NestedTagsContainer = ({ tags = [] }) => {
+  return (
+    <TagsWrapper className="c-tagscontainer">
+      {tags.map((item, index) => {
+        return (
+          <button className="c-tagscontainer__tagpill" key={index}>
+            <p className="c-tagscontainer__tag">{item}</p>
+          </button>
+        );
+      })}
+    </TagsWrapper>
+  );
+};
+
 const TagsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -26,6 +44,7 @@ const TagsWrapper = styled.div`
   justify-content: center;
 
   .c-tagscontainer__tagpill {
+    border: none;
     margin: 0.5vh 1vw;
     background-color: var(--primary-clr-150);
     display: flex;

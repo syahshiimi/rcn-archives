@@ -1,5 +1,5 @@
 import React from "react";
-import { TagsContainer } from "../../../components/tags";
+import { NestedTagsContainer } from "../../../components/tags";
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { graphql } from "gatsby";
 import Layout from "../../../components/Layout";
@@ -66,7 +66,8 @@ const FullTranscript = ({ data }) => {
         </div>
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
-        <TagsContainer tags={transcriptTags} />
+        <NestedTagsContainer tags={transcriptTags} />
+
         <div className="c-fulltranscript__endnotescontainer">
           <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
           <hr className="c-fulltranscript__endnotesborder"></hr>
