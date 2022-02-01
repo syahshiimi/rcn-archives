@@ -311,7 +311,7 @@ const BrowseArchivesWrapper = styled.main`
     }
     
     .c-browsearchives__content {
-      margin: 0vh 2vw;
+      margin: 2vh 2vw;
     }
 
     .l-browsearchives__search {
@@ -356,7 +356,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__content {
-      margin: 0vh 12vw;
+      margin: 4vh 12vw;
     }
     
     .l-browsearchives__search {

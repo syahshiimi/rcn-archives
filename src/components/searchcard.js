@@ -137,7 +137,7 @@ const SearchCardWrapper = styled.main`
 
       .l-searchcard {
         padding: 4vh 6vw 2vh 6vw;
-        margin: 2vh 2vw;
+        margin: 1.5vh 2vw;
       }
 
       .c-searchcard__title {

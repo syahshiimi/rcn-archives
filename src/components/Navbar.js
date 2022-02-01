@@ -74,7 +74,7 @@ const Navbar = () => {
                               <Link
                                 activeClassName="active--link"
                                 to={url}
-                                className="c-nav__sublink"
+                                className={"c-nav" + " " + text}
                               >
                                 {text}
                               </Link>
@@ -226,6 +226,9 @@ const NavStyle = styled.nav`
     margin: 0.875rem;
   }
 
+  .Browse.Archives.Map {
+  }
+
   ///////////////////////////////
   /////// TABLET ////////////////
   ///////////////////////////////
@@ -308,43 +311,44 @@ const NavStyle = styled.nav`
 
     .Browse.Archives {
       margin: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .c-nav__dropdown {
-      visibility: hidden;
-      opacity: 0;
+      /* visibility: hidden; */
+      /* opacity: 0; */
       transition: all 0.5 ease;
-      display: none;
+      /* display: none; */
     }
 
-    .c-nav__dropdown > li {
-      width: 100%;
-      margin: 1vh 0vw;
-    }
+    //  // Hide Browse Archives anchor tag on hover
+    //  ul li:hover > a.Browse.Archives {
+    //    display: none;
+    //    visibility: hidden;
+    //  }
 
-    // Hide Browse Archives anchor tag on hover
-    ul li:hover > a.Browse.Archives {
-      display: none;
-      visibility: hidden;
-    }
-
-    // We reveal the dropdown container .c-nav__dropdown & the nested
-    // ul hover remains visible as long as hover = true
-    ul li:hover > .c-nav__dropdown,
-    .c-nav__dropdown > ul:hover {
-      visibility: visible;
-      transition: all 0.8s ease-in-out;
-      opacity: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: end;
-      justify-content: center;
-      text-align: center;
-      width: 100%;
-      a {
-        text-align: center;
-      }
-    }
+    //  // We reveal the dropdown container .c-nav__dropdown & the nested
+    //  // ul hover remains visible as long as hover = true
+    //  ul li:hover > .c-nav__dropdown,
+    //  .c-nav__dropdown > ul:hover {
+    //    visibility: visible;
+    //    transition: all 0.8s ease-in-out;
+    //    opacity: 1;
+    //    display: flex;
+    //    flex-direction: column;
+    //    align-items: end;
+    //    justify-content: center;
+    //    text-align: center;
+    //    width: 100%;
+    //    a {
+    //      text-align: center;
+    //    }
+    //    li {
+    //      width: 100%;
+    //      margin: 1vh 0vw;
+    //    }
+    //  }
   }
 
   //////////////////////////////////
