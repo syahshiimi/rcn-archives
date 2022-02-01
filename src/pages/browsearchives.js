@@ -51,23 +51,21 @@ const BrowseArchives = () => {
   //////// Search Function ////////
   /////////////////////////////////
 
-  // We create a function that grabs the name of the tag that was selectged
-  // Afterwards, we store this as a variable
-  // We will use this new variable and pass it as a search query
-  const getItem = (value = []) => {
+  const { search } = window.location;
+  const searchQuery = new URLSearchParams(search).get("s");
+
+  const [queryState, setSearchQuery] = useState(searchQuery || "");
+
+  const onClick = (value = []) => {
     const { item } = value;
-    let searchTag = item;
-    if (searchTag == undefined) {
-      return null;
+    console.log(item);
+    if (queryState === searchQuery) {
+      setSearchQuery("");
     } else {
-      console.log("search tag is defined");
-      return searchTag;
+      setSearchQuery(item);
     }
   };
 
-  const { search } = window.location;
-  const searchQuery = new URLSearchParams(search).get("s");
-  const [queryState, setSearchQuery] = useState("");
   const results = useFlexSearch(queryState, index, store);
 
   // Unflatten  Results
@@ -117,7 +115,6 @@ const BrowseArchives = () => {
             <SearchBar
               queryState={queryState}
               setSearchQuery={setSearchQuery}
-              getItem={getItem}
             />
             <div className="c-browsearchives__filtercontainer">
               <label
@@ -160,7 +157,7 @@ const BrowseArchives = () => {
                     transcriptTags={transcriptTags}
                     html={html}
                     key={id}
-                    func={getItem}
+                    func={onClick}
                   />
                 );
               })}

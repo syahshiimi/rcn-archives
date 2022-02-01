@@ -4,8 +4,9 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
 import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import DefaultButton from "./button";
 
-export const SearchBar = ({ queryState, setSearchQuery, getItem }) => {
+export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
   const LiveSearch = useNavigate();
 
@@ -16,19 +17,15 @@ export const SearchBar = ({ queryState, setSearchQuery, getItem }) => {
   };
 
   useEffect(() => {
-    refContainer.current.focus();
-  }, []);
+    // refContainer.current.focus();
+  });
 
-  const [inputValue, setInputValue] = useState(queryState);
-  const changeValue = () => {
-    setInputValue("dog");
-  };
   return (
     <SeaerchBarWrapper>
       <form
         className="c-browsearchives__searchbar"
         method="get"
-        autoComplete="on"
+        autoComplete="off"
         onSubmit={handleSubmit}
       >
         <label htmlFor="c-browsearchives__searchinput">
@@ -37,6 +34,7 @@ export const SearchBar = ({ queryState, setSearchQuery, getItem }) => {
           </span>
         </label>
         <input
+          autoFocus="autofocus"
           type="text"
           className="c-browsearchives__searchinput"
           placeholder="Browse by keywords, topics themes or #tags"

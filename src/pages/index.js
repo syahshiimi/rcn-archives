@@ -141,7 +141,7 @@ const Index = () => {
           </ImageWrapper>
           <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
           <DefaultButton
-            url="#"
+            url="/browsemap"
             title="See More"
             className="c-browsearchives__button"
           ></DefaultButton>

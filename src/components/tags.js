@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 export const TagsContainer = ({ tags = [], func }) => {
-
   return (
     <TagsWrapper className="c-tagscontainer">
       {tags.map((item, index) => {
@@ -12,7 +11,7 @@ export const TagsContainer = ({ tags = [], func }) => {
             key={index}
             onClick={() => func({ item })}
           >
-            ><p className="c-tagscontainer__tag">{item}</p>
+            <p className="c-tagscontainer__tag">{item}</p>
           </button>
         );
       })}
