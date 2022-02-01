@@ -273,13 +273,14 @@ const NavStyle = styled.nav`
 
     .nav__links {
       display: inline-flex;
+      column-gap: 2.5vw;
     }
     .nav__links a {
       color: var(--primary-clr-50);
     }
 
     .nav__links > li {
-      margin: 0.8vw;
+      margin: 0vw;
       display: block;
     }
 
@@ -305,6 +306,10 @@ const NavStyle = styled.nav`
       display: block;
     }
 
+    .Browse.Archives {
+      margin: 0;
+    }
+
     .c-nav__dropdown {
       visibility: hidden;
       opacity: 0;
@@ -313,12 +318,14 @@ const NavStyle = styled.nav`
     }
 
     .c-nav__dropdown > li {
-      clear: both;
+      width: 100%;
+      margin: 1vh 0vw;
     }
 
     // Hide Browse Archives anchor tag on hover
     ul li:hover > a.Browse.Archives {
-      margin-top: 60px;
+      display: none;
+      visibility: hidden;
     }
 
     // We reveal the dropdown container .c-nav__dropdown & the nested
@@ -328,7 +335,15 @@ const NavStyle = styled.nav`
       visibility: visible;
       transition: all 0.8s ease-in-out;
       opacity: 1;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      a {
+        text-align: center;
+      }
     }
   }
 
