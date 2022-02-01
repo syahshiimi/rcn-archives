@@ -56,26 +56,33 @@ const Navbar = () => {
             {pageLinks.map((link) => {
               const { pageID, url, text, subMenu } = link;
               return (
-                <li key={pageID}>
-                  <Link activeClassName="active--link" to={url}>
+                <li key={pageID} className={text}>
+                  <Link
+                    activeClassName="active--link"
+                    to={url}
+                    className={text}
+                  >
                     {text}
                   </Link>
-                  {subMenu != undefined
-                    ? subMenu.map((items) => {
-                        const { pageID, url, text } = items;
-                        return (
-                          <div key={url + pageID}>
-                            <Link
-                              activeClassName="active--link"
-                              to={url}
-                              className="c-nav__sublink"
-                            >
-                              {text}
-                            </Link>
-                          </div>
-                        );
-                      })
-                    : null}
+                  <ul className="c-nav__dropdown">
+                    {" "}
+                    {subMenu != undefined
+                      ? subMenu.map((items) => {
+                          const { pageID, url, text } = items;
+                          return (
+                            <li key={url + pageID}>
+                              <Link
+                                activeClassName="active--link"
+                                to={url}
+                                className="c-nav__sublink"
+                              >
+                                {text}
+                              </Link>
+                            </li>
+                          );
+                        })
+                      : null}
+                  </ul>
                 </li>
               );
             })}
@@ -206,6 +213,19 @@ const NavStyle = styled.nav`
     display: none;
   }
 
+  .c-nav__dropdown > li {
+    list-style: none;
+  }
+
+  .Browse.Archives > a {
+    display: none;
+    visibility: none;
+  }
+
+  .Browse.Archives > li {
+    margin: 0.875rem;
+  }
+
   ///////////////////////////////
   /////// TABLET ////////////////
   ///////////////////////////////
@@ -251,12 +271,16 @@ const NavStyle = styled.nav`
       align-self: center;
     }
 
+    .nav__links {
+      display: inline-flex;
+    }
     .nav__links a {
       color: var(--primary-clr-50);
     }
 
     .nav__links > li {
       margin: 0.8vw;
+      display: block;
     }
 
     .active--link {
@@ -270,44 +294,47 @@ const NavStyle = styled.nav`
 
     .nav__search {
       display: none;
-
-      @media (min-width: 1280px) {
-        display: flex;
-        margin: 0.875rem 0rem;
-      }
-    }
-  }
-
-  .button {
-    background-color: var(--primary-clr-100);
-    display: flex;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    border-radius: 0px 25px 25px 0px;
-  }
-
-  input {
-    opacity: 50%;
-    text-align: center;
-    background: rgba(232, 237, 223, 0.5);
-    border: none;
-    border-radius: 25px 0px 0px 25px;
-
-    ::placeholder {
-      color: var(--primary-clr-50);
-      font-size: 0.8rem;
     }
 
-    /* dropdown menu for mobile */
-    .nav__btn {
+    .nav__links > li {
+      transition-duration: 0.5s;
+    }
+
+    .Browse.Archives > a {
+      visibility: visible;
+      display: block;
+    }
+
+    .c-nav__dropdown {
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.5 ease;
       display: none;
     }
+
+    .c-nav__dropdown > li {
+      clear: both;
+    }
+
+    // Hide Browse Archives anchor tag on hover
+    ul li:hover > a.Browse.Archives {
+      margin-top: 60px;
+    }
+
+    // We reveal the dropdown container .c-nav__dropdown & the nested
+    // ul hover remains visible as long as hover = true
+    ul li:hover > .c-nav__dropdown,
+    .c-nav__dropdown > ul:hover {
+      visibility: visible;
+      transition: all 0.8s ease-in-out;
+      opacity: 1;
+      display: block;
+    }
   }
 
-  /* Desktop Display */
-
+  //////////////////////////////////
+  ///////* Desktop Display *////////
+  //////////////////////////////////
   @media (min-width: 1280px) {
     font-size: 1.125rem;
     padding: 3vh 4.5vw;
@@ -316,9 +343,34 @@ const NavStyle = styled.nav`
       font-size: 1.5rem;
     }
     .nav__search {
-      display: flex;
-      margin: 0.5rem 0rem;
+      display: none;
+      margin: 0.875rem 0rem;
 
+      .button {
+        background-color: var(--primary-clr-100);
+        display: block;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        height: 50px;
+        border-radius: 0px 25px 25px 0px;
+      }
+      input {
+        opacity: 50%;
+        text-align: center;
+        background: rgba(232, 237, 223, 0.5);
+        border: none;
+        border-radius: 25px 0px 0px 25px;
+        ::placeholder {
+          color: var(--primary-clr-50);
+          font-size: 0.8rem;
+        }
+        /* dropdown menu for mobile */
+        .nav__btn {
+          display: none;
+        }
+      }
       input {
         ::placeholder {
           font-size: 0.95rem;

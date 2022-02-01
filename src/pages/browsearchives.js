@@ -190,13 +190,14 @@ const BrowseArchivesWrapper = styled.main`
     }
   }
 
+
   .c-browsearchives__heading {
     text-align: center;
   }
 
   .c-browsearchives__filtercontainer {
     margin: 1.5vh 0vw 4vh 0vw;
-    display: flex;
+    display: none;
     justify-content: center;
   }
 
@@ -250,6 +251,9 @@ const BrowseArchivesWrapper = styled.main`
   input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
+.c-browsearchives__content {
+  margin: 4vh 0vw;
+}
 
   .c-browsearchives__searchresults {
     text-align: center;
