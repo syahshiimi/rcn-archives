@@ -16,9 +16,7 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
     scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
 
-  useEffect(() => {
-    // refContainer.current.focus();
-  });
+  useEffect(() => {});
 
   return (
     <SeaerchBarWrapper>

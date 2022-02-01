@@ -7,6 +7,7 @@ import { SearchCard } from "../components/searchcard";
 import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
 import { BackToSearchBtn } from "../components/button";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const query = graphql`
   {
@@ -56,12 +57,19 @@ const BrowseArchives = () => {
 
   const [queryState, setSearchQuery] = useState(searchQuery || "");
 
+  // useStaet hooks to control input
+  // The idea here is to control the input type  based on existing values
+  // 1. If queryState == default value, we have setSearchQuery modify the query to have it set as an empty string
+  // 2. We use the onClick as an event handler, which then return the value based on which tag pill was clicked
+  // 3. If the tag pill rreturns a value, we have setSearchQuery modify the queryStaet by using the tag pill value
+  // 4. if the queryState IS NOT == default, we also expose the setSearchQuery function to use the tag pill value
   const onClick = (value = []) => {
     const { item } = value;
     console.log(item);
     if (queryState === searchQuery) {
       setSearchQuery("");
     } else {
+      scrollTo(".c-browsearchives__searchresults");
       setSearchQuery(item);
     }
   };
