@@ -54,12 +54,28 @@ const Navbar = () => {
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
             {pageLinks.map((link) => {
-              const { pageID, url, text } = link;
+              const { pageID, url, text, subMenu } = link;
               return (
                 <li key={pageID}>
                   <Link activeClassName="active--link" to={url}>
                     {text}
                   </Link>
+                  {subMenu != undefined
+                    ? subMenu.map((items) => {
+                        const { pageID, url, text } = items;
+                        return (
+                          <div key={url + pageID}>
+                            <Link
+                              activeClassName="active--link"
+                              to={url}
+                              className="c-nav__sublink"
+                            >
+                              {text}
+                            </Link>
+                          </div>
+                        );
+                      })
+                    : null}
                 </li>
               );
             })}

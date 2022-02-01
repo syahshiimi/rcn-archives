@@ -11,8 +11,20 @@ export const pageLinks = [
   },
   {
     pageID: 3,
-    url: "/browsearchives",
     text: "Browse Archives",
+    url: "#",
+    subMenu: [
+      {
+        pageID: 3,
+        url: "/browsearchives",
+        text: "Browse By Search",
+      },
+      {
+        pageID: 3,
+        url: "/browsemap",
+        text: "Browse Archives Map",
+      },
+    ],
   },
   {
     pageID: 4,
