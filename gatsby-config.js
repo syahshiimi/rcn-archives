@@ -7,6 +7,26 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken:
+    process.env.CONTENTFUL_ACCESS_TOKEN ||
+    process.env.CONTENTFUL_DELIVERY_TOKEN,
+};
+
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+}
+
+const { spaceId, accessToken } = contentfulConfig;
+
+if (!spaceId || !accessToken) {
+  throw new Error(
+    "Contentful spaceId and the access token need to be provided."
+  );
+}
+
 module.exports = {
   siteMetadata: {
     title: "Reconceptualizing the Cold War",
@@ -96,11 +116,9 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `2h4eq8swsmzf`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
+      options: contentfulConfig,
     },
+    // Footnotes mode (default: true)
     {
       resolve: `gatsby-transformer-remark`,
       options: {
