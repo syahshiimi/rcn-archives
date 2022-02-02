@@ -136,36 +136,41 @@ const AltButtonWrapper = styled.div`
 `;
 
 const BackToSearchBtnWrapper = styled.div`
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  .c-button {
-    /* display */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2vh 2vw;
-    flex-direction: column-reverse;
-
-    /* styling */
-    background-color: var(--primary-clr-250);
-    border: none;
-  }
-
-  .c-button__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
+  display: none;
+  @media (min-width: 1280px) {
     display: block;
-    justify-content: center;
-    align-items: center;
-    text-shadow: ;
-  }
+    position: fixed;
+    right: 0;
+    bottom: 0;
 
-  .c-button__text {
-    font-size: 0.85rem;
+    .c-button {
+      /* display */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2vh 2vw;
+      flex-direction: column-reverse;
+
+      /* styling */
+      background-color: var(--primary-clr-250);
+      border: none;
+    }
+
+    .c-button__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      text-shadow: ;
+    }
+
+    .c-button__text {
+      font-size: 0.85rem;
+    }
   }
 `;
 

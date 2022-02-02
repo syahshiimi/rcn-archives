@@ -8,10 +8,12 @@ import DefaultButton from "./button";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
-  // const LiveSearch = useNavigate();
+  // disable SPA navigation for now
+  // const LiveSearch = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // disable SPA navigation for now
     // LiveSearch(`?s=${queryState}`); // concatenate url with search query value
     scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
