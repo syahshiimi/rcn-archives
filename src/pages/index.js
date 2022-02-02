@@ -425,6 +425,9 @@ const IndexWrapper = styled.main`
     .c-recentlyadded__container {
       background-color: transparent;
       padding: 0;
+    margin: 2vh 0vw;
+    border-radius: calc(5vw + 4px);
+
     }
 
     .l-browsearchives {

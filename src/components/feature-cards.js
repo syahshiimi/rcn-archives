@@ -43,7 +43,10 @@ export const FeatureCard = () => {
         } = item;
 
         // remove dots in strings (if exists)
-        const cleanString = transcriptTitle.replace(".", " ");
+        const cleanString = transcriptTitle
+          .replace(".", " ")
+          .replace("(", " ")
+          .replace(")", " ");
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 

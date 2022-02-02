@@ -29,15 +29,13 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
         onSubmit={handleSubmit}
       >
         <label htmlFor="c-browsearchives__searchinput">
-          <span className="visually-hidden">
-            Browse by keywords, topic themes or #tags
-          </span>
+          <span className="visually-hidden">Browse the archives </span>
         </label>
         <input
           autoFocus="autofocus"
           type="text"
           className="c-browsearchives__searchinput"
-          placeholder="Browse by keywords, topics themes or #tags"
+          placeholder="Browse the archives"
           name="s"
           ref={refContainer}
           value={queryState} // this is the input value in the form itself!
@@ -84,8 +82,8 @@ const SeaerchBarWrapper = styled.div`
 
     ::placeholder {
       font-size: 0.745rem;
-      text-align: left;
-      padding-left: 4vw;
+      text-align: center;
+      padding-left: 25%;
       opacity: 60%;
       margin: 0;
     }
