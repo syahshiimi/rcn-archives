@@ -21,8 +21,6 @@ const FullTranscript = ({ data }) => {
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
-
-    discussionQuestions,
   } = transcript;
 
   ////////////////////////////////////////

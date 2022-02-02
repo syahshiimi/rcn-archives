@@ -7,7 +7,7 @@ import { SearchCard } from "../components/searchcard";
 import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
 import { BackToSearchBtn } from "../components/button";
-// import scrollTo from "gatsby-plugin-smoothscroll";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 const query = graphql`
   {
@@ -55,11 +55,11 @@ const BrowseArchives = () => {
   //////// Search Function ////////
   ////////////////////////////////
 
+  // We check to see if window is defined before we build it
   let FindSearch = false;
   if (isSearch) {
     window.location.search === "true";
   }
-  // const { search } = window.location;
   const searchQuery = new URLSearchParams({ FindSearch }).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
 
@@ -76,6 +76,7 @@ const BrowseArchives = () => {
       setSearchQuery("");
     } else {
       setSearchQuery(item);
+      scrollTo(".c-browsearchives__searchresults");
     }
   };
 

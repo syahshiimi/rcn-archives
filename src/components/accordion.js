@@ -78,18 +78,17 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // 3. If component returns undefined, we do not render aka render null
   // 4. If component returns, we render the return data
 
+  // Transcript Notes Subcomponent
   function TranscriptNotes(props) {
-    return (
-      <div className="c-accordion__transcriptnotes">
-        {renderRichText(transcriptNotes, options)}
-      </div>
-    );
-  }
-
-  let transcriptNotesComponent;
-  if (transcriptNotes != undefined) {
-    transcriptNotesComponent = <TranscriptNotes />;
-  } else {
+    if (transcriptNotes != null) {
+      return (
+        <div className="c-accordion__transcriptnotes">
+          {renderRichText(transcriptNotes, options)}
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   function DocumentInfo() {
@@ -116,6 +115,8 @@ export const Accordion = ({ transcript = [], type, name }) => {
       </div>
     );
   }
+
+  /////////////////////////////////////////////////////
 
   let component;
   if (type == "Document Summary") {

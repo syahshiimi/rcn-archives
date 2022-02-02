@@ -12,6 +12,7 @@ import { NestedTagsContainer } from "../../components/tags";
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
+  console.log(transcript);
 
   // filter through passed object to remove null values
   ////////////////////////////////////////////////////////////
@@ -26,7 +27,6 @@ const TranscriptTemplate = ({ data }) => {
   const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr);
   // Destructure Filtered Object
   const {
-    contentful_id,
     transcriptTags,
     transcriptImage,
     onelinerteaser: {
@@ -40,21 +40,18 @@ const TranscriptTemplate = ({ data }) => {
   //////////////////////////
   // Conditionally render gatsby image
   const pathToImage = getImage(transcriptImage);
-
   function TranscriptImage(props) {
-    return (
-      <GatsbyImage
-        image={pathToImage}
-        alt={transcriptTitle}
-        className="c-transcript__image std-style"
-      />
-    );
-  }
-
-  let imgComponent;
-  if (transcriptImage != undefined) {
-    imgComponent = <TranscriptImage />;
-  } else {
+    if (transcriptImage != undefined) {
+      return (
+        <GatsbyImage
+          image={pathToImage}
+          alt={transcriptTitle}
+          className="c-transcript__image std-style"
+        />
+      );
+    } else {
+      return null;
+    }
   }
 
   // remove dots in strings (if exists)
@@ -68,7 +65,7 @@ const TranscriptTemplate = ({ data }) => {
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         {/* container  to create flexible grid + blox layout */}
         <div className="c-transcript__container">
-          {imgComponent}
+          <TranscriptImage />
           {/* sub-container to create flexible grid + blox layout */}
           <div className="c-transcript__subcontainer">
             <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
