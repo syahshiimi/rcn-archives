@@ -289,7 +289,7 @@ const IndexWrapper = styled.main`
   }
 
   .c-recentlyadded__container {
-    background-color: var(--primary-clr-50);
+    /* background-color: var(--primary-clr-50); */
     padding: 2vh 2vw;
     margin: 2vh 0vw;
     border-radius: calc(5vw + 4px);

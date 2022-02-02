@@ -137,7 +137,8 @@ const EventsCardWrapper = styled.div`
   box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
   border-radius: 2.75rem;
   background-color: var(--primary-clr-100);
-  margin: 2vh 0vw;
+  margin: 0;
+  margin: 2vh 2vw;
 
   a {
     text-decoration: none !important;

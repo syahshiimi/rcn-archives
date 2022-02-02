@@ -10,7 +10,7 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 
 // Variables
-const title = "Reconceptualizing \n The Cold War";
+const title = "Reconceptualizing the Cold War";
 
 const Navbar = () => {
   // hide list first by initial state of show = false
@@ -112,12 +112,12 @@ const NavStyle = styled.nav`
   padding: 5vh var(--padding-mobile) 3.5vh var(--padding-mobile);
 
   .nav__title {
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-family: "Lora", sans-serif;
     font-style: normal;
     font-weight: bold;
     text-align: center;
-    text-decoration: underline;
+    text-decoration: none;
     align-self: center;
   }
 
@@ -227,6 +227,7 @@ const NavStyle = styled.nav`
   }
 
   .Browse.Archives.Map {
+    display: none;
   }
 
   ///////////////////////////////
@@ -319,7 +320,7 @@ const NavStyle = styled.nav`
       /* visibility: hidden; */
       /* opacity: 0; */
       transition: all 0.5 ease;
-      /* display: none; */
+      display: none;
     }
 
     //  // Hide Browse Archives anchor tag on hover

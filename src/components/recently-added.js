@@ -96,7 +96,7 @@ const FeatureCardWrapper = styled.section`
     /* styling */
     border-radius: calc(2rem + 6px);
     display: flex;
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.45);
+    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
     flex-direction: column;
   }
 
@@ -154,8 +154,12 @@ const FeatureCardWrapper = styled.section`
       padding: 3vh 0.5vh;
     }
 
+    .c-recentlyaddedcard__title {
+      margin: 0vh 2vw;
+    }
+
     .c-recentlyaddedcard__oneliner {
-      margin: 1.5vh 1.2vw;
+      margin: 1.5vh 1.8vw;
       p {
         font-size: 0.75rem;
       }

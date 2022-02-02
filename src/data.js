@@ -12,7 +12,7 @@ export const pageLinks = [
   {
     pageID: 3,
     text: "Browse Archives",
-    url: "#",
+    url: "/browsearchives",
     subMenu: [
       {
         pageID: 3,
