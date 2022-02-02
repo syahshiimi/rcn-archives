@@ -42,6 +42,7 @@ const query = graphql`
   }
 `;
 
+const isSearch = typeof window !== "undefined";
 const BrowseArchives = () => {
   const data = useStaticQuery(query);
   const transcript = data.allContentfulInterviewTranscripts.nodes;
@@ -52,7 +53,10 @@ const BrowseArchives = () => {
   //////// Search Function ////////
   /////////////////////////////////
 
-  const { search } = window.location;
+  if (isSearch) {
+    const { search } = window.location === "true";
+    return search;
+  }
   const searchQuery = new URLSearchParams(search).get("s");
 
   const [queryState, setSearchQuery] = useState(searchQuery || "");
