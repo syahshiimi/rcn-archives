@@ -425,9 +425,8 @@ const IndexWrapper = styled.main`
     .c-recentlyadded__container {
       background-color: transparent;
       padding: 0;
-    margin: 2vh 0vw;
-    border-radius: calc(5vw + 4px);
-
+      margin: 2vh 0vw;
+      border-radius: calc(5vw + 4px);
     }
 
     .l-browsearchives {
@@ -544,7 +543,6 @@ const IndexWrapper = styled.main`
     .l-workshops {
       margin: 0vh 1vw 2vh 1vw;
     }
-    }
 
     .c-workshops__title {
       margin-bottom: 4vh;
@@ -567,6 +565,36 @@ const IndexWrapper = styled.main`
     .c-projectmembers__blurb {
       font-size: 0.9rem;
       margin: 3vh 0vw;
+    }
+  }
+
+  ///////////////////////////////////
+  ///////// 4k Display //////////////
+  ///////////////////////////////////
+  @media (min-width: 2560px) {
+    padding: 4vh 20vw;
+    .c-divider__one {
+      margin: 5vh 0.25vw 20vh 0.25vw; // top, right, bottom, left
+    }
+    .c-divider__two {
+      margin: 5vh 0.25vw 20vh 0.25vw; // top, right, bottom, left
+    }
+    .c-welcome__title,
+    .c-featureddocs__title,
+    .c-recentlyadded__title,
+    .c-browsearchives__title,
+    .c-workshops__title,
+    .c-projectmembers__title {
+      font-size: 2.5rem;
+    }
+
+    .c-featureddocs__title,
+    .c-recentlyadded__title,
+    .c-welcome__title {
+      margin-bottom: 3.5vh;
+    }
+
+    .c-welcome__blurb {
     }
   }
 `;

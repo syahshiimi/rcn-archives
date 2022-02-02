@@ -114,6 +114,27 @@ const BrowseArchives = () => {
     ? unFlattenResults(results)
     : transcript;
 
+  // Hide on Scroll
+  const [isVisible, setIsVisible] = useState(false);
+
+  // we use useEffect as add event listener to listen for scrolling
+  useEffect(() => {
+    window.addEventListener("scroll", listenToScroll);
+    return () => window.removeEventListener("scroll", listenToScroll);
+  }, []);
+
+  //
+  const listenToScroll = () => {
+    let heightHide = 1000;
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    if (winScroll < heightHide) {
+      isVisible && setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  };
+
   /////////////////////////////
   //////// Render Comp. ///////
   /////////////////////////////
@@ -121,7 +142,7 @@ const BrowseArchives = () => {
   return (
     <Layout>
       <BrowseArchivesWrapper>
-        <BackToSearchBtn />
+        {isVisible && <BackToSearchBtn />}
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__heading">Search The Archives</h1>
           <SearchBar queryState={queryState} setSearchQuery={setSearchQuery} />
@@ -189,7 +210,6 @@ const BrowseArchivesWrapper = styled.main`
       text-align: center;
     }
   }
-
 
   .c-browsearchives__heading {
     text-align: center;
@@ -346,6 +366,10 @@ const BrowseArchivesWrapper = styled.main`
       padding: 10vh var(--padding-desktop);
     }
 
+    .l-browsearchives {
+      padding: 0vh var(--padding-desktop) 0vh var(--padding-desktop);
+      height: 84vh;
+    }
     .c-browsearchives__heading {
       font-size: 3rem; // 64px
     }

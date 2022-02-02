@@ -124,10 +124,15 @@ const FooterStyle = styled.footer`
   ////////////////////////
 
   @media (min-width: 2560px) {
-    padding: 11vh var(--padding-desktop);
-    font-size: 1.5rem;
+    padding: 2vh 21vw;
+    font-size: 1rem;
+    height: 10vh;
     p {
-      font-size: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .footer__designer {
+      font-size: 1rem;
     }
   }
 `;

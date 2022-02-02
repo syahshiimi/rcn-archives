@@ -248,6 +248,7 @@ const NavStyle = styled.nav`
       text-align: left;
       font-size: 1.5rem;
       padding: 0;
+      margin-right: 5vw;
     }
 
     .nav__separator {
@@ -276,8 +277,8 @@ const NavStyle = styled.nav`
     }
 
     .nav__links {
-      display: inline-flex;
-      column-gap: 2.5vw;
+      display: flex;
+      column-gap: 1.5vw;
     }
     .nav__links a {
       color: var(--primary-clr-50);
@@ -299,6 +300,7 @@ const NavStyle = styled.nav`
 
     .nav__search {
       display: none;
+      visibility: none;
     }
 
     .nav__links > li {
@@ -307,13 +309,14 @@ const NavStyle = styled.nav`
 
     .Browse.Archives > a {
       visibility: visible;
-      display: block;
+      display: inline-block;
+      align-items: center;
     }
 
     .Browse.Archives {
       margin: 0;
-      display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .c-nav__dropdown {
@@ -321,6 +324,7 @@ const NavStyle = styled.nav`
       /* opacity: 0; */
       transition: all 0.5 ease;
       display: none;
+      visibility: hidden;
     }
 
     //  // Hide Browse Archives anchor tag on hover
@@ -358,6 +362,7 @@ const NavStyle = styled.nav`
   @media (min-width: 1280px) {
     font-size: 1.125rem;
     padding: 3vh 4.5vw;
+    height: 10vh !important;
 
     .nav__title {
       font-size: 1.5rem;
@@ -400,12 +405,12 @@ const NavStyle = styled.nav`
   }
 
   /* 4k UHD display */
-
   @media (min-width: 2560px) {
+    padding: 1vh 21vw;
     font-size: 2rem;
 
     .nav__title {
-      font-size: 2.8rem;
+      font-size: 1.75rem;
     }
 
     .nav__links a {
@@ -415,6 +420,18 @@ const NavStyle = styled.nav`
     input {
       ::placeholder {
         font-size: 1rem;
+      }
+    }
+
+    .c-nav__dropdown {
+      display: none;
+      visibility: hidden;
+    }
+
+    .nav__links {
+      column-gap: 0.25vw;
+      a {
+        font-size: 1.25rem;
       }
     }
   }

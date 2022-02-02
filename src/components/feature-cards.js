@@ -157,4 +157,25 @@ const FeatureCardWrapper = styled.section`
       margin: 1vh 0vw;
     }
   }
+  //////////////////////////////
+  //////// 4k Display //////////
+  //////////////////////////////
+
+  @media (min-width: 2560px) {
+    .c-featurecard {
+      margin: 1.5vh 1vw;
+      padding: 2.5vh 0.5vw;
+    }
+    .c-featurecard__title {
+      font-size: 1.125rem;
+    }
+
+    .c-featurecard__oneliner {
+      margin: 1vh 1.4vw;
+    }
+
+    .c-featurecard__read {
+      margin: 0.25vh;
+    }
+  }
 `;
