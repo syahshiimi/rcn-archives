@@ -12,7 +12,6 @@ import { NestedTagsContainer } from "../../components/tags";
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
-  console.log(transcript);
 
   // filter through passed object to remove null values
   ////////////////////////////////////////////////////////////

@@ -13,7 +13,6 @@ const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
   const transcript = data.contentfulInterviewTranscripts;
-  console.log(transcript);
   const {
     transcriptTitle,
     transcriptTags,
