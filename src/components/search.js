@@ -163,13 +163,9 @@ const SeaerchBarWrapper = styled.div`
     }
 
     .c-browsearchives__searchinput {
-      size: 5em;
-      ::placeholder {
+      input-size ::placeholder {
         font-size: 1.45rem;
         padding-left: 5rem; // we use the widht of the icon box as offset
-      }
-
-      ::input {
       }
     }
 

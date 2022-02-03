@@ -124,50 +124,50 @@ const SearchCardWrapper = styled.main`
       display: flex;
       margin: 0.5vh 0vw;
     }
+  }
 
-    //////////////////////
-    ///// Desktop ////////
-    //////////////////////
+  //////////////////////
+  ///// Desktop ////////
+  //////////////////////
 
-    @media (min-width: 1280px) {
-      .l-searchcard > * {
-        margin: 0;
-      }
+  @media (min-width: 1280px) {
+    .l-searchcard > * {
+      margin: 0;
+    }
 
-      .l-searchcard > a {
-        margin: 1vh;
-      }
+    .l-searchcard > a {
+      margin: 1vh;
+    }
 
-      .l-searchcard {
-        padding: 4vh 6vw 2vh 6vw;
-        margin: 1.5vh 2vw;
-      }
+    .l-searchcard {
+      padding: 4vh 6vw 2vh 6vw;
+      margin: 1.5vh 2vw;
+    }
 
-      .c-searchcard__title {
-        font-size: 1.25rem;
-        margin: 1vh 0vw;
-      }
+    .c-searchcard__title {
+      font-size: 1.25rem;
+      margin: 1vh 0vw;
+    }
 
-      .c-searchcard__oneliner {
-        text-align: left;
-        margin: 1vh 0vw;
+    .c-searchcard__oneliner {
+      text-align: left;
+      margin: 1vh 0vw;
 
-        p {
-          font-size: 1.125rem;
-        }
-      }
-
-      .c-searchcard__read {
-        margin: 1.2vh;
+      p {
         font-size: 1.125rem;
       }
-      .c-searchcard__tagscontainer {
-        margin: 1.25vh 0vw;
-      }
+    }
 
-      .c-tagscontainer__tag {
-        font-size: 0.875rem;
-      }
+    .c-searchcard__read {
+      margin: 1.2vh;
+      font-size: 1.125rem;
+    }
+    .c-searchcard__tagscontainer {
+      margin: 1.25vh 0vw;
+    }
+
+    .c-tagscontainer__tag {
+      font-size: 0.875rem;
     }
   }
 `;
