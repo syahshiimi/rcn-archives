@@ -323,8 +323,37 @@ const EventWrapper = styled.main`
     }
 
     .c-eventschedule__container {
+      border-radius: calc(3rem + 4px);
       margin: 0vh 8vw;
       padding: 2vh 2vw;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .l-events {
+      padding: 10vh 22.5vw;
+    }
+
+    .c-event__title {
+      margin-bottom: 4vh;
+    }
+
+    .c-event__date {
+      margin: 1vh 0vw;
+    }
+
+    .c-event__subheading {
+      margin-bottom: 0;
+      padding-bottom: 4vh;
+    }
+
+    .c-event__content {
+      text-align: justify;
+    }
+
+    .c-eventschedule__container {
+      border-radius: calc(3rem + 4px);
+      padding: 0vh 1vw;
     }
   }
 `;

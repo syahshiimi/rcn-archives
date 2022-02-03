@@ -286,9 +286,6 @@ const EventScheduleWrapper = styled.div`
 
   }
 
-
-  }
-
   //////////////////////
   // tablet styling //// 
   //////////////////////
@@ -330,6 +327,13 @@ const EventScheduleWrapper = styled.div`
           font-size: 1.25rem;
         }
       }
-      
+    }
+    
+    @media (min-width: 2560px) {
+      .c-eventschedule__card {
+        margin: 3vh 2vw;
+        padding: 3vh 4vw;
+      }
+
     }
 `;
