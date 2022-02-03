@@ -1,12 +1,12 @@
-import React from "react";
-import Layout from "../components/Layout";
-import styled from "styled-components";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
-import DefaultButton from "../components/button";
 import { graphql, Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { BgImage } from "gbimage-bridge";
 import parse from "html-react-parser";
-import scrollTo from "gatsby-plugin-smoothscroll";
+import React from "react";
+import styled from "styled-components";
+
+import DefaultButton from "../components/button";
+import Layout from "../components/Layout";
 
 export const query = graphql`
   {
@@ -380,11 +380,7 @@ const AboutWrapper = styled.main`
   /////////// Desktop ///////////////////
   ///////////////////////////////////////
   @media (min-width: 1280px) {
-    line-height: 1.85rem;
-
-    section {
-      padding: 10vh 10vw;
-    }
+    line-height: 1.55rem;
 
     .l-whoweare {
       padding: 0;
@@ -397,7 +393,7 @@ const AboutWrapper = styled.main`
       margin: 8vh 18vw 8vh 18vw;
 
       p {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
     }
 
@@ -406,7 +402,7 @@ const AboutWrapper = styled.main`
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 7vh 10vw;
+      padding: 7vh 0vw;
     }
 
     .c-ourfocus__title {
@@ -415,10 +411,9 @@ const AboutWrapper = styled.main`
     }
 
     .c-ourfocus__content {
-      margin: 2vh 0vw;
+      margin: 2vh 18vw 2vh 18vw;
       p {
-        font-size: 1.15rem;
-        margin: 2vh;
+        font-size: 1rem;
       }
     }
 
@@ -432,8 +427,11 @@ const AboutWrapper = styled.main`
     .c-thearchives__content {
       margin: 8vh 18vw 8vh 18vw;
       p {
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
+    }
+    .l-projectmembers {
+      padding: 10vh 18vw;
     }
 
     .c-projectmembers__title {
@@ -443,8 +441,8 @@ const AboutWrapper = styled.main`
     .c-projectmembers__content {
       margin: 2vh 0vw;
       p {
-        font-size: 1.125rem;
-        margin: 0vh 4vw;
+        font-size: 1rem;
+        margin: 2vh 0vw;
       }
     }
     .c-projectmembers__info {
@@ -455,6 +453,68 @@ const AboutWrapper = styled.main`
       margin: a {
         font-size: 1.25rem;
       }
+    }
+  }
+  ///////////////////////////////////////
+  /////////// Desktop ///////////////////
+  ///////////////////////////////////////
+  @media (min-width: 2560px) {
+    h1 {
+      font-size: 4.5rem;
+    }
+
+    line-height: 1.65rem;
+    .l-whoweare {
+      padding: 0vh 10vw;
+    }
+
+    .c-whoweare__content > h1 {
+      margin: 0;
+    }
+    .c-whoweare__content {
+      p {
+        font-size: 1.25rem;
+      }
+    }
+
+    .l-ourfocus {
+      padding: 9vh 10vw;
+    }
+    .c-ourfocus__title {
+    }
+
+    .c-ourfocus__content {
+      margin: 4vh 18vw 0vh 18vw;
+      p {
+        font-size: 1.25rem;
+        margin: 2vh 0vw;
+      }
+    }
+    .l-thearchives {
+      padding: 9vh 10vw;
+    }
+
+    .c-thearchives__content {
+      margin: 8vh 18vw 8vh 18vw;
+      p {
+        font-size: 1.25rem;
+      }
+    }
+
+    .l-projectmembers {
+      padding: 10vh 10vw;
+    }
+
+    .c-projectmembers__content {
+      margin: 4vh 18vw;
+      p {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+    }
+
+    .c-projectmembers__info {
+      margin: 4vh 0vw;
     }
   }
 `;

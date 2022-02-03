@@ -10,7 +10,7 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 
 // Variables
-const title = "Reconceptualizing the Cold War";
+const title = "Reconceptualizing the \n Cold War";
 
 const Navbar = () => {
   // hide list first by initial state of show = false
