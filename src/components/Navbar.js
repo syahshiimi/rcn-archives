@@ -64,25 +64,6 @@ const Navbar = () => {
                   >
                     {text}
                   </Link>
-                  <ul className="c-nav__dropdown">
-                    {" "}
-                    {subMenu != undefined
-                      ? subMenu.map((items) => {
-                          const { pageID, url, text } = items;
-                          return (
-                            <li key={url + pageID}>
-                              <Link
-                                activeClassName="active--link"
-                                to={url}
-                                className={"c-nav" + " " + text}
-                              >
-                                {text}
-                              </Link>
-                            </li>
-                          );
-                        })
-                      : null}
-                  </ul>
                 </li>
               );
             })}
@@ -217,19 +198,6 @@ const NavStyle = styled.nav`
     list-style: none;
   }
 
-  .Browse.Archives > a {
-    display: none;
-    visibility: none;
-  }
-
-  .Browse.Archives > li {
-    margin: 0.875rem;
-  }
-
-  .Browse.Archives.Map {
-    display: none;
-  }
-
   ///////////////////////////////
   /////// TABLET ////////////////
   ///////////////////////////////
@@ -278,6 +246,7 @@ const NavStyle = styled.nav`
 
     .nav__links {
       display: flex;
+      align-items: center;
       column-gap: 1.5vw;
     }
     .nav__links a {
@@ -293,67 +262,10 @@ const NavStyle = styled.nav`
       color: var(--primary-clr-100) !important;
     }
 
-    ul {
-      display: inline-flex;
-      align-items: center;
-    }
-
     .nav__search {
       display: none;
       visibility: none;
     }
-
-    .nav__links > li {
-      transition-duration: 0.5s;
-    }
-
-    .Browse.Archives > a {
-      visibility: visible;
-      display: inline-block;
-      align-items: center;
-    }
-
-    .Browse.Archives {
-      margin: 0;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .c-nav__dropdown {
-      /* visibility: hidden; */
-      /* opacity: 0; */
-      transition: all 0.5 ease;
-      display: none;
-      visibility: hidden;
-    }
-
-    //  // Hide Browse Archives anchor tag on hover
-    //  ul li:hover > a.Browse.Archives {
-    //    display: none;
-    //    visibility: hidden;
-    //  }
-
-    //  // We reveal the dropdown container .c-nav__dropdown & the nested
-    //  // ul hover remains visible as long as hover = true
-    //  ul li:hover > .c-nav__dropdown,
-    //  .c-nav__dropdown > ul:hover {
-    //    visibility: visible;
-    //    transition: all 0.8s ease-in-out;
-    //    opacity: 1;
-    //    display: flex;
-    //    flex-direction: column;
-    //    align-items: end;
-    //    justify-content: center;
-    //    text-align: center;
-    //    width: 100%;
-    //    a {
-    //      text-align: center;
-    //    }
-    //    li {
-    //      width: 100%;
-    //      margin: 1vh 0vw;
-    //    }
-    //  }
   }
 
   //////////////////////////////////
@@ -412,27 +324,8 @@ const NavStyle = styled.nav`
     .nav__title {
       font-size: 1.75rem;
     }
-
-    .nav__links a {
-      margin: 1vh;
-    }
-
-    input {
-      ::placeholder {
-        font-size: 1rem;
-      }
-    }
-
-    .c-nav__dropdown {
-      display: none;
-      visibility: hidden;
-    }
-
-    .nav__links {
-      column-gap: 0.25vw;
-      a {
-        font-size: 1.25rem;
-      }
+    a {
+      font-size: 1.25rem;
     }
   }
 `;
