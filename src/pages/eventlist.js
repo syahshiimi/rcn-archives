@@ -99,6 +99,23 @@ const EventWrapper = styled.main`
       margin: 4vh 0vw;
     }
   }
+
+  @media (min-width: 2560px) {
+    .l-pastevents {
+      padding: 10vh 20vw;
+    }
+
+    .l-pastevents__list {
+      padding: 2vh 4vw;
+    }
+    .c-pastevents__heading {
+      font-size: 4.5rem;
+    }
+
+    .l-pastevents__container > * {
+      margin: 2vh 0vw;
+    }
+  }
 `;
 
 export default Events;

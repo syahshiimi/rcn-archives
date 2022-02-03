@@ -233,15 +233,18 @@ const EventsCardWrapper = styled.div`
   //////////////////////////
 
   @media (min-width: 2560px) {
-    .c-workshops__details {
-      font-size: 2.5rem;
+    .c-pastevents__title {
       text-align: left;
+      font-size: 1.5rem;
+      margin: 1vh 0vw;
     }
-    .c-workshops__date {
-      font-size: 1.85rem;
+    .c-pastevents__date {
+      font-size: 0.9rem;
+      margin: 1vh 0vw;
     }
-    .c-workshops__location {
-      font-size: 1.85rem;
+    .c-pastevents__location {
+      font-size: 1.125rem;
+      margin: 1vh 0vw;
     }
   }
 `;
@@ -318,21 +321,15 @@ const EventScheduleWrapper = styled.div`
   // desktop styling ///
   //////////////////////
     @media (min-width: 1280px) {
-
       .c-eventschedule__card {
         padding: 4vh 4vw;
-
         * {
           margin: 4vh 0vw;
         }
-        
         h3 {
           font-size: 1.25rem;
         }
-
       }
-
-
-
+      
     }
 `;
