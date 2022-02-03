@@ -158,15 +158,19 @@ const SeaerchBarWrapper = styled.div`
 
   @media (min-width: 2560px) {
     .c-browsearchives__searchbar {
-      margin-left: 20vw;
-      margin-right: 20vw;
+      margin-left: 19vw;
+      margin-right: 19vw;
     }
 
     .c-browsearchives__searchinput {
-      input-size ::placeholder {
-        font-size: 1.45rem;
+      ::placeholder {
+        font-size: 1.75rem;
         padding-left: 5rem; // we use the widht of the icon box as offset
       }
+    }
+
+    input[type="text"] {
+      font-size: 2rem;
     }
 
     .c-browsearchives__searchicon {

@@ -382,11 +382,12 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchresults {
       margin-bottom: 8vh;
+      width: 100%;
     }
 
     .c-browsearchives__searchcontainer {
-      flex-shrink: 0;
-      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
   ////////////////////////////
@@ -397,6 +398,9 @@ const BrowseArchivesWrapper = styled.main`
   ////////////////////////////
 
   @media (min-width: 2560px) {
+    .l-browsearchives {
+      height: 90vh;
+    }
     .c-browsearchives__heading {
       font-size: 4.5rem;
     }
@@ -407,7 +411,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .l-browsearchives__search {
-      padding: 0vh 20vw 10vh 20vw;
+      padding: 0vh 24vw 10vh 24vw;
     }
 
     .c-browsearchives__searchresults {

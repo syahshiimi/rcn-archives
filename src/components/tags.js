@@ -82,4 +82,15 @@ const TagsWrapper = styled.div`
       margin: 0.8vh 0.3vw;
     }
   }
+
+  @media (min-width: 2560px) {
+    .c-tagscontainer__tag {
+      font-size: 1rem !important;
+      padding: 0.8vh 0.8vw;
+    }
+
+    .c-tagscontainer__tagpill {
+      margin: 0.5vh 0.3vw;
+    }
+  }
 `;
