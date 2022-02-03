@@ -53,14 +53,20 @@ export const Accordion = ({ transcript = [], type, name }) => {
   ///////////// Conditional Rendering //////////////
   //////////////////////////////////////////////////
 
-  function DocumentSummary(props) {
-    return (
-      <span className="c-accordion__summary">
-        {renderRichText(englishTranscriptSummary, options)}
-      </span>
-    );
+  // 1. Document Summary Accordion
+  function DocumentSummary() {
+    if (englishTranscriptSummary != undefined) {
+      return (
+        <span className="c-accordion__summary">
+          {renderRichText(englishTranscriptSummary, options)}
+        </span>
+      );
+    } else {
+      return null;
+    }
   }
 
+  // 2. Document Summary Accordion (Mobile only)
   function DocumentTranscript(props) {
     return (
       <span className="c-accordion__transcript">
@@ -69,16 +75,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     );
   }
 
-  ////////////////////////////
-  // C.render Trans. Notes ///
-  ////////////////////////////
-
-  // 1. We create a component to render the transcript notes
-  // 2. We check if the component returns undefined or not
-  // 3. If component returns undefined, we do not render aka render null
-  // 4. If component returns, we render the return data
-
-  // Transcript Notes Subcomponent
+  // 3. Transcript Notes Subcomponent
   function TranscriptNotes(props) {
     if (transcriptNotes != null) {
       return (
@@ -91,6 +88,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     }
   }
 
+  // 3. DOcument Information Accordion
   function DocumentInfo() {
     return (
       <span className="c-accordion__info">
@@ -108,12 +106,17 @@ export const Accordion = ({ transcript = [], type, name }) => {
     );
   }
 
-  function DocumentQns(props) {
-    return (
-      <div className="c-accordion__qns">
-        {renderRichText(discussionQuestions, options)}
-      </div>
-    );
+  // 4. Document Qns Accordion
+  function DocumentQns() {
+    if (discussionQuestions != undefined) {
+      return (
+        <div className="c-accordion__qns">
+          {renderRichText(discussionQuestions, options)}
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   /////////////////////////////////////////////////////
