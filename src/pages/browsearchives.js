@@ -271,9 +271,9 @@ const BrowseArchivesWrapper = styled.main`
   input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
-.c-browsearchives__content {
-  margin: 4vh 0vw;
-}
+  .c-browsearchives__content {
+    margin: 4vh 0vw;
+  }
 
   .c-browsearchives__searchresults {
     text-align: center;
@@ -285,7 +285,6 @@ const BrowseArchivesWrapper = styled.main`
     padding: 2vh 2vw;
     border-radius: calc(5vw + 4px);
   }
-
 
   ////////////////////////////
   ////////////////////////////
@@ -299,7 +298,7 @@ const BrowseArchivesWrapper = styled.main`
     flex-direction: column;
     align-items: center;
     flex: 1 1 auto;
-    
+
     // Enable archives
     .desktop {
       display: grid;
@@ -308,7 +307,7 @@ const BrowseArchivesWrapper = styled.main`
     section {
       padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
     }
-    
+
     .c-browsearchives__filtercontainer {
       margin-right: 12vw;
       margin-top: 0;
@@ -329,7 +328,7 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__filtercontainer > label {
       font-size: 0.825rem;
     }
-    
+
     .c-browsearchives__content {
       margin: 2vh 2vw;
     }
@@ -348,10 +347,7 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchcontainer {
       width: 75vw;
-
     }
-    
-
   }
 
   ////////////////////////////
@@ -374,7 +370,6 @@ const BrowseArchivesWrapper = styled.main`
       font-size: 3rem; // 64px
     }
 
-    
     .c-browsearchives__filtercontainer > label {
       font-size: 0.925rem;
     }
@@ -382,16 +377,36 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__content {
       margin: 4vh 12vw;
     }
-    
+
     .l-browsearchives__search {
       max-width: 100%;
     }
 
     .c-browsearchives__searchresults {
       margin-bottom: 8vh;
-  }
-    
+    }
+
     .c-browsearchives__searchcontainer {
     }
+  }
+  ////////////////////////////
+  ////////////////////////////
+  ////////////////////////////
+  ///// 4k Desktop ///////////
+  ////////////////////////////
+  ////////////////////////////
+
+  @media (min-width: 2560px) {
+    .c-browsearchives__heading {
+      font-size: 4.5rem;
+    }
+
+    .c-browsearchives__content {
+      margin: 4vh 23vw;
+      font-size: 1.45rem;
+      p {
+      }
+    }
+  }
 `;
 export default BrowseArchives;

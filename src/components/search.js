@@ -155,4 +155,27 @@ const SeaerchBarWrapper = styled.div`
       height: 2.5rem;
     }
   }
+
+  @media (min-width: 2560px) {
+    .c-browsearchives__searchbar {
+      margin-left: 20vw;
+      margin-right: 20vw;
+    }
+
+    .c-browsearchives__searchinput {
+      size: 5em;
+      ::placeholder {
+        font-size: 1.45rem;
+        padding-left: 5rem; // we use the widht of the icon box as offset
+      }
+
+      ::input {
+      }
+    }
+
+    .c-browsearchives__searchicon {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
 `;
