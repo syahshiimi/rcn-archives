@@ -172,12 +172,11 @@ const FullTranscriptWrapper = styled.section`
   }
 
   @media (min-width: 1280px) {
-    padding:  10vh var(--padding-desktop);
+    padding: 10vh var(--padding-desktop);
     .c-fulltranscript__border {
       margin: 4vh 0vw;
     }
 
-      }
     .c-tagscontainer {
       margin: 3vh 0vw;
     }
@@ -187,6 +186,18 @@ const FullTranscriptWrapper = styled.section`
     .c-fulltranscript__endnotesborder {
       margin: 2vh 0vw;
       width: 25vw;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    padding: 10vh 20vw;
+
+    .c-fulltranscript__oneliner {
+      margin: 2vh 0vw;
+    }
+
+    .c-fulltranscript__border {
+      margin: 2vh 0vw;
     }
   }
 `;
