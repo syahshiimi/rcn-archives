@@ -10,6 +10,42 @@ import slugify from "slugify";
 import { ReadFullButton } from "../../components/read-full";
 import { NestedTagsContainer } from "../../components/tags";
 
+export const query = graphql`
+  query getSingleTranscript($transcriptTitle: String) {
+    contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
+      interviewer
+      interviewee
+      transcriptNotes {
+        raw
+      }
+      transcriptTitle
+      transcriptTags
+      contentful_id
+      englishTranscriptSummary {
+        raw
+      }
+      englishFullTranscript {
+        raw
+      }
+      discussionQuestions {
+        raw
+      }
+      onelinerteaser: childContentfulInterviewTranscriptsOneLineTeaserTextNode {
+        childMarkdownRemark {
+          oneliner: html
+        }
+      }
+      transcriptImage {
+        gatsbyImageData(
+          placeholder: TRACED_SVG
+          layout: CONSTRAINED
+          aspectRatio: 1.5
+        )
+      }
+    }
+  }
+`;
+
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
 
@@ -67,7 +103,10 @@ const TranscriptTemplate = ({ data }) => {
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         {/* container  to create flexible grid + blox layout */}
         <div className="c-transcript__container">
-          <TranscriptImage />
+          <ImageWrapper>
+            <TranscriptImage />
+          </ImageWrapper>
+
           {/* sub-container to create flexible grid + blox layout */}
           <div className="c-transcript__subcontainer">
             <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
@@ -107,38 +146,15 @@ const TranscriptTemplate = ({ data }) => {
   );
 };
 
-export const query = graphql`
-  query getSingleTranscript($transcriptTitle: String) {
-    contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
-      interviewer
-      interviewee
-      transcriptNotes {
-        raw
-      }
-      transcriptTitle
-      transcriptTags
-      contentful_id
-      englishTranscriptSummary {
-        raw
-      }
-      englishFullTranscript {
-        raw
-      }
-      discussionQuestions {
-        raw
-      }
-      onelinerteaser: childContentfulInterviewTranscriptsOneLineTeaserTextNode {
-        childMarkdownRemark {
-          oneliner: html
-        }
-      }
-      transcriptImage {
-        gatsbyImageData(
-          placeholder: TRACED_SVG
-          layout: CONSTRAINED
-          aspectRatio: 1.5
-        )
-      }
+const ImageWrapper = styled.article`
+  display: none;
+  @media (min-width: 1280px) {
+    .c-transcriptimage {
+    }
+    .std-style {
+      border-radius: calc(1.5rem + 4px);
+      border: 1px solid var(--primary-clr-200);
+      filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
     }
   }
 `;
@@ -162,11 +178,6 @@ const TranscriptWrapper = styled.section`
 
   .c-transcript__image {
     margin: 2vh 0vw;
-  }
-  .std-style {
-    border-radius: calc(1.5rem + 4px);
-    border: 1px solid var(--primary-clr-200);
-    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   }
 
   .c-transcript__container {
@@ -314,8 +325,22 @@ const TranscriptWrapper = styled.section`
   .c-transcript__tagscontainer > .c-tagscontainer {
     row-gap: 0.5vh;
     justify-content: center;
+  }
 
-   }
+  //////////////////////////
+  //// 4k Display //////////
+  //////////////////////////
+
+  @media (min-width: 2560px) {
+    padding: 10vh 20vw;
+    row-gap: 2vh;
+
+    .c-transcript__container {
+      margin: 0vh 4vw;
+    }
+    .c-transcript__border {
+      margin: 1vh 0vw 2vh 0vw;
+    }
   }
 `;
 

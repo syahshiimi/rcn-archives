@@ -5,7 +5,6 @@ import { TiArrowRight } from "@react-icons/all-files/ti/TiArrowRight";
 import { IconContext } from "@react-icons/all-files/lib";
 
 export const ReadFullButton = ({ slug }) => {
-  console.log(slug);
   return (
     <ReadFullButtonWrapper>
       <Link
