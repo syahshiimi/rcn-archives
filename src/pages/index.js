@@ -277,7 +277,7 @@ const IndexWrapper = styled.main`
     background-color: var(--primary-clr-50);
     padding: 2vh 2vw;
     margin: 2vh 0vw;
-    border-radius: calc(5vw + 4px);
+    border-radius: 25px;
   }
   .c-featureddocs__title {
     text-align: center;
@@ -289,10 +289,10 @@ const IndexWrapper = styled.main`
   }
 
   .c-recentlyadded__container {
-    /* background-color: var(--primary-clr-50); */
+    background-color: var(--primary-clr-100);
     padding: 2vh 2vw;
     margin: 2vh 0vw;
-    border-radius: calc(5vw + 4px);
+    border-radius: 25px;
   }
 
   .c-recentlyadded__title {
@@ -585,7 +585,7 @@ const IndexWrapper = styled.main`
     .c-browsearchives__title,
     .c-workshops__title,
     .c-projectmembers__title {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
 
     .c-featureddocs__title,

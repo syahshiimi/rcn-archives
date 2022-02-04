@@ -65,8 +65,8 @@ const EventWrapper = styled.main`
     justify-content: center;
     flex-direction: column;
     background-color: var(--primary-clr-50);
-    padding: 2vh 2vw;
-    border-radius: calc(5vw + 4px);
+    padding: 1vh 2vw;
+    border-radius: calc(10vw + 1px);
   }
 
   /////////////////////////////

@@ -107,7 +107,7 @@ const FeatureCardWrapper = styled.section`
     margin: 2vh 1vw;
     text-align: center;
     p {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       line-height: 1.25;
     }
   }

@@ -92,7 +92,6 @@ const FeatureCardWrapper = styled.section`
   .c-recentlyaddedcard {
     display: flex;
     background-color: var(--primary-clr-50);
-    opacity: 0.8;
     padding: 3vh 7vw;
     margin: 2vh 2vw;
 
@@ -115,7 +114,7 @@ const FeatureCardWrapper = styled.section`
     margin: 2vh 1vw;
     text-align: center;
     p {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       line-height: 1.25;
     }
   }

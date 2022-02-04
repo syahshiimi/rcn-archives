@@ -87,6 +87,7 @@ const FooterStyle = styled.footer`
   .footer__designer {
     margin-bottom: 1rem;
     margin-left: auto;
+    display: none;
   }
 
   .footer_socialmedia {
