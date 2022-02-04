@@ -11,6 +11,7 @@ import { pageLinks } from "../data";
 // Variables
 const title = "Reconceptualizing the \n Cold War";
 
+const isBrowswer = typeof window !== "undefined";
 const Navbar = () => {
   // hide list first by initial state of show = false
   const [show, setShow] = useState(false);
@@ -37,26 +38,29 @@ const Navbar = () => {
   let CurrentNavTitle;
 
   const CurrentPage = function () {
-    if (location.pathname === "/") {
-      CurrentNavTitle = "Home";
-      return CurrentNavTitle;
-    } else if (location.pathname === "/about") {
-      CurrentNavTitle = "About";
-      return CurrentNavTitle;
-    } else if (location.pathname === "/browsearchives") {
-      CurrentNavTitle = "Browse Archives";
-      return CurrentNavTitle;
-    } else if (location.pathname === "/glossary") {
-      CurrentNavTitle = "Glossary";
-      return CurrentNavTitle;
-    } else if (location.pathname === "/eventlist") {
-      CurrentNavTitle = "Workshops";
-      return CurrentNavTitle;
-    } else if (location.pathname === "/contribute") {
-      CurrentNavTitle = "Contact Us";
-      return CurrentNavTitle;
+    if (isBrowswer) {
+      if (location.pathname === "/") {
+        CurrentNavTitle = "Home";
+        return CurrentNavTitle;
+      } else if (location.pathname === "/about") {
+        CurrentNavTitle = "About";
+        return CurrentNavTitle;
+      } else if (location.pathname === "/browsearchives") {
+        CurrentNavTitle = "Browse Archives";
+        return CurrentNavTitle;
+      } else if (location.pathname === "/glossary") {
+        CurrentNavTitle = "Glossary";
+        return CurrentNavTitle;
+      } else if (location.pathname === "/eventlist") {
+        CurrentNavTitle = "Workshops";
+        return CurrentNavTitle;
+      } else if (location.pathname === "/contribute") {
+        CurrentNavTitle = "Contact Us";
+        return CurrentNavTitle;
+      } else {
+        return null;
+      }
     } else {
-      return null;
     }
   };
 
