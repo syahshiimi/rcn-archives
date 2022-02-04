@@ -26,7 +26,7 @@ const GlossaryCard = ({ glossary = [] }) => {
           childMarkdownRemark: { html },
         } = element[1];
         return (
-          <div className="c-glossarycard" key={index}>
+          <div className={"c-glossarycard" + " " + element[0]} key={index}>
             <p className="c-glossarycard__content">{parse(`${html}`)}</p>
           </div>
         );
@@ -34,6 +34,26 @@ const GlossaryCard = ({ glossary = [] }) => {
     </GlossaryCardWrapper>
   );
 };
-const GlossaryCardWrapper = styled.section``;
+const GlossaryCardWrapper = styled.section`
+  .c-glossarycard {
+    background: var(--primary-clr-100);
+    padding: 2vh 10vw 3vh 10vw;
+    margin: 3vh 0vw;
+    border-radius: calc(10vw + 1px);
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: 3vh 0vw 2vh 0vw;
+  }
+
+  h5 {
+    font-family: "Lora", sans-serif !important;
+    margin: 5vh 0vw 0vh 10vw;
+  }
+  .c-glossarycard__content > p {
+    margin: 1vh 0vw 2vh 10vw;
+  }
+`;
 
 export default GlossaryCard;

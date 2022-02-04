@@ -56,10 +56,13 @@ const GlossaryWrapper = styled.main`
     flex-direction: column;
     flex-wrap: flex-wrap;
     justify-content: center;
-    text-align: center;
+    padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
 
   .c-glossary__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
