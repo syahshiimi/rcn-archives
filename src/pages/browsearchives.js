@@ -71,7 +71,6 @@ const BrowseArchives = () => {
   // 4. if the queryState IS NOT == default, we also expose the setSearchQuery function to use the tag pill value
   const onClick = (value = []) => {
     const { item } = value;
-    console.log(item);
     if (queryState === searchQuery) {
       setSearchQuery("");
     } else {
@@ -114,7 +113,6 @@ const BrowseArchives = () => {
     ? unFlattenResults(results)
     : transcript;
 
-  console.log(FilteredTranscript);
   // Hide on Scroll
   const [isVisible, setIsVisible] = useState(false);
 
@@ -183,7 +181,6 @@ const BrowseArchives = () => {
                   childMarkdownRemark: { html },
                 },
               } = item;
-              console.log(item);
               return (
                 <SearchCard
                   transcriptTitle={transcriptTitle}

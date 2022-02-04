@@ -25,9 +25,15 @@ const GlossaryCard = ({ glossary = [] }) => {
         const {
           childMarkdownRemark: { html },
         } = element[1];
+        const lastAlphabet = element[0].charAt(element[0].length - 1);
+        console.log(lastAlphabet);
         return (
           <div className={"c-glossarycard" + " " + element[0]} key={index}>
-            <p className="c-glossarycard__content">{parse(`${html}`)}</p>
+            <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
+            <div className="c-glossarycard__container">
+              {" "}
+              <div className="c-glossarycard__content">{parse(`${html}`)}</div>
+            </div>
           </div>
         );
       })}
@@ -40,19 +46,61 @@ const GlossaryCardWrapper = styled.section`
     padding: 2vh 10vw 3vh 10vw;
     margin: 3vh 0vw;
     border-radius: calc(10vw + 1px);
+    display: flex;
+    flex-direction: column;
   }
 
-  h1 {
+  .c-glossarycard__container {
+    margin: 2vh 2vw 2vh 2vw;
+  }
+
+  .c-glossarycard__title {
     font-size: 3rem;
-    margin: 3vh 0vw 2vh 0vw;
+    margin-bottom: 0;
+    text-align: right;
   }
 
   h5 {
     font-family: "Lora", sans-serif !important;
-    margin: 5vh 0vw 0vh 10vw;
+    margin: 3vh 0vw;
   }
+
   .c-glossarycard__content > p {
-    margin: 1vh 0vw 2vh 10vw;
+    text-align: left;
+  }
+
+  @media (min-width: 992px) {
+    .c-glossarycard {
+      border-radius: 5vw;
+      flex-wrap: wrap;
+      padding: 3vh 5vh 3vh 5vh;
+    }
+    .c-glossarycard__content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      /* grid-template-columns: auto; */
+      /* grid-template-rows: repeat(auto-fill, min(1fr)); */
+      /* grid-template-areas: */
+      /* "alphabet alphabet" */
+      /* "name content"; */
+      margin: 0;
+      column-gap: 2vw;
+    }
+
+    h1 {
+      grid-area: alphabet;
+      display: flex;
+    }
+
+    h5 {
+      margin: 0;
+      grid-area: name;
+    }
+    .c-glossarycard__content > p {
+      margin: 0;
+      grid-area: content;
+    }
   }
 `;
 
