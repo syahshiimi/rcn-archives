@@ -108,7 +108,6 @@ const About = ({ data }) => {
             </div>
           </section>
         </FirstStyledBackgroundImage>
-
         <section className="l-ourfocus bg--light">
           <h1 className="c-ourfocus__title">Our Focus</h1>
           <GatsbyImage
@@ -131,7 +130,6 @@ const About = ({ data }) => {
             </div>
           </section>
         </SecondStyledBackgroundImage>
-
         <section className="l-projectmembers">
           <h1 className="c-projectmembers__title">Project Members</h1>
           <div className="c-projectmembers__content">

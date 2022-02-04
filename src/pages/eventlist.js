@@ -31,7 +31,7 @@ const Events = () => {
   const events = data.allContentfulEventsWorkshops.nodes;
   return (
     <Layout>
-      <Head title="workshops" />
+      <Head title="Workshops" />
       <EventWrapper>
         <section className="l-pastevents">
           <h1 className="c-pastevents__heading">Events & Workshops</h1>
