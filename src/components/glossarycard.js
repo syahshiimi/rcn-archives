@@ -116,6 +116,15 @@ const GlossaryCardWrapper = styled.section`
       font-size: 1.25rem;
     }
   }
+
+  @media (min-width: 2560px) {
+    .c-glossarycard {
+      padding: 4vh 4vw 6vh 4vw;
+    }
+    h5 {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export default GlossaryCard;

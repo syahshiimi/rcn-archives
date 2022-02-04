@@ -79,6 +79,12 @@ const GlossaryWrapper = styled.main`
       margin: 0vh 10vw;
     }
   }
+
+  @media (min-width: 2560px) {
+    .l-glossary {
+      padding: 10vh 20vw;
+    }
+  }
 `;
 
 export default Glossary;
