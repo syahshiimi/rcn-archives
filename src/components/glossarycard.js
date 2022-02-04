@@ -3,11 +3,8 @@ import styled from "styled-components";
 import parse from "html-react-parser";
 
 const GlossaryCard = ({ glossary = [] }) => {
-  console.log(glossary);
-
   // Destructure array to return the obj within it
   let glossaryObj = glossary[0];
-  console.log(glossaryObj);
 
   // Next, we create an array from the Obj which has sub-ojb such as
   // alphabetA, alphabetB objs.
@@ -15,7 +12,6 @@ const GlossaryCard = ({ glossary = [] }) => {
 
   // We use the returned array later on to map over and return the react components
   const glossaryArr = Object.entries(glossaryObj);
-  console.log(glossaryArr);
 
   return (
     <GlossaryCardWrapper>
@@ -26,16 +22,22 @@ const GlossaryCard = ({ glossary = [] }) => {
           childMarkdownRemark: { html },
         } = element[1];
         const lastAlphabet = element[0].charAt(element[0].length - 1);
-        console.log(lastAlphabet);
-        return (
-          <div className={"c-glossarycard" + " " + element[0]} key={index}>
-            <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
-            <div className="c-glossarycard__container">
-              {" "}
-              <div className="c-glossarycard__content">{parse(`${html}`)}</div>
+        const checkString = "<p>None</p>";
+        if (html != checkString) {
+          return (
+            <div className={"c-glossarycard" + " " + element[0]} key={index}>
+              <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
+              <div className="c-glossarycard__container">
+                {" "}
+                <div className="c-glossarycard__content">
+                  {parse(`${html}`)}
+                </div>
+              </div>
             </div>
-          </div>
-        );
+          );
+        } else {
+          return null;
+        }
       })}
     </GlossaryCardWrapper>
   );
