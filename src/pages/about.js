@@ -6,6 +6,7 @@ import React from "react";
 import styled from "styled-components";
 
 import DefaultButton from "../components/button";
+import { Head } from "../components/head";
 import Layout from "../components/Layout";
 
 export const query = graphql`
@@ -94,6 +95,7 @@ const About = ({ data }) => {
   return (
     <Layout>
       <AboutWrapper>
+        <Head title="About Us" />
         <FirstStyledBackgroundImage
           Tag="div"
           image={pathToFirstImage}

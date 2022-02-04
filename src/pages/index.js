@@ -11,6 +11,7 @@ import DefaultButton from "../components/button";
 import { BACard } from "../components/ba-cards";
 import { FeatureCard } from "../components/feature-cards";
 import { RecentlyAdd } from "../components/recently-added";
+import { Head } from "../components/head";
 
 export const query = graphql`
   {
@@ -96,6 +97,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <Head title="Home" />
       <IndexWrapper>
         <section className="l-welcome">
           <h1 className="c-welcome__title">Welcome Message</h1>
@@ -277,7 +279,7 @@ const IndexWrapper = styled.main`
     background-color: var(--primary-clr-50);
     padding: 2vh 2vw;
     margin: 2vh 0vw;
-    border-radius: 25px;
+    border-radius: 5vh;
   }
   .c-featureddocs__title {
     text-align: center;
@@ -292,7 +294,7 @@ const IndexWrapper = styled.main`
     background-color: var(--primary-clr-100);
     padding: 2vh 2vw;
     margin: 2vh 0vw;
-    border-radius: 25px;
+    border-radius: 5vh;
   }
 
   .c-recentlyadded__title {

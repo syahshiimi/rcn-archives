@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { EventsCard } from "../components/eventscard";
 import Layout from "../components/Layout";
 import { graphql, useStaticQuery } from "gatsby";
+import { Head } from "../components/head";
 
 const query = graphql`
   {
@@ -30,6 +31,7 @@ const Events = () => {
   const events = data.allContentfulEventsWorkshops.nodes;
   return (
     <Layout>
+      <Head title="workshops" />
       <EventWrapper>
         <section className="l-pastevents">
           <h1 className="c-pastevents__heading">Events & Workshops</h1>

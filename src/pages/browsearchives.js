@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { Head } from "../components/head";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 import { SearchCard } from "../components/searchcard";
@@ -141,6 +141,7 @@ const BrowseArchives = () => {
 
   return (
     <Layout>
+      <Head title="Browse Archives" />
       <BrowseArchivesWrapper>
         {isVisible && <BackToSearchBtn />}
         <section className="l-browsearchives">

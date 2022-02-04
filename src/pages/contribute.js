@@ -1,4 +1,5 @@
 import React from "react";
+import { Head } from "../components/head";
 import styled from "styled-components";
 
 // Import Wrapper Components
@@ -14,6 +15,7 @@ const ContributeSub =
 const ContactUs = () => {
   return (
     <Layout>
+      <Head title="Contact Us" />
       <ContributeWrapper>
         <section className="l-contactus">
           <h1 className="c-contactus__header">Contact Us</h1>

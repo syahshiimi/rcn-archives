@@ -1,15 +1,17 @@
-import React from "react"
-import styled from "styled-components"
-import Layout from "../components/Layout"
+import React from "react";
+import styled from "styled-components";
+import Layout from "../components/Layout";
+import { Head } from "../components/head";
 
 const Glossary = () => {
   return (
     <Layout>
+      <Head title="Glossary" />
       <GlossaryWrapper>
         <section className="l-glossary bg--std">
           <h1 className="c-glossary__header">Glossary</h1>
-         <p className="c-glossary__a">A</p>
-         <p className="c-glossary__b">B</p>
+          <p className="c-glossary__a">A</p>
+          <p className="c-glossary__b">B</p>
           <p className="c-glossary__c">c</p>
           <p className="c-glossary__a">d</p>
           <p className="c-glossary__a">e</p>
@@ -38,10 +40,9 @@ const Glossary = () => {
         </section>
       </GlossaryWrapper>
     </Layout>
-  )
-}
+  );
+};
 
-const GlossaryWrapper = styled.main``
+const GlossaryWrapper = styled.main``;
 
-
-export default Glossary
+export default Glossary;

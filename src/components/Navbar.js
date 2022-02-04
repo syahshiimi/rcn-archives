@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { Link } from "gatsby";
-
-// Import Data
-import { pageLinks } from "../data";
-
 // Icons
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
+import { Link } from "gatsby";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+
+// Import Data
+import { pageLinks } from "../data";
 
 // Variables
 const title = "Reconceptualizing the \n Cold War";
@@ -35,6 +34,34 @@ const Navbar = () => {
     }
   }, [show]);
 
+  let CurrentNavTitle;
+
+  const CurrentPage = function () {
+    if (location.pathname === "/") {
+      CurrentNavTitle = "Home";
+      return CurrentNavTitle;
+    } else if (location.pathname === "/about") {
+      CurrentNavTitle = "About";
+      return CurrentNavTitle;
+    } else if (location.pathname === "/browsearchives") {
+      CurrentNavTitle = "Browse Archives";
+      return CurrentNavTitle;
+    } else if (location.pathname === "/glossary") {
+      CurrentNavTitle = "Glossary";
+      return CurrentNavTitle;
+    } else if (location.pathname === "/eventlist") {
+      CurrentNavTitle = "Workshops";
+      return CurrentNavTitle;
+    } else if (location.pathname === "/contribute") {
+      CurrentNavTitle = "Contact Us";
+      return CurrentNavTitle;
+    } else {
+      return null;
+    }
+  };
+
+  CurrentPage();
+
   return (
     <NavStyle>
       <h1 className="nav__title">{title}</h1>
@@ -45,7 +72,7 @@ const Navbar = () => {
             <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
           <div className="nav__currentPage">
-            <p>Home</p>
+            <p>{CurrentNavTitle}</p>
           </div>
           <button className="nav__btn btn--hidden">
             <GiHamburgerMenu color="var(--primary-clr-100)" />

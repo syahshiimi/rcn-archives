@@ -28,21 +28,10 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
-  siteMetadata: {
-    title: "Reconceptualizing the Cold War",
-    description: "By historian Masuda Hajimu",
-    author: "Masuda Hajimu",
-    person: {
-      name: "Masuda Hajimu",
-      age: "32",
-    },
-    simpleData: ["item 1", "item 2"],
-    complexData: [
-      { name: "Syahrul", age: "26" },
-      { name: "Varun", age: "26" },
-    ],
-  },
   plugins: [
+    {
+      resolve: "gatsby-plugin-react-helmet",
+    },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
