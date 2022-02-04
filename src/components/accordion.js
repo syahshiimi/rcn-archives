@@ -53,6 +53,8 @@ export const Accordion = ({ transcript = [], type, name }) => {
   ///////////// Conditional Rendering //////////////
   //////////////////////////////////////////////////
 
+  // Dynamically render content based on the type prop
+
   // 1. Document Summary Accordion
   function DocumentSummary() {
     if (englishTranscriptSummary != undefined) {

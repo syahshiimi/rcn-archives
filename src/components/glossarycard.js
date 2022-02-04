@@ -3,19 +3,9 @@ import styled from "styled-components";
 import parse from "html-react-parser";
 
 const GlossaryCard = ({ glossary = [] }) => {
-  // Destructure array to return the obj within it
-  let glossaryObj = glossary[0];
-
-  // Next, we create an array from the Obj which has sub-ojb such as
-  // alphabetA, alphabetB objs.
-  // This will return the obj as arrays
-
-  // We use the returned array later on to map over and return the react components
-  const glossaryArr = Object.entries(glossaryObj);
-
   return (
     <GlossaryCardWrapper>
-      {glossaryArr.map((element, index) => {
+      {glossary.map((element, index) => {
         // We destructure array element[1], which containes childMarkdownRemark: { html }
         // which we will use parse over it.
         const {

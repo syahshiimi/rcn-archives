@@ -143,20 +143,44 @@ const query = graphql`
 const Glossary = () => {
   const data = useStaticQuery(query);
   const glossary = data.allContentfulGlossaryPage.nodes;
+  // First we destructure the glossary array we queried
+  // to get an obj
+  let glossaryObj = glossary[0];
+
+  // Next, we create an array from the Obj which has sub-ojb such as
+  // alphabetA, alphabetB objs.
+  // This will return the obj as arrays.
+  // We use the returned array later on to map over
+  // and return the react components
+  const glossaryArr = Object.entries(glossaryObj);
+
   return (
     <Layout>
       <Head title="Glossary" />
       <GlossaryWrapper>
-        <section className="l-glossary bg--std">
-          <section className="c-glossary__linkscontainer">
+        <article className="l-glossary">
+          <section className="c-glossary__main">
+            {" "}
             <h1 className="c-glossary__title">Glossary</h1>
-            <a className="c-glossary__a">A</a>
-            <a className="c-glossary__b">B</a>
+            <div className="c-glossary__linkscontainer">
+              {glossaryArr.map((element, index) => {
+                const lastAlphabet = element[0].charAt(element[0].length - 1);
+                return (
+                  <a
+                    href="#"
+                    className={"c-glossary__links" + " " + lastAlphabet}
+                    key={index}
+                  >
+                    {lastAlphabet}
+                  </a>
+                );
+              })}
+            </div>
           </section>
-          <section className="c-glossary__container">
-            <GlossaryCard glossary={glossary} />
+          <section className="c-glossary__cardcontainer">
+            <GlossaryCard glossary={glossaryArr} />
           </section>
-        </section>
+        </article>
       </GlossaryWrapper>
     </Layout>
   );
@@ -165,19 +189,43 @@ const Glossary = () => {
 const GlossaryWrapper = styled.main`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   .l-glossary {
     display: flex;
     flex-direction: column;
-    flex-wrap: flex-wrap;
     justify-content: center;
     padding: 0vh var(--padding-mobile) 6vh var(--padding-mobile);
   }
+  .c-glossary__main {
+    justify-content: center;
+    display: flex;
+    height: 75vh;
+    flex-direction: column;
+  }
 
+  .c-glossary__title {
+    text-align: center;
+  }
   .c-glossary__container {
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }
+  .c-glossary__linkscontainer {
+    display: flex;
+    row-gap: 3.5vh;
+    flex-wrap: wrap;
+    margin: 5vh 0vw;
+  }
+  .c-glossary__linkscontainer > a {
+    font-size: 2.25rem;
+    flex: 1 0 25%;
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none !important;
   }
 
   @media (min-width: 992px) {
