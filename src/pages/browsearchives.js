@@ -114,6 +114,7 @@ const BrowseArchives = () => {
     ? unFlattenResults(results)
     : transcript;
 
+  console.log(FilteredTranscript);
   // Hide on Scroll
   const [isVisible, setIsVisible] = useState(false);
 
@@ -182,6 +183,7 @@ const BrowseArchives = () => {
                   childMarkdownRemark: { html },
                 },
               } = item;
+              console.log(item);
               return (
                 <SearchCard
                   transcriptTitle={transcriptTitle}

@@ -1,48 +1,66 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import Layout from "../components/Layout";
+import GlossaryCard from "../components/glossarycard";
+
 import { Head } from "../components/head";
+import Layout from "../components/Layout";
+
+const query = graphql`
+  {
+    allContentfulGlossaryPage {
+      nodes {
+        alphabetA {
+          childMarkdownRemark {
+            html
+          }
+        }
+        alphabetB {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
+    }
+  }
+`;
 
 const Glossary = () => {
+  const data = useStaticQuery(query);
+  const glossary = data.allContentfulGlossaryPage.nodes;
   return (
     <Layout>
       <Head title="Glossary" />
       <GlossaryWrapper>
         <section className="l-glossary bg--std">
-          <h1 className="c-glossary__header">Glossary</h1>
-          <p className="c-glossary__a">A</p>
-          <p className="c-glossary__b">B</p>
-          <p className="c-glossary__c">c</p>
-          <p className="c-glossary__a">d</p>
-          <p className="c-glossary__a">e</p>
-          <p className="c-glossary__a">f</p>
-          <p className="c-glossary__a">g</p>
-          <p className="c-glossary__a">h</p>
-          <p className="c-glossary__a">i</p>
-          <p className="c-glossary__a">j</p>
-          <p className="c-glossary__a">k</p>
-          <p className="c-glossary__a">l</p>
-          <p className="c-glossary__a">l</p>
-          <p className="c-glossary__a">m</p>
-          <p className="c-glossary__a">n</p>
-          <p className="c-glossary__a">o</p>
-          <p className="c-glossary__a">p</p>
-          <p className="c-glossary__a">q</p>
-          <p className="c-glossary__a">r</p>
-          <p className="c-glossary__a">s</p>
-          <p className="c-glossary__a">t</p>
-          <p className="c-glossary__a">u</p>
-          <p className="c-glossary__a">v</p>
-          <p className="c-glossary__a">w</p>
-          <p className="c-glossary__a">x</p>
-          <p className="c-glossary__a">y</p>
-          <p className="c-glossary__a">z</p>
+          <h1 className="c-glossary title">Glossary</h1>
+          <section className="c-glossary__linkscontainer">
+            <a className="c-glossary__a">A</a>
+            <a className="c-glossary__b">B</a>
+          </section>
+          <section className="c-glossary__container">
+            <GlossaryCard glossary={glossary} />
+          </section>
         </section>
       </GlossaryWrapper>
     </Layout>
   );
 };
 
-const GlossaryWrapper = styled.main``;
+const GlossaryWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+
+  .l-glossary {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: flex-wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .c-glossary__container {
+  }
+`;
 
 export default Glossary;
