@@ -51,7 +51,7 @@ const GlossaryCardWrapper = styled.section`
   }
 
   .c-glossarycard__container {
-    margin: 2vh 2vw 2vh 2vw;
+    margin: 0vh 2vw 2vh 0vw;
   }
 
   .c-glossarycard__title {
@@ -62,7 +62,7 @@ const GlossaryCardWrapper = styled.section`
 
   h5 {
     font-family: "Lora", sans-serif !important;
-    margin: 3vh 0vw;
+    margin: 3.5vh 0vw 1.5vh 0vw;
   }
 
   .c-glossarycard__content > p {
@@ -73,29 +73,30 @@ const GlossaryCardWrapper = styled.section`
     .c-glossarycard {
       border-radius: 5vw;
       flex-wrap: wrap;
-      padding: 3vh 5vh 3vh 5vh;
-    }
-    .c-glossarycard__content {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      /* grid-template-columns: auto; */
-      /* grid-template-rows: repeat(auto-fill, min(1fr)); */
-      /* grid-template-areas: */
-      /* "alphabet alphabet" */
-      /* "name content"; */
-      margin: 0;
-      column-gap: 2vw;
+      padding: 3vh 5vh 4vh 5vh;
     }
 
-    h1 {
-      grid-area: alphabet;
+    .c-glossarycard__title {
+      margin-top: 0;
+      font-size: 3.5rem;
+    }
+
+    .c-glossarycard__container {
+      flex-wrap: wrap;
+      margin: 0;
+    }
+
+    .c-glossarycard__content {
       display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+      column-gap: 4vw;
     }
 
     h5 {
-      margin: 0;
-      grid-area: name;
+      margin: 2vh 0vw 1vh 0vw;
     }
     .c-glossarycard__content > p {
       margin: 0;

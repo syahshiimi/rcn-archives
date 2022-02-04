@@ -33,7 +33,7 @@ const Glossary = () => {
       <Head title="Glossary" />
       <GlossaryWrapper>
         <section className="l-glossary bg--std">
-          <h1 className="c-glossary title">Glossary</h1>
+          <h1 className="c-glossary__title">Glossary</h1>
           <section className="c-glossary__linkscontainer">
             <a className="c-glossary__a">A</a>
             <a className="c-glossary__b">B</a>
@@ -63,6 +63,13 @@ const GlossaryWrapper = styled.main`
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }
+
+  @media (min-width: 992px) {
+    justify-items: center;
+    .c-glossary__title {
+      text-align: center;
+    }
   }
 `;
 
