@@ -73,7 +73,7 @@ const GlossaryCardWrapper = styled.section`
     .c-glossarycard {
       border-radius: 5vw;
       flex-wrap: wrap;
-      padding: 3vh 5vh 4vh 5vh;
+      padding: 3vh 5vw 4vh 5vw;
     }
 
     .c-glossarycard__title {
@@ -92,7 +92,6 @@ const GlossaryCardWrapper = styled.section`
       flex-direction: row;
       align-items: center;
       margin: 0;
-      column-gap: 4vw;
     }
 
     h5 {
@@ -101,6 +100,20 @@ const GlossaryCardWrapper = styled.section`
     .c-glossarycard__content > p {
       margin: 0;
       grid-area: content;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .c-glossarycard {
+      padding: 6vh 6vw 8vh 6vw;
+    }
+
+    .c-glossarycard__title {
+    }
+
+    h5 {
+      margin: 3vh 0vw 1vh 0vw;
+      font-size: 1.25rem;
     }
   }
 `;

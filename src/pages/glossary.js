@@ -71,6 +71,14 @@ const GlossaryWrapper = styled.main`
       text-align: center;
     }
   }
+  @media (min-width: 1280px) {
+    .l-glossary {
+      padding: 10vh var(--padding-desktop);
+    }
+    .c-glossary__container {
+      margin: 0vh 10vw;
+    }
+  }
 `;
 
 export default Glossary;
