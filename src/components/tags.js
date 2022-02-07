@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 ////////////////////////////////////////////
 
 export const TagsContainer = ({ tags = [], func, queryState }) => {
-  const LiveSearch = useNavigate();
   return (
     <TagsWrapper className="c-tagscontainer">
       {tags.map((item, index) => {
