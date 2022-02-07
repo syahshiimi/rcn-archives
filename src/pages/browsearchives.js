@@ -121,68 +121,62 @@ const BrowseArchives = () => {
   /////////////////////////////
 
   return (
-    <Router>
-      {" "}
-      <Layout>
-        <Head title="Browse Archives" />
-        <BrowseArchivesWrapper>
-          <BackToSearchBtn />
-          <section className="l-browsearchives">
-            <h1 className="c-browsearchives__heading">Search The Archives</h1>
-            <SearchBar
-              queryState={queryState}
-              setSearchQuery={setSearchQuery}
-            />
-            <div className="c-browsearchives__filtercontainer">
-              <label
-                htmlFor="c-browsearchives__filterbykeywords"
-                className="c-browsearchives__keywordscheckbox"
-              >
-                <input type="checkbox" value="keywords" />
-                Filter by keywords
-              </label>
-              <label
-                htmlFor="c-browsearchives__filterbytags"
-                className="c-browsearchives__tagscheckbox"
-              >
-                <input type="checkbox" value="tags" />
-                Filter by tags
-              </label>
-            </div>
-            <p className="c-browsearchives__content">
-              Browse through our carefully curated oral archives. Working with
-              on-the-ground experiences, we aim to provide a wholesome and
-              comprehensive approach towards understanding the cold war from a
-              grassroots perspective.
-            </p>
+    <Layout>
+      <Head title="Browse Archives" />
+      <BrowseArchivesWrapper>
+        <BackToSearchBtn />
+        <section className="l-browsearchives">
+          <h1 className="c-browsearchives__heading">Search The Archives</h1>
+          <SearchBar queryState={queryState} setSearchQuery={setSearchQuery} />
+          <div className="c-browsearchives__filtercontainer">
+            <label
+              htmlFor="c-browsearchives__filterbykeywords"
+              className="c-browsearchives__keywordscheckbox"
+            >
+              <input type="checkbox" value="keywords" />
+              Filter by keywords
+            </label>
+            <label
+              htmlFor="c-browsearchives__filterbytags"
+              className="c-browsearchives__tagscheckbox"
+            >
+              <input type="checkbox" value="tags" />
+              Filter by tags
+            </label>
+          </div>
+          <p className="c-browsearchives__content">
+            Browse through our carefully curated oral archives. Working with
+            on-the-ground experiences, we aim to provide a wholesome and
+            comprehensive approach towards understanding the cold war from a
+            grassroots perspective.
+          </p>
+        </section>
+        <section className="l-browsearchives__search">
+          <h1 className="c-browsearchives__searchresults">Search Results</h1>
+          <section className="c-browsearchives__searchcontainer">
+            {FilteredTranscript.map((item) => {
+              const {
+                id,
+                transcriptTitle,
+                transcriptTags,
+                oneLineTeaser: {
+                  childMarkdownRemark: { html },
+                },
+              } = item;
+              return (
+                <SearchCard
+                  transcriptTitle={transcriptTitle}
+                  transcriptTags={transcriptTags}
+                  html={html}
+                  key={id}
+                  func={onClick}
+                />
+              );
+            })}
           </section>
-          <section className="l-browsearchives__search">
-            <h1 className="c-browsearchives__searchresults">Search Results</h1>
-            <section className="c-browsearchives__searchcontainer">
-              {FilteredTranscript.map((item) => {
-                const {
-                  id,
-                  transcriptTitle,
-                  transcriptTags,
-                  oneLineTeaser: {
-                    childMarkdownRemark: { html },
-                  },
-                } = item;
-                return (
-                  <SearchCard
-                    transcriptTitle={transcriptTitle}
-                    transcriptTags={transcriptTags}
-                    html={html}
-                    key={id}
-                    func={onClick}
-                  />
-                );
-              })}
-            </section>
-          </section>
-        </BrowseArchivesWrapper>
-      </Layout>
-    </Router>
+        </section>
+      </BrowseArchivesWrapper>
+    </Layout>
   );
 };
 

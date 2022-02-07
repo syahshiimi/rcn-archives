@@ -15,7 +15,6 @@ export const TagsContainer = ({ tags = [], func, queryState }) => {
             className="c-tagscontainer__tagpill"
             key={index}
             onClick={() => func({ item })} // We run an onclick function that will use the func function with the variable from {item}
-            // onClick={tagClick} // We run an onclick function that will use the func function with the variable from {item}
           >
             <p className="c-tagscontainer__tag">{item}</p>
           </button>
