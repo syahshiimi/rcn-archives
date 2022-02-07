@@ -15,12 +15,15 @@ const GlossaryCard = ({ glossary = [] }) => {
         const checkString = "<p>None</p>";
         if (html != checkString) {
           return (
-            <div className={"c-glossarycard" + " " + element[0]} key={index}>
-              <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
-              <div className="c-glossarycard__container">
+            <div className={"c-glossarycard" + lastAlphabet} key={index}>
+              <div className="c-glossarycard">
                 {" "}
-                <div className="c-glossarycard__content">
-                  {parse(`${html}`)}
+                <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
+                <div className="c-glossarycard__container">
+                  {" "}
+                  <div className="c-glossarycard__content">
+                    {parse(`${html}`)}
+                  </div>
                 </div>
               </div>
             </div>

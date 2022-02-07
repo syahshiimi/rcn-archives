@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import GlossaryCard from "../components/glossarycard";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
@@ -154,6 +155,19 @@ const Glossary = () => {
   // and return the react components
   const glossaryArr = Object.entries(glossaryObj);
 
+  // Onclick handler for jump linking
+  // Create a event handler named onClick
+  // We use the scrollTo feature in a gatsby plugin called 'scrollTo'
+
+  const onClick = (e) => {
+    e.preventDefault();
+    // We store the last char value and we will concatenate into the component name for jump linking
+    const lastChar = e.target.className.charAt(e.target.className.length - 1);
+    console.log(lastChar);
+    // We create new var to store actual glossary card className
+    const jumpLink = `.c-glossarycard${lastChar}`;
+    scrollTo(jumpLink);
+  };
   return (
     <Layout>
       <Head title="Glossary" />
@@ -168,8 +182,9 @@ const Glossary = () => {
                 return (
                   <a
                     href="#"
-                    className={"c-glossary__links" + " " + lastAlphabet}
+                    className={"c-glossary__links" + lastAlphabet}
                     key={index}
+                    onClick={onClick}
                   >
                     {lastAlphabet}
                   </a>
