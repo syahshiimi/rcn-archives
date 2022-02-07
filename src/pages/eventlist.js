@@ -95,6 +95,7 @@ const EventWrapper = styled.main`
     .l-pastevents__list {
       padding: 4vh 4vw;
       margin: 4vh 8vw;
+      border-radius: calc(6vw + 1px);
     }
 
     .l-pastevents__container > * {
@@ -109,6 +110,7 @@ const EventWrapper = styled.main`
 
     .l-pastevents__list {
       padding: 2vh 4vw;
+      border-radius: calc(4vw + 1px);
     }
     .c-pastevents__heading {
       font-size: 4.5rem;
