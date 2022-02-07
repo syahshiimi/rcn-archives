@@ -8,6 +8,8 @@ import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
 import { BackToSearchBtn } from "../components/button";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const query = graphql`
   {
@@ -48,8 +50,8 @@ const isSearch = typeof window !== "undefined";
 const BrowseArchives = () => {
   const data = useStaticQuery(query);
   const transcript = data.allContentfulInterviewTranscripts.nodes;
-  const find = data.localSearchArchives;
-  const { index, store } = find;
+  const flexFind = data.localSearchArchives;
+  const { index, store } = flexFind;
 
   /////////////////////////////////
   //////// Search Function ////////
@@ -65,12 +67,13 @@ const BrowseArchives = () => {
 
   // useStaet hooks to control input
   // The idea here is to control the input type  based on existing values
-  // 1. If queryState == default value, we have setSearchQuery modify the query to have it set as an empty string
-  // 2. We use the onClick as an event handler, which then return the value based on which tag pill was clicked
+  // 1. If queryState == default value, we use the default value that is 'searchQuery'
+  // 2. We use the onClick as an event handler, to return the value based on which tag pill was clicked. This value is in the item variable
   // 3. If the tag pill rreturns a value, we have setSearchQuery modify the queryStaet by using the tag pill value
   // 4. if the queryState IS NOT == default, we also expose the setSearchQuery function to use the tag pill value
+
   const onClick = (value = []) => {
-    const { item } = value;
+    const { item } = value; // destructure value to get the variable
     if (queryState === searchQuery) {
       setSearchQuery("");
     } else {
@@ -113,88 +116,73 @@ const BrowseArchives = () => {
     ? unFlattenResults(results)
     : transcript;
 
-  // Hide on Scroll
-  const [isVisible, setIsVisible] = useState(false);
-
-  // we use useEffect as add event listener to listen for scrolling
-  useEffect(() => {
-    window.addEventListener("scroll", listenToScroll);
-    return () => window.removeEventListener("scroll", listenToScroll);
-  }, []);
-
-  //
-  const listenToScroll = () => {
-    let heightHide = 1000;
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    if (winScroll < heightHide) {
-      isVisible && setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
-  };
-
   /////////////////////////////
   //////// Render Comp. ///////
   /////////////////////////////
 
   return (
-    <Layout>
-      <Head title="Browse Archives" />
-      <BrowseArchivesWrapper>
-        {isVisible && <BackToSearchBtn />}
-        <section className="l-browsearchives">
-          <h1 className="c-browsearchives__heading">Search The Archives</h1>
-          <SearchBar queryState={queryState} setSearchQuery={setSearchQuery} />
-          <div className="c-browsearchives__filtercontainer">
-            <label
-              htmlFor="c-browsearchives__filterbykeywords"
-              className="c-browsearchives__keywordscheckbox"
-            >
-              <input type="checkbox" value="keywords" />
-              Filter by keywords
-            </label>
-            <label
-              htmlFor="c-browsearchives__filterbytags"
-              className="c-browsearchives__tagscheckbox"
-            >
-              <input type="checkbox" value="tags" />
-              Filter by tags
-            </label>
-          </div>
-          <p className="c-browsearchives__content">
-            Browse through our carefully curated oral archives. Working with
-            on-the-ground experiences, we aim to provide a wholesome and
-            comprehensive approach towards understanding the cold war from a
-            grassroots perspective.
-          </p>
-        </section>
-        <section className="l-browsearchives__search">
-          <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <section className="c-browsearchives__searchcontainer">
-            {FilteredTranscript.map((item) => {
-              const {
-                id,
-                transcriptTitle,
-                transcriptTags,
-                oneLineTeaser: {
-                  childMarkdownRemark: { html },
-                },
-              } = item;
-              return (
-                <SearchCard
-                  transcriptTitle={transcriptTitle}
-                  transcriptTags={transcriptTags}
-                  html={html}
-                  key={id}
-                  func={onClick}
-                />
-              );
-            })}
+    <Router>
+      {" "}
+      <Layout>
+        <Head title="Browse Archives" />
+        <BrowseArchivesWrapper>
+          <BackToSearchBtn />
+          <section className="l-browsearchives">
+            <h1 className="c-browsearchives__heading">Search The Archives</h1>
+            <SearchBar
+              queryState={queryState}
+              setSearchQuery={setSearchQuery}
+            />
+            <div className="c-browsearchives__filtercontainer">
+              <label
+                htmlFor="c-browsearchives__filterbykeywords"
+                className="c-browsearchives__keywordscheckbox"
+              >
+                <input type="checkbox" value="keywords" />
+                Filter by keywords
+              </label>
+              <label
+                htmlFor="c-browsearchives__filterbytags"
+                className="c-browsearchives__tagscheckbox"
+              >
+                <input type="checkbox" value="tags" />
+                Filter by tags
+              </label>
+            </div>
+            <p className="c-browsearchives__content">
+              Browse through our carefully curated oral archives. Working with
+              on-the-ground experiences, we aim to provide a wholesome and
+              comprehensive approach towards understanding the cold war from a
+              grassroots perspective.
+            </p>
           </section>
-        </section>
-      </BrowseArchivesWrapper>
-    </Layout>
+          <section className="l-browsearchives__search">
+            <h1 className="c-browsearchives__searchresults">Search Results</h1>
+            <section className="c-browsearchives__searchcontainer">
+              {FilteredTranscript.map((item) => {
+                const {
+                  id,
+                  transcriptTitle,
+                  transcriptTags,
+                  oneLineTeaser: {
+                    childMarkdownRemark: { html },
+                  },
+                } = item;
+                return (
+                  <SearchCard
+                    transcriptTitle={transcriptTitle}
+                    transcriptTags={transcriptTags}
+                    html={html}
+                    key={id}
+                    func={onClick}
+                  />
+                );
+              })}
+            </section>
+          </section>
+        </BrowseArchivesWrapper>
+      </Layout>
+    </Router>
   );
 };
 

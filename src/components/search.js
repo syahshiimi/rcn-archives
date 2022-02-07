@@ -1,20 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
 import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
-import DefaultButton from "./button";
+import { useNavigate } from "react-router-dom";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
-  // disable SPA navigation for now
-  // const LiveSearch = useNavigate()
 
+  const LiveSearch = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // disable SPA navigation for now
-    // LiveSearch(`?s=${queryState}`); // concatenate url with search query value
+    LiveSearch(`?s=${queryState}`); // concatenate url with search query value
     scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
 

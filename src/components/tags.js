@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 ////////////////////////////////////////////
 /////////// Search Cards ///////////////////
 ////////////////////////////////////////////
 
-export const TagsContainer = ({ tags = [], func }) => {
+export const TagsContainer = ({ tags = [], func, queryState }) => {
+  const LiveSearch = useNavigate();
   return (
     <TagsWrapper className="c-tagscontainer">
       {tags.map((item, index) => {
@@ -13,7 +15,8 @@ export const TagsContainer = ({ tags = [], func }) => {
           <button
             className="c-tagscontainer__tagpill"
             key={index}
-            onClick={() => func({ item })}
+            onClick={() => func({ item })} // We run an onclick function that will use the func function with the variable from {item}
+            // onClick={tagClick} // We run an onclick function that will use the func function with the variable from {item}
           >
             <p className="c-tagscontainer__tag">{item}</p>
           </button>

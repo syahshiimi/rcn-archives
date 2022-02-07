@@ -11,6 +11,7 @@ export const SearchCard = ({
   transcriptTags,
   html,
   func,
+  queryState,
 }) => {
   // remove dots in strings (if exists)
   const cleanString = transcriptTitle
@@ -29,7 +30,11 @@ export const SearchCard = ({
 
         <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
         <span className="c-searchcard__tagscontainer">
-          <TagsContainer tags={transcriptTags} func={func} />
+          <TagsContainer
+            tags={transcriptTags}
+            func={func}
+            queryState={queryState}
+          />
         </span>
         {/* <span className="c-searchcard__read"> */}
         {/* <Link to={`${slug}`}>Read More </Link> */}
