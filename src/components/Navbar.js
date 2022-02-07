@@ -37,7 +37,7 @@ const Navbar = () => {
 
   let CurrentNavTitle;
 
-  const CurrentPage = function () {
+  const CurrentPage = () => {
     if (isBrowswer) {
       if (location.pathname === "/") {
         CurrentNavTitle = "Home";
@@ -58,12 +58,11 @@ const Navbar = () => {
         CurrentNavTitle = "Contact Us";
         return CurrentNavTitle;
       } else {
-        return null;
+        CurrentNavTitle = "RCW-Asia";
       }
     } else {
     }
   };
-
   CurrentPage();
 
   return (

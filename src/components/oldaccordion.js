@@ -80,24 +80,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     );
   }
 
-  // 3. DOcument Information Accordion
-  function DocumentInfo({ transcriptNotes }) {
-    return (
-      <div className="c-accordion__info" ref={accordionRef}>
-        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
-        <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
-        <div className="c-accordion__tagsandkeyscontainer">
-          <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
-          <hr className="c-accordion__tagsandkeysline"></hr>
-          <TagsContainer tags={transcriptTags} />
-        </div>
-        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
-        <hr className="c-accordion__transcriptnotesline"></hr>
-        <TranscriptNotes />
-      </div>
-    );
-  }
-
+  // 3. Transcript Notes Subcomponent
   function TranscriptNotes(props) {
     if (transcriptNotes != null) {
       return (
@@ -108,6 +91,24 @@ export const Accordion = ({ transcript = [], type, name }) => {
     } else {
       return null;
     }
+  }
+
+  // 3. DOcument Information Accordion
+  function DocumentInfo() {
+    return (
+      <div className="c-accordion__info" ref={accordionRef}>
+        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
+        <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
+        <div className="c-accordion__tagsandkeyscontainer">
+          <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
+          <hr className="c-accordion__tagsandkeysline"></hr>
+          <TagsContainer tags={transcriptTags} />
+        </div>
+        <hr className="c-accordion__transcriptnotesline"></hr>
+        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
+        <TranscriptNotes />
+      </div>
+    );
   }
 
   // 4. Document Qns Accordion
@@ -161,6 +162,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   useEffect(() => {
     const accordionHeight = accordionRef.current.getBoundingClientRect().height;
     if (show) {
+      console.log(`${accordionHeight}`);
       accordionBody.current.style.height = `${accordionHeight}px`;
       // accordionBody.current.style.paddingBottom = `2vh`;
       accordionBody.current.style.border = `1px solid var(--primary-clr-200)`;
@@ -202,7 +204,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
 const AccordionWrapper = styled.div`
   margin: 1vh 0vw;
 
-  // Accordion Header
   .c-accordion__header {
     display: flex;
     flex-direction: row;
@@ -228,7 +229,6 @@ const AccordionWrapper = styled.div`
     transform: rotate(180deg);
     transition: var(--transition);
   }
-  
 
   .c-accordion__title {
     font-size: 1rem;
@@ -239,6 +239,7 @@ const AccordionWrapper = styled.div`
   .c-accordion__bodycontainer {
     display: flex;
     overflow: hidden;
+    flex: 0 1 auto;
     flex-direction: column;
     background-color: var(--primary-clr-50);
     border: 1px solid var(--primary-clr-200);
@@ -246,37 +247,23 @@ const AccordionWrapper = styled.div`
     transition: var(--transition);
   }
 
-  .c-accordion__body {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-  }
 
-  
-  // Accordion Styling
-  //
-  // Document Summary Accordion
   .c-accordion__summary {
     padding-bottom: 4vh;
-    display: flex;
-    flex-direction: column;
   }
   .c-accordion__summary > p {
     margin: 2vh 6vw;
     text-align: center;
   }
 
-  // Document Transcript Accordion
-  .c-accordion__transcript {
-    display: grid;
-    margin: 5vh 10vw;
-    height: 100%;
+
+.c-accordion__transcript {
+  display: flex;
+  flex-direction: column;
 }
   .c-accordion__transcript > p {
-    padding: 1vh 6vw;
+    margin: 2vh 6vw;
   }
-
-  // Document Information Accordion
 .c-accordion__info {
   display: flex;
   flex-direction: column;
@@ -300,7 +287,6 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__transcriptnotesheader {
     font-weight: bold;
-    margin-bottom: 0;
   }
 
   .c-accordion__transcriptnotesline {
@@ -309,21 +295,24 @@ const AccordionWrapper = styled.div`
   }
   
   .c-accordion__transcriptnotes {
-    margin: 0vh 6vw 2vh 10vw;
+    margin: 2vh 6vw 2vh 10vw;
+    
     li {
       padding: 1vh 0vw;
     }
-}
+    
+  }
+
   ol li::marker {
     font-family: 'Ubuntu';
   }
   
   .c-accordion__qns {
-    display: flex;
-    flex-direction: column;
+    margin: 2vh 4vw 2vh 6vw;
+    padding: 0vh 0vw 1vh 4vw;
 
     ol > li {
-    margin: 2vh 6vw 2vh 10vw;
+      margin: 2vh 0vw;
     }
   }
 
@@ -403,18 +392,7 @@ const AccordionWrapper = styled.div`
   @media (min-width: 1280px) {
     .c-accordion__summary {
       margin-bottom: 0;
-      p {
-        font-size: 1.125rem;
-      }
-    }
-    
-    .c-accordion__transcriptnotesline {
-      margin: 0vh 3vw;
     }
     .c-accordion__qns {
-      ol > li {
-        margin: 4vh 5vw;
-      }
-      
     }
 `;

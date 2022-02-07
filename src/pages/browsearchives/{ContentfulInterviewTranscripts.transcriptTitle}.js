@@ -128,7 +128,7 @@ const TranscriptTemplate = ({ data }) => {
         <Accordion
           transcript={transcript}
           type="Document Transcript"
-          name="document__transcript non-mobile"
+          name="document__transcript"
         />
         <ReadFullButton slug={slug} />
         <Accordion
