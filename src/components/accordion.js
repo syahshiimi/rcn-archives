@@ -62,7 +62,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function DocumentSummary() {
     if (englishTranscriptSummary != undefined) {
       return (
-        <div className="c-accordion__summary" ref={accordionRef}>
+        <div className="c-accordion__summary">
           {renderRichText(englishTranscriptSummary, options)}
         </div>
       );
@@ -74,7 +74,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // 2. Full Document Transcript Accordion (Mobile only)
   function DocumentTranscript(props) {
     return (
-      <div className="c-accordion__transcript" ref={accordionRef}>
+      <div className="c-accordion__transcript">
         {renderRichText(englishFullTranscript, options)}
       </div>
     );
@@ -83,7 +83,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // 3. DOcument Information Accordion
   function DocumentInfo({ transcriptNotes }) {
     return (
-      <div className="c-accordion__info" ref={accordionRef}>
+      <div className="c-accordion__info">
         <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
         <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
         <div className="c-accordion__tagsandkeyscontainer">
@@ -101,7 +101,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function TranscriptNotes(props) {
     if (transcriptNotes != null) {
       return (
-        <div className="c-accordion__transcriptnotes" ref={accordionRef}>
+        <div className="c-accordion__transcriptnotes">
           {renderRichText(transcriptNotes, options)}
         </div>
       );
@@ -114,7 +114,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function DocumentQns() {
     if (discussionQuestions != undefined) {
       return (
-        <div className="c-accordion__qns" ref={accordionRef}>
+        <div className="c-accordion__qns">
           {renderRichText(discussionQuestions, options)}
         </div>
       );
@@ -162,8 +162,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
     const accordionHeight = accordionRef.current.getBoundingClientRect().height;
     if (show) {
       accordionBody.current.style.height = `${accordionHeight}px`;
-      // accordionBody.current.style.paddingBottom = `2vh`;
-      accordionBody.current.style.border = `1px solid var(--primary-clr-200)`;
       accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`;
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`;
       accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`;
@@ -193,7 +191,9 @@ export const Accordion = ({ transcript = [], type, name }) => {
         </IconContext.Provider>
       </button>
       <div className="c-accordion__bodycontainer" ref={accordionBody}>
-        <div className="c-accordion__body">{component}</div>
+        <div className="c-accordion__body" ref={accordionRef}>
+          {component}
+        </div>
       </div>
     </AccordionWrapper>
   );
@@ -238,12 +238,14 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__bodycontainer {
     display: flex;
-    overflow: hidden;
     flex-direction: column;
+    overflow: hidden;
+    flex: 1 1 100%;
     background-color: var(--primary-clr-50);
-    border: 1px solid var(--primary-clr-200);
+    /* border: 1px solid var(--primary-clr-200); */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: var(--transition);
+
   }
 
   .c-accordion__body {
@@ -257,32 +259,33 @@ const AccordionWrapper = styled.div`
   //
   // Document Summary Accordion
   .c-accordion__summary {
-    padding-bottom: 4vh;
     display: flex;
     flex-direction: column;
+    padding: 1vh 0vw;
   }
   .c-accordion__summary > p {
-    margin: 2vh 6vw;
+    margin: 1vh 6vw;
     text-align: center;
   }
 
   // Document Transcript Accordion
   .c-accordion__transcript {
-    display: grid;
-    margin: 5vh 10vw;
-    height: 100%;
+    padding: 2vh 0vw;
 }
   .c-accordion__transcript > p {
-    padding: 1vh 6vw;
+    margin: .5vh 6vw;
+    min-height: 10px;
+    display: block;
   }
 
   // Document Information Accordion
 .c-accordion__info {
   display: flex;
   flex-direction: column;
+  padding: 1vh 0vw;
 }
   .c-accordion__info > * {
-    margin: 2vh 6vw;
+    margin: 1vh 6vw;
   }
   .c-accordion__tagsandkeyscontainer {
     display: flex;
@@ -318,9 +321,12 @@ const AccordionWrapper = styled.div`
     font-family: 'Ubuntu';
   }
   
+
+  // Document Questions Accordion
   .c-accordion__qns {
     display: flex;
     flex-direction: column;
+    padding: 1vh 2vw;
 
     ol > li {
     margin: 2vh 6vw 2vh 10vw;
@@ -341,16 +347,13 @@ const AccordionWrapper = styled.div`
       height: 2.8rem;
       width: 2.8rem;
     }
-    
-    .c-accordion__summary {
-      margin-bottom: 4vh;
-    }
+
     .c-accordion__summary > p {
-      margin: 2vh 3vw;
+      margin: 1vh 3vw;
       text-align: center;
     }
     .c-accordion__info > * {
-      margin: 2vh 3vw;
+      margin: 1vh 3vw;
     }
     
     .c-accordion__transcripttags {
@@ -375,6 +378,7 @@ const AccordionWrapper = styled.div`
     .c-accordion__transcriptnotesline {
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
+      margin: 0vh 3vw;
     }
     
     .c-accordion__transcriptnotes {
@@ -382,13 +386,13 @@ const AccordionWrapper = styled.div`
       }
 
     .c-accordion__qns {
-      margin: 2vh 3vw 2vh 5vw;
-      padding: 0;
+      padding: 1vh 0vw;
       list-style: square;
 
       ol > li {
-        margin: 2vh 0vw;
+        margin: 1vh 3vw 1vh 5vw;
       }
+      
 
       ol > li > p {
         font-size: 1rem;
@@ -402,19 +406,40 @@ const AccordionWrapper = styled.div`
   
   @media (min-width: 1280px) {
     .c-accordion__summary {
-      margin-bottom: 0;
+      padding: 3vh 0vw;
       p {
         font-size: 1.125rem;
       }
     }
     
+    .c-accordion__info {
+      padding: 3vh 0vw;
+    }
+    
+    
     .c-accordion__transcriptnotesline {
-      margin: 0vh 3vw;
+      margin: 1vh 3vw;
     }
     .c-accordion__qns {
+      padding: 1.5vh 2vw 1.5vh 1vw;
       ol > li {
-        margin: 4vh 5vw;
+        margin: 1vh 3vw;
       }
-      
+     
     }
+    
+    @media (min-width: 2560px) {
+    .c-accordion__info > *  {
+      margin: 1vh 3vw;
+    }
+
+      .c-accordion__qns {
+        padding: 3vh 0vw;
+      ol > li > p {
+        font-size: 1.25em;
+
+      }
+      }
+    }
+    
 `;
