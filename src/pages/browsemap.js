@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import {
@@ -17,29 +17,49 @@ import { countryData } from "../data";
 /////// Tablet & Desktop Only ///
 /////////////////////////////////
 const BrowseMap = () => {
+  // To create hover effect with tooltip, the useState will be iplemeneted
+  const [content, setContent] = useState("");
   return (
     <Layout>
       <BrowseMapWrapper>
         <h1 className="c-browsemap__title">Browse Archive Map</h1>
+        <ReactTooltip>{content}</ReactTooltip>
         <div className="l-browsemap">
           {" "}
-          <ComposableMap
-            className="c-browsemap"
-            data-tip=""
-            // height={300}
-            // width={900}
-          >
-            <ZoomableGroup center={[85, 20]} zoom={2}>
+          <ComposableMap className="c-browsemap" data-tip="">
+            <ZoomableGroup center={[90, 20]} zoom={2}>
               {" "}
               <Geographies geography={asia}>
                 {({ geographies }) =>
                   geographies.map((geo) => (
-                    <Geography key={geo.rsmKey} geography={geo} />
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onMouseEnter={() => {
+                        const { name } = geo.properties;
+                        setContent(`${name}`);
+                      }}
+                      onMouseLeave={() => {
+                        setContent("");
+                      }}
+                      style={{
+                        default: {
+                          outline: "none",
+                        },
+                        hover: {
+                          fill: "#F53",
+                          outline: "none",
+                        },
+                        pressed: {
+                          fill: "#E42",
+                          outline: "none",
+                        },
+                      }}
+                    />
                   ))
                 }
               </Geographies>
               {countryData.map(({ name, coordinates, markerOffset }) => {
-                console.log(name, coordinates, markerOffset);
                 return (
                   <Marker key={name} coordinates={coordinates}>
                     <circle className="c-browsemap__marker"></circle>
@@ -48,7 +68,6 @@ const BrowseMap = () => {
               })}
               {countryData.map(
                 ({ name, coordinates, dx, dy, curve, textY }) => {
-                  console.log(name, coordinates, curve);
                   return (
                     <Annotation
                       key={name}
@@ -92,6 +111,7 @@ const BrowseMapWrapper = styled.article`
     .l-browsemap {
       border: 1px solid black;
       border-radius: calc(8vh);
+      background-color: var(--secondary-clr-250);
     }
     .c-browsemap__title {
       margin-bottom: 6vh;
@@ -103,22 +123,26 @@ const BrowseMapWrapper = styled.article`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* background-color: var(--secondary-clr-250); */
       /* background-color: var(--primary-clr-50); */
       padding: 0vh 1vw;
       height: 100;
+      outline: none;
+
+      :active {
+      }
     }
     .rsm-geographies {
       fill: var(--primary-clr-100);
       stroke: var(--primary-clr-150);
       display: flex;
+      stroke-width: 0.7x;
       justify-content: center;
     }
 
     .c-browsemap__marker {
       fill: var(--primary-clr-50);
       stroke: var(--primary-clr-150);
-      r: 8;
+      r: 4;
     }
 
     .c-browsemap__marker:hover {
@@ -127,6 +151,10 @@ const BrowseMapWrapper = styled.article`
     .c-browsemap__annotateText {
       font-size: 0.6rem;
       font-family: "Ubuntu", sans-serif;
+    }
+
+    .c-browsemap__annotateText:hover {
+      fill: var(--primary-clr-50);
     }
   }
 `;
