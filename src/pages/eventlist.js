@@ -93,13 +93,13 @@ const EventWrapper = styled.main`
       margin: 4vh 6vw;
     }
     .l-pastevents__list {
-      padding: 4vh 4vw;
+      padding: 2vh 4vw;
       margin: 4vh 8vw;
       border-radius: calc(6vw + 1px);
     }
 
     .l-pastevents__container > * {
-      margin: 4vh 0vw;
+      margin: 3vh 0vw;
     }
   }
 
