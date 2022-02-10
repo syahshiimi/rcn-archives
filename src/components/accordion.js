@@ -5,8 +5,6 @@ import { IconContext } from "@react-icons/all-files/lib";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { TagsContainer } from "./tags";
-import { render } from "react-dom";
-import { getImage } from "gatsby-plugin-image";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
