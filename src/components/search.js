@@ -6,10 +6,7 @@ import scrollTo from "gatsby-plugin-smoothscroll";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
-<<<<<<< HEAD
-=======
 
->>>>>>> development
   // const LiveSearch = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
