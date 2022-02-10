@@ -47,6 +47,9 @@ export const Accordion = ({ transcript = [], type, name }) => {
       [BLOCKS.LIST_ITEM]: (node, children) => {
         return <li>{children}</li>;
       },
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        return <p>{children}</p>;
+      },
     },
   };
   //////////////////////////////////////////////////
@@ -59,25 +62,42 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function DocumentSummary() {
     if (englishTranscriptSummary != undefined) {
       return (
-        <span className="c-accordion__summary">
+        <div className="c-accordion__summary">
           {renderRichText(englishTranscriptSummary, options)}
-        </span>
+        </div>
       );
     } else {
       return null;
     }
   }
 
-  // 2. Document Summary Accordion (Mobile only)
+  // 2. Full Document Transcript Accordion (Mobile only)
   function DocumentTranscript(props) {
     return (
-      <span className="c-accordion__transcript">
+      <div className="c-accordion__transcript">
         {renderRichText(englishFullTranscript, options)}
-      </span>
+      </div>
     );
   }
 
-  // 3. Transcript Notes Subcomponent
+  // 3. DOcument Information Accordion
+  function DocumentInfo({ transcriptNotes }) {
+    return (
+      <div className="c-accordion__info">
+        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
+        <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
+        <div className="c-accordion__tagsandkeyscontainer">
+          <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
+          <hr className="c-accordion__tagsandkeysline"></hr>
+          <TagsContainer tags={transcriptTags} />
+        </div>
+        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
+        <hr className="c-accordion__transcriptnotesline"></hr>
+        <TranscriptNotes />
+      </div>
+    );
+  }
+
   function TranscriptNotes(props) {
     if (transcriptNotes != null) {
       return (
@@ -88,24 +108,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
     } else {
       return null;
     }
-  }
-
-  // 3. DOcument Information Accordion
-  function DocumentInfo() {
-    return (
-      <span className="c-accordion__info">
-        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
-        <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
-        <div className="c-accordion__tagsandkeyscontainer">
-          <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
-          <hr className="c-accordion__tagsandkeysline"></hr>
-          <TagsContainer tags={transcriptTags} />
-        </div>
-        <hr className="c-accordion__transcriptnotesline"></hr>
-        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
-        <TranscriptNotes />
-      </span>
-    );
   }
 
   // 4. Document Qns Accordion
@@ -159,16 +161,12 @@ export const Accordion = ({ transcript = [], type, name }) => {
   useEffect(() => {
     const accordionHeight = accordionRef.current.getBoundingClientRect().height;
     if (show) {
-      console.log(`${accordionHeight}`);
       accordionBody.current.style.height = `${accordionHeight}px`;
-      accordionBody.current.style.paddingBottom = `4vh`;
-      accordionBody.current.style.border = `1px solid var(--primary-clr-200)`;
       accordionBody.current.style.borderRadius = `0px 0px calc(2rem + 1px) calc(2rem + 1px)`;
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`;
       accordionHeader.current.style.borderRadius = `calc(2rem + 1px) calc(2rem + 1px) 0px  0px`;
     } else {
       accordionBody.current.style.height = "0px";
-      accordionBody.current.style.padding = `0rem`;
       accordionBody.current.style.border = `0px solid var(--primary-clr-200)`;
       accordionHeader.current.style.border = `1px solid var(--primary-clr-200)`;
       accordionHeader.current.style.borderRadius = `calc(2rem + 1px)`;
@@ -204,6 +202,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
 const AccordionWrapper = styled.div`
   margin: 1vh 0vw;
 
+  // Accordion Header
   .c-accordion__header {
     display: flex;
     flex-direction: row;
@@ -229,6 +228,7 @@ const AccordionWrapper = styled.div`
     transform: rotate(180deg);
     transition: var(--transition);
   }
+  
 
   .c-accordion__title {
     font-size: 1rem;
@@ -238,32 +238,58 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__bodycontainer {
     display: flex;
-    flex-grow: 1 1 auto;
-    overflow: hidden;
     flex-direction: column;
+    overflow: hidden;
+    flex: 1 1 100%;
     background-color: var(--primary-clr-50);
-    border: 1px solid var(--primary-clr-200);
+    /* border: 1px solid var(--primary-clr-200); */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: var(--transition);
+
   }
 
-  .closed {
-    display: none;
+  .c-accordion__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  
+  // Accordion Styling
+  //
+  // Document Summary Accordion
+  .c-accordion__summary {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 0vw;
   }
   .c-accordion__summary > p {
-    margin: 2vh 6vw;
+    margin: 1vh 6vw;
     text-align: center;
   }
+
+  // Document Transcript Accordion
+  .c-accordion__transcript {
+    padding: 2vh 0vw;
+}
   .c-accordion__transcript > p {
-    margin: 2vh 6vw;
+    margin: .5vh 6vw;
+    min-height: 10px;
+    display: block;
   }
+
+  // Document Information Accordion
+.c-accordion__info {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 0vw;
+}
   .c-accordion__info > * {
-    margin: 2vh 6vw;
+    margin: 1vh 6vw;
   }
   .c-accordion__tagsandkeyscontainer {
     display: flex;
     flex-direction: column;
-
   }
 
   .c-accordion__tagsandkeystitle {
@@ -277,6 +303,7 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__transcriptnotesheader {
     font-weight: bold;
+    margin-bottom: 0;
   }
 
   .c-accordion__transcriptnotesline {
@@ -285,22 +312,24 @@ const AccordionWrapper = styled.div`
   }
   
   .c-accordion__transcriptnotes {
-    margin: 2vh 6vw 2vh 10vw;
-    
+    margin: 0vh 6vw 2vh 10vw;
     li {
       padding: 1vh 0vw;
     }
-    
-    
+}
+  ol li::marker {
+    font-family: 'Ubuntu';
   }
   
+
+  // Document Questions Accordion
   .c-accordion__qns {
-    margin: 4vh 9vw;
-    padding: 0vh 4vw;
-    list-style: square;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 2vw;
 
     ol > li {
-      margin: 2vh 0vw;
+    margin: 2vh 6vw 2vh 10vw;
     }
   }
 
@@ -318,14 +347,15 @@ const AccordionWrapper = styled.div`
       height: 2.8rem;
       width: 2.8rem;
     }
+
     .c-accordion__summary > p {
-      margin: 2vh 3vw;
+      margin: 1vh 3vw;
       text-align: center;
     }
     .c-accordion__info > * {
-      margin: 2vh 3vw;
+      margin: 1vh 3vw;
     }
-
+    
     .c-accordion__transcripttags {
       justify-content: stretch;
     }
@@ -336,6 +366,10 @@ const AccordionWrapper = styled.div`
     .c-accordion__tag {
       font-size: 0.85rem;
     }
+    
+    .c-accordion__transcript {
+      display: none;
+    }
 
     .c-accordion__transcriptnotesheader {
       font-weight: bold;
@@ -344,22 +378,21 @@ const AccordionWrapper = styled.div`
     .c-accordion__transcriptnotesline {
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
+      margin: 0vh 3vw;
     }
     
     .c-accordion__transcriptnotes {
       margin-left: 5vw;
-
       }
-    }
 
     .c-accordion__qns {
-      margin: 2vh 3vw;
-      padding: 0vh 4vw;
+      padding: 1vh 0vw;
       list-style: square;
 
       ol > li {
-        margin: 2vh 0vw;
+        margin: 1vh 3vw 1vh 5vw;
       }
+      
 
       ol > li > p {
         font-size: 1rem;
@@ -372,8 +405,41 @@ const AccordionWrapper = styled.div`
   ////////////////////////////
   
   @media (min-width: 1280px) {
-    .c-accordion__qns {
-      padding: 0;
-      margin: 2vh 3vw;
+    .c-accordion__summary {
+      padding: 3vh 0vw;
+      p {
+        font-size: 1.125rem;
+      }
     }
+    
+    .c-accordion__info {
+      padding: 3vh 0vw;
+    }
+    
+    
+    .c-accordion__transcriptnotesline {
+      margin: 1vh 3vw;
+    }
+    .c-accordion__qns {
+      padding: 1.5vh 2vw 1.5vh 1vw;
+      ol > li {
+        margin: 1vh 3vw;
+      }
+     
+    }
+    
+    @media (min-width: 2560px) {
+    .c-accordion__info > *  {
+      margin: 1vh 3vw;
+    }
+
+      .c-accordion__qns {
+        padding: 3vh 0vw;
+      ol > li > p {
+        font-size: 1.25em;
+
+      }
+      }
+    }
+    
 `;
