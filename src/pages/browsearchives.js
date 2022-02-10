@@ -8,8 +8,6 @@ import { SearchBar } from "../components/search";
 import { useFlexSearch } from "react-use-flexsearch";
 import { BackToSearchBtn } from "../components/button";
 import scrollTo from "gatsby-plugin-smoothscroll";
-import { BrowserRouter as Router } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const query = graphql`
   {

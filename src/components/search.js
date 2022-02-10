@@ -3,18 +3,19 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
 import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
-import { useNavigate } from "react-router-dom";
 
 export const SearchBar = ({ queryState, setSearchQuery }) => {
   const refContainer = useRef(null);
+<<<<<<< HEAD
+=======
+
+>>>>>>> development
   // const LiveSearch = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     // LiveSearch(`?s=${queryState}`); // concatenate url with search query value
     scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
   };
-
-  useEffect(() => {});
 
   return (
     <SeaerchBarWrapper>
