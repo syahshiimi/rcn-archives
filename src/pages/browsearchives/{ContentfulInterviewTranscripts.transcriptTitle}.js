@@ -332,9 +332,12 @@ const TranscriptWrapper = styled.section`
   //////////////////////////
 
   @media (min-width: 2560px) {
-    padding: 10vh 20vw;
+    padding: 10vh 24vw;
     row-gap: 2vh;
 
+    .c-transcript__title {
+      margin-bottom: 2vh;
+    }
     .c-transcript__container {
       margin: 0vh 4vw;
     }

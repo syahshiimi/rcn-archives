@@ -427,6 +427,7 @@ const AccordionWrapper = styled.div`
     }
     
     @media (min-width: 2560px) {
+      margin: 0vh;
     .c-accordion__info > *  {
       margin: 1vh 3vw;
     }
