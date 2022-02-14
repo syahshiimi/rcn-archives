@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import {
@@ -14,6 +14,7 @@ import asia from "../../content/asia-mapshaper.json"; // geoJson
 import { countryData } from "../data"; // coordinates of the countrie
 import Modal from "react-modal";
 import { graphql, useStaticQuery } from "gatsby";
+import { useFlexSearch } from "react-use-flexsearch";
 
 const customStyles = {
   content: {
@@ -36,6 +37,10 @@ const transcriptQuery = graphql`
         transcriptTags
       }
     }
+    localSearchArchives {
+      index
+      store
+    }
   }
 `;
 const BrowseMap = () => {
@@ -45,40 +50,85 @@ const BrowseMap = () => {
   ///////////////////////////////////////
   ///////////// React Modal /////////////
   ///////////////////////////////////////
-
-  const data = useStaticQuery(transcriptQuery);
-  const transcripts = data.allContentfulInterviewTranscripts.nodes;
-  console.log(transcripts);
-
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
+
   function openModal() {
     setIsOpen(true);
   }
 
-  function docuIndia() {
-    return <div className="india">THis is the transcript content of india</div>;
-  }
-
-  function afterOpenModal() {
-    // subtitle.style.color = "#f00";
-  }
+  function afterOpenModal() {}
 
   function closeModal() {
     setIsOpen(false);
   }
 
-  // const component = <div>India</div>;
-  const [component, setCompoenent] = useState("");
-  function condRender(value = []) {
-    // this function will conditionally render the component console.log(value);
-    console.log(value);
-    if (value == "India") {
-      setCompoenent(<div className="india">india</div>);
+  // Conditional Transcript Rendering within the Modal
+
+  const data = useStaticQuery(transcriptQuery);
+  const transcripts = data.allContentfulInterviewTranscripts.nodes;
+
+  // We now use flexsearch to filter through our requested array later
+  const flexTranscripts = data.localSearchArchives;
+  const { index, store } = flexTranscripts;
+
+  // Function will use the value from geo.properties and us it as a search value
+  // to render out the specified list of transcripts.
+  // We use flexsearch engine to list it out as it is fast and lightweight
+  function ListofTranscripts(value) {
+    const { searchValue } = value; // obtained from geo.properties
+    const results = useFlexSearch(searchValue, index, store); // we determine the search value
+
+    // Unflatten  Results
+    // This will return a a regualr object
+    const unFlattenResults = (results) =>
+      results.map((item) => {
+        const { transcriptTitle, transcriptTags } = item;
+        return {
+          transcriptTitle,
+          transcriptTags,
+        };
+      });
+
+    // To conditionally render if the search value (from geo.properties) returns an
+    // an array of objects which signifies that there are transcripts related to it...
+    // we can use the length to conditional render two options.
+    // Firstly, if the length is longer than 1, this means that transcripts exist
+    // Secondly, if the length is shorter than 1 (therefore zero), the search value will not return any transcripts!
+
+    if (results.length > 0) {
+      return (
+        <ul className="c-browsemap__listoftranscripts">
+          {results.map((item, index) => {
+            const { transcriptTags = null, transcriptTitle = null } = item;
+
+            const listComponent = (
+              <div className="c-browsemap__transcript" key={index}>
+                {transcriptTitle}
+              </div>
+            );
+
+            return listComponent;
+          })}
+        </ul>
+      );
     } else {
-      setCompoenent(null);
+      return <div>There are currently no documents for {searchValue}</div>;
     }
   }
+
+  // We use a useState hook to determine the value of component.
+  // We will use the componenet variable in the useState hook to render later
+  // SetComponent is a function that determines the value of componenet
+  const [component, setComponent] = useState("");
+  // We define the function which would allow the modification of the component
+  // This function will be used as an onClick handler.
+  // The function will return a value. This value can then be passed
+  // as a component prop for <ListofTranscripts/> componnent.
+  // While passing this as a prop, this means that we can use it as a search value.
+  function condRender(value = []) {
+    setComponent(<ListofTranscripts searchValue={value} />);
+  }
+
   return (
     <Layout>
       <BrowseMapWrapper>
@@ -87,7 +137,7 @@ const BrowseMap = () => {
         <div className="l-browsemap">
           {" "}
           <ComposableMap className="c-browsemap" data-tip="">
-            <ZoomableGroup center={[90, 20]} zoom={1.8}>
+            <ZoomableGroup center={[90, 20]} zoom={2.2}>
               {" "}
               <Geographies geography={asia}>
                 {({ geographies }) =>
@@ -167,7 +217,6 @@ const BrowseMap = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
               >
-                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
                 {component}
               </Modal>
             </ZoomableGroup>
@@ -181,17 +230,17 @@ const BrowseMap = () => {
 const BrowseMapWrapper = styled.article`
   display: none;
   @media (min-width: 902px) {
-    padding: 8vh var(--padding-desktop);
+    padding: 6vh var(--padding-desktop);
     display: grid;
     text-align: center;
 
     .l-browsemap {
       /* border: 1px solid black; */
-      border-radius: calc(8vh);
+      /* border-radius: calc(8vh); */
       /* background-color: var(--secondary-clr-250); */
       display: flex;
       justify-content: center;
-      margin: 2vh 10vw;
+      margin: 0vh 10vw;
     }
     .c-browsemap__title {
       margin-bottom: 6vh;
@@ -207,6 +256,7 @@ const BrowseMapWrapper = styled.article`
       /* background-color: var(--primary-clr-50); */
       /* height: 550px; */
       /* width: 100%; */
+      border-radius: calc(8vh);
       outline: none;
 
       :active {
@@ -224,7 +274,7 @@ const BrowseMapWrapper = styled.article`
     .c-browsemap__marker {
       fill: var(--primary-clr-50);
       stroke: var(--primary-clr-150);
-      r: 4;
+      r: 2;
     }
 
     .c-browsemap__marker:hover {

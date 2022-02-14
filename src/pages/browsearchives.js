@@ -109,7 +109,7 @@ const BrowseArchives = () => {
       };
     });
 
-  // set defaults where we return the entire transcript
+  // set defaults where we return the entire transcript or else return the fitlered transcript
   const FilteredTranscript = queryState
     ? unFlattenResults(results)
     : transcript;
