@@ -27,7 +27,7 @@ const BrowseMap = () => {
         <div className="l-browsemap">
           {" "}
           <ComposableMap className="c-browsemap" data-tip="">
-            <ZoomableGroup center={[90, 20]} zoom={2}>
+            <ZoomableGroup center={[90, 20]} zoom={1.8}>
               {" "}
               <Geographies geography={asia}>
                 {({ geographies }) =>
@@ -47,11 +47,11 @@ const BrowseMap = () => {
                           outline: "none",
                         },
                         hover: {
-                          fill: "#F53",
+                          fill: "#333533",
                           outline: "none",
                         },
                         pressed: {
-                          fill: "#E42",
+                          fill: "#242423",
                           outline: "none",
                         },
                       }}
@@ -104,17 +104,21 @@ const BrowseMap = () => {
 const BrowseMapWrapper = styled.article`
   display: none;
   @media (min-width: 902px) {
-    padding: 4vh var(--padding-mobile) 6vh var(--padding-mobile);
+    padding: 8vh var(--padding-desktop);
     display: grid;
     text-align: center;
 
     .l-browsemap {
-      border: 1px solid black;
+      /* border: 1px solid black; */
       border-radius: calc(8vh);
-      background-color: var(--secondary-clr-250);
+      /* background-color: var(--secondary-clr-250); */
+      display: flex;
+      justify-content: center;
+      margin: 2vh 10vw;
     }
     .c-browsemap__title {
       margin-bottom: 6vh;
+      margin-top: 4vh;
     }
 
     .c-browsemap {
@@ -124,8 +128,8 @@ const BrowseMapWrapper = styled.article`
       justify-content: center;
       align-items: center;
       /* background-color: var(--primary-clr-50); */
-      padding: 0vh 1vw;
-      height: 100;
+      /* height: 550px; */
+      /* width: 100%; */
       outline: none;
 
       :active {
@@ -154,7 +158,7 @@ const BrowseMapWrapper = styled.article`
     }
 
     .c-browsemap__annotateText:hover {
-      fill: var(--primary-clr-50);
+      fill: var(--primary-clr-150);
     }
   }
 `;

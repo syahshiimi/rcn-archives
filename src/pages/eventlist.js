@@ -86,7 +86,7 @@ const EventWrapper = styled.main`
   /////////////////////////////
   @media (min-width: 1280px) {
     section {
-      padding: 5vh var(--padding-desktop);
+      padding: 8vh var(--padding-desktop);
     }
 
     .l-pastevents > * {

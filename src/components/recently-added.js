@@ -10,7 +10,7 @@ const query = graphql`
   {
     allContentfulInterviewTranscripts(
       sort: { order: DESC, fields: createdAt }
-      limit: 5
+      limit: 10
     ) {
       nodes {
         featured

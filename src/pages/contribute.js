@@ -145,7 +145,7 @@ const ContributeWrapper = styled.article`
 
   @media (min-width: 1280px) {
     .l-contactus {
-      padding: 10vh var(--padding-desktop);
+      padding: 10vh 25vw;
       grid-row-gap: 4vh;
     }
 

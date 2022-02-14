@@ -496,10 +496,10 @@ const IndexWrapper = styled.main`
     padding: 4vh 4vw;
 
     .c-divider__one {
-      margin: 5vh 1vh 20vh 1vw; // top, right, bottom, left
+      margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
     }
     .c-divider__two {
-      margin: 5vh 1vh 20vh 1vw; // top, right, bottom, left
+      margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
     }
 
     .l-welcome {
