@@ -54,7 +54,10 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
+const isSearch = typeof window !== "undefined";
+if (isSearch) {
+  Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
+}
 const BrowseMap = () => {
   // To create hover effect with tooltip, the useState will be iplemeneted
   const [content, setContent] = useState("");
