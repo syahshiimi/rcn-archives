@@ -143,13 +143,13 @@ const FeatureCardWrapper = styled.section`
 
     .c-featurecard__title {
       margin: 0vh 2vw;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
     }
 
     .c-featurecard__oneliner {
       margin: 1.5vh 1.8vw;
       p {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
       }
     }
 

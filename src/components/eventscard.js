@@ -214,7 +214,7 @@ const EventsCardWrapper = styled.div`
     }
     .c-pastevents__date {
       font-size: 0.9rem;
-      margin: 2vh 0vw;
+      margin: 1vh 0vw;
     }
     .c-pastevents__content {
       font-size: 0.95rem;
@@ -222,7 +222,7 @@ const EventsCardWrapper = styled.div`
     }
     .c-pastevents__location {
       font-size: 0.85rem;
-      margin: 3vh 0vw;
+      margin: 1vh 0vw;
     }
   }
 

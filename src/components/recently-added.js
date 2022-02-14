@@ -158,12 +158,13 @@ const FeatureCardWrapper = styled.section`
 
     .c-recentlyaddedcard__title {
       margin: 0vh 2vw;
+      font-size: 0.95rem;
     }
 
     .c-recentlyaddedcard__oneliner {
       margin: 1.5vh 1.8vw;
       p {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
       }
     }
 
