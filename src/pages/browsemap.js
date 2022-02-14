@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import {
@@ -10,20 +10,80 @@ import {
   Annotation,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
-import asia from "../../content/asia-mapshaper.json";
-import { countryData } from "../data";
+import asia from "../../content/asia-mapshaper.json"; // geoJson
+import { countryData } from "../data"; // coordinates of the countrie
+import Modal from "react-modal";
+import { graphql, useStaticQuery } from "gatsby";
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    // marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 /////////////////////////////////
 /////// Tablet & Desktop Only ///
 /////////////////////////////////
+const transcriptQuery = graphql`
+  {
+    allContentfulInterviewTranscripts {
+      nodes {
+        transcriptTitle
+        transcriptTags
+      }
+    }
+  }
+`;
 const BrowseMap = () => {
   // To create hover effect with tooltip, the useState will be iplemeneted
   const [content, setContent] = useState("");
+
+  ///////////////////////////////////////
+  ///////////// React Modal /////////////
+  ///////////////////////////////////////
+
+  const data = useStaticQuery(transcriptQuery);
+  const transcripts = data.allContentfulInterviewTranscripts.nodes;
+  console.log(transcripts);
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function docuIndia() {
+    return <div className="india">THis is the transcript content of india</div>;
+  }
+
+  function afterOpenModal() {
+    // subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  // const component = <div>India</div>;
+  const [component, setCompoenent] = useState("");
+  function condRender(value = []) {
+    // this function will conditionally render the component console.log(value);
+    console.log(value);
+    if (value == "India") {
+      setCompoenent(<div className="india">india</div>);
+    } else {
+      setCompoenent(null);
+    }
+  }
   return (
     <Layout>
       <BrowseMapWrapper>
         <h1 className="c-browsemap__title">Browse Archive Map</h1>
-        <ReactTooltip>{content}</ReactTooltip>
+        <ReactTooltip>Read Documents of {content} </ReactTooltip>
         <div className="l-browsemap">
           {" "}
           <ComposableMap className="c-browsemap" data-tip="">
@@ -33,8 +93,14 @@ const BrowseMap = () => {
                 {({ geographies }) =>
                   geographies.map((geo) => (
                     <Geography
+                      className="c-browsemap__country"
                       key={geo.rsmKey}
                       geography={geo}
+                      onClick={() => {
+                        openModal();
+                        const { name } = geo.properties;
+                        condRender(name);
+                      }}
                       onMouseEnter={() => {
                         const { name } = geo.properties;
                         setContent(`${name}`);
@@ -47,11 +113,11 @@ const BrowseMap = () => {
                           outline: "none",
                         },
                         hover: {
-                          fill: "#333533",
+                          fill: "#e8edff",
                           outline: "none",
                         },
                         pressed: {
-                          fill: "#242423",
+                          fill: "#e8edff",
                           outline: "none",
                         },
                       }}
@@ -93,6 +159,17 @@ const BrowseMap = () => {
                   );
                 }
               )}
+              <Modal
+                isOpen={modalIsOpen}
+                ariaHideApp={false}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
+                {component}
+              </Modal>
             </ZoomableGroup>
           </ComposableMap>
         </div>
@@ -138,6 +215,7 @@ const BrowseMapWrapper = styled.article`
     .rsm-geographies {
       fill: var(--primary-clr-100);
       stroke: var(--primary-clr-150);
+      stroke-width: 0.7px;
       display: flex;
       stroke-width: 0.7x;
       justify-content: center;
