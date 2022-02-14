@@ -83,6 +83,13 @@ input {
   font-family: "Ubuntu", sans-serif;
 }
 
+.Modal {
+  background-color: red;
+}
+.Overlay {
+  background-color: red;
+}
+
 /* tablet displays wide 992px */
 @media (min-width: 992px) {
   h1 {

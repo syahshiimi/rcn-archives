@@ -12,20 +12,12 @@ import {
 import ReactTooltip from "react-tooltip";
 import asia from "../../content/asia-mapshaper.json"; // geoJson
 import { countryData } from "../data"; // coordinates of the countrie
-import Modal from "react-modal";
 import { graphql, useStaticQuery } from "gatsby";
 import { useFlexSearch } from "react-use-flexsearch";
+import slugify from "slugify";
+import { Link } from "gatsby";
+import Modal from "react-modal";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    // marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 /////////////////////////////////
 /////// Tablet & Desktop Only ///
 /////////////////////////////////
@@ -43,6 +35,26 @@ const transcriptQuery = graphql`
     }
   }
 `;
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    justifyContent: "center",
+    alignSelf: "center",
+    backgroundColor: "#cfdbd5",
+    fontFamily: "Ubuntu",
+    padding: "6vh 8vw",
+    opacity: "0.85",
+  },
+};
+
+Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
 const BrowseMap = () => {
   // To create hover effect with tooltip, the useState will be iplemeneted
   const [content, setContent] = useState("");
@@ -56,7 +68,9 @@ const BrowseMap = () => {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {}
+  function afterOpenModal() {
+    // this.style.backgroundColor = "red";
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -65,7 +79,6 @@ const BrowseMap = () => {
   // Conditional Transcript Rendering within the Modal
 
   const data = useStaticQuery(transcriptQuery);
-  const transcripts = data.allContentfulInterviewTranscripts.nodes;
 
   // We now use flexsearch to filter through our requested array later
   const flexTranscripts = data.localSearchArchives;
@@ -99,11 +112,20 @@ const BrowseMap = () => {
       return (
         <ul className="c-browsemap__listoftranscripts">
           {results.map((item, index) => {
-            const { transcriptTags = null, transcriptTitle = null } = item;
+            const { transcriptTitle } = item;
 
+            // remove dots in strings (if exists)
+            const cleanString = transcriptTitle
+              .replace(".", " ")
+              .replace("(", " ")
+              .replace(")", " ");
+
+            const slug = slugify(cleanString, { lower: true });
             const listComponent = (
               <div className="c-browsemap__transcript" key={index}>
-                {transcriptTitle}
+                {/* {transcriptTitle} */}
+
+                <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
               </div>
             );
 
@@ -150,6 +172,7 @@ const BrowseMap = () => {
                         openModal();
                         const { name } = geo.properties;
                         condRender(name);
+                        afterOpenModal();
                       }}
                       onMouseEnter={() => {
                         const { name } = geo.properties;
@@ -209,16 +232,21 @@ const BrowseMap = () => {
                   );
                 }
               )}
-              <Modal
-                isOpen={modalIsOpen}
-                ariaHideApp={false}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-              >
-                {component}
-              </Modal>
+              <ModalWrapper>
+                {" "}
+                <Modal
+                  isOpen={modalIsOpen}
+                  // ariaHideApp={false}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  // className="Modal"
+                  // overlayClassName="Overlay"
+                  contentLabel="Example Modal"
+                >
+                  {component}
+                </Modal>
+              </ModalWrapper>
             </ZoomableGroup>
           </ComposableMap>
         </div>
@@ -227,6 +255,13 @@ const BrowseMap = () => {
   );
 };
 
+const ModalWrapper = styled.article`
+  padding: 2vh 8vw !important;
+  .c-browsemap__transcript {
+    a {
+    }
+  }
+`;
 const BrowseMapWrapper = styled.article`
   display: none;
   @media (min-width: 902px) {
@@ -265,7 +300,7 @@ const BrowseMapWrapper = styled.article`
     .rsm-geographies {
       fill: var(--primary-clr-100);
       stroke: var(--primary-clr-150);
-      stroke-width: 0.7px;
+      stroke-width: 0.3px;
       display: flex;
       stroke-width: 0.7x;
       justify-content: center;
@@ -281,7 +316,7 @@ const BrowseMapWrapper = styled.article`
       fill: var(--primary-clr-150);
     }
     .c-browsemap__annotateText {
-      font-size: 0.6rem;
+      font-size: 0.4rem;
       font-family: "Ubuntu", sans-serif;
     }
 
