@@ -4,12 +4,13 @@ import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import { Link } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Icon from "../../src/assets/icon.svg";
 
 // Import Data
 import { pageLinks } from "../data";
 
 // Variables
-const title = "Reconceptualizing the \n Cold War";
+const title = "Reconceptualizing the Cold War";
 
 const isBrowswer = typeof window !== "undefined";
 const Navbar = () => {
@@ -67,7 +68,15 @@ const Navbar = () => {
 
   return (
     <NavStyle>
-      <h1 className="nav__title">{title}</h1>
+      <div className="c-nav__container">
+        <Icon />
+        <hr className="c-nav__split"></hr>
+        <section className="c-nav__titleandsub">
+          {" "}
+          <h1 className="nav__title">{title}</h1>
+          <h3 className="nav__subtitle">On-the-ground Experiences In Asia</h3>
+        </section>
+      </div>
       <div className="nav__separator"></div>
       <div className="nav__dropdown">
         <div className="nav__header">
@@ -237,16 +246,38 @@ const NavStyle = styled.nav`
     padding: 0vh var(--padding-tablet);
     flex-direction: row;
     background-color: var(--primary-clr-150);
-    height: 15vh !important;
-    font-size: 1.1rem;
+    height: 12vh !important;
 
+    .c-nav__container {
+      display: flex;
+      flex-direction: row;
+      column-gap: 1vw;
+      align-items: center;
+    }
+
+    .c-nav__split {
+      border: 2px solid;
+    }
+
+    .c-nav__titleandsub {
+      display: flex;
+      flex-direction: column;
+    }
     .nav__title {
       color: var(--primary-clr-50);
       white-space: pre-line;
       text-align: left;
-      font-size: 1.5rem;
-      padding: 0;
-      margin-right: 5vw;
+      font-size: 1.625rem;
+      margin: 0;
+    }
+
+    .nav__subtitle {
+      font-size: 1.3125rem !important;
+      font-family: "Lora";
+      font-weight: normal;
+      font-style: normal;
+      color: var(--primary-clr-50);
+      opacity: 0.75;
     }
 
     .nav__separator {
@@ -263,6 +294,7 @@ const NavStyle = styled.nav`
     }
 
     .nav__list {
+      font-size: 1rem;
       background-color: transparent;
       box-shadow: none;
       height: auto !important;

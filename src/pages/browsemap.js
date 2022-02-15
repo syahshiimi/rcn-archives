@@ -18,6 +18,7 @@ import slugify from "slugify";
 import { Link } from "gatsby";
 import Modal from "react-modal";
 import DefaultButton from "../components/button";
+import { Head } from "../components/head";
 
 /////////////////////////////////
 /////// Tablet & Desktop Only ///
@@ -159,6 +160,7 @@ const BrowseMap = () => {
 
   return (
     <Layout>
+      <Head title="Browse Map" />{" "}
       <BrowseMapWrapper>
         <h1 className="c-browsemap__title">Browse Archive Map</h1>
         <ReactTooltip className="c-browsemap__tooltip">
