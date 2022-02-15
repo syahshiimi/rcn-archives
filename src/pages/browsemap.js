@@ -161,7 +161,9 @@ const BrowseMap = () => {
     <Layout>
       <BrowseMapWrapper>
         <h1 className="c-browsemap__title">Browse Archive Map</h1>
-        <ReactTooltip>Read Documents of {content} </ReactTooltip>
+        <ReactTooltip className="c-browsemap__tooltip">
+          Read Documents of {content}{" "}
+        </ReactTooltip>
         <div className="l-browsemap">
           {" "}
           <ComposableMap className="c-browsemap" data-tip="">
@@ -314,14 +316,18 @@ const BrowseMapWrapper = styled.article`
       stroke: var(--primary-clr-150);
       stroke-width: 0.3px;
       display: flex;
-      stroke-width: 0.7x;
+      stroke-width: 0.2px;
       justify-content: center;
+
+      :hover {
+        stroke-width: 0.35px;
+      }
     }
 
     .c-browsemap__marker {
       fill: var(--primary-clr-50);
       stroke: var(--primary-clr-150);
-      r: 2;
+      r: 1;
     }
 
     .c-browsemap__marker:hover {
@@ -352,6 +358,11 @@ const BrowseMapWrapper = styled.article`
     .c-browsemap__button {
       margin: 1vh 0vw;
     }
+
+    .c-browsemap__tooltip {
+      font-family: "Ubuntu";
+      border-radius: 5vh;
+    }
   }
 
   ////////////////////////////////
@@ -377,6 +388,23 @@ const BrowseMapWrapper = styled.article`
 
     .c-browsemap__content {
       margin: 5vh 10vw;
+    }
+  }
+
+  /////////////////////////////////
+  //////////// 4k Display /////////
+  /////////////////////////////////
+  @media (min-width: 2560px) {
+    .c-browsemap {
+      height: 800px;
+    }
+
+    .l-content {
+      margin: 0vh 10vw;
+    }
+
+    .c-browsemap__content {
+      margin: 3vh 10vw 5vh 10vw;
     }
   }
 `;
