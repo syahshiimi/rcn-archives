@@ -83,11 +83,9 @@ input {
   font-family: "Ubuntu", sans-serif;
 }
 
-.Modal {
-  background-color: red;
-}
-.Overlay {
-  background-color: red;
+/* modal styling */
+.c-browsemap__listoftranscripts > .c-browsemap__transcript {
+  margin: 1vh 0vw;
 }
 
 /* tablet displays wide 992px */

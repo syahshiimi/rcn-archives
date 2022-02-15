@@ -17,6 +17,7 @@ import { useFlexSearch } from "react-use-flexsearch";
 import slugify from "slugify";
 import { Link } from "gatsby";
 import Modal from "react-modal";
+import DefaultButton from "../components/button";
 
 /////////////////////////////////
 /////// Tablet & Desktop Only ///
@@ -49,8 +50,10 @@ const customStyles = {
     alignSelf: "center",
     backgroundColor: "#cfdbd5",
     fontFamily: "Ubuntu",
-    padding: "6vh 8vw",
-    opacity: "0.85",
+    padding: "4vh 6vw",
+    opacity: "0.9",
+    borderRadius: "3vh",
+    boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
   },
 };
 
@@ -235,41 +238,49 @@ const BrowseMap = () => {
                   );
                 }
               )}
-              <ModalWrapper>
-                {" "}
-                <Modal
-                  isOpen={modalIsOpen}
-                  // ariaHideApp={false}
-                  onAfterOpen={afterOpenModal}
-                  onRequestClose={closeModal}
-                  style={customStyles}
-                  // className="Modal"
-                  // overlayClassName="Overlay"
-                  contentLabel="Example Modal"
-                >
-                  {component}
-                </Modal>
-              </ModalWrapper>
+              <Modal
+                isOpen={modalIsOpen}
+                // ariaHideApp={false}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                portalClassName="Modal"
+                contentLabel="Example Modal"
+              >
+                {component}
+              </Modal>
             </ZoomableGroup>
           </ComposableMap>
         </div>
+        <section className="l-content">
+          {" "}
+          <p className="c-browsemap__content">
+            Our archival map showcases a diverse array of oral transcripts and
+            interviews we have collected and curated throughout the past few
+            years. It is a collective effort of many researchers. Please feel
+            free to click on any of the countries above. The archive is
+            constantly growing.
+          </p>
+          <p className="c-browsemap__contribute">
+            If you would like to contribute, you can click on the button below.
+          </p>
+          <DefaultButton
+            title="Contribute"
+            url="/contribute"
+            className="c-browsemap__button"
+          />
+        </section>
       </BrowseMapWrapper>
     </Layout>
   );
 };
 
-const ModalWrapper = styled.article`
-  padding: 2vh 8vw !important;
-  .c-browsemap__transcript {
-    a {
-    }
-  }
-`;
 const BrowseMapWrapper = styled.article`
-  display: none;
+  display: none; // we hide it for mobile
   @media (min-width: 902px) {
-    padding: 6vh var(--padding-desktop);
-    display: grid;
+    padding: 4vh var(--padding-desktop);
+    display: flex;
+    flex-direction: column;
     text-align: center;
 
     .l-browsemap {
@@ -278,11 +289,10 @@ const BrowseMapWrapper = styled.article`
       /* background-color: var(--secondary-clr-250); */
       display: flex;
       justify-content: center;
-      margin: 0vh 10vw;
+      margin: 2vh 0vw;
     }
     .c-browsemap__title {
-      margin-bottom: 6vh;
-      margin-top: 4vh;
+      margin: 2vh 0vw 3vh 0vw;
     }
 
     .c-browsemap {
@@ -291,14 +301,13 @@ const BrowseMapWrapper = styled.article`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* background-color: var(--primary-clr-50); */
+      background-color: var(--primary-clr-50);
+      /* box-shadow: 0px 4px 19px rgba(51, 53, 51, 0.25); */
       /* height: 550px; */
       /* width: 100%; */
       border-radius: calc(8vh);
       outline: none;
-
-      :active {
-      }
+      padding: 2vh 2vw;
     }
     .rsm-geographies {
       fill: var(--primary-clr-100);
@@ -325,6 +334,18 @@ const BrowseMapWrapper = styled.article`
 
     .c-browsemap__annotateText:hover {
       fill: var(--primary-clr-150);
+    }
+
+    .c-browsemap__content {
+      margin: 2vh 6vw;
+    }
+
+    .l-content {
+      margin: 2vh 0vw;
+    }
+
+    .c-browsemap__button {
+      margin: 1vh 0vw;
     }
   }
 `;

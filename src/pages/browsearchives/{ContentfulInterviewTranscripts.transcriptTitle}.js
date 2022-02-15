@@ -211,7 +211,7 @@ const TranscriptWrapper = styled.section`
   ///////////////////////////
 
   @media (min-width: 992px) {
-    padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+    padding: 6vh var(--padding-desktop) 6vh var(--padding-desktop);
     display: grid;
     column-gap: 4vw;
     row-gap: 2vh;
