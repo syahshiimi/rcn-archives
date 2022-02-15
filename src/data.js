@@ -51,7 +51,7 @@ export const countryData = [
     dx: 30, // for annotation line
     dy: 10, // for annotation line
     curve: 0, // for annotation line
-    textY: 15,
+    textY: 12,
   },
   {
     markerOffset: -50,
@@ -59,7 +59,7 @@ export const countryData = [
     coordinates: [104.1954, 35.8617],
     dx: 80, // for annotation line
     dy: -50, // for annotation line
-    textY: 15,
+    textY: 12,
     curve: 0, // for annotation line
   },
   {
@@ -68,7 +68,7 @@ export const countryData = [
     coordinates: [104.991, 12.5657],
     dx: 80, // for annotation line
     dy: -10, // for annotation line
-    textY: 25,
+    textY: 19,
     curve: 0, // for annotation line
   },
   {
@@ -77,7 +77,7 @@ export const countryData = [
     coordinates: [113.9213, 0.7893],
     dx: -40, // for annotation line
     dy: 50, // for annotation line
-    textY: -25,
+    textY: -20,
     curve: 0, // for annotation line
   },
   {
@@ -86,7 +86,7 @@ export const countryData = [
     coordinates: [108.22722, 14.0583],
     dx: 80, // for annotation line
     dy: -25, // for annotation line
-    textY: 25,
+    textY: 17,
     curve: 0, // for annotation line
   },
   {
@@ -95,7 +95,7 @@ export const countryData = [
     coordinates: [101.9758, 4.2105],
     dx: -70, // for annotation line
     dy: 10, // for annotation line
-    textY: -25,
+    textY: -17,
     curve: 0, // for annotation line
   },
   {
@@ -104,7 +104,7 @@ export const countryData = [
     coordinates: [103.8198, 1.3321],
     dx: -80, // for annotation line
     dy: 30, // for annotation line
-    textY: -25,
+    textY: -20,
     curve: 0, // for annotation line
   },
   {
@@ -113,7 +113,7 @@ export const countryData = [
     coordinates: [121.774, 12.8797],
     dx: 40, // for annotation line
     dy: 20, // for annotation line
-    textY: 30,
+    textY: 22,
     curve: 0, // for annotation line
   },
   {

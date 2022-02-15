@@ -254,13 +254,13 @@ const BrowseMap = () => {
         </div>
         <section className="l-content">
           {" "}
-          <p className="c-browsemap__content">
+          <h5 className="c-browsemap__content">
             Our archival map showcases a diverse array of oral transcripts and
             interviews we have collected and curated throughout the past few
             years. It is a collective effort of many researchers. Please feel
             free to click on any of the countries above. The archive is
             constantly growing.
-          </p>
+          </h5>
           <p className="c-browsemap__contribute">
             If you would like to contribute, you can click on the button below.
           </p>
@@ -305,9 +305,9 @@ const BrowseMapWrapper = styled.article`
       /* box-shadow: 0px 4px 19px rgba(51, 53, 51, 0.25); */
       /* height: 550px; */
       /* width: 100%; */
-      border-radius: calc(8vh);
+      border-radius: 8vh;
       outline: none;
-      padding: 2vh 2vw;
+      /* padding: 2vh 2vw; */
     }
     .rsm-geographies {
       fill: var(--primary-clr-100);
@@ -336,16 +336,47 @@ const BrowseMapWrapper = styled.article`
       fill: var(--primary-clr-150);
     }
 
-    .c-browsemap__content {
-      margin: 2vh 6vw;
-    }
-
     .l-content {
       margin: 2vh 0vw;
     }
 
+    .c-browsemap__content {
+      margin: 2vh 6vw;
+      font-size: 1.125rem;
+    }
+
+    .c-browsemap__contribute {
+      margin: 3vh 0vw 1vh 0vw;
+    }
+
     .c-browsemap__button {
       margin: 1vh 0vw;
+    }
+  }
+
+  ////////////////////////////////
+  //////// Desktop ///////////////
+  ////////////////////////////////
+
+  @media (min-width: 1280px) {
+    padding: 8vh var(--padding-desktop) 6vh var(--padding-desktop);
+
+    .c-browsemap__title {
+      margin: 4vh 6vw;
+    }
+    .c-browsemap {
+      padding: 2vh 2vw;
+      /* margin: 5vh 5vw; */
+      height: 570px;
+      border-radius: 15vh;
+    }
+
+    .rsm-zoomable-group {
+      /* transform: scale(1.5) !important; */
+    }
+
+    .c-browsemap__content {
+      margin: 5vh 10vw;
     }
   }
 `;
