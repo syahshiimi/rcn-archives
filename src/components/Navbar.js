@@ -161,12 +161,12 @@ const NavStyle = styled.nav`
     }
   }
   .nav__subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: "Lora";
-    font-weight: normal;
+    font-weight: 800;
     font-style: normal;
     color: var(--primary-clr-150);
-    opacity: 0.95;
+    opacity: 0.75;
   }
 
   .c-nav__split {

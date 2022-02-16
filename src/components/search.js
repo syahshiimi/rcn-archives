@@ -23,7 +23,7 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
         onSubmit={handleSubmit}
       >
         <label htmlFor="c-browsearchives__searchinput">
-          <span className="visually-hidden">Browse the archives </span>
+          {/* <span className="visually-hidden">Browse the archives </span> */}
         </label>
         <input
           autoFocus="autofocus"
@@ -76,9 +76,9 @@ const SeaerchBarWrapper = styled.div`
 
     ::placeholder {
       font-size: 0.745rem;
-      /* text-align: center; */
-      padding-left: 50%;
-      []opacity: 40%;
+      text-align: center;
+      padding-left: 65px;
+      opacity: 40%;
     }
   }
 
