@@ -389,7 +389,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__content {
-      margin: 4vh 23vw;
+      margin: 4vh 13vw;
       font-size: 1.25rem;
     }
 

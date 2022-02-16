@@ -127,5 +127,23 @@ module.exports = {
         plugins: [],
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        icon: "src/assets/apple-touch-icon.png",
+        name: `GatsbyJS`,
+        short_name: `GatsbyJS`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/about-us/`, `/projects/*`],
+      },
+    },
   ],
 };

@@ -311,6 +311,8 @@ const NavStyle = styled.nav`
     .nav__subtitle {
       font-size: 0.975rem !important;
       color: var(--primary-clr-50);
+      font-weight: 500;
+      text-align: left;
     }
 
     .nav__separator {
