@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Icon from "../../src/assets/icon.svg";
 
 // Imports
 import { FaUniversity } from "@react-icons/all-files/fa/FaUniversity";
@@ -8,26 +9,32 @@ import { SiFacebook } from "@react-icons/all-files/si/SiFacebook";
 const designer = "Designed and deployed by Syahrul Anuar";
 const supportDetails = "Supported by NUS FASS";
 const masudaWebsite = "http://masudahajimu.com/";
+const title = "Reconceptualizing the Cold War";
+const subtitle = "On-theground Experiences in Asia";
 
 const Footer = () => {
   return (
     <FooterStyle>
-      <section className="footer__support">
-        {supportDetails}
-        <div className="footer__NUS">
-          <FaUniversity />
+      <section className="l-footersupport">
+        {/* {supportDetails} */}
+        <Icon className="c-footer__icon" />
+        <hr className="c-footer__split"></hr>
+        <div className="c-footer__titleandsub">
+          {" "}
+          <h3 className="c-footer__title">{title}</h3>
+          <h5 className="c-footer__subtitle">{subtitle}</h5>
         </div>
       </section>
-      <section className="footer__details">
-        <div className="footer__copyright">
+      <hr className="c-footer__sectionsplit"></hr>
+      <section className="l-footerdetails">
+        <div className="c-footer__copyright">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <a href={masudaWebsite}>Masuda Hajimu</a> and the National
-            University of Singapore
+            <a href={masudaWebsite}>Masuda Hajimu</a> All Rights Reserved.{" "}
           </p>
         </div>
-        <div className="footer__designer">{designer}</div>
-        <div className="footer_socialmedia">
+        <div className="c-footer__designer">{designer}</div>
+        <div className="c-footer_socialmedia">
           <SiFacebook />
         </div>
       </section>
@@ -40,101 +47,64 @@ const Footer = () => {
 const FooterStyle = styled.footer`
   background-color: var(--primary-clr-150);
   padding: 4vh var(--padding-mobile);
-
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   grid-area: footer;
 
-  /* Fonts */
-  font-family: "Ubuntu", serif;
-  font-size: normal;
-  font-weight: normal;
-  font-size: 0.75rem;
-  color: var(--primary-clr-100);
-
-  .footer__support {
+  .l-footersupport {
     display: flex;
-    align-self: end;
-    flex: 1;
+    flex-direction: row;
+    row-gap: 1vw;
+    align-items: center;
+    justify-content: center;
   }
 
-  .footer__NUS {
-    margin-left: 0.5rem;
+  .c-footer__icon {
+    scale: 0.5;
   }
 
-  .footer__details {
+  .c-footer__titleandsub {
     display: flex;
-    width: 50%;
-    align-self: center;
-    margin-left: auto;
     flex-direction: column;
-    text-align: right;
+    row-gap: 0.85vh;
   }
 
-  .footer__copyright {
-    margin-bottom: 1rem;
-    color: var(--primary-clr-100);
-    margin-left: auto;
-  }
-
-  .footer__copyright > p {
-    color: var(--primary-clr-100);
-  }
-
-  .footer__copyright > p > a {
-    color: var(--primary-clr-100) !important;
-  }
-
-  .footer__designer {
-    margin-bottom: 1rem;
-    margin-left: auto;
-    display: none;
-  }
-
-  .footer_socialmedia {
-    margin-left: auto;
-  }
-
-  /////////////////////////
-  /////// Tablet //////////
-  /////////////////////////
-
-  @media (min-width: 992px) {
-    height: 5vh;
-    padding: 4vh var(--padding-tablet);
+  .c-footer__title {
     font-size: 0.85rem;
-
-    .footer__support {
-      align-self: center;
-    }
+    color: var(--primary-clr-100);
+  }
+  .c-footer__subtitle {
+    font-size: 0.55rem;
+    color: var(--primary-clr-100);
   }
 
-  /////////////////////////
-  ////  Desktop //////////
-  /////////////////////////
-  @media (min-width: 1280px) {
-    padding: 7vh 4.5vw;
+  .l-footerdetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1vh;
+  }
+  .c-footer__copyright > p,
+  a {
+    color: var(--primary-clr-0);
     font-size: 0.75rem;
-
-    p {
-      font-size: 0.75rem;
-    }
+  }
+  .c-footer__sectionsplit {
+    color: var(--primary-clr-50);
+    border: 0.5px solid;
+    margin: 0vh 15vw;
+    /* display: none; */
   }
 
-  ////////////////////////
-  ///// Hig Res //////////
-  ////////////////////////
-
-  @media (min-width: 2560px) {
-    padding: 2vh 21vw;
-    font-size: 1rem;
-    height: 10vh;
-    p {
-      font-size: 1rem;
-    }
-
-    .footer__designer {
-      font-size: 1rem;
-    }
+  .c-footer__copyright {
+    margin-top: 1vh;
+  }
+  .c-footer__designer {
+    font-family: "Lora", Serif;
+    color: var(--primary-clr-0);
+    font-size: 0.5rem;
   }
 `;
 
