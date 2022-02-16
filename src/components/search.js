@@ -76,10 +76,9 @@ const SeaerchBarWrapper = styled.div`
 
     ::placeholder {
       font-size: 0.745rem;
-      text-align: center;
-      padding-left: 25%;
-      opacity: 60%;
-      margin: 0;
+      /* text-align: center; */
+      padding-left: 50%;
+      []opacity: 40%;
     }
   }
 

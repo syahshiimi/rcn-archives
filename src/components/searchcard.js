@@ -23,11 +23,10 @@ export const SearchCard = ({
   return (
     <SearchCardWrapper>
       <div className="l-searchcard">
-        <div className="c-searchcard__title">
+        <div className="c-searchcard__desktoptitle">
           <Link to={`${slug}`}>{transcriptTitle}</Link>
-          {/* {transcriptTitle} */}
+          {/* From {transcriptTitle} */}
         </div>
-
         <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
         <span className="c-searchcard__tagscontainer">
           <TagsContainer
@@ -36,9 +35,16 @@ export const SearchCard = ({
             queryState={queryState}
           />
         </span>
-        {/* <span className="c-searchcard__read"> */}
-        {/* <Link to={`${slug}`}>Read More </Link> */}
-        {/* </span> */}
+        <section className="c-searchcard__bottom">
+          {" "}
+          <div className="c-searchcard__titlecontainer">
+            From{" "}
+            <span className="c-searchcard__bottomtitle">{transcriptTitle}</span>{" "}
+          </div>
+          <span className="c-searchcard__read">
+            <Link to={`${slug}`}>Read More </Link>
+          </span>
+        </section>
       </div>
     </SearchCardWrapper>
   );
@@ -49,7 +55,8 @@ const SearchCardWrapper = styled.main`
     display: flex;
     justify-content: center;
     background-color: var(--primary-clr-100);
-    padding: 3vh 7vw;
+    /* padding: 3vh 7vw; */
+    padding: 2.5vh 7vw;
     margin: 0.85vh 2vw;
 
     /* styling */
@@ -59,28 +66,25 @@ const SearchCardWrapper = styled.main`
     flex-direction: column;
   }
 
-  .c-searchcard__title {
-    font-size: 0.95rem;
-    margin: 0.45vh 0vw;
-    a {
-      font-family: "Lora", Serif !important;
-      font-weight: bold !important;
-    }
+  .c-searchcard__desktoptitle {
+    display: none;
+    visibility: hidden;
   }
 
   .c-searchcard__oneliner {
-    margin: 2vh 1vw;
+    margin: 1vh 0vw 1.5vh 0vw;
     p {
-      font-size: 0.95rem;
+      font-family: "Ubuntu", Serif !important;
+      font-size: 0.8rem;
       line-height: 1.25;
+      text-align: justify;
     }
   }
 
   .c-searchcard__read {
     font-family: "Ubuntu", Serif;
     font-weight: normal;
-    text-align: right;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
     text-align: center;
@@ -88,6 +92,32 @@ const SearchCardWrapper = styled.main`
 
   .c-searchcard__tagscontainer {
     display: none;
+  }
+
+  .c-searchcard__bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+  }
+
+  .c-searchcard__titlecontainer {
+    /* font-size: 0.95rem; */
+    font-size: 0.8rem;
+    margin: 1vh 6vw;
+    text-align: center;
+    font-family: "Ubuntu", Sans-Serif !important;
+    a {
+      /* font-family: "Lora", Serif !important; */
+      font-weight: bold !important;
+    }
+  }
+  .c-searchcard__bottomtitle {
+    font-family: "Lora", serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    font-style: italic;
+    text-align: left;
   }
 
   //////////////////////////////
@@ -104,11 +134,23 @@ const SearchCardWrapper = styled.main`
       margin: 0.65vh 1vw;
     }
 
-    .c-searchcard__title {
+    .c-searchcard__desktoptitle {
       font-size: 1.25rem;
+      display: flex;
+      visibility: visible;
+      /* margin: 1vh 0vw; */
+      justify-content: center;
+      a {
+        font-family: "Lora", Serif;
+        text-align: center;
+        font-weight: bold !important;
+      }
     }
 
     .c-searchcard__oneliner {
+      p {
+        text-align: center;
+      }
     }
 
     .c-searchcard__oneliner {
@@ -128,6 +170,15 @@ const SearchCardWrapper = styled.main`
     .c-searchcard__tagscontainer {
       display: flex;
       margin: 0.5vh 0vw;
+    }
+
+    .c-searchcard__bottom {
+      display: none;
+      visibility: none;
+    }
+    .c-searchcard__title {
+      display: none;
+      visibility: none;
     }
   }
 
@@ -149,7 +200,7 @@ const SearchCardWrapper = styled.main`
       margin: 1.5vh 2vw;
     }
 
-    .c-searchcard__title {
+    .c-searchcard__desktoptitle {
       font-size: 1.25rem;
       margin: 1vh 0vw;
     }
