@@ -67,7 +67,7 @@ export const RecentlyAdd = () => {
 
         const pathToImage = getImage(transcriptImage);
         return (
-          <FeatureCardWrapper key={transcriptTitle}>
+          <RecentlyAddWrapper key={transcriptTitle}>
             <div className="c-recentlyaddedcard">
               <div className="c-recentlyaddedcard__title">
                 {transcriptTitle}
@@ -80,7 +80,7 @@ export const RecentlyAdd = () => {
                 <Link to={`browsearchives/${slug}`}>Read More </Link>
               </span>
             </div>
-          </FeatureCardWrapper>
+          </RecentlyAddWrapper>
         );
       })}
     </article>
@@ -88,12 +88,12 @@ export const RecentlyAdd = () => {
 };
 
 const FeatureImageWrapper = styled.article``;
-const FeatureCardWrapper = styled.section`
+const RecentlyAddWrapper = styled.section`
   .c-recentlyaddedcard {
     display: flex;
     background-color: var(--primary-clr-50);
     padding: 3vh 7vw;
-    margin: 2vh 2vw;
+    margin: 1.5vh 2vw;
 
     /* styling */
     border-radius: calc(2rem + 6px);

@@ -277,7 +277,7 @@ const IndexWrapper = styled.main`
   }
   .c-featureddocs__container {
     background-color: var(--primary-clr-50);
-    padding: 2vh 2vw;
+    padding: 1.5vh 3vw;
     margin: 2vh 0vw;
     border-radius: 5vh;
   }
@@ -292,7 +292,7 @@ const IndexWrapper = styled.main`
 
   .c-recentlyadded__container {
     background-color: var(--primary-clr-100);
-    padding: 2vh 2vw;
+    padding: 1.5vh 3vw;
     margin: 2vh 0vw;
     border-radius: 5vh;
   }
@@ -493,7 +493,7 @@ const IndexWrapper = styled.main`
   ////////// Desktop /////////////
   ////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 4vh 4vw;
+    padding: 8vh 4vw;
 
     .c-divider__one {
       margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
