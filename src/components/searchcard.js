@@ -104,7 +104,7 @@ const SearchCardWrapper = styled.main`
   .c-searchcard__titlecontainer {
     /* font-size: 0.95rem; */
     font-size: 0.8rem;
-    margin: 1vh 6vw;
+    margin: 1vh 0vw;
     text-align: center;
     font-family: "Ubuntu", Sans-Serif !important;
     a {
