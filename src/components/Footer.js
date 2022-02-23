@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         <div className="c-footer__designer">{designer}</div>
         <div className="c-footer_socialmedia">
-          <SiFacebook />
+          <SiFacebook style={{ color: "#f5cb5c" }} />
         </div>
       </section>
     </FooterStyle>
@@ -46,22 +46,31 @@ const Footer = () => {
 
 const FooterStyle = styled.footer`
   background-color: var(--primary-clr-150);
-  padding: 4vh var(--padding-mobile);
+  padding: 6vh var(--padding-mobile);
   display: flex;
   justify-content: center;
   flex-direction: column;
   grid-area: footer;
+  row-gap: 3vh;
 
   .l-footersupport {
     display: flex;
     flex-direction: row;
-    row-gap: 1vw;
     align-items: center;
     justify-content: center;
+    column-gap: 3vw;
   }
 
   .c-footer__icon {
-    scale: 0.5;
+    width: 40px;
+    display: flex;
+    height: 40px;
+  }
+
+  .c-footer__split {
+    display: flex;
+    border: 1px solid var(--primary-clr-100);
+    height: 50%;
   }
 
   .c-footer__titleandsub {
@@ -94,17 +103,17 @@ const FooterStyle = styled.footer`
   .c-footer__sectionsplit {
     color: var(--primary-clr-50);
     border: 0.5px solid;
-    margin: 0vh 15vw;
+    margin: 0vh 10vw;
     /* display: none; */
   }
 
-  .c-footer__copyright {
-    margin-top: 1vh;
-  }
   .c-footer__designer {
     font-family: "Lora", Serif;
+    margin: 1vh 0vw;
     color: var(--primary-clr-0);
     font-size: 0.5rem;
+  }
+  @media (min-width: 992px) {
   }
 `;
 

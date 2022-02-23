@@ -189,7 +189,6 @@ const TranscriptWrapper = styled.section`
     text-align: center;
   }
   .c-transcript__oneliner {
-    font-size: 0.85rem;
     font-weight: 500;
     font-style: normal;
   }
