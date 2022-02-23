@@ -34,7 +34,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="c-footer__designer">{designer}</div>
-        <div className="c-footer_socialmedia">
+        <div className="c-footer__socialmedia">
           <SiFacebook style={{ color: "#f5cb5c" }} />
         </div>
       </section>
@@ -113,7 +113,34 @@ const FooterStyle = styled.footer`
     color: var(--primary-clr-0);
     font-size: 0.5rem;
   }
+
+  /////////////////////////
+  ///////// Tablet ////////
+  /////////////////////////
+
   @media (min-width: 992px) {
+    padding: 8vh 4.5vw;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .l-footersupport {
+      column-gap: 1vw;
+    }
+
+    .c-footer__sectionsplit {
+      /* we hide the divider line in tablet size onwards */
+      display: none;
+      visbility: none;
+    }
+
+    .c-footer__designer {
+      text-align: right;
+      width: 100%;
+    }
+    .c-footer__socialmedia {
+      display: none;
+      visbility: none;
+    }
   }
 `;
 
