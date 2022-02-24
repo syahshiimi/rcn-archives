@@ -69,8 +69,8 @@ const FooterStyle = styled.footer`
 
   .c-footer__split {
     display: flex;
-    border: 1px solid var(--primary-clr-100);
-    height: 50%;
+    border: 0.8px solid var(--primary-clr-100);
+    height: 80%;
   }
 
   .c-footer__titleandsub {
@@ -81,11 +81,15 @@ const FooterStyle = styled.footer`
 
   .c-footer__title {
     font-size: 0.85rem;
-    color: var(--primary-clr-100);
+    color: var(--primary-clr-50);
+    font-family: "Lora", Serif;
   }
   .c-footer__subtitle {
+    font-family: "Lora", Serif;
     font-size: 0.55rem;
-    color: var(--primary-clr-100);
+    color: var(--primary-clr-50);
+    font-weight: 400;
+    opacity: 0.8;
   }
 
   .l-footerdetails {
@@ -93,20 +97,20 @@ const FooterStyle = styled.footer`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 1vh;
+    row-gap: 0.7vh;
   }
-  .c-footer__copyright > p,
-  a {
-    color: var(--primary-clr-0);
-    font-size: 0.75rem;
-  }
+
   .c-footer__sectionsplit {
     color: var(--primary-clr-50);
     border: 0.5px solid;
-    margin: 0vh 10vw;
-    /* display: none; */
+    margin: 0vh 13vw;
   }
 
+  .c-footer__copyright > p,
+  a {
+    color: var(--primary-clr-100);
+    font-size: 0.65rem;
+  }
   .c-footer__designer {
     font-family: "Lora", Serif;
     margin: 1vh 0vw;
@@ -119,12 +123,25 @@ const FooterStyle = styled.footer`
   /////////////////////////
 
   @media (min-width: 992px) {
-    padding: 8vh 4.5vw;
+    padding: 4vh 5vw;
     flex-direction: row;
     justify-content: space-between;
 
     .l-footersupport {
-      column-gap: 1vw;
+      column-gap: 1.5vw;
+    }
+    .c-footer__split {
+      height: 70%;
+    }
+
+    .c-footer__titleandsub {
+      row-gap: 0.1vh;
+    }
+
+    .c-footer__subtitle {
+      color: var(--primary-clr-50);
+      font-family: "Lora", Serif;
+      font-weight: 200;
     }
 
     .c-footer__sectionsplit {
@@ -133,13 +150,45 @@ const FooterStyle = styled.footer`
       visbility: none;
     }
 
+    .l-footerdetails {
+      row-gap: 0.8vh;
+    }
     .c-footer__designer {
       text-align: right;
       width: 100%;
+      margin: 0;
     }
     .c-footer__socialmedia {
       display: none;
       visbility: none;
+    }
+  }
+
+  /////////////////////////////
+  ////////// Desktop //////////
+  /////////////////////////////
+  @media (min-width: 1280px) {
+    padding: 6vh 4.5vw;
+    .l-footersupport {
+      column-gap: 0.8vw;
+    }
+    .c-footer__titleandsub {
+      row-gap: 0.5vh;
+    }
+
+    .c-footer__title {
+      font-size: 1rem;
+    }
+
+    .c-footer__subtitle {
+      font-size: 0.8rem;
+    }
+
+    .c-footer__copyright {
+      a,
+      p {
+        font-size: 0.7rem;
+      }
     }
   }
 `;
