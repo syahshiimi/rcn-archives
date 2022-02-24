@@ -337,7 +337,7 @@ const NavStyle = styled.nav`
       flex-direction: row !important;
       flex: 1 1 0;
       margin-left: auto;
-      justify-content: right;
+      justify-content: flex-end;
       align-self: center;
     }
 

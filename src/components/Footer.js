@@ -191,6 +191,37 @@ const FooterStyle = styled.footer`
       }
     }
   }
+
+  //////////////////////////////
+  ////////// 4k Disp ///////////
+  //////////////////////////////
+
+  @media (min-width: 2560px) {
+    padding: 4vh 21vw;
+
+    .l-footersupport {
+      column-gap: 0.4vw;
+    }
+    .c-footer__icon {
+      height: 72px;
+      width: 72px;
+    }
+    .c-footer__title {
+      font-size: 1.25rem;
+    }
+    .c-footer__subtitle {
+      font-size: 1rem;
+    }
+    .c-footer__copyright {
+      a,
+      p {
+        font-size: 1rem;
+      }
+    }
+    .c-footer__designer {
+      font-size: 0.75rem;
+    }
+  }
 `;
 
 export default Footer;
