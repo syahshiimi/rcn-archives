@@ -32,6 +32,7 @@ const query = graphql`
 export const RecentlyAdd = () => {
   const data = useStaticQuery(query);
   const recentadded = data.allContentfulInterviewTranscripts.nodes;
+  console.log(recentadded);
 
   return (
     <article className="l-recentlyaddedcardcard">
