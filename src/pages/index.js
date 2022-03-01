@@ -396,6 +396,7 @@ const IndexWrapper = styled.main`
 
     .c-welcome__blurb {
       margin: 1vh 0vw;
+      font-size: 0.85rem;
     }
 
     .l-featureddocs {
@@ -447,6 +448,7 @@ const IndexWrapper = styled.main`
     .c-browsearchives__blurb {
       display: flex;
       margin: 1vh 0vw;
+      font-size: 0.85rem;
       text-align: center;
       justify-content: center;
     }
@@ -474,6 +476,7 @@ const IndexWrapper = styled.main`
 
     .c-workshops__blurb {
       margin: 1vh 0vw;
+      font-size: 0.85rem;
     }
     .l-projectmembers {
       grid-area: projectmembers;
@@ -487,6 +490,7 @@ const IndexWrapper = styled.main`
 
     .c-projectmembers__blurb {
       margin: 1vh 0vw;
+      font-size: 0.85rem;
     }
   }
   ////////////////////////////////

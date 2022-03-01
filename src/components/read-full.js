@@ -31,7 +31,7 @@ const ReadFullButtonWrapper = styled.article`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all 0.5s ease-in-out 0.2s;
     border-radius: 2rem;
-    padding: 0.9vh 3vw;
+    padding: 0.5vh 3vw;
     border: 1px solid var(--primary-clr-200);
 
     .c-readfullbutton {
@@ -45,15 +45,15 @@ const ReadFullButtonWrapper = styled.article`
     }
 
     .c-readfullbutton__text {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-style: normal;
       font-weight: 500 !important;
       color: var(--primary-clr-150);
     }
 
     .c-readfullbutton__icon {
-      height: 2.8rem;
-      width: 2.8rem;
+      height: 2.5rem;
+      width: 2.5rem;
     }
   }
 `;

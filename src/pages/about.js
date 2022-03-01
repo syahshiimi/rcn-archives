@@ -304,7 +304,7 @@ const AboutWrapper = styled.main`
     .c-whoweare__content {
       margin: 4vh 0vw;
       p {
-        font-size: 1.225rem;
+        font-size: 1rem;
       }
     }
 
@@ -324,7 +324,7 @@ const AboutWrapper = styled.main`
 
     .c-ourfocus__content {
       margin: 2vh 0vw;
-      font-size: 1.125rem;
+      font-size: 1rem;
 
       p {
         margin: 1.2vh 0vw;
@@ -336,11 +336,11 @@ const AboutWrapper = styled.main`
     }
 
     .c-thearchives__content {
-      font-size: 1.225rem;
+      font-size: 1rem;
     }
 
     .c-projectmembers__content {
-      font-size: 1.125rem;
+      font-size: 1rem;
       margin: 0;
     }
     .c-projectmembers__info {

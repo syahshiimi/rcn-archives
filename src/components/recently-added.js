@@ -138,12 +138,19 @@ const RecentlyAddWrapper = styled.section`
       margin: 1vh 0vw;
     }
 
+    .c-recentlyaddedcard__title {
+      font-size: 0.85rem;
+    }
     .c-recentlyaddedcard__oneliner {
       margin: 1vh 0vw;
+      p {
+        font-size: 0.75rem;
+      }
     }
 
     .c-recentlyaddedcard__read {
       margin: 0.5vh 0vw;
+      font-size: 0.75rem;
     }
   }
 

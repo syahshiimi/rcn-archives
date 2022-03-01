@@ -116,6 +116,10 @@ const FullTranscriptWrapper = styled.section`
   // DO NOT DISPLAY ON MOBILE
   display: none;
 
+  ///////////////////////////
+  //////// Tablet ///////////
+  ///////////////////////////
+
   @media (min-width: 992px) {
     display: flex;
     flex-direction: column;
@@ -137,7 +141,7 @@ const FullTranscriptWrapper = styled.section`
 
   .c-fulltranscript__oneliner {
     text-align: center;
-    margin: 4vh 0vw;
+    margin: 2vh 0vw;
   }
 
   .c-fulltranscript__border {

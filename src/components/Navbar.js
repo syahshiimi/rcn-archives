@@ -69,7 +69,7 @@ const Navbar = () => {
   return (
     <NavStyle>
       <div className="c-nav__container">
-        <Icon />
+        <Icon className="c-nav__icon" />
         <hr className="c-nav__split"></hr>
         <section className="c-nav__titleandsub">
           {" "}
@@ -269,21 +269,22 @@ const NavStyle = styled.nav`
 
   @media (min-width: 992px) {
     margin: 0;
-    padding: 0vh var(--padding-tablet);
+    padding: 3vh var(--padding-tablet);
     flex-direction: row;
     background-color: var(--primary-clr-150);
-    height: 12vh !important;
 
     .c-nav__container {
       column-gap: 15px;
       margin-bottom: 0;
 
       flex-direction: row;
-      svg {
-        height: 60px;
-        width: 60px;
+
+      .c-nav__icon {
+        height: 55px;
+        width: 55px;
         margin: 0;
         padding: 0;
+        fill: #ab7c94;
       }
     }
 
@@ -304,12 +305,12 @@ const NavStyle = styled.nav`
       color: var(--primary-clr-50);
       white-space: pre-line;
       text-align: left;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 0;
     }
 
     .nav__subtitle {
-      font-size: 0.975rem !important;
+      font-size: 0.875rem !important;
       color: var(--primary-clr-50);
       font-weight: 500;
       text-align: left;
@@ -348,6 +349,7 @@ const NavStyle = styled.nav`
     }
     .nav__links a {
       color: var(--primary-clr-50);
+      font-size: 0.95rem;
     }
 
     .nav__links > li {

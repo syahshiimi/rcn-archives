@@ -336,14 +336,14 @@ const AccordionWrapper = styled.div`
   ////////////////////////////
   @media (min-width: 992px) {
     .c-accordion__header {
-      padding: 0.9vh 3vw;
+      padding: 0.5vh 3vw;
     }
     .c-accordion__title {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
     }
     .c-accordion__arrow {
-      height: 2.8rem;
-      width: 2.8rem;
+      height: 2.5rem;
+      width: 2.5rem;
     }
 
     .c-accordion__summary > p {

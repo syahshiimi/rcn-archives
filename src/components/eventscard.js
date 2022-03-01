@@ -179,18 +179,21 @@ const EventsCardWrapper = styled.div`
   @media (min-width: 992px) {
     .c-pastevents__content {
       display: block;
+      font-size: 0.9rem !important;
     }
     a > * {
-      margin: 2vh 0vw;
+      margin: 2.5vh 0vw;
     }
     .c-pastevents__title {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
+      text-align: center;
     }
     .c-pastevents__date {
-      font-size: 1rem;
+      font-size: 0.85rem;
+      text-align: center;
     }
     .c-pastevents__location {
-      font-size: 1rem;
+      font-size: 0.75rem;
     }
   }
 

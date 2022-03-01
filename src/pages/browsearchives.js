@@ -216,7 +216,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     section {
-      padding: 4vh var(--padding-desktop) 2vh var(--padding-desktop);
+      padding: 6vh var(--padding-desktop) 2vh var(--padding-desktop);
     }
 
     .c-browsearchives__content {
