@@ -155,6 +155,7 @@ const BrowseArchives = () => {
             })}
           </div>
         </section>
+        <BackToSearchBtn />
       </BrowseArchivesWrapper>
     </Layout>
   );
@@ -191,6 +192,7 @@ const BrowseArchivesWrapper = styled.main`
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
     padding: 1vh 2vw;
+    flex-direction: column;
     border-radius: var(--border-rad-mobile);
   }
 
@@ -206,6 +208,7 @@ const BrowseArchivesWrapper = styled.main`
     flex-direction: column;
     align-items: center;
     flex: 1 1 auto;
+    padding-bottom: 2vh;
 
     // Enable archives
     .desktop {
@@ -213,28 +216,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     section {
-      padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
-    }
-
-    .c-browsearchives__filtercontainer {
-      margin-right: 12vw;
-      margin-top: 0;
-      justify-content: end;
-    }
-
-    .c-browsearchives__filtercontainer > * {
-      margin: 0vh 0.8vw;
-    }
-
-    .c-browsearchives__keywordscheckbox > input {
-      margin: 0vh 0.5vw;
-    }
-
-    .c-browsearchives__tagscheckbox > input {
-      margin: 0vh 0.5vw;
-    }
-    .c-browsearchives__filtercontainer > label {
-      font-size: 0.825rem;
+      padding: 4vh var(--padding-desktop) 2vh var(--padding-desktop);
     }
 
     .c-browsearchives__content {
@@ -248,9 +230,6 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchresults {
       margin: 3vh 0vw;
-    }
-
-    .c-browsearchives__searchcontainer {
     }
   }
 
@@ -274,17 +253,14 @@ const BrowseArchivesWrapper = styled.main`
       font-size: 3rem; // 64px
     }
 
-    .c-browsearchives__filtercontainer > label {
-      font-size: 0.925rem;
-    }
-
     .c-browsearchives__content {
       margin: 4vh 12vw;
     }
 
     .l-browsearchives__search {
-      padding: 0vh var(--padding-desktop) 10vh var(--padding-desktop);
+      padding: 0vh var(--padding-desktop) 5vh var(--padding-desktop);
       display: flex;
+      flex-direction: column;
       justify-content: center;
     }
 
@@ -296,6 +272,8 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__searchcontainer {
       display: flex;
       justify-content: center;
+      border-radius: var(--border-rad-desktop);
+      padding: 2vh 1vw;
     }
   }
   ////////////////////////////

@@ -175,27 +175,20 @@ const FooterStyle = styled.footer`
     .c-footer__titleandsub {
       row-gap: 0.5vh;
     }
-    .c-footer__icon {
-      height: 52px;
-      width: 52px;
-    }
 
     .c-footer__title {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
 
     .c-footer__subtitle {
-      font-size: 0.925rem;
+      font-size: 0.8rem;
     }
 
     .c-footer__copyright {
       a,
       p {
-        font-size: 0.85rem;
+        font-size: 0.7rem;
       }
-    }
-    .c-footer__designer {
-      font-size: 0.6rem;
     }
   }
 

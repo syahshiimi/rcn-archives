@@ -10,7 +10,7 @@ import DefaultButton from "../components/button";
 
 // Variables
 const ContributeSub =
-  "Kindly contact us if you wish to ocontribute or enquire more about our project";
+  "Kindly contact us if you wish to contribute or enquire more about our project";
 
 const ContactUs = () => {
   return (

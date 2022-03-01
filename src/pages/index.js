@@ -131,7 +131,6 @@ const Index = () => {
           <h1 className="c-browsearchives__title">Browse Archives</h1>
           <div className="c-browsearchives__container">
             <BACard type="Search" />
-            <BACard type="Geography" />
           </div>
           <ImageWrapper>
             {" "}
