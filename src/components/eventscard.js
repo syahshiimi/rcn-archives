@@ -158,7 +158,6 @@ const EventsCardWrapper = styled.div`
     font-style: normal;
     text-align: start;
     font-weight: bold;
-    text-decoration-line: underline;
   }
 
   .c-pastevents__date {

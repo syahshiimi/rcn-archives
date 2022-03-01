@@ -75,7 +75,7 @@ const SearchCardWrapper = styled.main`
     margin: 1vh 0vw 1.5vh 0vw;
     p {
       font-family: "Ubuntu", Serif !important;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       line-height: 1.25;
       text-align: justify;
     }
@@ -84,7 +84,7 @@ const SearchCardWrapper = styled.main`
   .c-searchcard__read {
     font-family: "Ubuntu", Serif;
     font-weight: normal;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
     text-align: center;
