@@ -93,15 +93,18 @@ const EventWrapper = styled.main`
       margin: 4vh 6vw;
     }
     .l-pastevents__list {
-      padding: 2vh 4vw;
+      padding: 2vh 3vw;
       margin: 4vh 10vw;
-      border-radius: calc(4vw + 1px);
+      border-radius: var(--border-rad-desktop);
     }
 
     .l-pastevents__container > * {
       margin: 2.5vh 0vw;
     }
   }
+  /////////////////////////////
+  //////// 4k Desktop /////////
+  /////////////////////////////
 
   @media (min-width: 2560px) {
     .l-pastevents {
