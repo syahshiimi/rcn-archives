@@ -57,7 +57,7 @@ const SearchCardWrapper = styled.main`
     background-color: var(--primary-clr-100);
     /* padding: 3vh 7vw; */
     padding: 2.5vh 7vw;
-    margin: 0.85vh 2vw;
+    margin: 1.5vh 2vw;
 
     /* styling */
     border-radius: calc(2rem + 6px);
@@ -130,15 +130,14 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 3vh 5vw 1.5vh 5vw;
-      margin: 0.65vh 1vw;
+      padding: 2.5vh 5vw 1.5vh 5vw;
+      margin: 1.5vh 1vw;
     }
 
     .c-searchcard__desktoptitle {
       font-size: 1.25rem;
       display: flex;
       visibility: visible;
-      /* margin: 1vh 0vw; */
       justify-content: center;
       a {
         font-family: "Lora", Serif;

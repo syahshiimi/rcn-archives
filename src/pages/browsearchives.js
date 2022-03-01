@@ -63,11 +63,10 @@ const BrowseArchives = () => {
   const searchQuery = new URLSearchParams({ FindSearch }).get("s");
   const [queryState, setSearchQuery] = useState(searchQuery || "");
 
-  // useStaet hooks to control input
-  // The idea here is to control the input type  based on existing values
+  // useStaet hooks to control search input via tags
   // 1. If queryState == default value, we use the default value that is 'searchQuery'
-  // 2. We use the onClick as an event handler, to return the value based on which tag pill was clicked. This value is in the item variable
-  // 3. If the tag pill rreturns a value, we have setSearchQuery modify the queryStaet by using the tag pill value
+  // 2. We use the onClick as an event handler, to return the value based on which tag pill was clicked. This value will be the tag pill variable
+  // 3. If the tag pill rreturns a value, we have setSearchQuery modify the  by using the tag pill value
   // 4. if the queryState IS NOT == default, we also expose the setSearchQuery function to use the tag pill value
 
   const onClick = (value = []) => {
@@ -122,26 +121,9 @@ const BrowseArchives = () => {
     <Layout>
       <Head title="Browse Archives" />
       <BrowseArchivesWrapper>
-        <BackToSearchBtn />
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__heading">Search The Archives</h1>
           <SearchBar queryState={queryState} setSearchQuery={setSearchQuery} />
-          <div className="c-browsearchives__filtercontainer">
-            <label
-              htmlFor="c-browsearchives__filterbykeywords"
-              className="c-browsearchives__keywordscheckbox"
-            >
-              <input type="checkbox" value="keywords" />
-              Filter by keywords
-            </label>
-            <label
-              htmlFor="c-browsearchives__filterbytags"
-              className="c-browsearchives__tagscheckbox"
-            >
-              <input type="checkbox" value="tags" />
-              Filter by tags
-            </label>
-          </div>
           <p className="c-browsearchives__content">
             Browse through our carefully curated oral archives. Working with
             on-the-ground experiences, we aim to provide a wholesome and
@@ -151,7 +133,7 @@ const BrowseArchives = () => {
         </section>
         <section className="l-browsearchives__search">
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <section className="c-browsearchives__searchcontainer">
+          <div className="c-browsearchives__searchcontainer">
             {FilteredTranscript.map((item) => {
               const {
                 id,
@@ -171,7 +153,7 @@ const BrowseArchives = () => {
                 />
               );
             })}
-          </section>
+          </div>
         </section>
       </BrowseArchivesWrapper>
     </Layout>
@@ -195,63 +177,6 @@ const BrowseArchivesWrapper = styled.main`
     text-align: center;
   }
 
-  .c-browsearchives__filtercontainer {
-    margin: 1.5vh 0vw 4vh 0vw;
-    display: none;
-    visibility: none;
-    justify-content: center;
-  }
-
-  .c-browsearchives__filtercontainer > label {
-    font-family: "Ubuntu", Serif;
-    font-size: 0.725rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .c-browsearchives__filtercontainer > * {
-    margin: 0vh 2vw;
-  }
-
-  .c-browsearchives__keywordscheckbox > input {
-    margin: 0vh 1.8vw;
-  }
-
-  .c-browsearchives__tagscheckbox > input {
-    margin: 0vh 1.8vw;
-  }
-
-  input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-
-    // custom styling
-    font: inherit;
-    width: 1.2rem;
-    height: 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid var(--primary-clr-200);
-    background-color: var(--secondary-clr-250);
-    transform: translateY(-0.075em);
-
-    display: grid;
-    place-content: center;
-  }
-
-  input[type="checkbox"]::before {
-    content: "";
-    width: 0.65rem;
-    height: 0.6rem;
-    border-radius: inherit;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
-    box-shadow: inset 1rem 1rem var(--primary-clr-100);
-  }
-
-  input[type="checkbox"]:checked::before {
-    transform: scale(1);
-  }
   .c-browsearchives__content {
     margin: 4vh 0vw;
     padding: 0vh 6vw;
@@ -265,7 +190,7 @@ const BrowseArchivesWrapper = styled.main`
 
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
-    padding: 2vh 2vw;
+    padding: 1vh 2vw;
     border-radius: calc(6vw + 4px);
   }
 

@@ -137,18 +137,16 @@ const AltButtonWrapper = styled.div`
 
 const BackToSearchBtnWrapper = styled.div`
   display: none;
-  @media (min-width: 1280px) {
-    display: block;
-    position: fixed;
-    right: 0;
-    bottom: 0;
+  @media (min-width: 992px) {
+    display: flex;
+    justify-content: center;
+    margin: 2vh 2vw;
 
     .c-button {
       /* display */
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 2vh 2vw;
       flex-direction: column-reverse;
 
       /* styling */
