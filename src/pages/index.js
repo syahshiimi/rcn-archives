@@ -492,7 +492,7 @@ const IndexWrapper = styled.main`
   ////////// Desktop /////////////
   ////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 8vh 4vw;
+    padding: 6vh 4vw;
 
     .c-divider__one {
       margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
