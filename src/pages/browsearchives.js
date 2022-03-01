@@ -191,7 +191,7 @@ const BrowseArchivesWrapper = styled.main`
   .c-browsearchives__searchcontainer {
     background-color: var(--primary-clr-50);
     padding: 1vh 2vw;
-    border-radius: calc(6vw + 4px);
+    border-radius: var(--border-rad-mobile);
   }
 
   ////////////////////////////

@@ -131,21 +131,21 @@ export const EventScheduleCard = ({ items = [] }) => {
 
 const EventsCardWrapper = styled.div`
   display: flex;
-  padding: 1vh 8vw;
+  padding: 0vh 8vw;
   justify-content: center;
   text-align: center;
   box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
-  border-radius: 2.75rem;
+  border-radius: var(--border-rad-mobile);
   background-color: var(--primary-clr-100);
   margin: 0;
-  margin: 2vh 2vw;
+  margin: 1.5vh 2vw;
 
   a {
     text-decoration: none !important;
   }
 
   a > * {
-    margin: 4vh 0vw;
+    margin: 3.5vh 0vw;
   }
 
   .c-pastevents__content {
@@ -257,10 +257,10 @@ const EventsCardWrapper = styled.div`
 
 const EventScheduleWrapper = styled.div`
   .c-eventschedule__card {
-    margin: 4vh 2vw;
+    margin: 2vh 2vw;
     background-color: var(--primary-clr-100);
-    padding: 4vh 8vw;
-    border-radius: calc(2rem + 6px);
+    padding: 2vh 8vw;
+    border-radius: var(--border-rad-mobile);
     display: flex;
     box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
     flex-direction: column;

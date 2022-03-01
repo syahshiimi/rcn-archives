@@ -166,11 +166,10 @@ const EventWrapper = styled.main`
 
   .c-eventschedule__container {
     background-color: var(--primary-clr-50);
-    padding: 0vh 4vw;
+    padding: 0vh 2.5vw;
 
     /* styling */
-    border-radius: calc(1.5rem + 4px);
-    border: 2px solid var(--primary-clr-200);
+    border-radius: var(--border-rad-mobile);
   }
 
   .c-event__title {

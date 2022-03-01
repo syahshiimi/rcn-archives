@@ -279,7 +279,7 @@ const IndexWrapper = styled.main`
     background-color: var(--primary-clr-50);
     padding: 1.5vh 3vw;
     margin: 2vh 0vw;
-    border-radius: 5vh;
+    border-radius: var(--border-rad-mobile);
   }
   .c-featureddocs__title {
     text-align: center;
@@ -294,7 +294,7 @@ const IndexWrapper = styled.main`
     background-color: var(--primary-clr-100);
     padding: 1.5vh 3vw;
     margin: 2vh 0vw;
-    border-radius: 5vh;
+    border-radius: var(--border-rad-mobile);
   }
 
   .c-recentlyadded__title {

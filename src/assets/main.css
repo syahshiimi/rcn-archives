@@ -30,6 +30,11 @@
   /* global image card values */
   --imagecard-border-clr: 0.125rem solid var(--primary-clr-200);
   --imagecard-border-radius: calc(2rem + 0.125rem);
+
+  /* border radius */
+  --border-rad-mobile: 2.5em;
+  --border-rad-tablet: 6vh;
+  --border-rad-desktop: 7vh;
 }
 
 * {
