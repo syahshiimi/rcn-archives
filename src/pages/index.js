@@ -448,6 +448,7 @@ const IndexWrapper = styled.main`
       display: flex;
       margin: 1vh 0vw;
       text-align: center;
+      justify-content: center;
     }
 
     .c-browsearchives__button {
