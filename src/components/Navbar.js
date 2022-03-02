@@ -362,11 +362,11 @@ const NavStyle = styled.nav`
       }
     }
     .nav__title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     .nav__subtitle {
-      font-size: 1.225rem !important;
+      font-size: 1.05rem !important;
     }
 
     .nav__links {
@@ -412,14 +412,14 @@ const NavStyle = styled.nav`
 
   /* 4k UHD display */
   @media (min-width: 2560px) {
-    padding: 1vh 21vw;
+    padding: 3.5vh 21vw;
     font-size: 2rem;
 
     .nav__title {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
-    a {
-      font-size: 1.25rem;
+    .nav__subtitle {
+      font-size: 1.2rem !important;
     }
   }
 `;
