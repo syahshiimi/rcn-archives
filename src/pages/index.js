@@ -113,7 +113,7 @@ const Index = () => {
           <DefaultButton url="/about" title="See More"></DefaultButton>
         </section>
         <section className="l-featureddocs">
-          <h1 className="c-featureddocs__title">Featured Documents</h1>
+          <h1 className="c-featureddocs__title">Featured Collections</h1>
           <div className="c-featureddocs__container">
             <FeatureCard />
           </div>
@@ -362,7 +362,7 @@ const IndexWrapper = styled.main`
   /////////// Tablet ////////////////
   ///////////////////////////////////
   @media (min-width: 992px) {
-    padding: 4vh 5vw 6vh 5vw;
+    padding: 2vh 5vw 6vh 5vw;
     max-width: 100vw;
     display: grid;
     grid-template-columns: 1fr auto 1fr auto 1.5fr;
