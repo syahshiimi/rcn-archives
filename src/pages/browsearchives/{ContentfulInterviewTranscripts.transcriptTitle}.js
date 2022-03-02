@@ -2,11 +2,13 @@ import { graphql, Link } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
-import Layout from "../../components/Layout";
 import parse from "html-react-parser";
-import { Accordion } from "../../components/accordion";
 import { GatsbyImage } from "gatsby-plugin-image";
 import slugify from "slugify";
+
+// Components import
+import Layout from "../../components/Layout";
+import { Accordion } from "../../components/accordion";
 import { ReadFullButton } from "../../components/read-full";
 import { NestedTagsContainer } from "../../components/tags";
 

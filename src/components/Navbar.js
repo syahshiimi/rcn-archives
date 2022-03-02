@@ -1,18 +1,22 @@
-// Icons
-import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
-import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import { Link } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Icon from "../../src/assets/icon.svg";
+import DarkIcon from "../../src/assets/alt.svg";
 
 // Import Data
 import { pageLinks } from "../data";
 
+// Import Components
+import { CurrentPage } from "../components/currentnavtitle";
+
+// Icons
+import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
+import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
+
 // Variables
 const title = "Reconceptualizing the Cold War";
 
-const isBrowswer = typeof window !== "undefined";
 const Navbar = () => {
   // hide list first by initial state of show = false
   const [show, setShow] = useState(false);
@@ -36,40 +40,10 @@ const Navbar = () => {
     }
   }, [show]);
 
-  let CurrentNavTitle;
-
-  const CurrentPage = () => {
-    if (isBrowswer) {
-      if (location.pathname === "/") {
-        CurrentNavTitle = "Home";
-        return CurrentNavTitle;
-      } else if (location.pathname === "/about") {
-        CurrentNavTitle = "About";
-        return CurrentNavTitle;
-      } else if (location.pathname === "/browsearchives") {
-        CurrentNavTitle = "Browse Archives";
-        return CurrentNavTitle;
-      } else if (location.pathname === "/glossary") {
-        CurrentNavTitle = "Glossary";
-        return CurrentNavTitle;
-      } else if (location.pathname === "/eventlist") {
-        CurrentNavTitle = "Workshops";
-        return CurrentNavTitle;
-      } else if (location.pathname === "/contribute") {
-        CurrentNavTitle = "Contact Us";
-        return CurrentNavTitle;
-      } else {
-        CurrentNavTitle = "RCW-Asia";
-      }
-    } else {
-    }
-  };
-  CurrentPage();
-
   return (
     <NavStyle>
       <div className="c-nav__container">
-        <Icon className="c-nav__icon" />
+        <DarkIcon className="c-nav__icon" />
         <hr className="c-nav__split"></hr>
         <section className="c-nav__titleandsub">
           {" "}
@@ -84,7 +58,9 @@ const Navbar = () => {
             <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
           <div className="nav__currentPage">
-            <p>{CurrentNavTitle}</p>
+            <p>
+              <CurrentPage />
+            </p>
           </div>
           <button className="nav__btn btn--hidden">
             <GiHamburgerMenu color="var(--primary-clr-100)" />
@@ -154,12 +130,17 @@ const NavStyle = styled.nav`
     align-items: center;
     text-align: center;
     margin-bottom: 2vh;
-    svg {
-      height: 45px;
-      width: 45px;
-      margin-bottom: 1vh;
-    }
   }
+
+  .c-nav__icon {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 45px;
+    width: 45px;
+    margin-bottom: 1vh;
+  }
+
   .nav__subtitle {
     font-size: 0.85rem;
     font-family: "Lora";
@@ -284,7 +265,6 @@ const NavStyle = styled.nav`
         width: 55px;
         margin: 0;
         padding: 0;
-        fill: #ab7c94;
       }
     }
 

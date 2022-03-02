@@ -7,7 +7,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 // components
-import DefaultButton from "../components/button";
+import { DefaultButton } from "../components/button";
 import { BACard } from "../components/ba-cards";
 import { FeatureCard } from "../components/feature-cards";
 import { RecentlyAdd } from "../components/recently-added";

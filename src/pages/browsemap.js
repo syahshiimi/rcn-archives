@@ -17,7 +17,7 @@ import { useFlexSearch } from "react-use-flexsearch";
 import slugify from "slugify";
 import { Link } from "gatsby";
 import Modal from "react-modal";
-import DefaultButton from "../components/button";
+import { DefaultButton } from "../components/button";
 import { Head } from "../components/head";
 
 /////////////////////////////////
@@ -87,34 +87,19 @@ const BrowseMap = () => {
 
   const data = useStaticQuery(transcriptQuery);
 
-  // We now use flexsearch to filter through our requested array later
+  // We now use flexsearch to filter through our transcripts
   const flexTranscripts = data.localSearchArchives;
   const { index, store } = flexTranscripts;
 
-  // Function will use the value from geo.properties and us it as a search value
-  // to render out the specified list of transcripts.
-  // We use flexsearch engine to list it out as it is fast and lightweight
+  // Function will use the value from geo.properties and us it as a search valu to render out the specified list of transcripts.
+  // We use flexsearch engine to list it out as it is fast and lightweight!
   function ListofTranscripts(value) {
-    const { searchValue } = value; // obtained from geo.properties
-    const results = useFlexSearch(searchValue, index, store); // we determine the search value
+    const { searchValue } = value; // obtained from geo.properties, which would be the name of a country
+    const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
+    console.log(results);
 
-    // Unflatten  Results
-    // This will return a a regualr object
-    const unFlattenResults = (results) =>
-      results.map((item) => {
-        const { transcriptTitle, transcriptTags } = item;
-        return {
-          transcriptTitle,
-          transcriptTags,
-        };
-      });
-
-    // To conditionally render if the search value (from geo.properties) returns an
-    // an array of objects which signifies that there are transcripts related to it...
-    // we can use the length to conditional render two options.
-    // Firstly, if the length is longer than 1, this means that transcripts exist
-    // Secondly, if the length is shorter than 1 (therefore zero), the search value will not return any transcripts!
-
+    // We can check whether our searchValue returns search arrays by the value of the returned array length.
+    // Therefore, exposing the ListofTranscripts function (this function) will return a DOM element
     if (results.length > 0) {
       return (
         <ul className="c-browsemap__listoftranscripts">
@@ -147,7 +132,7 @@ const BrowseMap = () => {
 
   // We use a useState hook to determine the value of component.
   // We will use the componenet variable in the useState hook to render later
-  // SetComponent is a function that determines the value of componenet
+  // SetComponent is a function that determines the value of component
   const [component, setComponent] = useState("");
   // We define the function which would allow the modification of the component
   // This function will be used as an onClick handler.

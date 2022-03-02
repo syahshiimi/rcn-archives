@@ -4,9 +4,10 @@ import React from "react";
 import styled from "styled-components";
 import parse from "html-react-parser";
 
+// Componenets import
 import { EventScheduleCard } from "../components/eventscard";
 import Layout from "../components/Layout";
-import DefaultButton from "../components/button";
+import { DefaultButton } from "../components/button";
 
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops;

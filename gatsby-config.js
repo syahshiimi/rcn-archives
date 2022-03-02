@@ -142,7 +142,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        icon: "src/assets/apple-touch-icon.png",
+        icon: "src/assets/icon.png",
         name: `GatsbyJS`,
         short_name: `GatsbyJS`,
         start_url: `/`,

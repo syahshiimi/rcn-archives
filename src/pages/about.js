@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import React from "react";
 import styled from "styled-components";
 
-import DefaultButton from "../components/button";
+import { DefaultButton } from "../components/button";
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
 

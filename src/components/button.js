@@ -5,7 +5,7 @@ import { TiArrowUp } from "@react-icons/all-files/ti/TiArrowUp";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const DefaultButton = ({ title, url, className }) => {
+export const DefaultButton = ({ title, url, className }) => {
   return (
     <ButtonWrapper className={className}>
       <button type="submit">
@@ -171,5 +171,3 @@ const BackToSearchBtnWrapper = styled.div`
     }
   }
 `;
-
-export default DefaultButton;
