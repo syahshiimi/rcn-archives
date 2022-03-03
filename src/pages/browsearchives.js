@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Head } from "../components/head";
 import styled from "styled-components";
@@ -112,7 +112,6 @@ const BrowseArchives = () => {
   const FilteredTranscript = queryState
     ? unFlattenResults(results)
     : transcript;
-  console.log(FilteredTranscript);
 
   /////////////////////////////
   //////// Render Comp. ///////
