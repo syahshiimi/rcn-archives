@@ -1,12 +1,13 @@
-import React from "react";
-import { NestedTagsContainer } from "../../../components/tags";
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { graphql } from "gatsby";
-import Layout from "../../../components/Layout";
-import styled from "styled-components";
-import parse from "html-react-parser";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import parse from "html-react-parser";
+import React from "react";
+import styled from "styled-components";
+
 import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
+import Layout from "../../../components/Layout";
+import { NestedTagsContainer } from "../../../components/tags";
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
@@ -17,10 +18,11 @@ const FullTranscript = ({ data }) => {
     transcriptTitle,
     transcriptTags,
     englishFullTranscript,
+    transcriptEndNotes,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
-  } = transcript;
+  } = transcript || [];
 
   ////////////////////////////////////////
   ////////  Rich Text Render    //////////
@@ -48,6 +50,24 @@ const FullTranscript = ({ data }) => {
     },
   };
 
+  // Conditional Rendering of Endnotes
+  // Instead of destructuring first, we first check if transcriptEndNotes is a null value
+  // By doing so, we avoid incurring the uncaughtError.
+  function EndnotesContent() {
+    if (transcriptEndNotes != null) {
+      const {
+        childMarkdownRemark: { endnotes },
+      } = transcriptEndNotes;
+      return (
+        <p className="c-fulltranscript__endnotescontent">
+          {parse(`${endnotes}`)}
+        </p>
+      );
+    } else if (transcriptEndNotes == null) {
+      return <p className="c-fulltranscript__endnotescontent">None </p>;
+    }
+  }
+
   ////////////////////////////////////////
   /////////// Component Render ///////////
   ////////////////////////////////////////
@@ -68,17 +88,21 @@ const FullTranscript = ({ data }) => {
         <div className="c-fulltranscript__endnotescontainer">
           <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
           <hr className="c-fulltranscript__endnotesborder"></hr>
-          <p className="c-fulltranscript__endnotescontent"></p>
+          <EndnotesContent />
         </div>
         <BackTopButton />
       </FullTranscriptWrapper>
     </Layout>
   );
 };
-
 export const query = graphql`
   query ($transcriptTitle: String) {
     contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
+      transcriptEndNotes {
+        childMarkdownRemark {
+          endnotes: html
+        }
+      }
       interviewer
       interviewee
       transcriptTitle

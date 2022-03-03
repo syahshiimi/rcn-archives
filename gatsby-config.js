@@ -60,6 +60,7 @@ module.exports = {
                       interviewee
                       transcriptTags
                       transcriptTitle
+                      englishFullTranscript { raw }
                       id
                       oneLineTeaser {
                                 oneLineTeaser
@@ -79,6 +80,7 @@ module.exports = {
           "oneLineTeaser",
           "interviewer",
           "interviewee",
+          "englishTranscript",
         ],
         store: [
           "id",
@@ -88,16 +90,18 @@ module.exports = {
           "oneLineTeaser",
           "interviewer",
           "interviewee",
+          "englishTranscript",
         ],
         normalizer: ({ data }) =>
           data.allContentfulInterviewTranscripts.nodes.map((node) => ({
             id: node.id,
             transcriptTitle: node.transcriptTitle,
             transcriptTags: node.transcriptTags,
-            oneLiner: node.oneLineTeaser.oneLineTeaser,
-            oneLineTeaser: node.oneLineTeaser,
+            oneLiner: node.oneLineTeaser.oneLineTeaser, // schema for search card
+            oneLineTeaser: node.oneLineTeaser, // schema for searching only
             interviewer: node.interviewer,
             interviewee: node.interviewee,
+            englishTranscript: node.englishFullTranscript.raw,
           })),
       },
     },

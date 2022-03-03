@@ -112,6 +112,7 @@ const BrowseArchives = () => {
   const FilteredTranscript = queryState
     ? unFlattenResults(results)
     : transcript;
+  console.log(FilteredTranscript);
 
   /////////////////////////////
   //////// Render Comp. ///////

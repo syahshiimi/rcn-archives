@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown";
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { IconContext } from "@react-icons/all-files/lib";
+import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+
 import { TagsContainer } from "./tags";
 
 export const Accordion = ({ transcript = [], type, name }) => {
@@ -58,7 +59,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
 
   // 1. Document Summary Accordion
   function DocumentSummary() {
-    if (englishTranscriptSummary != undefined) {
+    if (englishTranscriptSummary != null) {
       return (
         <div className="c-accordion__summary">
           {renderRichText(englishTranscriptSummary, options)}
@@ -70,7 +71,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   }
 
   // 2. Full Document Transcript Accordion (Mobile only)
-  function DocumentTranscript(props) {
+  function DocumentTranscript() {
     return (
       <div className="c-accordion__transcript">
         {renderRichText(englishFullTranscript, options)}
@@ -79,7 +80,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   }
 
   // 3. DOcument Information Accordion
-  function DocumentInfo({ transcriptNotes }) {
+  function DocumentInfo() {
     return (
       <div className="c-accordion__info">
         <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
@@ -96,7 +97,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     );
   }
 
-  function TranscriptNotes(props) {
+  function TranscriptNotes() {
     if (transcriptNotes != null) {
       return (
         <div className="c-accordion__transcriptnotes">
@@ -104,13 +105,13 @@ export const Accordion = ({ transcript = [], type, name }) => {
         </div>
       );
     } else {
-      return null;
+      return <p className="c-accordion__transcriptnotes">None</p>;
     }
   }
 
   // 4. Document Qns Accordion
   function DocumentQns() {
-    if (discussionQuestions != undefined) {
+    if (discussionQuestions != null) {
       return (
         <div className="c-accordion__qns">
           {renderRichText(discussionQuestions, options)}
@@ -379,10 +380,6 @@ const AccordionWrapper = styled.div`
       margin: 0vh 3vw;
     }
     
-    .c-accordion__transcriptnotes {
-      margin-left: 5vw;
-      }
-
     .c-accordion__qns {
       padding: 1vh 0vw;
       list-style: square;
