@@ -14,9 +14,6 @@ const query = graphql`
     ) {
       nodes {
         featured
-        transcriptImage {
-          gatsbyImageData
-        }
         transcriptTitle
         oneLineTeaser {
           oneLineTeaser
@@ -54,26 +51,25 @@ export const RecentlyAdd = () => {
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 
-        // Conditional render image depending if it is available
-        const ImgComponenet =
-          transcriptImage != undefined ? (
-            <FeatureImageWrapper>
-              <GatsbyImage
-                image={pathToImage}
-                alt=""
-                className="c-recentlyaddedcard__image"
-              ></GatsbyImage>
-            </FeatureImageWrapper>
-          ) : null;
+        //        // Conditional render image depending if it is available
+        //        const ImgComponent =
+        //          transcriptImage != null ? (
+        //            <FeatureImageWrapper>
+        //              <GatsbyImage
+        //                image={pathToImage}
+        //                alt=""
+        //                className="c-recentlyaddedcard__image"
+        //              ></GatsbyImage>
+        //            </FeatureImageWrapper>
+        //          ) : null;
 
-        const pathToImage = getImage(transcriptImage);
+        //        const pathToImage = getImage(transcriptImage);
         return (
           <RecentlyAddWrapper key={transcriptTitle}>
             <div className="c-recentlyaddedcard">
               <div className="c-recentlyaddedcard__title">
                 {transcriptTitle}
               </div>
-              {ImgComponenet}
               <div className="c-recentlyaddedcard__oneliner">
                 {parse(`${html}`)}
               </div>

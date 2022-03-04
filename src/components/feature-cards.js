@@ -11,9 +11,6 @@ const query = graphql`
     allContentfulInterviewTranscripts(filter: { featured: { eq: true } }) {
       nodes {
         featured
-        transcriptImage {
-          gatsbyImageData
-        }
         transcriptTitle
         oneLineTeaser {
           oneLineTeaser
@@ -35,7 +32,7 @@ export const FeatureCard = () => {
       {" "}
       {featured.map((item) => {
         const {
-          transcriptImage,
+          //          transcriptImage,
           transcriptTitle,
           oneLineTeaser: {
             childMarkdownRemark: { html },
@@ -51,23 +48,22 @@ export const FeatureCard = () => {
         const slug = slugify(cleanString, { lower: true });
 
         // Conditional render image depending if it is available
-        const ImgComponenet =
-          transcriptImage != undefined ? (
-            <FeatureImageWrapper>
-              <GatsbyImage
-                image={pathToImage}
-                alt=""
-                className="c-featurecard__image"
-              ></GatsbyImage>
-            </FeatureImageWrapper>
-          ) : null;
-
-        const pathToImage = getImage(transcriptImage);
+        //        const ImgComponenet =
+        //          transcriptImage != undefined ? (
+        //            <FeatureImageWrapper>
+        //              <GatsbyImage
+        //                image={pathToImage}
+        //                alt=""
+        //                className="c-featurecard__image"
+        //              ></GatsbyImage>
+        //            </FeatureImageWrapper>
+        //          ) : null;
+        //
+        //        const pathToImage = getImage(transcriptImage);
         return (
           <FeatureCardWrapper key={transcriptTitle}>
             <div className="c-featurecard">
               <div className="c-featurecard__title">{transcriptTitle}</div>
-              {ImgComponenet}
               <div className="c-featurecard__oneliner">{parse(`${html}`)}</div>
               <span className="c-featurecard__read">
                 <Link to={`browsearchives/${slug}`}>Read More </Link>
