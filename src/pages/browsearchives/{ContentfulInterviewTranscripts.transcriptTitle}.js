@@ -32,6 +32,10 @@ export const query = graphql`
       discussionQuestions {
         raw
       }
+      originalFullTranscript {
+        raw
+      }
+
       onelinerteaser: childContentfulInterviewTranscriptsOneLineTeaserTextNode {
         childMarkdownRemark {
           oneliner: html
@@ -50,19 +54,6 @@ export const query = graphql`
 
 const TranscriptTemplate = ({ data }) => {
   const transcript = data.contentfulInterviewTranscripts;
-
-  // filter through passed object to remove null values
-  ////////////////////////////////////////////////////////////
-  // 1. convert default objects to array with key value pairs
-  // 2. filter through key/value pairs to remove 'null' and produce new arr
-  // 3. convert filtered array to object
-
-  const transcriptArr = Object.entries(transcript);
-  const filteredTranscriptArr = transcriptArr.filter(
-    ([key, value]) => value != null
-  );
-  const filteredTranscriptObj = Object.fromEntries(filteredTranscriptArr);
-  // Destructure Filtered Object
   const {
     transcriptTags,
     transcriptImage,
@@ -70,11 +61,12 @@ const TranscriptTemplate = ({ data }) => {
       childMarkdownRemark: { oneliner },
     },
     transcriptTitle,
-  } = filteredTranscriptObj;
+  } = transcript;
 
   //////////////////////////
   ////// Image Utils ///////
   //////////////////////////
+
   // Conditionally render gatsby image
   const pathToImage = getImage(transcriptImage);
   function TranscriptImage(props) {

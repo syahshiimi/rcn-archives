@@ -109,7 +109,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     }
   }
 
-  // 4. Document Qns Accordion
+  // 4. Document Question Accordion
   function DocumentQns() {
     if (discussionQuestions != null) {
       return (
