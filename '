@@ -317,23 +317,11 @@ const AccordionWrapper = styled.div`
   // Document Transcript Accordion
   .c-accordion__transcript {
     padding: 2vh 0vw;
-  display: flex;
-  flex-direction: column;
 }
   .c-accordion__transcript > p {
     margin: .5vh 6vw;
     min-height: 10px;
     display: block;
-  }
-
-  .c-accordion__langtoggle {
-  background-color: transparent;
-  border: none;
-    text-decoration: underline;
-    font-family: "Ubuntu", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-  margin: 1vh 0vw;
   }
 
   // Document Information Accordion
