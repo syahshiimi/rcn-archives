@@ -28,6 +28,13 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
+  siteMetadata: {
+    title: "RCW Asia",
+    description:
+      " Reconceptualizing the Cold War: On-the-ground Experiences in Asia, which aims to build an online archive of oral history collections concerning the Cold War and decolonization in Asia, with a particular focus on Southeast, East, and South Asia.",
+    author: "@syahshiimi",
+  },
+
   plugins: [
     {
       resolve: `gatsby-plugin-react-helmet`,
@@ -97,7 +104,8 @@ module.exports = {
             id: node.id,
             transcriptTitle: node.transcriptTitle,
             transcriptTags: node.transcriptTags,
-            oneLiner: node.oneLineTeaser.oneLineTeaser, // schema for search card
+            oneLiner: node.oneLineTeaser.oneLineTeaser, // schema for
+            // search card
             oneLineTeaser: node.oneLineTeaser, // schema for searching only
             interviewer: node.interviewer,
             interviewee: node.interviewee,
@@ -134,12 +142,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
       options: {
-        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
-        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        headers: {}, // option to add more headers. `Link` headers are
+        // transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link`
+        // headers are transformed by the below criteria
         mergeSecurityHeaders: true, // boolean to turn off the default security headers
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
         mergeCachingHeaders: true, // boolean to turn off the default caching headers
-        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules
+        // for client only paths
       },
     },
 

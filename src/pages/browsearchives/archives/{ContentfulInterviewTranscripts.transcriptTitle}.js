@@ -10,6 +10,7 @@ import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
 import { CheckVernacularLang } from "../../../components/langtoggle";
+import { Head } from "../../../components/head";
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
@@ -110,8 +111,16 @@ const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   /////////// Component Render ///////////
   ////////////////////////////////////////
+
+  // Metadata
+  const metadata = parse(`${oneliner}`);
+  const {
+    props: { children },
+  } = metadata;
+
   return (
     <Layout>
+      <Head title={transcriptTitle} description={children} />
       <FullTranscriptWrapper>
         <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>

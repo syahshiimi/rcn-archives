@@ -1,13 +1,27 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
 // import favicon from "../assets/icon.png";
-export const Head = ({ title }) => {
+
+export const query = graphql`
+  {
+    site {
+      siteMetadata {
+        description
+        title
+      }
+    }
+  }
+`;
+
+export const Head = ({ title, description }) => {
+  const { site } = useStaticQuery(query);
+  const metaDescription = description || site.siteMetadata.description;
   return (
     <Helmet
-      defaultTitle="Default Title | My Website"
-      title={title}
-      titleTemplate="%s | RCW-Asia"
-      // link={[{ rel: "icon", type: "image/png", href: favicon }]}
+      htmlAttributes={{ lang: "en" }}
+      title={` ${title} | ${site.siteMetadata.title}`}
+      meta={[{ name: `description`, content: metaDescription }]}
     />
   );
 };

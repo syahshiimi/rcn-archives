@@ -11,6 +11,7 @@ import Layout from "../../components/Layout";
 import { Accordion } from "../../components/accordion";
 import { ReadFullButton } from "../../components/read-full";
 import { NestedTagsContainer } from "../../components/tags";
+import { Head } from "../../components/head";
 
 export const query = graphql`
   query getSingleTranscript($transcriptTitle: String) {
@@ -69,7 +70,7 @@ const TranscriptTemplate = ({ data }) => {
 
   // Conditionally render gatsby image
   const pathToImage = getImage(transcriptImage);
-  function TranscriptImage(props) {
+  function TranscriptImage() {
     if (transcriptImage != undefined) {
       return (
         <GatsbyImage
@@ -91,8 +92,15 @@ const TranscriptTemplate = ({ data }) => {
   // use slugify to return a string in a slug format
   const slug = slugify(cleanString, { lower: true });
 
+  // Metadata
+  const metadata = parse(`${oneliner}`);
+  const {
+    props: { children },
+  } = metadata;
+
   return (
     <Layout>
+      <Head title={transcriptTitle} description={children} />
       <TranscriptWrapper>
         <h1 className="c-transcript__title">{transcriptTitle}</h1>
         {/* container  to create flexible grid + blox layout */}

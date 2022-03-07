@@ -1,13 +1,14 @@
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
 import React from "react";
 import styled from "styled-components";
-import parse from "html-react-parser";
 
 // Componenets import
 import { EventScheduleCard } from "../components/eventscard";
 import Layout from "../components/Layout";
 import { DefaultButton } from "../components/button";
+import { Head } from "../components/head";
 
 const EventsTemplate = ({ data }) => {
   const events = data.contentfulEventsWorkshops;
@@ -33,8 +34,10 @@ const EventsTemplate = ({ data }) => {
   } = filteredEvents;
 
   const pathToImage = getImage(eventImage);
+  console.log(eventTitle);
   return (
     <Layout>
+      <Head title={eventTitle} />{" "}
       <EventWrapper>
         <section className="l-events">
           <GatsbyImage
