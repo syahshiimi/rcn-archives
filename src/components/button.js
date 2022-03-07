@@ -87,7 +87,7 @@ const ButtonWrapper = styled.div`
     font-size: 0.8rem;
 
     /* Button DS */
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.45);
     border-radius: calc(1.875rem + 4px);
   }
 
@@ -106,7 +106,12 @@ const ButtonWrapper = styled.div`
   @media (min-width: 1280px) {
   button {
     font-size: 1rem;
+    transition: var(--hover-transition);
   }
+
+  button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
 })
 `;
 

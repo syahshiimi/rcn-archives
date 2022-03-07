@@ -20,6 +20,9 @@
 
   /* transition */
   --transition: all 0.7s ease-in-out 0.2s;
+  --hover-transition: all 250ms ease-in-out;
+  --hovercard-boxshadow:  0px 5px 14px rgba(51, 53, 51, 0.65);
+  --hovercard-default:  0px 4px 9px rgba(51, 53, 51, 0.45);
 
   /* global padding values */
   /* USED ONLY FOR RIGHT AND LEFT PADDING */

@@ -6,7 +6,6 @@ import { Link } from "gatsby";
 import { TagsContainer } from "./tags";
 
 export const SearchCard = ({
-  id,
   transcriptTitle,
   transcriptTags,
   html,
@@ -62,7 +61,7 @@ const SearchCardWrapper = styled.main`
     /* styling */
     border-radius: calc(2rem + 6px);
     display: flex;
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.45);
+    box-shadow: var(--hovercard-default);
     flex-direction: column;
   }
 
@@ -194,9 +193,15 @@ const SearchCardWrapper = styled.main`
       margin: 1vh;
     }
 
+    .l-searchcard:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hovercard-boxshadow);
+    }
+
     .l-searchcard {
       padding: 4vh 6vw 2vh 6vw;
       margin: 1.5vh 2vw;
+      transition: var(--hover-transition);
     }
 
     .c-searchcard__desktoptitle {

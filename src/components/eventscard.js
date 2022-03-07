@@ -134,7 +134,7 @@ const EventsCardWrapper = styled.div`
   padding: 0vh 8vw;
   justify-content: center;
   text-align: center;
-  box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+  box-shadow: var(--hovercard-default);
   border-radius: var(--border-rad-mobile);
   background-color: var(--primary-clr-100);
   margin: 0;
@@ -203,12 +203,19 @@ const EventsCardWrapper = styled.div`
   ///////////////////////////
   @media (min-width: 1280px) {
     padding: 3vh 4vw;
+    transition: var(--hover-transition);
+
+    :hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hovercard-boxshadow);
+    }
     .c-pastevents__button {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex: 1 1 auto;
     }
+
     .c-pastevents__title {
       font-size: 1.2rem;
       text-align: left;
@@ -264,7 +271,7 @@ const EventScheduleWrapper = styled.div`
     padding: 2vh 8vw;
     border-radius: var(--border-rad-mobile);
     display: flex;
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+    box-shadow: var(--hovercard-default);
     flex-direction: column;
 
     @media (max-width: 992px) {

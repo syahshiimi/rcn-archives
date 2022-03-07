@@ -25,8 +25,7 @@ export const SearchBar = ({ queryState, setSearchQuery, queries }) => {
     } else {
       return (
         <p className="c-browsearchives__counter" onClick={resultsClick}>
-          Search query of '{queryState}' returned {queries.length} search
-          results.{" "}
+          '{queryState}' returned {queries.length} search results.{" "}
         </p>
       );
     }
