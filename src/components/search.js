@@ -13,6 +13,10 @@ export const SearchBar = ({ queryState, setSearchQuery, queries }) => {
     // Smooth scroll to selected DOM element
     scrollTo(".l-browsearchives__search");
   };
+  const resultsClick = (e) => {
+    e.preventDefault();
+    scrollTo(".l-browsearchives__search");
+  };
 
   // Search Results Query + Container Alert
   const SearchResultsCounter = () => {
@@ -20,9 +24,9 @@ export const SearchBar = ({ queryState, setSearchQuery, queries }) => {
       return null;
     } else {
       return (
-        <p className="c-browsearchives__counter">
+        <p className="c-browsearchives__counter" onClick={resultsClick}>
           Search query of '{queryState}' returned {queries.length} search
-          results.
+          results.{" "}
         </p>
       );
     }
@@ -82,6 +86,14 @@ const SeaerchBarWrapper = styled.div`
     background-color: var(--primary-clr-50);
   }
 
+  .c-browsearchives__counter {
+    margin-top: 2vh;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    color: var(--primary-clr-200);
+    text-decoration: underline;
+  }
+
   .c-browsearchives__searchinput {
     width: 100%;
     height: 6vh;
@@ -137,6 +149,10 @@ const SeaerchBarWrapper = styled.div`
     .c-browsearchives__searchicon {
       height: 2.2rem;
       width: 2.2rem;
+    }
+
+    .c-browsearchives__counter {
+      font-size: 1rem;
     }
   }
 

@@ -5,10 +5,11 @@ import parse from "html-react-parser";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+// Component Import
 import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
-
+import { CheckVernacularLang } from "../../../components/langtoggle";
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
@@ -53,21 +54,6 @@ const FullTranscript = ({ data }) => {
 
   // Conditional Render content
 
-  // 1. Create vernacular language button
-  // We create an onClick handler with useState hook
-  // We check if originalFullTranscript exists and conditionally render the button
-  function CheckVernacularLang({ onClick, type }) {
-    if (originalFullTranscript == null) {
-      return null;
-    } else if (originalFullTranscript != null) {
-      return (
-        <button onClick={onClick} className="c-fulltranscript__langtoggle">
-          Read In The {type} Language
-        </button>
-      );
-    }
-  }
-
   function TranscriptContent() {
     let englishLanguage = renderRichText(englishFullTranscript, options);
     let vernacularLanguage = originalFullTranscript
@@ -92,7 +78,11 @@ const FullTranscript = ({ data }) => {
     } else {
       return (
         <div className="c-fulltranscript__content">
-          <CheckVernacularLang onClick={onClick} type={buttonType} />
+          <CheckVernacularLang
+            onClick={onClick}
+            type={buttonType}
+            transcript={originalFullTranscript}
+          />
           {langType}
         </div>
       );
@@ -219,7 +209,7 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh 0vw;
   }
 
-  .c-fulltranscript__langtoggle {
+  .c-langtoggle {
     background-color: transparent;
     border: none;
     text-decoration: underline;
@@ -266,7 +256,7 @@ const FullTranscriptWrapper = styled.section`
       margin: 3.5vh 0vw;
     }
 
-    .c-fulltranscript__langtoggle {
+    .c-langtoggle {
       margin-bottom: 4vh;
     }
 

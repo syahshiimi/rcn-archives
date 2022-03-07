@@ -6,7 +6,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
 
+// Components
 import { TagsContainer } from "./tags";
+import { CheckVernacularLang } from "./langtoggle";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -75,21 +77,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
 
   // 2. Full Document Transcript Accordion (Mobile only)
 
-  // Create vernacular language button
-  // We create an onClick handler with useState hook
-  // We check if originalFullTranscript exists and conditionally render the button
-  function CheckVernacularLang({ onClick, type }) {
-    if (originalFullTranscript == null) {
-      return null;
-    } else if (originalFullTranscript != null) {
-      return (
-        <button onClick={onClick} className="c-accordion__langtoggle">
-          Read In The {type} Language
-        </button>
-      );
-    }
-  }
-
   function DocumentTranscript() {
     // We set the default language to be rendered
     let englishLanguage = englishFullTranscript
@@ -120,7 +107,11 @@ export const Accordion = ({ transcript = [], type, name }) => {
     } else {
       return (
         <div className="c-accordion__transcript">
-          <CheckVernacularLang onClick={onClick} type={buttonType} />
+          <CheckVernacularLang
+            onClick={onClick}
+            type={buttonType}
+            transcript={originalFullTranscript}
+          />
           {langType}
         </div>
       );
@@ -326,7 +317,7 @@ const AccordionWrapper = styled.div`
     display: block;
   }
 
-  .c-accordion__langtoggle {
+  .c-langtoggle {
     background-color: transparent;
     border: none;
     text-decoration: underline;

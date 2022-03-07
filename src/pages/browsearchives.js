@@ -134,7 +134,6 @@ const BrowseArchives = () => {
             setSearchQuery={setSearchQuery}
             queries={FilteredTranscript}
           />
-
           <p className="c-browsearchives__content">
             Browse through our carefully curated oral archives. Working with on
             - the - ground experiences, we aim to provide a wholesome and
