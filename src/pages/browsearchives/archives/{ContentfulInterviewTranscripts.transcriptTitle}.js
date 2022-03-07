@@ -263,7 +263,11 @@ const FullTranscriptWrapper = styled.section`
   @media (min-width: 1280px) {
     padding: 10vh var(--padding-desktop);
     .c-fulltranscript__border {
-      margin: 4vh 0vw;
+      margin: 3.5vh 0vw;
+    }
+
+    .c-fulltranscript__langtoggle {
+      margin-bottom: 4vh;
     }
 
     .c-tagscontainer {

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import Layout from "../components/Layout";
-import { Head } from "../components/head";
-import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
-import { SearchCard } from "../components/searchcard";
-import { SearchBar } from "../components/search";
-import { useFlexSearch } from "react-use-flexsearch";
-import { BackToSearchBtn } from "../components/button";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import React, { useState } from "react";
+import { useFlexSearch } from "react-use-flexsearch";
+import styled from "styled-components";
+
+import { BackToSearchBtn } from "../components/button";
+import { Head } from "../components/head";
+import Layout from "../components/Layout";
+import { SearchBar } from "../components/search";
+import { SearchCard } from "../components/searchcard";
 
 const query = graphql`
   {
@@ -64,10 +65,14 @@ const BrowseArchives = () => {
   const [queryState, setSearchQuery] = useState(searchQuery || "");
 
   // useStaet hooks to control search input via tags
-  // 1. If queryState == default value, we use the default value that is 'searchQuery'
-  // 2. We use the onClick as an event handler, to return the value based on which tag pill was clicked. This value will be the tag pill variable
-  // 3. If the tag pill rreturns a value, we have setSearchQuery modify the  by using the tag pill value
-  // 4. if the queryState IS NOT == default, we also expose the setSearchQuery function to use the tag pill value
+  // 1. If queryState == default value, we use the default value that is
+  // 'searchQuery'
+  // 2. We use the onClick as an event handler, to return the value based on
+  // which tag pill was clicked. This value will be the tag pill variable
+  // 3. If the tag pill rreturns a value, we have setSearchQuery modify the  by
+  // using the tag pill value
+  // 4. if the queryState IS NOT == default, we also expose the setSearchQuery
+  // function to use the tag pill value
 
   const onClick = (value = []) => {
     const { item } = value; // destructure value to get the variable
@@ -108,13 +113,14 @@ const BrowseArchives = () => {
       };
     });
 
-  // set defaults where we return the entire transcript or else return the fitlered transcript
+  // set defaults where we return the entire transcript or else return the
+  // fitlered transcript
   const FilteredTranscript = queryState
     ? unFlattenResults(results)
     : transcript;
 
   /////////////////////////////
-  //////// Render Comp. ///////
+  //////// Render  ////////////
   /////////////////////////////
 
   return (
@@ -123,10 +129,15 @@ const BrowseArchives = () => {
       <BrowseArchivesWrapper>
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__heading">Search The Archives</h1>
-          <SearchBar queryState={queryState} setSearchQuery={setSearchQuery} />
+          <SearchBar
+            queryState={queryState}
+            setSearchQuery={setSearchQuery}
+            queries={FilteredTranscript}
+          />
+
           <p className="c-browsearchives__content">
-            Browse through our carefully curated oral archives. Working with
-            on-the-ground experiences, we aim to provide a wholesome and
+            Browse through our carefully curated oral archives. Working with on
+            - the - ground experiences, we aim to provide a wholesome and
             comprehensive approach towards understanding the cold war from a
             grassroots perspective.
           </p>
@@ -160,7 +171,6 @@ const BrowseArchives = () => {
     </Layout>
   );
 };
-
 const BrowseArchivesWrapper = styled.main`
   section {
     display: flex;

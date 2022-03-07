@@ -84,7 +84,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     } else if (originalFullTranscript != null) {
       return (
         <button onClick={onClick} className="c-accordion__langtoggle">
-          Read in {type}
+          Read In The {type} Language
         </button>
       );
     }
@@ -104,14 +104,14 @@ export const Accordion = ({ transcript = [], type, name }) => {
     // useState will allow dynamic changes of langType where we set the defualt as englishLanguage
     // setlang allows use to change to vernacular
     const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState("vernacular");
+    const [buttonType, setButton] = useState("Vernacular");
     const onClick = () => {
-      if (buttonType == "vernacular") {
+      if (buttonType == "Vernacular") {
         setLang(vernacularLanguage);
-        setButton("english");
+        setButton("English");
       } else {
         setLang(englishLanguage);
-        setButton("vernacular");
+        setButton("Vernacular");
       }
     };
 
@@ -303,7 +303,6 @@ const AccordionWrapper = styled.div`
 
   
   // Accordion Styling
-  //
   // Document Summary Accordion
   .c-accordion__summary {
     display: flex;
@@ -317,7 +316,7 @@ const AccordionWrapper = styled.div`
 
   // Document Transcript Accordion
   .c-accordion__transcript {
-    padding: 2vh 0vw;
+    padding: 1vh 0vw;
   display: flex;
   flex-direction: column;
 }
@@ -328,8 +327,8 @@ const AccordionWrapper = styled.div`
   }
 
   .c-accordion__langtoggle {
-  background-color: transparent;
-  border: none;
+    background-color: transparent;
+    border: none;
     text-decoration: underline;
     font-family: "Ubuntu", sans-serif;
     font-style: normal;

@@ -1,17 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { IconContext } from "@react-icons/all-files/lib";
-import styled from "styled-components";
 import scrollTo from "gatsby-plugin-smoothscroll";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
-export const SearchBar = ({ queryState, setSearchQuery }) => {
+export const SearchBar = ({ queryState, setSearchQuery, queries }) => {
   const refContainer = useRef(null);
 
   // const LiveSearch = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // LiveSearch(`?s=${queryState}`); // concatenate url with search query value
-    scrollTo(".l-browsearchives__search"); // smooth scroll to specified DOM element
+    // Smooth scroll to selected DOM element
+    scrollTo(".l-browsearchives__search");
+  };
+
+  // Search Results Query + Container Alert
+  const SearchResultsCounter = () => {
+    if (queryState == "") {
+      return null;
+    } else {
+      return (
+        <p className="c-browsearchives__counter">
+          Search query of '{queryState}' returned {queries.length} search
+          results.
+        </p>
+      );
+    }
   };
 
   return (
@@ -43,6 +57,7 @@ export const SearchBar = ({ queryState, setSearchQuery }) => {
           </IconContext.Provider>
         </button>
       </form>
+      <SearchResultsCounter />
     </SeaerchBarWrapper>
   );
 };
