@@ -74,18 +74,34 @@ export const Accordion = ({ transcript = [], type, name }) => {
   }
 
   // 2. Full Document Transcript Accordion (Mobile only)
+
+  // Create vernacular language button
+  // We create an onClick handler with useState hook
+  // We check if originalFullTranscript exists and conditionally render the button
+  function CheckVernacularLang({ onClick, type }) {
+    if (originalFullTranscript == null) {
+      return null;
+    } else if (originalFullTranscript != null) {
+      return (
+        <button onClick={onClick} className="c-accordion__langtoggle">
+          Read in {type}
+        </button>
+      );
+    }
+  }
+
   function DocumentTranscript() {
-    // 1. We set the default language to be rendered
+    // We set the default language to be rendered
     let englishLanguage = englishFullTranscript
       ? renderRichText(englishFullTranscript, options)
       : null;
 
-    // 2. We use a ternary operator to check first if originalFullTranscript exists to work with possible empty variables
+    // We use a ternary operator to check first if originalFullTranscript exists to work with possible empty variables
     let vernacularLanguage = originalFullTranscript
       ? renderRichText(originalFullTranscript, options)
       : null;
 
-    // 3. useState will allow dynamic changes of langType where we set the defualt as englishLanguage
+    // useState will allow dynamic changes of langType where we set the defualt as englishLanguage
     // setlang allows use to change to vernacular
     const [langType, setLang] = useState(englishLanguage);
     const [buttonType, setButton] = useState("vernacular");
@@ -100,28 +116,13 @@ export const Accordion = ({ transcript = [], type, name }) => {
     };
 
     if (englishFullTranscript == null) {
-      return <div className="c-accordion__transcript">{langType}</div>;
+      return null;
     } else {
       return (
         <div className="c-accordion__transcript">
           <CheckVernacularLang onClick={onClick} type={buttonType} />
           {langType}
         </div>
-      );
-    }
-  }
-
-  // Create vernacular language button
-  // We create an onClick handler with useState hook
-  // We check if originalFullTranscript exists and conditionally render the button
-  function CheckVernacularLang({ onClick, type }) {
-    if (originalFullTranscript == null) {
-      return null;
-    } else if (originalFullTranscript != null) {
-      return (
-        <button onClick={onClick} className="c-accordion__langtoggle">
-          Read in {type}
-        </button>
       );
     }
   }

@@ -2,7 +2,7 @@ import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import parse from "html-react-parser";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
@@ -19,6 +19,7 @@ const FullTranscript = ({ data }) => {
     transcriptTags,
     englishFullTranscript,
     transcriptEndNotes,
+    originalFullTranscript,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
@@ -50,18 +51,66 @@ const FullTranscript = ({ data }) => {
     },
   };
 
+  // Conditional Render content
+
+  // 1. Create vernacular language button
+  // We create an onClick handler with useState hook
+  // We check if originalFullTranscript exists and conditionally render the button
+  function CheckVernacularLang({ onClick, type }) {
+    if (originalFullTranscript == null) {
+      return null;
+    } else if (originalFullTranscript != null) {
+      return (
+        <button onClick={onClick} className="c-fulltranscript__langtoggle">
+          Read In The {type} Language
+        </button>
+      );
+    }
+  }
+
+  function TranscriptContent() {
+    let englishLanguage = renderRichText(englishFullTranscript, options);
+    let vernacularLanguage = originalFullTranscript
+      ? renderRichText(originalFullTranscript, options)
+      : null;
+
+    // We can use useState to dynamically control type of transcript content
+    const [langType, setLang] = useState(englishLanguage);
+    const [buttonType, setButton] = useState("Vernacular");
+    const onClick = () => {
+      if (buttonType == "Vernacular") {
+        setLang(vernacularLanguage);
+        setButton("English");
+      } else {
+        setLang(englishLanguage);
+        setButton("Vernacular");
+      }
+    };
+
+    if (englishFullTranscript == null) {
+      return null;
+    } else {
+      return (
+        <div className="c-fulltranscript__content">
+          <CheckVernacularLang onClick={onClick} type={buttonType} />
+          {langType}
+        </div>
+      );
+    }
+  }
+
   // Conditional Rendering of Endnotes
-  // Instead of destructuring first, we first check if transcriptEndNotes is a null value
-  // By doing so, we avoid incurring the uncaughtError.
+  // Instead of destructuring first, we first check if transcriptEndNotes is
+  // a null value By doing so, we avoid incurring the uncaughtError.
   function EndnotesContent() {
     if (transcriptEndNotes != null) {
       const {
         childMarkdownRemark: { endnotes },
       } = transcriptEndNotes;
       return (
-        <p className="c-fulltranscript__endnotescontent">
+        <div className="c-fulltranscript__endnotescontent">
           {parse(`${endnotes}`)}
-        </p>
+        </div>
       );
     } else if (transcriptEndNotes == null) {
       return <p className="c-fulltranscript__endnotescontent">None </p>;
@@ -78,13 +127,10 @@ const FullTranscript = ({ data }) => {
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
         <BackToSummaryBtn />
         <hr className="c-fulltranscript__border"></hr>
-        <div className="c-fulltranscript__content">
-          {renderRichText(englishFullTranscript, options)}
-        </div>
+        <TranscriptContent />
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <NestedTagsContainer tags={transcriptTags} />
-
         <div className="c-fulltranscript__endnotescontainer">
           <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
           <hr className="c-fulltranscript__endnotesborder"></hr>
@@ -95,6 +141,7 @@ const FullTranscript = ({ data }) => {
     </Layout>
   );
 };
+
 export const query = graphql`
   query ($transcriptTitle: String) {
     contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
@@ -172,7 +219,21 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh 0vw;
   }
 
+  .c-fulltranscript__langtoggle {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    font-family: "Ubuntu", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin: 1vh;
+  }
+
   .c-fulltranscript__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
     p {
       font-family: "Lora", serif;
       font-weight: 500;
