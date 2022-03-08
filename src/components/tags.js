@@ -74,8 +74,8 @@ const TagsWrapper = styled.div`
 
   @media (min-width: 1280px) {
     .c-tagscontainer__tag {
-      font-size: 1rem;
-      padding: 1.2vh 1vw;
+      font-size: 0.75rem;
+      padding: 1vh 0.6vw;
     }
 
     .c-tagscontainer__tagpill {

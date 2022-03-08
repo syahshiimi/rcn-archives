@@ -280,9 +280,12 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchcontainer {
       display: flex;
-      justify-content: center;
       border-radius: var(--border-rad-desktop);
+      max-width: 100%;
       padding: 2vh 1vw;
+      flex: 1 1 25%;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
   ////////////////////////////

@@ -393,7 +393,7 @@ const AboutWrapper = styled.main`
       margin: 8vh 18vw 8vh 18vw;
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
 
@@ -413,7 +413,7 @@ const AboutWrapper = styled.main`
     .c-ourfocus__content {
       margin: 2vh 18vw 2vh 18vw;
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
 
@@ -427,7 +427,7 @@ const AboutWrapper = styled.main`
     .c-thearchives__content {
       margin: 8vh 18vw 8vh 18vw;
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
     .l-projectmembers {
@@ -441,7 +441,7 @@ const AboutWrapper = styled.main`
     .c-projectmembers__content {
       margin: 2vh 0vw;
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin: 2vh 0vw;
       }
     }
@@ -451,7 +451,7 @@ const AboutWrapper = styled.main`
 
     .c-projectmembers__contributebtn {
       margin: a {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
     }
   }

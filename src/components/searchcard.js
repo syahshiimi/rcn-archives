@@ -199,9 +199,10 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 4vh 6vw 2vh 6vw;
-      margin: 1.5vh 2vw;
+      padding: 3vh 2vw 2vh 2vw;
+      margin: 1vh 2vw;
       transition: var(--hover-transition);
+      flex: 0 0 auto;
     }
 
     .c-searchcard__desktoptitle {
@@ -214,7 +215,7 @@ const SearchCardWrapper = styled.main`
       margin: 1vh 0vw;
 
       p {
-        font-size: 1.125rem;
+        font-size: 1rem;
       }
     }
 

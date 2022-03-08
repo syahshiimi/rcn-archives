@@ -302,7 +302,7 @@ const AccordionWrapper = styled.div`
   }
   .c-accordion__summary > p {
     margin: 1vh 6vw;
-    text-align: center;
+    text-align: left !important;
   }
 
   // Document Transcript Accordion

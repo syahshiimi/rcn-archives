@@ -222,9 +222,9 @@ const TranscriptWrapper = styled.section`
       "title title"
       "container container"
       "border border"
-      "read read"
       "summary summary"
-      "info questions";
+      "info questions"
+      "read read";
 
     .c-transcript__title {
       font-size: 2.5rem;
