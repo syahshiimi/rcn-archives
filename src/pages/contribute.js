@@ -20,18 +20,6 @@ const ContactUs = () => {
         <section className="l-contactus">
           <h1 className="c-contactus__header">Contact Us</h1>
           <p className="c-contactus__subheading">{ContributeSub}</p>
-          <div className="c-contactus__form">
-            <input type="text" className="name" placeholder="Name" />
-            <input type="text" className="email" placeholder="Email" />
-            <input
-              type="text"
-              className="addinfo"
-              placeholder="Additional Info"
-            />
-          </div>
-          <div className="c-contactus__btn">
-            <DefaultButton url="#" title="Submit" />
-          </div>
         </section>
       </ContributeWrapper>
     </Layout>

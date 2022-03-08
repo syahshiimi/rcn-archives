@@ -1,85 +1,21 @@
 // Icons
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
-import { Link } from "gatsby";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 // Import Icons
 import DarkIcon from "../../src/assets/alt.svg";
-import Icon from "../../src/assets/icon.svg";
+
 // Import Components
 import { CurrentPage } from "../components/currentnavtitle";
+import { MenuItems } from "../components/menuitem";
+
 // Import Data
 import { pageLinks } from "../data";
 
 // Variables
 const title = "Reconceptualizing the Cold War";
-
-const DropdownComponent = ({ subMenu, dropdown }) => {
-  // to render the submenu dropdown, first check if the item has a subMenu
-  console.log(dropdown);
-  const showState = dropdown
-    ? "c-nav__dropdownmenu-active"
-    : "c-nav__dropdownmenu";
-  const { pageID } = subMenu;
-  return (
-    <ul className={showState} key={pageID}>
-      {subMenu.map((items, index) => {
-        const { pageID, url, text } = items;
-        return (
-          <Link
-            activeClassName="active--link"
-            to={url}
-            className={"c-nav" + " " + text}
-            key={index}
-          >
-            {text}
-          </Link>
-        );
-      })}
-    </ul>
-  );
-};
-
-const MenuItems = ({ link, index }) => {
-  const { url, text, subMenu } = link;
-
-  // Dropdown with useState Hook
-  const [dropdown, setDropdown] = useState(false);
-
-  const onClick = () => {
-    setDropdown(!dropdown);
-  };
-
-  // Render Menu items
-  return (
-    <li key={index} className={"c-nav" + "__" + " " + text}>
-      {subMenu != null ? (
-        <>
-          <button
-            type="button"
-            aria-expanded={dropdown ? "true" : "false"}
-            aria-haspopup="menu"
-            className="c-nav__dropdownbutton"
-            onClick={onClick}
-          >
-            {text}
-          </button>
-          <DropdownComponent subMenu={subMenu} dropdown={dropdown} />
-        </>
-      ) : (
-        <Link
-          activeClassName="active--link"
-          to={url}
-          className={"c-nav" + "__" + "link" + "  " + text}
-        >
-          {text}
-        </Link>
-      )}
-    </li>
-  );
-};
 
 const Navbar = () => {
   // hide list first by initial state of show = false
@@ -444,15 +380,16 @@ const NavStyle = styled.nav`
       row-gap: 0.3rem;
       position: absolute;
       flex-direction: column;
-      justify-content: center;
     }
 
     .c-nav.Search.Archive {
       display: flex;
       text-align: center;
+      font-size: 0.85rem;
     }
     .c-nav.Search.Map {
       display: flex;
+      font-size: 0.85rem;
       visibility: visible;
     }
   }
