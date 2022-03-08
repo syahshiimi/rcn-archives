@@ -8,27 +8,31 @@ import styled from "styled-components";
 // Import Icons
 import DarkIcon from "../../src/assets/alt.svg";
 import Icon from "../../src/assets/icon.svg";
-
 // Import Components
 import { CurrentPage } from "../components/currentnavtitle";
-
 // Import Data
 import { pageLinks } from "../data";
 
 // Variables
 const title = "Reconceptualizing the Cold War";
 
-const DropdownComponent = ({ subMenu }) => {
+const DropdownComponent = ({ subMenu, dropdown }) => {
   // to render the submenu dropdown, first check if the item has a subMenu
+  console.log(dropdown);
+  const showState = dropdown
+    ? "c-nav__dropdownmenu-active"
+    : "c-nav__dropdownmenu";
+  const { pageID } = subMenu;
   return (
-    <ul className="c-nav__dropdownmenu">
-      {subMenu.map((items) => {
+    <ul className={showState} key={pageID}>
+      {subMenu.map((items, index) => {
         const { pageID, url, text } = items;
         return (
           <Link
             activeClassName="active--link"
             to={url}
             className={"c-nav" + " " + text}
+            key={index}
           >
             {text}
           </Link>
@@ -45,7 +49,7 @@ const MenuItems = ({ link, index }) => {
   const [dropdown, setDropdown] = useState(false);
 
   const onClick = () => {
-    setDropdown(true);
+    setDropdown(!dropdown);
   };
 
   // Render Menu items
@@ -58,10 +62,11 @@ const MenuItems = ({ link, index }) => {
             aria-expanded={dropdown ? "true" : "false"}
             aria-haspopup="menu"
             className="c-nav__dropdownbutton"
+            onClick={onClick}
           >
             {text}
           </button>
-          <DropdownComponent subMenu={subMenu} />
+          <DropdownComponent subMenu={subMenu} dropdown={dropdown} />
         </>
       ) : (
         <Link
@@ -299,6 +304,11 @@ const NavStyle = styled.nav`
     visibility: hidden;
   }
 
+  .c-nav__dropdownbutton.Active {
+    display: flex;
+    visibility: visible;
+  }
+
   /* hide Search Map as it is not available for mobile */
   .c-nav.Search.Map {
     display: none;
@@ -423,9 +433,16 @@ const NavStyle = styled.nav`
     /* hide dropdown menu on tablets above */
     .c-nav__dropdownmenu {
       visibility: none;
-      margin-top: 0.8rem;
-      position: absolute;
       display: none;
+    }
+
+    /* toggle class */
+    .c-nav__dropdownmenu-active {
+      display: flex;
+      visibility: visible;
+      margin-top: 0.8rem;
+      row-gap: 0.3rem;
+      position: absolute;
       flex-direction: column;
       justify-content: center;
     }
