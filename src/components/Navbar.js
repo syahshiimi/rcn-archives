@@ -1,18 +1,16 @@
-import { Link } from "gatsby";
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import Icon from "../../src/assets/icon.svg";
-import DarkIcon from "../../src/assets/alt.svg";
-
-// Import Data
-import { pageLinks } from "../data";
-
-// Import Components
-import { CurrentPage } from "../components/currentnavtitle";
-
 // Icons
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
+import { Link } from "gatsby";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+
+import DarkIcon from "../../src/assets/alt.svg";
+import Icon from "../../src/assets/icon.svg";
+// Import Components
+import { CurrentPage } from "../components/currentnavtitle";
+// Import Data
+import { pageLinks } from "../data";
 
 // Variables
 const title = "Reconceptualizing the Cold War";
@@ -69,16 +67,29 @@ const Navbar = () => {
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
             {pageLinks.map((link) => {
-              const { pageID, url, text } = link;
+              const { pageID, url, text, subMenu } = link;
               return (
                 <li key={pageID} className={text}>
-                  <Link
-                    activeClassName="active--link"
-                    to={url}
-                    className={text}
-                  >
-                    {text}
-                  </Link>
+                  <p className={"c-nav" + "__" + text}>{text}</p>
+                  <ul className="c-nav__dropdown">
+                    {" "}
+                    {subMenu != undefined
+                      ? subMenu.map((items) => {
+                          const { pageID, url, text } = items;
+                          return (
+                            <li key={url + pageID}>
+                              <Link
+                                activeClassName="active--link"
+                                to={url}
+                                className={"c-nav" + "__" + text}
+                              >
+                                {text}
+                              </Link>
+                            </li>
+                          );
+                        })
+                      : null}
+                  </ul>
                 </li>
               );
             })}
@@ -242,6 +253,17 @@ const NavStyle = styled.nav`
 
   .c-nav__dropdown > li {
     list-style: none;
+  }
+
+  /* hide 'browse archives' text in mobile */
+  .c-nav__Browse.Archives {
+    display: none;
+    visibility: none;
+  }
+
+  .c-nav__Search.Map {
+    display: none;
+    visibility: none;
   }
 
   ///////////////////////////////
