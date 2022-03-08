@@ -283,7 +283,7 @@ const IndexWrapper = styled.main`
   }
   .c-featureddocs__title {
     text-align: center;
-    margin-bottom: 4vh;
+    margin-bottom: 3vh;
     text-decoration: none;
   }
 
@@ -300,7 +300,7 @@ const IndexWrapper = styled.main`
 
   .c-recentlyadded__title {
     text-align: center;
-    margin-bottom: 4vh;
+    margin-bottom: 3vh;
     text-decoration: none;
   }
 
@@ -503,7 +503,7 @@ const IndexWrapper = styled.main`
   ////////// Desktop /////////////
   ////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 6vh 4vw;
+    padding: 4vh 10vw;
 
     .c-divider__one {
       margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
@@ -516,7 +516,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-welcome__title {
-      margin-bottom: 6vh;
+      margin-bottom: 3vh;
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
@@ -527,11 +527,11 @@ const IndexWrapper = styled.main`
       }
     }
     .c-featureddocs__title {
-      margin-bottom: 6vh;
+      margin-bottom: 3vh;
       font-size: 1.7rem;
     }
     .c-recentlyadded__title {
-      margin-bottom: 6vh;
+      margin-bottom: 3vh;
       font-size: 1.7rem;
     }
 
@@ -539,11 +539,11 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-browsearchives__title {
-      margin-bottom: 4vh;
+      margin-bottom: 3vh;
       font-size: 2rem;
     }
     .c-browsearchives__container {
-      margin-bottom: 6vh;
+      margin-bottom: 3vh;
     }
     .c-browsearchives__blurb {
       margin: 3vh 0vw;
@@ -557,7 +557,7 @@ const IndexWrapper = styled.main`
     }
 
     .c-workshops__title {
-      margin-bottom: 4vh;
+      margin-bottom: 3vh;
       font-size: 2rem;
     }
 
@@ -570,7 +570,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-projectmembers__title {
-      margin-bottom: 4vh;
+      margin-bottom: 3vh;
       font-size: 2rem;
     }
 
