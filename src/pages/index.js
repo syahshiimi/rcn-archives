@@ -1,17 +1,16 @@
-import React from "react";
-import parse from "html-react-parser";
-import Layout from "../components/Layout";
-import styled from "styled-components";
-import { getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
+import React from "react";
+import styled from "styled-components";
 
+import { BACard } from "../components/ba-cards";
 // components
 import { DefaultButton } from "../components/button";
-import { BACard } from "../components/ba-cards";
 import { FeatureCard } from "../components/feature-cards";
-import { RecentlyAdd } from "../components/recently-added";
 import { Head } from "../components/head";
+import Layout from "../components/Layout";
+import { RecentlyAdd } from "../components/recently-added";
 
 export const query = graphql`
   {
@@ -110,7 +109,7 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <div className="c-welcome__blurb">{parse(`${html}`)}</div>
-          <DefaultButton url="/about" title="See More"></DefaultButton>
+          {/* <DefaultButton url="/about" title="See More"></DefaultButton>*/}
         </section>
         <section className="l-featureddocs">
           <h1 className="c-featureddocs__title">Featured Collections</h1>
@@ -141,11 +140,11 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
-          <DefaultButton
+          {/*          <DefaultButton
             url="/browsemap"
             title="See More"
             className="c-browsearchives__button"
-          ></DefaultButton>
+      ></DefaultButton>*/}
         </section>
         <section className="l-workshops">
           <h1 className="c-workshops__title">Workshops</h1>
@@ -158,7 +157,7 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-workshops__blurb">{workshopBlurb}</p>
-          <DefaultButton url="/eventlist" title="See More"></DefaultButton>
+          {/*<DefaultButton url="/eventlist" title="See More"></DefaultButton>*/}
         </section>
         <section className="l-projectmembers">
           <h1 className="c-projectmembers__title">Project Members</h1>
@@ -171,7 +170,7 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-projectmembers__blurb">{projectMembersBlurb}</p>
-          <DefaultButton url="/about" title="See More"></DefaultButton>
+          {/*          <DefaultButton url="/about" title="See More"></DefaultButton>*/}
         </section>
       </IndexWrapper>
     </Layout>
@@ -516,7 +515,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-welcome__title {
-      margin-bottom: 3vh;
+      margin-bottom: 2vh;
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
@@ -531,7 +530,7 @@ const IndexWrapper = styled.main`
       font-size: 1.7rem;
     }
     .c-recentlyadded__title {
-      margin-bottom: 3vh;
+      margin-bottom: 2vh;
       font-size: 1.7rem;
     }
 
@@ -539,7 +538,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-browsearchives__title {
-      margin-bottom: 3vh;
+      margin-bottom: 2vh;
       font-size: 2rem;
     }
     .c-browsearchives__container {
@@ -557,7 +556,7 @@ const IndexWrapper = styled.main`
     }
 
     .c-workshops__title {
-      margin-bottom: 3vh;
+      margin-bottom: 2vh;
       font-size: 2rem;
     }
 
@@ -570,7 +569,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-projectmembers__title {
-      margin-bottom: 3vh;
+      margin-bottom: 2vh;
       font-size: 2rem;
     }
 
