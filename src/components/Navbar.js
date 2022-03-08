@@ -2,18 +2,79 @@
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import { Link } from "gatsby";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+// Import Icons
 import DarkIcon from "../../src/assets/alt.svg";
 import Icon from "../../src/assets/icon.svg";
+
 // Import Components
 import { CurrentPage } from "../components/currentnavtitle";
+
 // Import Data
 import { pageLinks } from "../data";
 
 // Variables
 const title = "Reconceptualizing the Cold War";
+
+const DropdownComponent = ({ subMenu }) => {
+  // to render the submenu dropdown, first check if the item has a subMenu
+  return (
+    <ul className="c-nav__dropdownmenu">
+      {subMenu.map((items) => {
+        const { pageID, url, text } = items;
+        return (
+          <Link
+            activeClassName="active--link"
+            to={url}
+            className={"c-nav" + " " + text}
+          >
+            {text}
+          </Link>
+        );
+      })}
+    </ul>
+  );
+};
+
+const MenuItems = ({ link, index }) => {
+  const { url, text, subMenu } = link;
+
+  // Dropdown with useState Hook
+  const [dropdown, setDropdown] = useState(false);
+
+  const onClick = () => {
+    setDropdown(true);
+  };
+
+  // Render Menu items
+  return (
+    <li key={index} className={"c-nav" + "__" + " " + text}>
+      {subMenu != null ? (
+        <>
+          <button
+            type="button"
+            aria-expanded={dropdown ? "true" : "false"}
+            aria-haspopup="menu"
+            className="c-nav__dropdownbutton"
+          >
+            {text}
+          </button>
+          <DropdownComponent subMenu={subMenu} />
+        </>
+      ) : (
+        <Link
+          activeClassName="active--link"
+          to={url}
+          className={"c-nav" + "__" + "link" + "  " + text}
+        >
+          {text}
+        </Link>
+      )}
+    </li>
+  );
+};
 
 const Navbar = () => {
   // hide list first by initial state of show = false
@@ -66,32 +127,8 @@ const Navbar = () => {
         </div>
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
-            {pageLinks.map((link) => {
-              const { pageID, url, text, subMenu } = link;
-              return (
-                <li key={pageID} className={text}>
-                  <p className={"c-nav" + "__" + text}>{text}</p>
-                  <ul className="c-nav__dropdown">
-                    {" "}
-                    {subMenu != undefined
-                      ? subMenu.map((items) => {
-                          const { pageID, url, text } = items;
-                          return (
-                            <li key={url + pageID}>
-                              <Link
-                                activeClassName="active--link"
-                                to={url}
-                                className={"c-nav" + "__" + text}
-                              >
-                                {text}
-                              </Link>
-                            </li>
-                          );
-                        })
-                      : null}
-                  </ul>
-                </li>
-              );
+            {pageLinks.map((link, index) => {
+              return <MenuItems link={link} key={index} />;
             })}
           </ul>
           <form className="nav__search">
@@ -251,17 +288,19 @@ const NavStyle = styled.nav`
     display: none;
   }
 
-  .c-nav__dropdown > li {
+  /* Remove styling for dropdown menu */
+  .c-nav__dropdownmenu {
     list-style: none;
   }
 
-  /* hide 'browse archives' text in mobile */
-  .c-nav__Browse.Archives {
+  /* hide browse archive button */
+  .c-nav__dropdownbutton {
     display: none;
-    visibility: none;
+    visibility: hidden;
   }
 
-  .c-nav__Search.Map {
+  /* hide Search Map as it is not available for mobile */
+  .c-nav.Search.Map {
     display: none;
     visibility: none;
   }
@@ -354,8 +393,8 @@ const NavStyle = styled.nav`
       font-size: 0.95rem;
     }
 
-    .nav__links > li {
-      margin: 0vw;
+    .nav__links li {
+      margin: 0;
       display: block;
     }
 
@@ -366,6 +405,38 @@ const NavStyle = styled.nav`
     .nav__search {
       display: none;
       visibility: none;
+    }
+
+    /* re-enable dropdown button on tablet onwards */
+
+    .c-nav__dropdownbutton {
+      display: flex;
+      visibility: visible;
+      background-color: transparent;
+      border: none;
+      font-size: 0.95rem;
+      color: var(--primary-clr-50);
+      line-height: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* hide dropdown menu on tablets above */
+    .c-nav__dropdownmenu {
+      visibility: none;
+      margin-top: 0.8rem;
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .c-nav.Search.Archive {
+      display: flex;
+      text-align: center;
+    }
+    .c-nav.Search.Map {
+      display: flex;
+      visibility: visible;
     }
   }
 
@@ -391,8 +462,14 @@ const NavStyle = styled.nav`
       font-size: 1.05rem !important;
     }
 
-    .nav__links {
-      font-size: 1.15rem;
+    .c-nav.Search.Map {
+      display: flex;
+      visibility: visible;
+    }
+
+    .c-nav.Search.Archive {
+      display: flex;
+      visibility: visible;
     }
 
     .nav__search {
@@ -429,6 +506,8 @@ const NavStyle = styled.nav`
           font-size: 0.95rem;
         }
       }
+    }
+    .c-nav__dropdownbutton {
     }
   }
 
