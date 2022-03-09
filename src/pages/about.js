@@ -471,7 +471,7 @@ const AboutWrapper = styled.main`
     }
   }
   ///////////////////////////////////////
-  /////////// Desktop ///////////////////
+  //////// 4k Desktop ///////////////////
   ///////////////////////////////////////
   @media (min-width: 2560px) {
     h1 {
@@ -503,6 +503,9 @@ const AboutWrapper = styled.main`
         font-size: 1.25rem;
         margin: 2vh 0vw;
       }
+    }
+    .c-ourfocus__image {
+      width: 512px;
     }
     .l-thearchives {
       padding: 9vh 10vw;
