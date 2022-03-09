@@ -9,7 +9,7 @@ import { Head } from "../components/head";
 import Layout from "../components/Layout";
 
 export const query = graphql`
-  query MyQuery($collectionTitle: String) {
+  query getCollectionPage($collectionTitle: String) {
     contentfulCollectionsPage(collectionTitle: { eq: $collectionTitle }) {
       collectionTitle
       collectionBlurb {
@@ -38,12 +38,16 @@ const CollectionsTemplate = ({ data }) => {
   //  const {
   //    props: { children },
   //  } = metadata;
-  console.log(data);
+  const collections = data.contentfulCollectionsPage;
+  const { collectionTitle, collectionBlurb } = collections;
 
   return (
     <Layout>
-      <Head title="Hi" />
-      <CollectionsWrapper></CollectionsWrapper>
+      <Head title={collectionTitle} />
+      <CollectionsWrapper>
+        <h1 className="c-collectionpage__title">{collectionTitle}</h1>
+        <div className="c-collection__blurb">collection blurb goes here </div>
+      </CollectionsWrapper>
     </Layout>
   );
 };
