@@ -8,6 +8,7 @@ import { BACard } from "../components/ba-cards";
 // components
 import { SimpleButton } from "../components/simplebutton";
 import { FeatureCard } from "../components/feature-cards";
+import { CollectionCard } from "../components/featured-collections-card";
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
 import { RecentlyAdd } from "../components/recently-added";
@@ -115,7 +116,7 @@ const Index = () => {
         <section className="l-featureddocs">
           <h1 className="c-featureddocs__title">Featured Collections</h1>
           <div className="c-featureddocs__container">
-            <FeatureCard />
+            <CollectionCard />
           </div>
         </section>
         <hr className="c-divider__one"></hr>{" "}
