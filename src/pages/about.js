@@ -53,7 +53,7 @@ export const query = graphql`
       ourFocusImage {
         gatsbyImageData(
           placeholder: TRACED_SVG
-          layout: FIXED
+          layout: CONSTRAINED
           aspectRatio: 1.5
           breakpoints: [200, 300, 992]
         )
@@ -223,14 +223,17 @@ const AboutWrapper = styled.main`
     border: var(--imagecard-border-clr);
     border-radius: var(--imagecard-border-radius);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-    margin-bottom: 4vh;
-    display: none;
+    max-width: 100%;
   }
 
   .c-ourfocus__content {
     font-size: 0.875rem;
     text-align: justify;
     margin: 4vh 0vw;
+
+    p {
+      margin: 1vh 0vw;
+    }
   }
 
   .c-thearchives__title {
@@ -320,6 +323,7 @@ const AboutWrapper = styled.main`
     .c-ourfocus__image {
       margin: 0;
       padding: 0;
+      height: 400px;
     }
 
     .c-ourfocus__content {
@@ -399,19 +403,30 @@ const AboutWrapper = styled.main`
 
     .l-ourfocus {
       min-height: 100%;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      padding: 7vh 8vw;
       align-items: center;
-      padding: 7vh 0vw;
+      justify-items: center;
+      column-gap: 5vw;
+      grid-template-rows: auto;
+      grid-template-columns: auto;
+      grid-template-areas:
+        "title title"
+        "image content";
     }
 
     .c-ourfocus__title {
       margin-top: 0;
       margin-bottom: 3vh;
+      grid-area: title;
+    }
+    .c-ourfocus__image {
+      height: 300px;
+      grid-area: image;
     }
 
     .c-ourfocus__content {
-      margin: 2vh 18vw 2vh 18vw;
+      grid-area: content;
       p {
         font-size: 1.2rem;
       }
@@ -478,13 +493,12 @@ const AboutWrapper = styled.main`
     }
 
     .l-ourfocus {
-      padding: 9vh 10vw;
+      padding: 9vh 20vw;
     }
     .c-ourfocus__title {
+      margin-bottom: 4vh;
     }
-
     .c-ourfocus__content {
-      margin: 4vh 18vw 0vh 18vw;
       p {
         font-size: 1.25rem;
         margin: 2vh 0vw;
