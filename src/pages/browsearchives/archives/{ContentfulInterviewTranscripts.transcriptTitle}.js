@@ -264,6 +264,11 @@ const FullTranscriptWrapper = styled.section`
     .c-fulltranscript__border {
       margin: 3.5vh 0vw;
     }
+    .c-fulltranscript__oneliner {
+      p {
+        font-size: 1rem;
+      }
+    }
     .c-fulltranscript__content {
       p {
         font-size: 1.2rem;

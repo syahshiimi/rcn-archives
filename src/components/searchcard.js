@@ -143,7 +143,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-searchcard__oneliner {
-      margin: 1vh 0vw;
+      margin: 2vh 0vw;
       display: flex;
       justify-content: center;
       p {
@@ -154,7 +154,7 @@ const SearchCardWrapper = styled.main`
 
     .c-tagscontainer {
       display: flex;
-      margin: 0.5vh 0vw;
+      margin: 1vh 0vw;
     }
 
     /* hide mobile related elements */
@@ -183,19 +183,19 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 3vh 2vw 2vh 2vw;
+      padding: 3vh 3vw 2vh 3vw;
       transition: var(--hover-transition);
       flex: 0 0 auto;
     }
 
     .c-searchcard__desktoptitle {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       margin: 1vh 0vw;
     }
 
     .c-searchcard__oneliner {
       text-align: left;
-      margin: 1vh 0vw;
+      margin: 2vh 0vw;
 
       p {
         font-size: 1rem;
@@ -206,12 +206,21 @@ const SearchCardWrapper = styled.main`
       margin: 1.2vh;
       font-size: 1.125rem;
     }
-    .c-searchcard__tagscontainer {
-      margin: 1.25vh 0vw;
+
+    .c-tagscontainer {
+      margin-top: 2vh;
+      justify-content: space-around;
+    }
+
+    .c-tagscontainer__tagpill {
+      margin: 0.5vh 0.2vw;
+      flex: 1 1 auto;
+      justify-content: center;
     }
 
     .c-tagscontainer__tag {
-      font-size: 0.875rem;
+      padding: 0.5vh 0.5vw;
+      font-size: 0.75rem;
     }
   }
 
