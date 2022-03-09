@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import { BACard } from "../components/ba-cards";
 // components
-import { DefaultButton } from "../components/button";
+import { SimpleButton } from "../components/simplebutton";
 import { FeatureCard } from "../components/feature-cards";
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
@@ -108,7 +108,10 @@ const Index = () => {
               className="c-welcome__image"
             ></GatsbyImage>
           </ImageWrapper>
-          <div className="c-welcome__blurb">{parse(`${html}`)}</div>
+          <div className="c-welcome__blurb">
+            {parse(`${html}`)}
+            <SimpleButton title="Read More" url="/about" />
+          </div>
           {/* <DefaultButton url="/about" title="See More"></DefaultButton>*/}
         </section>
         <section className="l-featureddocs">
@@ -391,8 +394,9 @@ const IndexWrapper = styled.main`
     }
 
     .l-welcome {
+      display: flex;
+      flex-direction: column;
       grid-area: welcome;
-      margin-bottom: 2vh;
     }
 
     .c-welcome__title {
