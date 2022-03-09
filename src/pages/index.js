@@ -108,11 +108,9 @@ const Index = () => {
               className="c-welcome__image"
             ></GatsbyImage>
           </ImageWrapper>
-          <div className="c-welcome__blurb">
-            {parse(`${html}`)}
-            <SimpleButton title="Read More" url="/about" />
-          </div>
-          {/* <DefaultButton url="/about" title="See More"></DefaultButton>*/}
+          <div className="c-welcome__blurb">{parse(`${html}`)}</div>
+
+          <SimpleButton title="Read More" url="/about" />
         </section>
         <section className="l-featureddocs">
           <h1 className="c-featureddocs__title">Featured Collections</h1>
@@ -143,11 +141,8 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
-          {/*          <DefaultButton
-            url="/browsemap"
-            title="See More"
-            className="c-browsearchives__button"
-      ></DefaultButton>*/}
+
+          <SimpleButton title="Read More" url="/browsemap" />
         </section>
         <section className="l-workshops">
           <h1 className="c-workshops__title">Workshops</h1>
@@ -160,7 +155,8 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-workshops__blurb">{workshopBlurb}</p>
-          {/*<DefaultButton url="/eventlist" title="See More"></DefaultButton>*/}
+
+          <SimpleButton title="Read More" url="/eventlist" />
         </section>
         <section className="l-projectmembers">
           <h1 className="c-projectmembers__title">Project Members</h1>
@@ -173,7 +169,8 @@ const Index = () => {
             ></GatsbyImage>
           </ImageWrapper>
           <p className="c-projectmembers__blurb">{projectMembersBlurb}</p>
-          {/*          <DefaultButton url="/about" title="See More"></DefaultButton>*/}
+
+          <SimpleButton title="Read More" url="/about" />
         </section>
       </IndexWrapper>
     </Layout>

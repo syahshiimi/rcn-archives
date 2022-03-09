@@ -240,11 +240,6 @@ const NavStyle = styled.nav`
     visibility: hidden;
   }
 
-  .c-nav__dropdownbutton.Active {
-    display: flex;
-    visibility: visible;
-  }
-
   /* hide Search Map as it is not available for mobile */
   .c-nav.Search.Map {
     display: none;
@@ -353,20 +348,25 @@ const NavStyle = styled.nav`
       visibility: none;
     }
 
+    .c-nav__Browse.Archives {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     /* re-enable dropdown button on tablet onwards */
 
     .c-nav__dropdownbutton {
       display: flex;
+      justify-content: flex-end;
       visibility: visible;
       background-color: transparent;
       border: none;
       font-size: 0.95rem;
       color: var(--primary-clr-50);
-      line-height: 0 !important;
       margin: 0 !important;
     }
 
-    /* hide dropdown menu on tablets above */
+    /* toggle class */
     .c-nav__dropdownmenu {
       visibility: none;
       display: none;
@@ -375,20 +375,22 @@ const NavStyle = styled.nav`
     /* toggle class */
     .c-nav__dropdownmenu-active {
       display: flex;
-      visibility: visible;
-      margin-top: 0.8rem;
-      row-gap: 0.3rem;
       position: absolute;
+      visibility: visible;
+      margin-top: 1.5rem;
+      margin-left: 1.2rem;
+      row-gap: 0.3rem;
       flex-direction: column;
     }
 
     .c-nav.Search.Archive {
       display: flex;
-      text-align: center;
+      justify-content: flex-end;
       font-size: 0.85rem;
     }
     .c-nav.Search.Map {
       display: flex;
+      justify-content: flex-end;
       font-size: 0.85rem;
       visibility: visible;
     }
@@ -398,7 +400,6 @@ const NavStyle = styled.nav`
   ///////* Desktop Display *////////
   //////////////////////////////////
   @media (min-width: 1280px) {
-    font-size: 1.125rem;
     padding: 4vh 4.5vw;
     /* height: 13vh !important; */
 
@@ -461,11 +462,20 @@ const NavStyle = styled.nav`
         }
       }
     }
-    .c-nav__dropdownbutton {
+    .c-nav.Search.Archive {
+      font-size: 0.85rem;
+    }
+    .c-nav.Search.Map {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.85rem;
+      visibility: visible;
     }
   }
 
+  /////////////////////////
   /* 4k UHD display */
+  //////////////////////
   @media (min-width: 2560px) {
     padding: 3.5vh 21vw;
     font-size: 2rem;

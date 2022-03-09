@@ -14,7 +14,7 @@ export const MenuItems = ({ link, index }) => {
 
   // Render Menu items
   return (
-    <li key={index} className={"c-nav" + "__" + " " + text}>
+    <li key={index} className={"c-nav" + "__" + text}>
       {subMenu != null ? (
         <>
           <button
