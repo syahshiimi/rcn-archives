@@ -72,16 +72,6 @@ const Navbar = () => {
               return <MenuItems link={link} key={index} />;
             })}
           </ul>
-          <form className="nav__search">
-            <input
-              type="text"
-              className="nav__search input"
-              placeholder="Search.."
-            />
-            <button className="nav__search button" type="button">
-              <BiSearchAlt color="var(--primary-clr-200)" />
-            </button>
-          </form>
         </div>
       </div>
     </NavStyle>
@@ -353,8 +343,8 @@ const NavStyle = styled.nav`
       flex-direction: column;
       align-items: center;
     }
-    /* re-enable dropdown button on tablet onwards */
 
+    /* re-enable dropdown button on tablet onwards */
     .c-nav__dropdownbutton {
       display: flex;
       justify-content: flex-end;
@@ -385,6 +375,7 @@ const NavStyle = styled.nav`
 
     .c-nav.Search.Archive {
       display: flex;
+      visibility: visible;
       justify-content: flex-end;
       font-size: 0.85rem;
     }
@@ -427,41 +418,6 @@ const NavStyle = styled.nav`
       visibility: visible;
     }
 
-    .nav__search {
-      display: none;
-      margin: 0.875rem 0rem;
-
-      .button {
-        background-color: var(--primary-clr-100);
-        display: block;
-        border: none;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        height: 50px;
-        border-radius: 0px 25px 25px 0px;
-      }
-      input {
-        opacity: 50%;
-        text-align: center;
-        background: rgba(232, 237, 223, 0.5);
-        border: none;
-        border-radius: 25px 0px 0px 25px;
-        ::placeholder {
-          color: var(--primary-clr-50);
-          font-size: 0.8rem;
-        }
-        /* dropdown menu for mobile */
-        .nav__btn {
-          display: none;
-        }
-      }
-      input {
-        ::placeholder {
-          font-size: 0.95rem;
-        }
-      }
-    }
     .c-nav.Search.Archive {
       font-size: 0.85rem;
     }
