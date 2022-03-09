@@ -198,7 +198,7 @@ const SearchCardWrapper = styled.main`
       margin: 2vh 0vw;
 
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
     }
 
@@ -208,7 +208,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-tagscontainer {
-      margin-top: 2vh;
+      margin: 2vh 0.5vw 0;
       justify-content: space-around;
     }
 
@@ -220,7 +220,7 @@ const SearchCardWrapper = styled.main`
 
     .c-tagscontainer__tag {
       padding: 0.5vh 0.5vw;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
   }
 

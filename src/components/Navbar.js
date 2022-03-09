@@ -391,7 +391,7 @@ const NavStyle = styled.nav`
   ///////* Desktop Display *////////
   //////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 4vh 4.5vw;
+    padding: 4.5vh 4.5vw;
     /* height: 13vh !important; */
 
     .c-nav__container {
