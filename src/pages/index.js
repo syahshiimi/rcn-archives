@@ -247,6 +247,18 @@ const ImageWrapper = styled.article`
       width: 100%;
     }
   }
+  @media (min-width: 2560px) {
+    .c-welcome__image {
+    }
+    .c-browsearchives__image {
+    }
+
+    .c-workshops__image {
+    }
+
+    .c-projectmembers__image {
+    }
+  }
 `;
 
 const IndexWrapper = styled.main`
@@ -600,10 +612,25 @@ const IndexWrapper = styled.main`
       font-size: 2.25rem;
     }
 
+    .l-welcome,
+    .l-workshops,
+    .l-browsearchives,
+    .l-projectmembers {
+      margin-bottom: 1vh;
+    }
+
+    .c-welcome__blurb,
+    .c-browsearchives__blurb,
+    .c-workshops__blurb,
+    .c-projectmembers__blurb {
+      margin-bottom: 0;
+    }
+  }
+
     .c-featureddocs__title,
     .c-recentlyadded__title,
     .c-welcome__title {
-      margin-bottom: 3.5vh;
+      margin-bottom: 2.5vh;
     }
 
     .c-welcome__blurb {

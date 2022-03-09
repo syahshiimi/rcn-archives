@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import scrollTo from "gatsby-plugin-smoothscroll";
 import React, { useState } from "react";
+import Masonry from "react-masonry-css";
 import { useFlexSearch } from "react-use-flexsearch";
 import styled from "styled-components";
 
@@ -143,7 +144,11 @@ const BrowseArchives = () => {
         </section>
         <section className="l-browsearchives__search">
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
-          <div className="c-browsearchives__searchcontainer">
+          <Masonry
+            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2560: 3 }}
+            className="c-browsearchives__searchcontainer"
+            columnClassName="c-browsearchives__masonrycolumn"
+          >
             {FilteredTranscript.map((item) => {
               const {
                 id,
@@ -163,7 +168,7 @@ const BrowseArchives = () => {
                 />
               );
             })}
-          </div>
+          </Masonry>
         </section>
         <BackToSearchBtn />
       </BrowseArchivesWrapper>
@@ -203,6 +208,9 @@ const BrowseArchivesWrapper = styled.main`
     padding: 1vh 2vw;
     flex-direction: column;
     border-radius: var(--border-rad-mobile);
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    flex: 1 1 auto;
   }
 
   ////////////////////////////
@@ -216,7 +224,6 @@ const BrowseArchivesWrapper = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 auto;
     padding-bottom: 2vh;
 
     // Enable archives
@@ -239,6 +246,16 @@ const BrowseArchivesWrapper = styled.main`
 
     .c-browsearchives__searchresults {
       margin: 3vh 0vw;
+    }
+    .c-browsearchives__searchcontainer {
+      display: flex;
+      display: -webkit-box; /* Not needed if autoprefixing */
+      display: -ms-flexbox; /* Not needed if autoprefixing */
+      width: auto;
+      flex: 1 1 auto;
+    }
+    .c-browserarchives__masonrycolumn {
+      flex: 1 1 auto;
     }
   }
 
@@ -281,11 +298,13 @@ const BrowseArchivesWrapper = styled.main`
     .c-browsearchives__searchcontainer {
       display: flex;
       border-radius: var(--border-rad-desktop);
-      max-width: 100%;
-      padding: 2vh 1vw;
-      flex: 1 1 25%;
       flex-direction: row;
       flex-wrap: wrap;
+      margin-left: -80px;
+    }
+
+    .c-browserarchives__masonrycolumn {
+      padding-left: 0;
     }
   }
   ////////////////////////////

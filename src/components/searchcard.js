@@ -27,13 +27,11 @@ export const SearchCard = ({
           {/* From {transcriptTitle} */}
         </div>
         <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
-        <span className="c-searchcard__tagscontainer">
-          <TagsContainer
-            tags={transcriptTags}
-            func={func}
-            queryState={queryState}
-          />
-        </span>
+        <TagsContainer
+          tags={transcriptTags}
+          func={func}
+          queryState={queryState}
+        />
         <section className="c-searchcard__bottom">
           {" "}
           <div className="c-searchcard__titlecontainer">
@@ -72,6 +70,7 @@ const SearchCardWrapper = styled.main`
 
   .c-searchcard__oneliner {
     margin: 1vh 0vw 1.5vh 0vw;
+
     p {
       font-family: "Ubuntu", Serif !important;
       font-size: 0.85rem;
@@ -89,7 +88,7 @@ const SearchCardWrapper = styled.main`
     text-align: center;
   }
 
-  .c-searchcard__tagscontainer {
+  .c-tagscontainer {
     display: none;
   }
 
@@ -124,17 +123,15 @@ const SearchCardWrapper = styled.main`
   //////////////////////////////
 
   @media (min-width: 992px) {
-    .l-searchcard > * {
-      margin: 0;
-    }
-
     .l-searchcard {
       padding: 2.5vh 5vw 1.5vh 5vw;
       margin: 1.5vh 1vw;
+      display: flex;
+      justify-content: center;
     }
 
     .c-searchcard__desktoptitle {
-      font-size: 1.25rem;
+      font-size: 1rem;
       display: flex;
       visibility: visible;
       justify-content: center;
@@ -146,35 +143,22 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-searchcard__oneliner {
-      p {
-        text-align: center;
-      }
-    }
-
-    .c-searchcard__oneliner {
       margin: 1vh 0vw;
+      display: flex;
+      justify-content: center;
       p {
         font-size: 1.025rem;
+        text-align: justified;
       }
     }
 
-    .c-searchcard__read {
-      font-size: 1rem;
-      margin: 1vh 0vw;
-      font-style: normal;
-      font-weight: 500;
-    }
-
-    .c-searchcard__tagscontainer {
+    .c-tagscontainer {
       display: flex;
       margin: 0.5vh 0vw;
     }
 
+    /* hide mobile related elements */
     .c-searchcard__bottom {
-      display: none;
-      visibility: none;
-    }
-    .c-searchcard__title {
       display: none;
       visibility: none;
     }
@@ -200,7 +184,6 @@ const SearchCardWrapper = styled.main`
 
     .l-searchcard {
       padding: 3vh 2vw 2vh 2vw;
-      margin: 1vh 2vw;
       transition: var(--hover-transition);
       flex: 0 0 auto;
     }

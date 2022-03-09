@@ -5,12 +5,12 @@ import styled from "styled-components";
 // Import Wrapper Components
 import Layout from "../components/Layout";
 
-// Import Global Components
-import { DefaultButton } from "../components/button";
-
 // Variables
 const ContributeSub =
   "Kindly contact us if you wish to contribute or enquire more about our project";
+
+// To-do
+// Add in and request from prof content for thhis page such as email, address etc
 
 const ContactUs = () => {
   return (
