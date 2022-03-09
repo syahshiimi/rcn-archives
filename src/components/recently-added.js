@@ -13,7 +13,6 @@ const query = graphql`
       limit: 7
     ) {
       nodes {
-        featured
         transcriptTitle
         oneLineTeaser {
           oneLineTeaser

@@ -3,14 +3,12 @@ import { Link } from "gatsby";
 import slugify from "slugify";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 
 const query = graphql`
   {
-    allContentfulInterviewTranscripts(filter: { featured: { eq: true } }) {
+    allContentfulInterviewTranscripts {
       nodes {
-        featured
         transcriptTitle
         oneLineTeaser {
           oneLineTeaser

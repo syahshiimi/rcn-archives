@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { BACard } from "../components/ba-cards";
 // components
 import { SimpleButton } from "../components/simplebutton";
-import { FeatureCard } from "../components/feature-cards";
 import { CollectionCard } from "../components/featured-collections-card";
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
