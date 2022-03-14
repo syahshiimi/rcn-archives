@@ -33,7 +33,6 @@ export const query = graphql`
       discussionQuestions {
         raw
       }
-      originalTranscriptLanguage
       originalFullTranscript {
         raw
       }

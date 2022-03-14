@@ -158,7 +158,6 @@ export const query = graphql`
       englishTranscriptSummary {
         raw
       }
-      originalTranscriptLanguage
       originalFullTranscript {
         raw
       }
