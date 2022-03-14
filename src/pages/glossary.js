@@ -165,7 +165,7 @@ const Glossary = () => {
     const lastChar = e.target.className.charAt(e.target.className.length - 1);
     console.log(lastChar);
     // We create new var to store actual glossary card className
-    const jumpLink = `.c-glossarycard${lastChar}`;
+    const jumpLink = `.c-glossarycard_${lastChar}`;
     scrollTo(jumpLink);
   };
   return (
