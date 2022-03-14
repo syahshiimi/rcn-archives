@@ -532,7 +532,7 @@ const IndexWrapper = styled.main`
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
-      margin: 3vh 0vw;
+      margin: 3vh 0vw 1vh 0vw;
       p {
         line-height: 1.215;
         font-size: 0.9rem;
@@ -560,7 +560,7 @@ const IndexWrapper = styled.main`
       margin-bottom: 3vh;
     }
     .c-browsearchives__blurb {
-      margin: 3vh 0vw;
+      margin: 3vh 0vw 1vh 0vw;
       text-align: center;
       justify-content: center;
       font-size: 0.9rem;
@@ -576,7 +576,7 @@ const IndexWrapper = styled.main`
     }
 
     .c-workshops__blurb {
-      margin: 3vh 0vw;
+      margin: 3vh 0vw 1vh 0vw;
       font-size: 0.9rem;
     }
 
@@ -590,7 +590,7 @@ const IndexWrapper = styled.main`
 
     .c-projectmembers__blurb {
       font-size: 0.9rem;
-      margin: 3vh 0vw;
+      margin: 3vh 0vw 1vh 0vw;
     }
   }
 
