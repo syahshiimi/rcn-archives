@@ -24,6 +24,7 @@ export const query = graphql`
       transcriptTitle
       transcriptTags
       contentful_id
+      originalTranscriptLanguage
       englishTranscriptSummary {
         raw
       }
@@ -33,7 +34,7 @@ export const query = graphql`
       discussionQuestions {
         raw
       }
-      originalFullTranscript {
+      vernacularFullTranscript {
         raw
       }
 

@@ -23,7 +23,7 @@ const FullTranscript = ({ data }) => {
     transcriptTags,
     englishFullTranscript,
     transcriptEndNotes,
-    originalFullTranscript,
+    vernacularFullTranscript,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
@@ -59,8 +59,8 @@ const FullTranscript = ({ data }) => {
 
   function TranscriptContent() {
     let englishLanguage = renderRichText(englishFullTranscript, options);
-    let vernacularLanguage = originalFullTranscript
-      ? renderRichText(originalFullTranscript, options)
+    let vernacularLanguage = vernacularFullTranscript
+      ? renderRichText(vernacularFullTranscript, options)
       : null;
 
     // We can use useState to dynamically control type of transcript content
@@ -84,7 +84,7 @@ const FullTranscript = ({ data }) => {
           <CheckVernacularLang
             onClick={onClick}
             type={buttonType}
-            transcript={originalFullTranscript}
+            transcript={vernacularFullTranscript}
           />
           {langType}
         </div>
@@ -158,7 +158,7 @@ export const query = graphql`
       englishTranscriptSummary {
         raw
       }
-      originalFullTranscript {
+      vernacularFullTranscript {
         raw
       }
       englishFullTranscript {

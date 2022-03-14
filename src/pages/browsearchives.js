@@ -300,7 +300,6 @@ const BrowseArchivesWrapper = styled.main`
       border-radius: var(--border-rad-desktop);
       flex-direction: row;
       flex-wrap: wrap;
-      margin-left: -80px;
     }
 
     .c-browserarchives__masonrycolumn {

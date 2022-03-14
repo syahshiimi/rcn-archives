@@ -15,7 +15,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     discussionQuestions,
     englishFullTranscript,
     englishTranscriptSummary,
-    originalFullTranscript,
+    vernacularFullTranscript,
     transcriptTags,
     interviewer,
     interviewee,
@@ -77,16 +77,17 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // 2. Full Document Transcript Accordion (Mobile only)
 
   function DocumentTranscript() {
-    // We set the default language to be rendered
+    // We use a ternary operator to check first if vernacularFullTranscript exists
+    // to work with possible empty fields from Contentful where it returns null
     let englishLanguage = englishFullTranscript
       ? renderRichText(englishFullTranscript, options)
       : null;
 
-    // We use a ternary operator to check first if originalFullTranscript exists
-    // to work with possible empty fields from Contentful where it returns null
-    let vernacularLanguage = originalFullTranscript
-      ? renderRichText(originalFullTranscript, options)
+    let vernacularLanguage = vernacularFullTranscript
+      ? renderRichText(vernacularFullTranscript, options)
       : null;
+
+    // We set the default language to be rendered
     const [langType, setLang] = useState(englishLanguage);
 
     const [buttonType, setButton] = useState("Vernacular");
@@ -108,7 +109,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
           <CheckVernacularLang
             onClick={onClick}
             type={buttonType}
-            transcript={originalFullTranscript}
+            transcript={vernacularFullTranscript}
           />
           {langType}
         </div>
