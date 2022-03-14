@@ -8,7 +8,6 @@ import styled from "styled-components";
 // Component Import
 import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
 import { Head } from "../../../components/head";
-import { CheckVernacularLang } from "../../../components/langtoggle";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
 import { TranscriptContent } from "../../../components/transcriptcontent";
@@ -61,43 +60,6 @@ const FullTranscript = ({ data }) => {
     ? renderRichText(vernacularFullTranscript, options)
     : null;
   let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
-
-  // Conditional Render content
-
-  //  function TranscriptContent() {
-  //    let englishLanguage = renderRichText(englishFullTranscript, options);
-  //    let vernacularLanguage = vernacularFullTranscript
-  //      ? renderRichText(vernacularFullTranscript, options)
-  //      : null;
-  //
-  //    // We can use useState to dynamically control type of transcript content
-  //    const [langType, setLang] = useState(englishLanguage);
-  //    const [buttonType, setButton] = useState("Vernacular");
-  //    const onClick = () => {
-  //      if (buttonType != "English") {
-  //        setButton("English");
-  //        setLang(vernacularLanguage);
-  //      } else {
-  //        setButton("Vernacular");
-  //        setLang(englishLanguage);
-  //      }
-  //    };
-  //
-  //    if (englishFullTranscript == null) {
-  //      return null;
-  //    } else {
-  //      return (
-  //        <div className="c-transcript__content">
-  //          <CheckVernacularLang
-  //            onClick={onClick}
-  //            type={buttonType}
-  //            transcript={vernacularFullTranscript}
-  //          />
-  //          {langType}
-  //        </div>
-  //      );
-  //    }
-  //  }
 
   // Conditional Rendering of Endnotes
   // Instead of destructuring first, we first check if transcriptEndNotes is
@@ -289,7 +251,7 @@ const FullTranscriptWrapper = styled.section`
     }
 
     .c-langtoggle {
-      margin-bottom: 4vh;
+      margin-bottom: 2vh;
     }
 
     .c-tagscontainer {
