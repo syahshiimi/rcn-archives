@@ -208,7 +208,7 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh;
   }
 
-  .c-fulltranscript__content {
+  .c-transcript__content {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -249,7 +249,7 @@ const FullTranscriptWrapper = styled.section`
         font-size: 1rem;
       }
     }
-    .c-fulltranscript__content {
+    .c-transcript__content {
       p {
         font-size: 1.2rem;
       }

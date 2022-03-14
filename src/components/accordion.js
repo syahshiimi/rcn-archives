@@ -22,7 +22,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
     transcriptNotes,
   } = transcript;
 
-  // console.log(originalFullTranscript);
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
   //////////////////////////////////////////////////
@@ -90,6 +89,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
       : null;
 
     let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+    console.log(lang);
 
     return (
       <TranscriptContent

@@ -20,7 +20,6 @@ export const TranscriptContent = ({
       setButton(`${lang}`);
     }
   };
-  console.log(englishTranscript);
 
   if (englishTranscript == null) {
     return null;
