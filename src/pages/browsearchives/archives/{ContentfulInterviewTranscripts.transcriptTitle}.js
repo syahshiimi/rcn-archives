@@ -11,7 +11,7 @@ import { Head } from "../../../components/head";
 import { CheckVernacularLang } from "../../../components/langtoggle";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
-import { TranscriptContent } from "../../../components/transcriptcontent";
+// import { TranscriptContent } from "../../../components/transcriptcontent";
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
@@ -58,14 +58,42 @@ const FullTranscript = ({ data }) => {
 
   // Conditional Render content
 
-  let englishLanguage = renderRichText(englishFullTranscript, options);
+  function TranscriptContent() {
+    let englishLanguage = renderRichText(englishFullTranscript, options);
+    let vernacularLanguage = originalFullTranscript
+      ? renderRichText(originalFullTranscript, options)
+      : null;
+    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+    console.log(lang);
 
-  let vernacularLanguage = originalFullTranscript
-    ? renderRichText(originalFullTranscript, options)
-    : null;
+    // We can use useState to dynamically control type of transcript content
+    const [langType, setLang] = useState(englishLanguage);
+    const [buttonType, setButton] = useState(`${lang}`);
+    const onClick = () => {
+      if (buttonType == `${lang}`) {
+        setButton("English");
+        setLang(vernacularLanguage);
+      } else {
+        setButton(`${lang}`);
+        setLang(englishLanguage);
+      }
+    };
 
-  let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
-  console.log(lang);
+    if (englishFullTranscript == null) {
+      return null;
+    } else {
+      return (
+        <div className="c-transcript__content">
+          <CheckVernacularLang
+            onClick={onClick}
+            type={buttonType}
+            transcript={originalFullTranscript}
+          />
+          {langType}
+        </div>
+      );
+    }
+  }
 
   // Conditional Rendering of Endnotes
   // Instead of destructuring first, we first check if transcriptEndNotes is
@@ -76,12 +104,12 @@ const FullTranscript = ({ data }) => {
         childMarkdownRemark: { endnotes },
       } = transcriptEndNotes;
       return (
-        <div className="c-fulltranscript__endnotescontent">
+        <div className="c-transcript__endnotescontent">
           {parse(`${endnotes}`)}
         </div>
       );
     } else if (transcriptEndNotes == null) {
-      return <p className="c-fulltranscript__endnotescontent">None </p>;
+      return <p className="c-transcript__endnotescontent">None </p>;
     }
   }
 
@@ -99,21 +127,17 @@ const FullTranscript = ({ data }) => {
     <Layout>
       <Head title={transcriptTitle} description={children} />
       <FullTranscriptWrapper>
-        <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
-        <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
+        <h1 className="c-transcript__title">{transcriptTitle}</h1>
+        <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
         <BackToSummaryBtn />
-        <hr className="c-fulltranscript__border"></hr>
-        <TranscriptContent
-          englishTranscript={englishLanguage}
-          vernacularTranscript={vernacularLanguage}
-          lang={lang}
-        />
-        <hr className="c-fulltranscript__border"></hr>
-        <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
+        <hr className="c-transcript__border"></hr>
+        <TranscriptContent />
+        <hr className="c-transcript__border"></hr>
+        <h2 className="c-transcript__tagsandkeywords">Tags & Keywords</h2>
         <NestedTagsContainer tags={transcriptTags} />
-        <div className="c-fulltranscript__endnotescontainer">
-          <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
-          <hr className="c-fulltranscript__endnotesborder"></hr>
+        <div className="c-transcript__endnotescontainer">
+          <h5 className="c-transcript__endnotes">Endnotes</h5>
+          <hr className="c-transcript__endnotesborder"></hr>
           <EndnotesContent />
         </div>
         <BackTopButton />
@@ -183,19 +207,19 @@ const FullTranscriptWrapper = styled.section`
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
   }
-  .c-fulltranscript__title {
+  .c-transcript__title {
     text-align: center;
     font-size: 2.5rem;
     margin: 0;
     margin-bottom: 2vh;
   }
 
-  .c-fulltranscript__oneliner {
+  .c-transcript__oneliner {
     text-align: center;
     margin: 2vh 0vw;
   }
 
-  .c-fulltranscript__border {
+  .c-transcript__border {
     margin: 1vh 0vw;
   }
 
@@ -222,7 +246,7 @@ const FullTranscriptWrapper = styled.section`
     }
   }
 
-  .c-fulltranscript__tagsandkeywords {
+  .c-transcript__tagsandkeywords {
     font-family: "Lora", serif;
     text-decoration: underline;
     font-size: 1.5rem;
@@ -233,19 +257,19 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh 0vw !important;
   }
 
-  .c-fulltranscript__endnotes {
+  .c-transcript__endnotes {
   }
-  .c-fulltranscript__endnotesborder {
+  .c-transcript__endnotesborder {
     margin: 1vh 0vw;
     width: 25vw;
   }
 
   @media (min-width: 1280px) {
     padding: 10vh var(--padding-desktop);
-    .c-fulltranscript__border {
+    .c-transcript__border {
       margin: 3.5vh 0vw;
     }
-    .c-fulltranscript__oneliner {
+    .c-transcript__oneliner {
       p {
         font-size: 1rem;
       }
@@ -263,10 +287,10 @@ const FullTranscriptWrapper = styled.section`
     .c-tagscontainer {
       margin: 3vh 0vw;
     }
-    .c-fulltranscript__endnotescontainer {
+    .c-transcript__endnotescontainer {
       margin: 2vh 0vw;
     }
-    .c-fulltranscript__endnotesborder {
+    .c-transcript__endnotesborder {
       margin: 2vh 0vw;
       width: 25vw;
     }
@@ -275,11 +299,11 @@ const FullTranscriptWrapper = styled.section`
   @media (min-width: 2560px) {
     padding: 10vh 20vw;
 
-    .c-fulltranscript__oneliner {
+    .c-transcript__oneliner {
       margin: 2vh 0vw;
     }
 
-    .c-fulltranscript__border {
+    .c-transcript__border {
       margin: 2vh 0vw;
     }
   }

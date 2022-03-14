@@ -8,6 +8,7 @@ import styled from "styled-components";
 // Components
 import { NestedTagsContainer, TagsContainer } from "./tags";
 import { TranscriptContent } from "./transcriptcontent";
+import { CheckVernacularLang } from "./langtoggle";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -91,13 +92,32 @@ export const Accordion = ({ transcript = [], type, name }) => {
     let lang =
       originalTranscriptLanguage != null ? originalTranscriptLanguage : null;
 
-    return (
-      <TranscriptContent
-        englishTranscript={englishLanguage}
-        vernacularTranscript={vernacularLanguage}
-        lang={lang}
-      />
-    );
+    const [langType, setLang] = useState(englishLanguage);
+    const [buttonType, setButton] = useState(`${lang}`);
+    const onClick = () => {
+      if (buttonType == `${lang}`) {
+        setButton("English");
+        setLang(vernacularLanguage);
+      } else {
+        setButton(`${lang}`);
+        setLang(englishLanguage);
+      }
+    };
+
+    if (englishFullTranscript == null) {
+      return null;
+    } else {
+      return (
+        <div className="c-transcript__content">
+          <CheckVernacularLang
+            onClick={onClick}
+            type={buttonType}
+            transcript={originalFullTranscript}
+          />
+          {langType}
+        </div>
+      );
+    }
   }
 
   // 3. DOcument Information Accordion
