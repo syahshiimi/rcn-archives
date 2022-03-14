@@ -15,7 +15,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
     discussionQuestions,
     englishFullTranscript,
     englishTranscriptSummary,
-    originalTranscriptLanguage,
     originalFullTranscript,
     transcriptTags,
     interviewer,
@@ -88,18 +87,15 @@ export const Accordion = ({ transcript = [], type, name }) => {
     let vernacularLanguage = originalFullTranscript
       ? renderRichText(originalFullTranscript, options)
       : null;
-
-    let lang =
-      originalTranscriptLanguage != null ? originalTranscriptLanguage : null;
-
     const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState(`${lang}`);
+
+    const [buttonType, setButton] = useState("Vernacular");
     const onClick = () => {
-      if (buttonType == `${lang}`) {
+      if (buttonType != "English") {
         setButton("English");
         setLang(vernacularLanguage);
       } else {
-        setButton(`${lang}`);
+        setButton("Vernacular");
         setLang(englishLanguage);
       }
     };

@@ -24,7 +24,6 @@ const FullTranscript = ({ data }) => {
     englishFullTranscript,
     transcriptEndNotes,
     originalFullTranscript,
-    originalTranscriptLanguage,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
@@ -63,18 +62,16 @@ const FullTranscript = ({ data }) => {
     let vernacularLanguage = originalFullTranscript
       ? renderRichText(originalFullTranscript, options)
       : null;
-    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
-    console.log(lang);
 
     // We can use useState to dynamically control type of transcript content
     const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState(`${lang}`);
+    const [buttonType, setButton] = useState("Vernacular");
     const onClick = () => {
-      if (buttonType == `${lang}`) {
+      if (buttonType != "English") {
         setButton("English");
         setLang(vernacularLanguage);
       } else {
-        setButton(`${lang}`);
+        setButton("Vernacular");
         setLang(englishLanguage);
       }
     };
