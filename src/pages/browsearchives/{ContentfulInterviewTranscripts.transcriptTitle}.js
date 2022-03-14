@@ -33,6 +33,7 @@ export const query = graphql`
       discussionQuestions {
         raw
       }
+      originalTranscriptLanguage
       originalFullTranscript {
         raw
       }
@@ -215,7 +216,7 @@ const TranscriptWrapper = styled.section`
     padding: 6vh var(--padding-desktop) 6vh var(--padding-desktop);
     display: grid;
     column-gap: 4vw;
-    row-gap: 2vh;
+    row-gap: 3vh;
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:

@@ -2,19 +2,19 @@ import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { IconContext } from "@react-icons/all-files/lib";
 import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { render } from "react-dom";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 // Components
-import { TagsContainer } from "./tags";
-import { CheckVernacularLang } from "./langtoggle";
+import { NestedTagsContainer, TagsContainer } from "./tags";
+import { TranscriptContent } from "./transcriptcontent";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
     discussionQuestions,
     englishFullTranscript,
     englishTranscriptSummary,
+    originalTranscriptLanguage,
     originalFullTranscript,
     transcriptTags,
     interviewer,
@@ -83,39 +83,21 @@ export const Accordion = ({ transcript = [], type, name }) => {
       ? renderRichText(englishFullTranscript, options)
       : null;
 
-    // We use a ternary operator to check first if originalFullTranscript exists to work with possible empty variables
+    // We use a ternary operator to check first if originalFullTranscript exists
+    // to work with possible empty fields from Contentful where it returns null
     let vernacularLanguage = originalFullTranscript
       ? renderRichText(originalFullTranscript, options)
       : null;
 
-    // useState will allow dynamic changes of langType where we set the defualt as englishLanguage
-    // setlang allows use to change to vernacular
-    const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState("Vernacular");
-    const onClick = () => {
-      if (buttonType == "Vernacular") {
-        setLang(vernacularLanguage);
-        setButton("English");
-      } else {
-        setLang(englishLanguage);
-        setButton("Vernacular");
-      }
-    };
+    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
 
-    if (englishFullTranscript == null) {
-      return null;
-    } else {
-      return (
-        <div className="c-accordion__transcript">
-          <CheckVernacularLang
-            onClick={onClick}
-            type={buttonType}
-            transcript={originalFullTranscript}
-          />
-          {langType}
-        </div>
-      );
-    }
+    return (
+      <TranscriptContent
+        englishTranscript={englishLanguage}
+        vernacularTranscript={vernacularLanguage}
+        lang={lang}
+      />
+    );
   }
 
   // 3. DOcument Information Accordion
@@ -127,10 +109,10 @@ export const Accordion = ({ transcript = [], type, name }) => {
         <div className="c-accordion__tagsandkeyscontainer">
           <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>
           <hr className="c-accordion__tagsandkeysline"></hr>
-          <TagsContainer tags={transcriptTags} />
+          <NestedTagsContainer tags={transcriptTags} />
         </div>
-        <p className="c-accordion__transcriptnotesheader">Transcript Notes</p>
-        <hr className="c-accordion__transcriptnotesline"></hr>
+        <p className="c-transcript__contentnotesheader">Transcript Notes</p>
+        <hr className="c-transcript__contentnotesline"></hr>
         <TranscriptNotes />
       </div>
     );
@@ -139,12 +121,12 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function TranscriptNotes() {
     if (transcriptNotes != null) {
       return (
-        <div className="c-accordion__transcriptnotes">
+        <div className="c-transcript__contentnotes">
           {renderRichText(transcriptNotes, options)}
         </div>
       );
     } else {
-      return <p className="c-accordion__transcriptnotes">None</p>;
+      return <p className="c-transcript__contentnotes">None</p>;
     }
   }
 
@@ -293,28 +275,29 @@ const AccordionWrapper = styled.div`
   }
 
   
-  // Accordion Styling
-  // Document Summary Accordion
+  /* Accordion Styling */
+
+  /* Document Summary Accordion */
   .c-accordion__summary {
     display: flex;
     flex-direction: column;
-    padding: 1vh 0vw;
+    padding: 2vh 0vw;
   }
   .c-accordion__summary > p {
     margin: 1vh 6vw;
     text-align: left !important;
   }
 
-  // Document Transcript Accordion
-  .c-accordion__transcript {
-    padding: 1vh 0vw;
-  display: flex;
-  flex-direction: column;
-}
-  .c-accordion__transcript > p {
+  /* Document Transcript Accordion (MOBILE ONLY) */
+  .c-transcript__content {
+    padding: 2vh 0vw;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+  }
+  .c-transcript__content > p {
     margin: .5vh 6vw;
     min-height: 10px;
-    display: block;
   }
 
   .c-langtoggle {
@@ -323,15 +306,16 @@ const AccordionWrapper = styled.div`
     text-decoration: underline;
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
+  font-size: 0.85rem;
     font-weight: normal;
-  margin: 1vh 0vw;
+  margin: 1.5vh 0vw;
   }
 
-  // Document Information Accordion
+  /* Document Information Accordion */
 .c-accordion__info {
   display: flex;
   flex-direction: column;
-  padding: 1vh 0vw;
+  padding: 2vh 0vw;
 }
   .c-accordion__info > * {
     margin: 1vh 6vw;
@@ -343,6 +327,7 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__tagsandkeystitle {
     font-weight: bold;
+  padding: 2vh 0vw 0vh vw;
   }
   .c-accordion__tagsandkeysline {
     border: 1px solid var(--primary-clr-200);
@@ -350,17 +335,18 @@ const AccordionWrapper = styled.div`
     margin: 2vh 0vw;
   }
 
-  .c-accordion__transcriptnotesheader {
+  .c-transcript__contentnotesheader {
     font-weight: bold;
+    padding: 2vh 0vw 0vh vw;
     margin-bottom: 0;
   }
 
-  .c-accordion__transcriptnotesline {
+  .c-transcript__contentnotesline {
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
   }
   
-  .c-accordion__transcriptnotes {
+  .c-transcript__contentnotes {
     margin: 0vh 6vw 2vh 10vw;
     li {
       padding: 1vh 0vw;
@@ -370,12 +356,11 @@ const AccordionWrapper = styled.div`
     font-family: 'Ubuntu';
   }
   
-
-  // Document Questions Accordion
+  /* Document Questions Accordion */
   .c-accordion__qns {
     display: flex;
     flex-direction: column;
-    padding: 1vh 2vw;
+    padding: 2vh 2vw;
 
     ol > li {
     margin: 2vh 6vw 2vh 10vw;
@@ -386,6 +371,8 @@ const AccordionWrapper = styled.div`
   ////// Tablet //////////////
   ////////////////////////////
   @media (min-width: 992px) {
+    /* Global Accordion CSS */
+    margin: 0;
     .c-accordion__header {
       padding: 0.5vh 3vw;
     }
@@ -397,15 +384,17 @@ const AccordionWrapper = styled.div`
       width: 2.5rem;
     }
 
+    /* Document Summary Accordion */
     .c-accordion__summary > p {
       margin: 1vh 3vw;
       text-align: center;
     }
+    /* Document Information Accordion */
     .c-accordion__info > * {
       margin: 1vh 3vw;
     }
     
-    .c-accordion__transcripttags {
+    .c-transcript__contenttags {
       justify-content: stretch;
     }
 
@@ -416,20 +405,21 @@ const AccordionWrapper = styled.div`
       font-size: 0.85rem;
     }
     
-    .c-accordion__transcript {
+    .c-transcript__content {
       display: none;
     }
 
-    .c-accordion__transcriptnotesheader {
+    .c-transcript__contentnotesheader {
       font-weight: bold;
     }
 
-    .c-accordion__transcriptnotesline {
+    .c-transcript__contentnotesline {
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
       margin: 0vh 3vw;
     }
     
+    /* Document Question Accordion */
     .c-accordion__qns {
       padding: 1vh 0vw;
       list-style: square;
@@ -450,6 +440,7 @@ const AccordionWrapper = styled.div`
   ////////////////////////////
   
   @media (min-width: 1280px) {
+  /* Document Summary Accordion */
     .c-accordion__summary {
       padding: 3vh 0vw;
       p {
@@ -457,14 +448,17 @@ const AccordionWrapper = styled.div`
       }
     }
     
+  /* Document Information Accordion */
     .c-accordion__info {
-      padding: 3vh 0vw;
+      padding: 2vh 0vw;
     }
     
     
-    .c-accordion__transcriptnotesline {
+    .c-transcript__contentnotesline {
       margin: 1vh 3vw;
     }
+
+  /* Document Questions Accordion */
     .c-accordion__qns {
       padding: 1.5vh 2vw 1.5vh 1vw;
       ol > li {
@@ -475,10 +469,13 @@ const AccordionWrapper = styled.div`
     
     @media (min-width: 2560px) {
       margin: 0vh;
+      
+  /* Document Information Accordion */
     .c-accordion__info > *  {
       margin: 1vh 3vw;
     }
 
+  /* Document Questions Accordion */
       .c-accordion__qns {
         padding: 3vh 0vw;
       ol > li > p {

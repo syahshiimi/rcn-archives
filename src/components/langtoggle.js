@@ -6,7 +6,7 @@ export const CheckVernacularLang = ({ onClick, type, transcript }) => {
   } else if (transcript != null) {
     return (
       <button onClick={onClick} className="c-langtoggle">
-        Read In The {type} Language
+        Read in {type}
       </button>
     );
   }

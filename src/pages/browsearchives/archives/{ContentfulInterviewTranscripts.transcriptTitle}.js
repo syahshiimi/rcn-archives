@@ -7,10 +7,12 @@ import styled from "styled-components";
 
 // Component Import
 import { BackTopButton, BackToSummaryBtn } from "../../../components/button";
+import { Head } from "../../../components/head";
+import { CheckVernacularLang } from "../../../components/langtoggle";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
-import { CheckVernacularLang } from "../../../components/langtoggle";
-import { Head } from "../../../components/head";
+import { TranscriptContent } from "../../../components/transcriptcontent";
+
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
   ////////////////////////////////////////
@@ -22,6 +24,7 @@ const FullTranscript = ({ data }) => {
     englishFullTranscript,
     transcriptEndNotes,
     originalFullTranscript,
+    originalTranscriptLanguage,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
     },
@@ -55,40 +58,13 @@ const FullTranscript = ({ data }) => {
 
   // Conditional Render content
 
-  function TranscriptContent() {
-    let englishLanguage = renderRichText(englishFullTranscript, options);
-    let vernacularLanguage = originalFullTranscript
-      ? renderRichText(originalFullTranscript, options)
-      : null;
+  let englishLanguage = renderRichText(englishFullTranscript, options);
 
-    // We can use useState to dynamically control type of transcript content
-    const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState("Vernacular");
-    const onClick = () => {
-      if (buttonType == "Vernacular") {
-        setLang(vernacularLanguage);
-        setButton("English");
-      } else {
-        setLang(englishLanguage);
-        setButton("Vernacular");
-      }
-    };
+  let vernacularLanguage = originalFullTranscript
+    ? renderRichText(originalFullTranscript, options)
+    : null;
 
-    if (englishFullTranscript == null) {
-      return null;
-    } else {
-      return (
-        <div className="c-fulltranscript__content">
-          <CheckVernacularLang
-            onClick={onClick}
-            type={buttonType}
-            transcript={originalFullTranscript}
-          />
-          {langType}
-        </div>
-      );
-    }
-  }
+  let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
 
   // Conditional Rendering of Endnotes
   // Instead of destructuring first, we first check if transcriptEndNotes is
@@ -126,7 +102,11 @@ const FullTranscript = ({ data }) => {
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
         <BackToSummaryBtn />
         <hr className="c-fulltranscript__border"></hr>
-        <TranscriptContent />
+        <TranscriptContent
+          englishTranscript={englishLanguage}
+          vernacularTranscript={vernacularLanguage}
+          lang={lang}
+        />
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <NestedTagsContainer tags={transcriptTags} />
@@ -140,7 +120,6 @@ const FullTranscript = ({ data }) => {
     </Layout>
   );
 };
-
 export const query = graphql`
   query ($transcriptTitle: String) {
     contentfulInterviewTranscripts(transcriptTitle: { eq: $transcriptTitle }) {
@@ -157,6 +136,7 @@ export const query = graphql`
       englishTranscriptSummary {
         raw
       }
+      originalTranscriptLanguage
       originalFullTranscript {
         raw
       }
@@ -193,7 +173,7 @@ const FullTranscriptWrapper = styled.section`
   @media (min-width: 992px) {
     display: flex;
     flex-direction: column;
-    padding: 4vh var(--padding-desktop) 6vh var(--padding-desktop);
+    padding: 6vh var(--padding-desktop) 6vh var(--padding-desktop);
     row-gap: 1.2vh;
   }
 
