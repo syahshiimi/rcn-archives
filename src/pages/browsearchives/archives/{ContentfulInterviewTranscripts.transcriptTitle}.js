@@ -11,7 +11,7 @@ import { Head } from "../../../components/head";
 import { CheckVernacularLang } from "../../../components/langtoggle";
 import Layout from "../../../components/Layout";
 import { NestedTagsContainer } from "../../../components/tags";
-// import { TranscriptContent } from "../../../components/transcriptcontent";
+import { TranscriptContent } from "../../../components/transcriptcontent";
 
 const FullTranscript = ({ data }) => {
   ////////////////////////////////////////
@@ -23,6 +23,7 @@ const FullTranscript = ({ data }) => {
     transcriptTags,
     englishFullTranscript,
     transcriptEndNotes,
+    originalTranscriptLanguage,
     vernacularFullTranscript,
     onelinerteaser: {
       childMarkdownRemark: { oneliner },
@@ -55,42 +56,48 @@ const FullTranscript = ({ data }) => {
     },
   };
 
+  let englishLanguage = renderRichText(englishFullTranscript, options);
+  let vernacularLanguage = vernacularFullTranscript
+    ? renderRichText(vernacularFullTranscript, options)
+    : null;
+  let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+
   // Conditional Render content
 
-  function TranscriptContent() {
-    let englishLanguage = renderRichText(englishFullTranscript, options);
-    let vernacularLanguage = vernacularFullTranscript
-      ? renderRichText(vernacularFullTranscript, options)
-      : null;
-
-    // We can use useState to dynamically control type of transcript content
-    const [langType, setLang] = useState(englishLanguage);
-    const [buttonType, setButton] = useState("Vernacular");
-    const onClick = () => {
-      if (buttonType != "English") {
-        setButton("English");
-        setLang(vernacularLanguage);
-      } else {
-        setButton("Vernacular");
-        setLang(englishLanguage);
-      }
-    };
-
-    if (englishFullTranscript == null) {
-      return null;
-    } else {
-      return (
-        <div className="c-fulltranscript__content">
-          <CheckVernacularLang
-            onClick={onClick}
-            type={buttonType}
-            transcript={vernacularFullTranscript}
-          />
-          {langType}
-        </div>
-      );
-    }
-  }
+  //  function TranscriptContent() {
+  //    let englishLanguage = renderRichText(englishFullTranscript, options);
+  //    let vernacularLanguage = vernacularFullTranscript
+  //      ? renderRichText(vernacularFullTranscript, options)
+  //      : null;
+  //
+  //    // We can use useState to dynamically control type of transcript content
+  //    const [langType, setLang] = useState(englishLanguage);
+  //    const [buttonType, setButton] = useState("Vernacular");
+  //    const onClick = () => {
+  //      if (buttonType != "English") {
+  //        setButton("English");
+  //        setLang(vernacularLanguage);
+  //      } else {
+  //        setButton("Vernacular");
+  //        setLang(englishLanguage);
+  //      }
+  //    };
+  //
+  //    if (englishFullTranscript == null) {
+  //      return null;
+  //    } else {
+  //      return (
+  //        <div className="c-transcript__content">
+  //          <CheckVernacularLang
+  //            onClick={onClick}
+  //            type={buttonType}
+  //            transcript={vernacularFullTranscript}
+  //          />
+  //          {langType}
+  //        </div>
+  //      );
+  //    }
+  //  }
 
   // Conditional Rendering of Endnotes
   // Instead of destructuring first, we first check if transcriptEndNotes is
@@ -128,7 +135,11 @@ const FullTranscript = ({ data }) => {
         <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
         <BackToSummaryBtn />
         <hr className="c-fulltranscript__border"></hr>
-        <TranscriptContent />
+        <TranscriptContent
+          englishTranscript={englishLanguage}
+          vernacularTranscript={vernacularLanguage}
+          lang={lang}
+        />
         <hr className="c-fulltranscript__border"></hr>
         <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <NestedTagsContainer tags={transcriptTags} />
@@ -155,6 +166,7 @@ export const query = graphql`
       transcriptTitle
       transcriptTags
       contentful_id
+      originalTranscriptLanguage
       englishTranscriptSummary {
         raw
       }
@@ -229,7 +241,7 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh;
   }
 
-  .c-fulltranscript__content {
+  .c-transcript__content {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -270,7 +282,7 @@ const FullTranscriptWrapper = styled.section`
         font-size: 1rem;
       }
     }
-    .c-fulltranscript__content {
+    .c-transcript__content {
       p {
         font-size: 1.2rem;
       }

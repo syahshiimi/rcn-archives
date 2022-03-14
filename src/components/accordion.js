@@ -78,8 +78,6 @@ export const Accordion = ({ transcript = [], type, name }) => {
   // 2. Full Document Transcript Accordion (Mobile only)
 
   function DocumentTranscript() {
-    // We use a ternary operator to check first if vernacularFullTranscript exists
-    // to work with possible empty fields from Contentful where it returns null
     let englishLanguage = englishFullTranscript
       ? renderRichText(englishFullTranscript, options)
       : null;
@@ -89,49 +87,14 @@ export const Accordion = ({ transcript = [], type, name }) => {
       : null;
 
     let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
-    console.log(lang);
 
-    //    // We set the default language to be rendered
-    //    const [langType, setLang] = useState(englishLanguage);
-    //
-    //    const [buttonType, setButton] = useState(`${lang}`);
-    //    const onClick = () => {
-    //      if (buttonType != "English") {
-    //        setButton("English");
-    //        setLang(vernacularLanguage);
-    //      } else {
-    //        setButton(`${lang}`);
-    //        setLang(englishLanguage);
-    //      }
-    //    };
-
-    //    if (englishFullTranscript == null) {
-    //      return null;
-    //    } else {
-    //      return (
-    //        <div className="c-transcript__content">
-    //          <CheckVernacularLang
-    //            onClick={onClick}
-    //            type={buttonType}
-    //            transcript={vernacularFullTranscript}
-    //          />
-    //          {langType}
-    //        </div>
-    //      );
-    //    }
-    if (englishFullTranscript == null) {
-      return null;
-    } else {
-      return (
-        <>
-          <TranscriptContent
-            englishTranscript={englishLanguage}
-            vernacularTranscript={vernacularLanguage}
-            lang={lang}
-          />
-        </>
-      );
-    }
+    return (
+      <TranscriptContent
+        englishTranscript={englishLanguage}
+        vernacularTranscript={vernacularLanguage}
+        lang={lang}
+      />
+    );
   }
 
   // 3. DOcument Information Accordion
