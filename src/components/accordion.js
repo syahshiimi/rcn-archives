@@ -5,10 +5,10 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { CheckVernacularLang } from "./langtoggle";
 // Components
 import { NestedTagsContainer, TagsContainer } from "./tags";
 import { TranscriptContent } from "./transcriptcontent";
-import { CheckVernacularLang } from "./langtoggle";
 
 export const Accordion = ({ transcript = [], type, name }) => {
   const {
@@ -91,32 +91,45 @@ export const Accordion = ({ transcript = [], type, name }) => {
     let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
     console.log(lang);
 
-    // We set the default language to be rendered
-    const [langType, setLang] = useState(englishLanguage);
+    //    // We set the default language to be rendered
+    //    const [langType, setLang] = useState(englishLanguage);
+    //
+    //    const [buttonType, setButton] = useState(`${lang}`);
+    //    const onClick = () => {
+    //      if (buttonType != "English") {
+    //        setButton("English");
+    //        setLang(vernacularLanguage);
+    //      } else {
+    //        setButton(`${lang}`);
+    //        setLang(englishLanguage);
+    //      }
+    //    };
 
-    const [buttonType, setButton] = useState(`${lang}`);
-    const onClick = () => {
-      if (buttonType != "English") {
-        setButton("English");
-        setLang(vernacularLanguage);
-      } else {
-        setButton(`${lang}`);
-        setLang(englishLanguage);
-      }
-    };
-
+    //    if (englishFullTranscript == null) {
+    //      return null;
+    //    } else {
+    //      return (
+    //        <div className="c-transcript__content">
+    //          <CheckVernacularLang
+    //            onClick={onClick}
+    //            type={buttonType}
+    //            transcript={vernacularFullTranscript}
+    //          />
+    //          {langType}
+    //        </div>
+    //      );
+    //    }
     if (englishFullTranscript == null) {
       return null;
     } else {
       return (
-        <div className="c-transcript__content">
-          <CheckVernacularLang
-            onClick={onClick}
-            type={buttonType}
-            transcript={vernacularFullTranscript}
+        <>
+          <TranscriptContent
+            englishTranscript={englishLanguage}
+            vernacularTranscript={vernacularLanguage}
+            lang={lang}
           />
-          {langType}
-        </div>
+        </>
       );
     }
   }

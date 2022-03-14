@@ -10,14 +10,14 @@ export const TranscriptContent = ({
 }) => {
   // We can use useState to dynamically control type of transcript content
   const [langType, setLang] = useState(englishTranscript);
-  const [buttonType, setButton] = useState(`Vernacular`);
+  const [buttonType, setButton] = useState(`${lang}`);
   const onClick = () => {
     if (buttonType != "English") {
       setLang(vernacularTranscript);
       setButton("English");
     } else {
       setLang(englishTranscript);
-      setButton(`Vernacular`);
+      setButton(`${lang}`);
     }
   };
 
