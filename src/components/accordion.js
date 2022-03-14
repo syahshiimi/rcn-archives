@@ -94,13 +94,13 @@ export const Accordion = ({ transcript = [], type, name }) => {
     // We set the default language to be rendered
     const [langType, setLang] = useState(englishLanguage);
 
-    const [buttonType, setButton] = useState("Vernacular");
+    const [buttonType, setButton] = useState(`${lang}`);
     const onClick = () => {
       if (buttonType != "English") {
         setButton("English");
         setLang(vernacularLanguage);
       } else {
-        setButton("Vernacular");
+        setButton(`${lang}`);
         setLang(englishLanguage);
       }
     };
