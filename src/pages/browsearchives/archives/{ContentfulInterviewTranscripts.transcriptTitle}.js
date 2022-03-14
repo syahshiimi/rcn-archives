@@ -64,7 +64,13 @@ const FullTranscript = ({ data }) => {
       ? renderRichText(originalFullTranscript, options)
       : null;
 
-    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+    let lang;
+    if (originalTranscriptLanguage == null) {
+    } else {
+      lang = originalTranscriptLanguage;
+    }
+
+    console.log(lang);
 
     // We can use useState to dynamically control type of transcript content
     const [langType, setLang] = useState(englishLanguage);
