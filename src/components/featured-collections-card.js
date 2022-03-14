@@ -1,9 +1,11 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
+import parse from "html-react-parser";
 import React from "react";
-import { Link } from "gatsby";
 import slugify from "slugify";
 import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
-import parse from "html-react-parser";
+
+// Import Components
+import { SimpleButton } from "./simplebutton";
 
 const query = graphql`
   {
@@ -54,9 +56,9 @@ export const CollectionCard = () => {
             <div className="c-collectioncard">
               <div className="c-collectioncard__title">{collectionTitle}</div>
               <div className="c-collectioncard__blurb">{parse(`${html}`)}</div>
-              <span className="c-collectioncard__read">
-                <Link to={`${slug}`}>Read More </Link>
-              </span>
+              <div className="c-collectioncard__button">
+                <SimpleButton title="Read More" url={`${slug}`} />
+              </div>
             </div>
           </CollectionCardWrapper>
         );
@@ -88,21 +90,21 @@ const CollectionCardWrapper = styled.section`
   }
 
   .c-collectioncard__blurb {
-    margin: 2vh 1vw;
-    text-align: center;
+    margin: 2vh 1vw 0vh 1vw;
+    text-align: justify;
     p {
       font-size: 0.85rem;
       line-height: 1.25;
     }
   }
-  .c-collectioncard__read {
+  .c-collectioncard__button {
     font-family: "Ubuntu", Serif;
     font-weight: normal;
     text-align: right;
-    font-size: 0.85rem;
     margin: 1vh 0vw;
+    font-size: 0.85rem;
     color: var(--primary-clr-150);
-    text-align: center;
+    text-align: right;
   }
 
   @media (min-width: 992px) {
@@ -110,12 +112,26 @@ const CollectionCardWrapper = styled.section`
       padding: 2vh 1.5vh;
       margin: 1vh 0vw;
     }
+
+    .c-collectioncard__title {
+      font-size: 0.85rem;
+    }
     .c-collectioncard__blurb {
       margin: 1vh 0vw;
+      p {
+        font-size: 0.75rem;
+      }
     }
 
     .c-collectioncard__read {
-      margin: 0.5vh 0vw;
+      margin: 0;
+    }
+    .c-collectioncard__button {
+      margin: 0;
+
+      .c-simplebutton {
+        font-size: 0.65rem;
+      }
     }
   }
 
@@ -137,8 +153,8 @@ const CollectionCardWrapper = styled.section`
       }
     }
 
-    .c-collectioncard__read {
-      margin: 1vh 0vw;
+    .c-collectioncard__button {
+      margin: 0vh 2vw;
     }
   }
   //////////////////////////////

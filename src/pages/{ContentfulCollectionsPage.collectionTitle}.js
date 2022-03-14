@@ -1,15 +1,15 @@
 import { graphql, Link } from "gatsby";
 import parse from "html-react-parser";
 import React from "react";
+import Masonry from "react-masonry-css";
 import sanitizeHtml from "sanitize-html";
-import slugify from "slugify";
 import styled from "styled-components";
 
 // Components import
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
-import { FeatureCard } from "../components/feature-cards";
 import { BackTopButton } from "../components/button";
+import { FeatureCard } from "../components/feature-cards";
 
 export const query = graphql`
   query MyQuery($collectionTitle: String) {
@@ -35,11 +35,6 @@ export const query = graphql`
   }
 `;
 const CollectionsTemplate = ({ data }) => {
-  //  // Metadata
-  //  const metadata = parse(`${oneliner}`);
-  //  const {
-  //    props: { children },
-  //  } = metadata;
   const collectionsinfo = data.contentfulCollectionsPage;
   const {
     collectionTitle,
@@ -53,9 +48,15 @@ const CollectionsTemplate = ({ data }) => {
   // Sanitize html
   const sanitizedHTML = sanitizeHtml(html);
 
+  // Metadata
+  const metadata = parse(`${sanitizedHTML}`);
+  const {
+    props: { children },
+  } = metadata;
+
   return (
     <Layout>
-      <Head title={collectionTitle} />
+      <Head title={collectionTitle} description={children} />
       <CollectionsWrapper>
         <h1 className="c-collectionspage__title">{collectionTitle}</h1>
         <div className="c-collectionspage__blurb">
@@ -67,7 +68,13 @@ const CollectionsTemplate = ({ data }) => {
           These transcripts were interviewed by {interviewer}
         </p>
 
-        <FeatureCard collections={collectionTranscripts} />
+        <Masonry
+          breakpointCols={{ default: 1, 992: 1, 1280: 3, 2560: 4 }}
+          columnClassName="c-collectionspage__masonrycolumn"
+          className="c-collectionspage__cardcontainer"
+        >
+          <FeatureCard collections={collectionTranscripts} />
+        </Masonry>
         <BackTopButton />
       </CollectionsWrapper>
     </Layout>
@@ -97,6 +104,30 @@ const CollectionsWrapper = styled.section`
 
   .c-collectionspage__trasnscriptssubtitle {
     font-size: 0.85rem;
+  }
+
+  .c-collectionspage__cardcontainer {
+    padding: 1vh 2vw;
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .c-collectionspage__masonrycolumn {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  //////////////////////////
+  /////// Tablet ///////////
+  //////////////////////////
+
+  @media (min-width: 992px) {
+    padding: 6vh var(--padding-desktop) 6vh var(--padding-desktop);
+    row-gap: 1vh;
   }
 `;
 

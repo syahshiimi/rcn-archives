@@ -528,7 +528,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-welcome__title {
-      margin-bottom: 2vh;
+      margin-bottom: 4vh !important;
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
@@ -539,11 +539,13 @@ const IndexWrapper = styled.main`
       }
     }
     .c-featureddocs__title {
-      margin-bottom: 3vh;
+      margin-bottom: 4vh !important;
       font-size: 1.7rem;
     }
+  }
+
     .c-recentlyadded__title {
-      margin-bottom: 2vh;
+      margin-bottom: 4vh !important;
       font-size: 1.7rem;
     }
 

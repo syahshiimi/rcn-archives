@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import slugify from "slugify";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
+import { SimpleButton } from "./simplebutton";
 
 const query = graphql`
   {
@@ -49,19 +49,6 @@ export const RecentlyAdd = () => {
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 
-        //        // Conditional render image depending if it is available
-        //        const ImgComponent =
-        //          transcriptImage != null ? (
-        //            <FeatureImageWrapper>
-        //              <GatsbyImage
-        //                image={pathToImage}
-        //                alt=""
-        //                className="c-recentlyaddedcard__image"
-        //              ></GatsbyImage>
-        //            </FeatureImageWrapper>
-        //          ) : null;
-
-        //        const pathToImage = getImage(transcriptImage);
         return (
           <RecentlyAddWrapper key={transcriptTitle}>
             <div className="c-recentlyaddedcard">
@@ -71,9 +58,7 @@ export const RecentlyAdd = () => {
               <div className="c-recentlyaddedcard__oneliner">
                 {parse(`${html}`)}
               </div>
-              <span className="c-recentlyaddedcard__read">
-                <Link to={`browsearchives/${slug}`}>Read More </Link>
-              </span>
+              <SimpleButton url={`browsearchives/${slug}`} title="Read More" />
             </div>
           </RecentlyAddWrapper>
         );
@@ -105,21 +90,12 @@ const RecentlyAddWrapper = styled.section`
   }
 
   .c-recentlyaddedcard__oneliner {
-    margin: 2vh 1vw;
-    text-align: center;
+    margin: 1vh 1vw;
+    text-align: justify;
     p {
       font-size: 0.85rem;
       line-height: 1.25;
     }
-  }
-  .c-recentlyaddedcard__read {
-    font-family: "Ubuntu", Serif;
-    font-weight: normal;
-    text-align: right;
-    font-size: 0.85rem;
-    margin: 1vh 0vw;
-    color: var(--primary-clr-150);
-    text-align: center;
   }
   /////////////////////////////
   //////// Tablet /////////////
@@ -146,9 +122,8 @@ const RecentlyAddWrapper = styled.section`
       }
     }
 
-    .c-recentlyaddedcard__read {
-      margin: 0.5vh 0vw;
-      font-size: 0.75rem;
+    .c-simplebutton {
+      font-size: 0.65rem;
     }
   }
 
@@ -174,8 +149,8 @@ const RecentlyAddWrapper = styled.section`
       }
     }
 
-    .c-recentlyaddedcard__read {
-      margin: 1vh 0vw;
+    .c-simplebutton {
+      margin: 0vh 2vw;
     }
   }
 

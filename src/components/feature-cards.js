@@ -8,10 +8,8 @@ import styled from "styled-components";
 // import components
 import { SimpleButton } from "./simplebutton";
 export const FeatureCard = ({ collections = [] }) => {
-  console.log(collections);
-
   return (
-    <article className="l-featurecard">
+    <>
       {collections.map((item, index) => {
         const {
           id,
@@ -50,12 +48,13 @@ export const FeatureCard = ({ collections = [] }) => {
           </FeatureCardWrapper>
         );
       })}
-    </article>
+    </>
   );
 };
 
 const FeatureCardWrapper = styled.div`
   .c-featurecard {
+    justify-content: center;
     display: flex;
     background-color: var(--primary-clr-100);
     padding: 3vh 7vw;
@@ -64,7 +63,7 @@ const FeatureCardWrapper = styled.div`
     /* styling */
     border-radius: calc(2rem + 6px);
     display: flex;
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.55);
+    box-shadow: var(--hovercard-default);
     flex-direction: column;
   }
 
@@ -77,7 +76,7 @@ const FeatureCardWrapper = styled.div`
   }
 
   .c-featurecard__oneliner {
-    margin: 2vh 1vw;
+    margin: 2vh 1vw 1vh 1vh;
     text-align: justify;
     p {
       font-size: 0.85rem;
@@ -89,18 +88,22 @@ const FeatureCardWrapper = styled.div`
     font-weight: normal;
     text-align: right;
     font-size: 0.85rem;
-    margin: 1vh 0vw;
     color: var(--primary-clr-150);
+    margin: 0;
     text-align: center;
   }
 
   @media (min-width: 992px) {
     .c-featurecard {
       padding: 2vh 1.5vh;
+      justify-content: center;
       margin: 1vh 0vw;
     }
     .c-featurecard__oneliner {
-      margin: 1vh 0vw;
+      font-size: 4rem !important;
+      p {
+        text-align: justify;
+      }
     }
 
     .c-featurecard__read {
