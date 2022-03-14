@@ -219,8 +219,8 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-tagscontainer__tag {
-      padding: 0.5vh 0.5vw;
-      font-size: 0.7rem;
+      padding: 0.65vh 0.5vw;
+      font-size: 0.8rem;
     }
   }
 

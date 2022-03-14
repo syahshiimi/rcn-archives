@@ -29,7 +29,6 @@ const query = graphql`
 export const CollectionCard = () => {
   const data = useStaticQuery(query);
   const collections = data.allContentfulCollectionsPage.nodes;
-  console.log(collections);
 
   return (
     <article className="l-featurecard">
