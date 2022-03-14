@@ -28,6 +28,7 @@ const FullTranscript = ({ data }) => {
       childMarkdownRemark: { oneliner },
     },
   } = transcript || [];
+  console.log(transcript);
 
   ////////////////////////////////////////
   ////////  Rich Text Render    //////////
@@ -158,7 +159,6 @@ export const query = graphql`
       englishTranscriptSummary {
         raw
       }
-      originalTranscriptLanguage
       originalFullTranscript {
         raw
       }
