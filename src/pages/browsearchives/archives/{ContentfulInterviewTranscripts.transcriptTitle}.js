@@ -28,7 +28,6 @@ const FullTranscript = ({ data }) => {
       childMarkdownRemark: { oneliner },
     },
   } = transcript || [];
-  console.log(transcript);
 
   ////////////////////////////////////////
   ////////  Rich Text Render    //////////
@@ -81,7 +80,7 @@ const FullTranscript = ({ data }) => {
       return null;
     } else {
       return (
-        <div className="c-transcript__content">
+        <div className="c-fulltranscript__content">
           <CheckVernacularLang
             onClick={onClick}
             type={buttonType}
@@ -102,12 +101,12 @@ const FullTranscript = ({ data }) => {
         childMarkdownRemark: { endnotes },
       } = transcriptEndNotes;
       return (
-        <div className="c-transcript__endnotescontent">
+        <div className="c-fulltranscript__endnotescontent">
           {parse(`${endnotes}`)}
         </div>
       );
     } else if (transcriptEndNotes == null) {
-      return <p className="c-transcript__endnotescontent">None </p>;
+      return <p className="c-fulltranscript__endnotescontent">None </p>;
     }
   }
 
@@ -125,17 +124,17 @@ const FullTranscript = ({ data }) => {
     <Layout>
       <Head title={transcriptTitle} description={children} />
       <FullTranscriptWrapper>
-        <h1 className="c-transcript__title">{transcriptTitle}</h1>
-        <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
+        <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
+        <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
         <BackToSummaryBtn />
-        <hr className="c-transcript__border"></hr>
+        <hr className="c-fulltranscript__border"></hr>
         <TranscriptContent />
-        <hr className="c-transcript__border"></hr>
-        <h2 className="c-transcript__tagsandkeywords">Tags & Keywords</h2>
+        <hr className="c-fulltranscript__border"></hr>
+        <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
         <NestedTagsContainer tags={transcriptTags} />
-        <div className="c-transcript__endnotescontainer">
-          <h5 className="c-transcript__endnotes">Endnotes</h5>
-          <hr className="c-transcript__endnotesborder"></hr>
+        <div className="c-fulltranscript__endnotescontainer">
+          <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
+          <hr className="c-fulltranscript__endnotesborder"></hr>
           <EndnotesContent />
         </div>
         <BackTopButton />
@@ -204,19 +203,19 @@ const FullTranscriptWrapper = styled.section`
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
   }
-  .c-transcript__title {
+  .c-fulltranscript__title {
     text-align: center;
     font-size: 2.5rem;
     margin: 0;
     margin-bottom: 2vh;
   }
 
-  .c-transcript__oneliner {
+  .c-fulltranscript__oneliner {
     text-align: center;
     margin: 2vh 0vw;
   }
 
-  .c-transcript__border {
+  .c-fulltranscript__border {
     margin: 1vh 0vw;
   }
 
@@ -230,7 +229,7 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh;
   }
 
-  .c-transcript__content {
+  .c-fulltranscript__content {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -243,7 +242,7 @@ const FullTranscriptWrapper = styled.section`
     }
   }
 
-  .c-transcript__tagsandkeywords {
+  .c-fulltranscript__tagsandkeywords {
     font-family: "Lora", serif;
     text-decoration: underline;
     font-size: 1.5rem;
@@ -254,24 +253,24 @@ const FullTranscriptWrapper = styled.section`
     margin: 1vh 0vw !important;
   }
 
-  .c-transcript__endnotes {
+  .c-fulltranscript__endnotes {
   }
-  .c-transcript__endnotesborder {
+  .c-fulltranscript__endnotesborder {
     margin: 1vh 0vw;
     width: 25vw;
   }
 
   @media (min-width: 1280px) {
     padding: 10vh var(--padding-desktop);
-    .c-transcript__border {
+    .c-fulltranscript__border {
       margin: 3.5vh 0vw;
     }
-    .c-transcript__oneliner {
+    .c-fulltranscript__oneliner {
       p {
         font-size: 1rem;
       }
     }
-    .c-transcript__content {
+    .c-fulltranscript__content {
       p {
         font-size: 1.2rem;
       }
@@ -284,10 +283,10 @@ const FullTranscriptWrapper = styled.section`
     .c-tagscontainer {
       margin: 3vh 0vw;
     }
-    .c-transcript__endnotescontainer {
+    .c-fulltranscript__endnotescontainer {
       margin: 2vh 0vw;
     }
-    .c-transcript__endnotesborder {
+    .c-fulltranscript__endnotesborder {
       margin: 2vh 0vw;
       width: 25vw;
     }
@@ -296,11 +295,11 @@ const FullTranscriptWrapper = styled.section`
   @media (min-width: 2560px) {
     padding: 10vh 20vw;
 
-    .c-transcript__oneliner {
+    .c-fulltranscript__oneliner {
       margin: 2vh 0vw;
     }
 
-    .c-transcript__border {
+    .c-fulltranscript__border {
       margin: 2vh 0vw;
     }
   }

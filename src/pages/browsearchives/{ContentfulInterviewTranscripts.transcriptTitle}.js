@@ -76,7 +76,7 @@ const TranscriptTemplate = ({ data }) => {
         <GatsbyImage
           image={pathToImage}
           alt={transcriptTitle}
-          className="c-transcript__image std-style"
+          className="c-transcriptsummary__image std-style"
         />
       );
     } else {
@@ -102,26 +102,28 @@ const TranscriptTemplate = ({ data }) => {
     <Layout>
       <Head title={transcriptTitle} description={children} />
       <TranscriptWrapper>
-        <h1 className="c-transcript__title">{transcriptTitle}</h1>
+        <h1 className="c-transcriptsummary__title">{transcriptTitle}</h1>
         {/* container  to create flexible grid + blox layout */}
-        <div className="c-transcript__container">
+        <div className="c-transcriptsummary__container">
           <ImageWrapper>
             <TranscriptImage />
           </ImageWrapper>
 
           {/* sub-container to create flexible grid + blox layout */}
-          <div className="c-transcript__subcontainer">
-            <div className="c-transcript__oneliner">{parse(`${oneliner}`)}</div>
-            <div className="c-transcript__tagsandkeywords">
+          <div className="c-transcriptsummary__subcontainer">
+            <div className="c-transcriptsummary__oneliner">
+              {parse(`${oneliner}`)}
+            </div>
+            <div className="c-transcriptsummary__tagsandkeywords">
               <h5>Tags & Keywords</h5>
             </div>
-            <div className="c-transcript__tagscontainer">
+            <div className="c-transcriptsummary__tagscontainer">
               <NestedTagsContainer tags={transcriptTags} />
             </div>
           </div>
         </div>
 
-        <hr className="c-transcript__border"></hr>
+        <hr className="c-transcriptsummary__border"></hr>
         <Accordion
           transcript={transcript}
           type="Document Summary"
@@ -151,7 +153,7 @@ const TranscriptTemplate = ({ data }) => {
 const ImageWrapper = styled.article`
   display: none;
   @media (min-width: 1280px) {
-    .c-transcriptimage {
+    .c-transcriptsummaryimage {
     }
     .std-style {
       border-radius: calc(1.5rem + 4px);
@@ -172,38 +174,38 @@ const TranscriptWrapper = styled.section`
     display: none;
   }
 
-  .c-transcript__title {
+  .c-transcriptsummary__title {
     text-align: center;
     margin: 2vh 0vw;
     font-size: 1.5rem;
   }
 
-  .c-transcript__image {
+  .c-transcriptsummary__image {
     margin: 2vh 0vw;
   }
 
-  .c-transcript__container {
+  .c-transcriptsummary__container {
     justify-content: center;
   }
 
-  .c-transcript__oneliner {
+  .c-transcriptsummary__oneliner {
     margin: 2vh 0vw;
     text-align: center;
   }
-  .c-transcript__oneliner {
+  .c-transcriptsummary__oneliner {
     font-weight: 500;
     font-style: normal;
   }
 
-  .c-transcript__border {
+  .c-transcriptsummary__border {
     display: none;
   }
 
-  .c-transcript__tagsandkeywords {
+  .c-transcriptsummary__tagsandkeywords {
     display: none;
   }
 
-  .c-transcript__tagscontainer {
+  .c-transcriptsummary__tagscontainer {
     display: none;
   }
 
@@ -226,13 +228,13 @@ const TranscriptWrapper = styled.section`
       "info questions"
       "read read";
 
-    .c-transcript__title {
+    .c-transcriptsummary__title {
       font-size: 2.5rem;
       grid-area: title;
       margin: 0;
     }
 
-    .c-transcript__container {
+    .c-transcriptsummary__container {
       grid-area: container;
       display: flex;
       flex-direction: row-reverse;
@@ -241,26 +243,26 @@ const TranscriptWrapper = styled.section`
       margin: 1vh 0vw;
     }
 
-    .c-transcript__subcontainer {
+    .c-transcriptsummary__subcontainer {
       display: flex;
       flex-direction: column;
       align-self: center;
       row-gap: 1vh;
     }
 
-    .c-transcript__image {
+    .c-transcriptsummary__image {
       grid-area: image;
       padding: 4vh 8vw;
     }
 
-    .c-transcript__oneliner {
+    .c-transcriptsummary__oneliner {
       font-size: 1rem;
       margin: 1vh 0vw;
       grid-area: oneliner;
       align-self: center;
       text-align: center;
     }
-    .c-transcript__tagsandkeywords {
+    .c-transcriptsummary__tagsandkeywords {
       display: block;
       grid-area: tagsandkeywords;
       text-align: center;
@@ -273,7 +275,7 @@ const TranscriptWrapper = styled.section`
         font-size: 1.125rem;
       }
     }
-    .c-transcript__tagscontainer {
+    .c-transcriptsummary__tagscontainer {
       display: flex;
       margin: 1vh 0vw;
       grid-area: tags;
@@ -283,7 +285,7 @@ const TranscriptWrapper = styled.section`
       }
     }
 
-    .c-transcript__border {
+    .c-transcriptsummary__border {
       display: block;
       border: 1px solid var(--primary-clr-200);
       border-radius: 1px;
@@ -314,16 +316,16 @@ const TranscriptWrapper = styled.section`
     row-gap: 4vh;
   }
 
-  .c-transcript__container {
+  .c-transcriptsummary__container {
     column-gap: 6vw;
     margin: 2vh 2vw;
   }
 
-  .c-transcript__subcontainer {
+  .c-transcriptsummary__subcontainer {
     align-items: stretch;
     row-gap: 2vh;
   }
-  .c-transcript__tagscontainer > .c-tagscontainer {
+  .c-transcriptsummary__tagscontainer > .c-tagscontainer {
     row-gap: 0.5vh;
     justify-content: center;
   }
@@ -336,13 +338,13 @@ const TranscriptWrapper = styled.section`
     padding: 10vh 24vw;
     row-gap: 2vh;
 
-    .c-transcript__title {
+    .c-transcriptsummary__title {
       margin-bottom: 2vh;
     }
-    .c-transcript__container {
+    .c-transcriptsummary__container {
       margin: 0vh 4vw;
     }
-    .c-transcript__border {
+    .c-transcriptsummary__border {
       margin: 1vh 0vw 2vh 0vw;
     }
   }

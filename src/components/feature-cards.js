@@ -1,37 +1,22 @@
-import React from "react";
 import { Link } from "gatsby";
+import parse from "html-react-parser";
+import React from "react";
+import sanitize from "sanitize-html";
 import slugify from "slugify";
 import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
-import parse from "html-react-parser";
 
-const query = graphql`
-  {
-    allContentfulInterviewTranscripts {
-      nodes {
-        transcriptTitle
-        oneLineTeaser {
-          oneLineTeaser
-          childMarkdownRemark {
-            html
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const FeatureCard = () => {
-  const data = useStaticQuery(query);
-  const featured = data.allContentfulInterviewTranscripts.nodes;
+// import components
+import { SimpleButton } from "./simplebutton";
+export const FeatureCard = ({ collections = [] }) => {
+  console.log(collections);
 
   return (
     <article className="l-featurecard">
-      {" "}
-      {featured.map((item) => {
+      {collections.map((item, index) => {
         const {
-          //          transcriptImage,
+          id,
           transcriptTitle,
+          interviewer,
           oneLineTeaser: {
             childMarkdownRemark: { html },
           },
@@ -45,26 +30,21 @@ export const FeatureCard = () => {
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 
-        // Conditional render image depending if it is available
-        //        const ImgComponenet =
-        //          transcriptImage != undefined ? (
-        //            <FeatureImageWrapper>
-        //              <GatsbyImage
-        //                image={pathToImage}
-        //                alt=""
-        //                className="c-featurecard__image"
-        //              ></GatsbyImage>
-        //            </FeatureImageWrapper>
-        //          ) : null;
-        //
-        //        const pathToImage = getImage(transcriptImage);
+        // Sanitize HTML to be parsed
+        const cleanHTML = sanitize(html);
+
         return (
-          <FeatureCardWrapper key={transcriptTitle}>
+          <FeatureCardWrapper key={index}>
             <div className="c-featurecard">
               <div className="c-featurecard__title">{transcriptTitle}</div>
-              <div className="c-featurecard__oneliner">{parse(`${html}`)}</div>
+              <div className="c-featurecard__oneliner">
+                {parse(`${cleanHTML}`)}
+              </div>
               <span className="c-featurecard__read">
-                <Link to={`browsearchives/${slug}`}>Read More </Link>
+                <SimpleButton
+                  title="Read More"
+                  url={`../browsearchives/${slug}`}
+                />
               </span>
             </div>
           </FeatureCardWrapper>
@@ -74,8 +54,7 @@ export const FeatureCard = () => {
   );
 };
 
-const FeatureImageWrapper = styled.article``;
-const FeatureCardWrapper = styled.section`
+const FeatureCardWrapper = styled.div`
   .c-featurecard {
     display: flex;
     background-color: var(--primary-clr-100);
@@ -99,7 +78,7 @@ const FeatureCardWrapper = styled.section`
 
   .c-featurecard__oneliner {
     margin: 2vh 1vw;
-    text-align: center;
+    text-align: justify;
     p {
       font-size: 0.85rem;
       line-height: 1.25;

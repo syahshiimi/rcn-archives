@@ -82,7 +82,6 @@ export const RecentlyAdd = () => {
   );
 };
 
-const FeatureImageWrapper = styled.article``;
 const RecentlyAddWrapper = styled.section`
   .c-recentlyaddedcard {
     display: flex;
