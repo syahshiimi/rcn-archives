@@ -52,7 +52,7 @@
     "react-simple-maps": "^2.3.0",
     "react-tooltip": "^4.2.21",
     "react-use-flexsearch": "^0.1.1",
-    "sanitize-html": "^2.6.1",
+    "sanitize-html": "^2.7.0",
     "slugify": "^1.6.4",
     "styled-components": "^5.3.3",
     "uuid": "^8.3.2"

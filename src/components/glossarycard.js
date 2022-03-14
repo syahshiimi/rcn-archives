@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import parse from "html-react-parser";
+import sanitizeHtml from "sanitize-html";
 
 const GlossaryCard = ({ glossary = [] }) => {
   return (
@@ -12,17 +13,21 @@ const GlossaryCard = ({ glossary = [] }) => {
           childMarkdownRemark: { html },
         } = element[1];
         const lastAlphabet = element[0].charAt(element[0].length - 1);
+
+        const cleanHtml = sanitizeHtml(html);
+        console.log(cleanHtml);
+
         const checkString = "<p>None</p>";
         if (html != checkString) {
           return (
-            <div className={"c-glossarycard" + lastAlphabet} key={index}>
+            <div className={"c-glossarycard" + "_" + lastAlphabet} key={index}>
               <div className="c-glossarycard">
                 {" "}
                 <h1 className="c-glossarycard__title">{lastAlphabet}</h1>
                 <div className="c-glossarycard__container">
                   {" "}
                   <div className="c-glossarycard__content">
-                    {parse(`${html}`)}
+                    {parse(`${cleanHtml}`)}
                   </div>
                 </div>
               </div>
