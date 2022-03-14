@@ -88,8 +88,8 @@ export const Accordion = ({ transcript = [], type, name }) => {
       ? renderRichText(originalFullTranscript, options)
       : null;
 
-    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
-    console.log(lang);
+    let lang =
+      originalTranscriptLanguage != null ? originalTranscriptLanguage : null;
 
     return (
       <TranscriptContent

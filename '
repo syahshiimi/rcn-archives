@@ -64,8 +64,7 @@ const FullTranscript = ({ data }) => {
     ? renderRichText(originalFullTranscript, options)
     : null;
 
-  let lang =
-    originalTranscriptLanguage != null ? originalTranscriptLanguage : null;
+  let lang = originalTranscriptLanguage !=null ? originalTranscriptLanguage : null;
   console.log(lang);
 
   // Conditional Rendering of Endnotes
