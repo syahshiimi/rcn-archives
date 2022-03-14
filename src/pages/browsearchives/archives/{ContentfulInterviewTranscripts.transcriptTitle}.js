@@ -66,6 +66,7 @@ const FullTranscript = ({ data }) => {
 
     let lang;
     if (originalTranscriptLanguage == null) {
+      lang = null;
     } else {
       lang = originalTranscriptLanguage;
     }
