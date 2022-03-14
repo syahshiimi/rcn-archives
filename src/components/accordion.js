@@ -15,6 +15,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
     discussionQuestions,
     englishFullTranscript,
     englishTranscriptSummary,
+    originalTranscriptLanguage,
     vernacularFullTranscript,
     transcriptTags,
     interviewer,
@@ -86,6 +87,9 @@ export const Accordion = ({ transcript = [], type, name }) => {
     let vernacularLanguage = vernacularFullTranscript
       ? renderRichText(vernacularFullTranscript, options)
       : null;
+
+    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+    console.log(lang);
 
     // We set the default language to be rendered
     const [langType, setLang] = useState(englishLanguage);
