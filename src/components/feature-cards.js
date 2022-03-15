@@ -7,48 +7,29 @@ import styled from "styled-components";
 
 // import components
 import { SimpleButton } from "./simplebutton";
-export const FeatureCard = ({ collections = [] }) => {
+export const FeatureCard = ({ id, transcriptTitle, html }) => {
+  // remove dots in strings (if exists)
+  const cleanString = transcriptTitle
+    .replace(".", " ")
+    .replace("(", " ")
+    .replace(")", " ");
+
+  // use slugify to return a string in a slug format
+  const slug = slugify(cleanString, { lower: true });
+
+  // Sanitize HTML to be parsed
+  const cleanHTML = sanitize(html);
+
   return (
-    <>
-      {collections.map((item, index) => {
-        const {
-          id,
-          transcriptTitle,
-          interviewer,
-          oneLineTeaser: {
-            childMarkdownRemark: { html },
-          },
-        } = item;
-
-        // remove dots in strings (if exists)
-        const cleanString = transcriptTitle
-          .replace(".", " ")
-          .replace("(", " ")
-          .replace(")", " ");
-        // use slugify to return a string in a slug format
-        const slug = slugify(cleanString, { lower: true });
-
-        // Sanitize HTML to be parsed
-        const cleanHTML = sanitize(html);
-
-        return (
-          <FeatureCardWrapper key={index}>
-            <div className="c-featurecard">
-              <div className="c-featurecard__title">{transcriptTitle}</div>
-              <div className="c-featurecard__oneliner">
-                {parse(`${cleanHTML}`)}
-              </div>
-              <span className="c-featurecard__read">
-                <SimpleButton
-                  title="Read More"
-                  url={`../browsearchives/${slug}`}
-                />
-              </span>
-            </div>
-          </FeatureCardWrapper>
-        );
-      })}
-    </>
+    <FeatureCardWrapper key={id}>
+      <div className="c-featurecard">
+        <div className="c-featurecard__title">{transcriptTitle}</div>
+        <div className="c-featurecard__oneliner">{parse(`${cleanHTML}`)}</div>
+        <span className="c-featurecard__read">
+          <SimpleButton title="Read More" url={`../browsearchives/${slug}`} />
+        </span>
+      </div>
+    </FeatureCardWrapper>
   );
 };
 
@@ -58,9 +39,7 @@ const FeatureCardWrapper = styled.div`
     display: flex;
     background-color: var(--primary-clr-100);
     padding: 3vh 7vw;
-    margin: 1.5vh 2vw;
-
-    /* styling */
+    margin: .8vh 2vw;
     border-radius: calc(2rem + 6px);
     display: flex;
     box-shadow: var(--hovercard-default);
@@ -133,25 +112,19 @@ const FeatureCardWrapper = styled.div`
       margin: 1vh 0vw;
     }
   }
-  //////////////////////////////
-  //////// 4k Display //////////
-  //////////////////////////////
+  / /////////////////////////////
+        //////// 4k Display //////////
+        //////////////////////////////
 
-  @media (min-width: 2560px) {
-    .c-featurecard {
-      margin: 1.5vh 1vw;
-      padding: 2.5vh 0.5vw;
-    }
-    .c-featurecard__title {
-      font-size: 1.125rem;
-    }
-
-    .c-featurecard__oneliner {
-      margin: 1vh 1.4vw;
-    }
-
-    .c-featurecard__read {
-      margin: 0.25vh;
-    }
+        @media(min - width: 2560px) {
+  .c - featurecard {
+    margin: 1.5vh 1vw;
+    padding: 2.5vh 0.5vw;
   }
+  .c - featurecard__title { font - size: 1.125rem; }
+
+  .c - featurecard__oneliner { margin: 1vh 1.4vw; }
+
+  .c - featurecard__read { margin: 0.25vh; }
+}
 `;

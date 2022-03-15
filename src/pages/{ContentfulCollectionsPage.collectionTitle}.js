@@ -5,11 +5,11 @@ import Masonry from "react-masonry-css";
 import sanitizeHtml from "sanitize-html";
 import styled from "styled-components";
 
+import { BackTopButton } from "../components/button";
+import { FeatureCard } from "../components/feature-cards";
 // Components import
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
-import { BackTopButton } from "../components/button";
-import { FeatureCard } from "../components/feature-cards";
 
 export const query = graphql`
   query MyQuery($collectionTitle: String) {
@@ -73,7 +73,24 @@ const CollectionsTemplate = ({ data }) => {
           columnClassName="c-collectionspage__masonrycolumn"
           className="c-collectionspage__cardcontainer"
         >
-          <FeatureCard collections={collectionTranscripts} />
+          {collectionTranscripts.map((item) => {
+            const {
+              id,
+              transcriptTitle,
+              interviewer,
+              oneLineTeaser: {
+                childMarkdownRemark: { html },
+              },
+            } = item;
+            return (
+              <FeatureCard
+                key={id}
+                transcriptTitle={transcriptTitle}
+                interviewer={interviewer}
+                html={html}
+              />
+            );
+          })}
         </Masonry>
         <BackTopButton />
       </CollectionsWrapper>
