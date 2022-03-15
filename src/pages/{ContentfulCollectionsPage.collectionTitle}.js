@@ -145,6 +145,19 @@ const CollectionsWrapper = styled.section`
   @media (min-width: 992px) {
     padding: 6vh var(--padding-desktop) 6vh var(--padding-desktop);
     row-gap: 1vh;
+
+    .c-collectionspage__trasnscriptssubtitle {
+      margin-bottom: 1vh;
+    }
+
+    .c-collectionspage__cardcontainer {
+      padding: 0;
+      margin: 0;
+    }
+
+    .c-collectionspage__masonrycolumn {
+      margin: 0vh 1vw;
+    }
   }
 `;
 

@@ -74,19 +74,19 @@ const FeatureCardWrapper = styled.div`
 
   @media (min-width: 992px) {
     .c-featurecard {
-      padding: 2vh 1.5vh;
+      padding: 2vh 2vh;
       justify-content: center;
-      margin: 1vh 0vw;
+      margin: .5vh 0vw;
     }
     .c-featurecard__oneliner {
       font-size: 4rem !important;
       p {
-        text-align: justify;
+        text-align: left;
       }
     }
 
     .c-featurecard__read {
-      margin: 0.5vh 0vw;
+      margin: 0;
     }
   }
 
