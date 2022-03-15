@@ -213,7 +213,7 @@ const ImageWrapper = styled.article`
 
   @media (min-width: 992px) {
     .c-welcome__image {
-      margin: 1vh 0vw;
+      margin: 0vh 0vw 1vh 0vw;
       width: 95%;
     }
     .c-workshops__image {
@@ -338,7 +338,7 @@ const IndexWrapper = styled.main`
     display: none;
   }
 
-  .c-br .l-workshops {
+ .l-workshops {
     margin: 6vh 0vw;
   }
   .c-workshops__title {
@@ -439,13 +439,13 @@ const IndexWrapper = styled.main`
 
     .c-recentlyadded__title {
       font-size: 1.5rem;
-      margin-bottom: 0;
+      margin-bottom: 2.5vh;
     }
 
     .c-recentlyadded__container {
       background-color: transparent;
       padding: 0;
-      margin: 2vh 0vw;
+      margin: 0vh 0vw;
       border-radius: calc(5vw + 4px);
     }
 
@@ -518,17 +518,14 @@ const IndexWrapper = styled.main`
     padding: 4vh 10vw;
 
     .c-divider__one {
-      margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
-    }
+      margin: 5vh 0.5vw 20vh 0.5vw;     }
     .c-divider__two {
-      margin: 5vh 0.5vw 20vh 0.5vw; // top, right, bottom, left
-    }
+      margin: 5vh 0.5vw 20vh 0.5vw;     }
 
     .l-welcome {
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-welcome__title {
-      margin-bottom: 4vh !important;
       font-size: 1.7rem;
     }
     .c-welcome__blurb {
@@ -539,13 +536,11 @@ const IndexWrapper = styled.main`
       }
     }
     .c-featureddocs__title {
-      margin-bottom: 4vh !important;
       font-size: 1.7rem;
-    }
+    
   }
 
     .c-recentlyadded__title {
-      margin-bottom: 4vh !important;
       font-size: 1.7rem;
     }
 
@@ -553,6 +548,7 @@ const IndexWrapper = styled.main`
       margin: 0vh 1vw 2vh 1vw;
     }
     .c-browsearchives__title {
+      font-size: 1.7rem;
       margin-bottom: 2vh;
       font-size: 2rem;
     }
@@ -572,7 +568,7 @@ const IndexWrapper = styled.main`
 
     .c-workshops__title {
       margin-bottom: 2vh;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
 
     .c-workshops__blurb {
@@ -585,7 +581,7 @@ const IndexWrapper = styled.main`
     }
     .c-projectmembers__title {
       margin-bottom: 2vh;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
 
     .c-projectmembers__blurb {
