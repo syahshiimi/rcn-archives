@@ -9,7 +9,9 @@ import { SimpleButton } from "./simplebutton";
 
 const query = graphql`
   {
-    allContentfulCollectionsPage {
+    allContentfulCollectionsPage(
+      sort: { order: ASC, fields: collectionTitle }
+    ) {
       nodes {
         collectionTitle
         collectionTranscripts {

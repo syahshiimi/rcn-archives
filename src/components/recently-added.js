@@ -10,7 +10,6 @@ const query = graphql`
   {
     allContentfulInterviewTranscripts(
       sort: { order: DESC, fields: createdAt }
-      limit: 7
     ) {
       nodes {
         transcriptTitle
@@ -29,12 +28,15 @@ export const RecentlyAdd = () => {
   const data = useStaticQuery(query);
   const recentadded = data.allContentfulInterviewTranscripts.nodes;
 
+  // We slice array to limit the amount based on media queries
+
+  const recentaddedsliced = recentadded.slice(0, 8);
+
   return (
     <article className="l-recentlyaddedcardcard">
       {" "}
-      {recentadded.map((item) => {
+      {recentaddedsliced.map((item, index) => {
         const {
-          transcriptImage,
           transcriptTitle,
           oneLineTeaser: {
             childMarkdownRemark: { html },
