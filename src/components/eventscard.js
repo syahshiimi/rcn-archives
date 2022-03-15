@@ -1,51 +1,33 @@
 import { Link } from "gatsby";
-import React from "react";
-import styled from "styled-components";
-import slugify from "slugify";
 import parse from "html-react-parser";
-import Masonry from "react-masonry-css";
+import React from "react";
+import slugify from "slugify";
+import styled from "styled-components";
 
 {
   /* Events List Page */
 }
-export const EventsCard = ({ events = [] }) => {
+export const EventsCard = ({
+  eventTitle,
+  eventStart,
+  eventBlurb,
+  eventLocation,
+  eventEnd,
+}) => {
+  const cleanString = eventTitle.replace(/['"]+/g, " ").replace(":", " ");
+  const slug = slugify(cleanString, { lower: true });
+
   return (
-    <Masonry
-      className="l-pastevents__container"
-      columnClassName="l-pastevents__containerColumn"
-      breakpointCols={{ default: 2, 500: 1, 992: 3, 1280: 4 }}
-    >
-      {events.map((events) => {
-        const {
-          id,
-          eventTitle,
-          eventLocation,
-          eventBlurb,
-          eventStart,
-          eventEnd,
-        } = events;
-        // Clean string to remove spaces and quotation marks
-        const cleanString = eventTitle.replace(/['"]+/g, " ").replace(":", " ");
-        const slug = slugify(cleanString, { lower: true });
-        return (
-          <EventsCardWrapper key={id} className="c-pastevents__card">
-            <Link
-              to={`/${slug}`}
-              className="c-pastevents__button"
-              alt={eventTitle}
-              key={id}
-            >
-              <h3 className="c-pastevents__title">{eventTitle}</h3>
-              <p className="c-pastevents__date">
-                {eventStart} to {eventEnd}
-              </p>
-              <p className="c-pastevents__content">{eventBlurb}</p>
-              <h4 className="c-pastevents__location">{eventLocation}</h4>
-            </Link>
-          </EventsCardWrapper>
-        );
-      })}
-    </Masonry>
+    <EventsCardWrapper className="c-pastevents__card">
+      <Link to={`/${slug}`} className="c-pastevents__button" alt={eventTitle}>
+        <h3 className="c-pastevents__title">{eventTitle}</h3>
+        <p className="c-pastevents__date">
+          {eventStart} to {eventEnd}
+        </p>
+        <p className="c-pastevents__content">{eventBlurb}</p>
+        <h4 className="c-pastevents__location">{eventLocation}</h4>
+      </Link>
+    </EventsCardWrapper>
   );
 };
 
@@ -144,9 +126,6 @@ const EventsCardWrapper = styled.div`
   background-color: var(--primary-clr-100);
   margin: 1.5vh 2vw;
   flex: 1 1 auto;
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
-  width: auto;
 
   a {
     text-decoration: none !important;
@@ -157,7 +136,7 @@ const EventsCardWrapper = styled.div`
   }
 
   .c-pastevents__content {
-    display: none;
+    font-size: 0.75rem;
   }
 
   .c-pastevents__title {
@@ -173,7 +152,7 @@ const EventsCardWrapper = styled.div`
     text-align: right;
   }
   .c-pastevents__location {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     text-align: center;
   }
 
@@ -185,6 +164,8 @@ const EventsCardWrapper = styled.div`
   ///////////////////////////////
 
   @media (min-width: 992px) {
+    padding: 0vh 3.8vw;
+    margin: 1.5vh 1vw;
     .c-pastevents__content {
       display: block;
       font-size: 0.9rem !important;
@@ -194,11 +175,14 @@ const EventsCardWrapper = styled.div`
     }
     .c-pastevents__title {
       font-size: 1.125rem;
-      text-align: center;
+      text-align: left;
     }
     .c-pastevents__date {
       font-size: 0.85rem;
       text-align: center;
+    }
+    .c-pastevents__content {
+      text-align: right;
     }
     .c-pastevents__location {
       font-size: 0.75rem;
@@ -211,6 +195,7 @@ const EventsCardWrapper = styled.div`
   ///////////////////////////
   @media (min-width: 1280px) {
     padding: 3vh 4vw;
+    margin: 1.5vh 1vw;
     transition: var(--hover-transition);
 
     :hover {
@@ -236,6 +221,7 @@ const EventsCardWrapper = styled.div`
     .c-pastevents__content {
       font-size: 0.95rem;
       margin: 2vh 0vw;
+      text-align: left;
     }
     .c-pastevents__location {
       font-size: 0.85rem;

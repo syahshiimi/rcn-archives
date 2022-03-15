@@ -4,6 +4,7 @@ import { EventsCard } from "../components/eventscard";
 import Layout from "../components/Layout";
 import { graphql, useStaticQuery } from "gatsby";
 import { Head } from "../components/head";
+import Masonry from "react-masonry-css";
 
 const query = graphql`
   {
@@ -36,7 +37,32 @@ const Events = () => {
         <section className="l-pastevents">
           <h1 className="c-pastevents__heading">Events & Workshops</h1>
           <div className="l-pastevents__list">
-            <EventsCard events={events} />
+            <Masonry
+              className="l-pastevents__container"
+              columnClassName="l-pastevents__containerColumn"
+              breakpointCols={{ default: 2, 500: 1, 992: 2, 1280: 2 }}
+            >
+              {events.map((item, index) => {
+                const {
+                  id,
+                  eventTitle,
+                  eventLocation,
+                  eventBlurb,
+                  eventStart,
+                  eventEnd,
+                } = item;
+                return (
+                  <EventsCard
+                    eventTitle={eventTitle}
+                    key={id}
+                    eventLocation={eventLocation}
+                    eventBlurb={eventBlurb}
+                    eventStart={eventStart}
+                    eventEnd={eventEnd}
+                  />
+                );
+              })}
+            </Masonry>
           </div>
         </section>
       </EventWrapper>
@@ -70,6 +96,12 @@ const EventWrapper = styled.main`
     padding: 1vh 2vw;
     border-radius: var(--border-rad-mobile);
   }
+  .l-pastevents__container {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    width: auto;
+  }
 
   /////////////////////////////
   //////// Tablet ////////////
@@ -93,8 +125,7 @@ const EventWrapper = styled.main`
       margin: 4vh 6vw;
     }
     .l-pastevents__list {
-      padding: 2vh 3vw;
-      margin: 4vh 10vw;
+      padding: 0vh 2vw;
       border-radius: var(--border-rad-desktop);
     }
 
