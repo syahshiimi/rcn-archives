@@ -131,7 +131,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-searchcard__desktoptitle {
-      font-size: 1rem;
+      font-size: 1.15rem;
       display: flex;
       visibility: visible;
       justify-content: center;
@@ -155,6 +155,12 @@ const SearchCardWrapper = styled.main`
     .c-tagscontainer {
       display: flex;
       margin: 1vh 0vw;
+      justify-content: space-around;
+    }
+
+    .c-tagscontainer__tagpill {
+      flex: 1 1 auto;
+      justify-content: center;
     }
 
     /* hide mobile related elements */

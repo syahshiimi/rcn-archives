@@ -159,6 +159,26 @@ const CollectionsWrapper = styled.section`
       margin: 0vh 1vw;
     }
   }
+
+  ///////////////////////////
+  ////////// Desktop ////////
+  ///////////////////////////
+
+  @media (min-width: 1280px) {
+    .c-collectionspage__blurb {
+      margin: 3vh 0vw;
+    }
+    .c-collectionspage__masonrycolumn {
+      margin: 0;
+    }
+    .c-collectionspage__cardcontainer {
+      margin: 2vh 0vw;
+    }
+
+    .c-collectionspage__trasnscriptssubtitle {
+      margin: 1vh 0vw;
+    }
+  }
 `;
 
 export default CollectionsTemplate;

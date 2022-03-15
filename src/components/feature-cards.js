@@ -39,7 +39,7 @@ const FeatureCardWrapper = styled.div`
     display: flex;
     background-color: var(--primary-clr-100);
     padding: 3vh 7vw;
-    margin: .8vh 2vw;
+    margin: 0.8vh 2vw;
     border-radius: calc(2rem + 6px);
     display: flex;
     box-shadow: var(--hovercard-default);
@@ -74,9 +74,9 @@ const FeatureCardWrapper = styled.div`
 
   @media (min-width: 992px) {
     .c-featurecard {
-      padding: 2vh 2vh;
+      padding: 2vh 2vw;
       justify-content: center;
-      margin: .5vh 0vw;
+      margin: 0.5vh 0vw;
     }
     .c-featurecard__oneliner {
       font-size: 4rem !important;
@@ -92,39 +92,31 @@ const FeatureCardWrapper = styled.div`
 
   @media (min-width: 1280px) {
     .c-featurecard {
-      margin: 2vh 1vw;
-      padding: 3vh 0.5vh;
+      margin: 1vh 0.7vw;
+      padding: 3vh 2vw;
     }
 
     .c-featurecard__title {
-      margin: 0vh 2vw;
       font-size: 0.95rem;
+      margin-bottom: 2vh;
     }
 
     .c-featurecard__oneliner {
-      margin: 1.5vh 1.8vw;
+      margin: 0;
       p {
         font-size: 0.85rem;
       }
     }
 
     .c-featurecard__read {
-      margin: 1vh 0vw;
+      margin: 0.5vh 0vw;
     }
   }
-  / /////////////////////////////
-        //////// 4k Display //////////
-        //////////////////////////////
 
-        @media(min - width: 2560px) {
-  .c - featurecard {
-    margin: 1.5vh 1vw;
-    padding: 2.5vh 0.5vw;
+  @media (min-width: 2560px) {
+    .c-featurecard {
+      margin: 1.5vh 1vw;
+      padding: 2.5vh 0.5vw;
+    }
   }
-  .c - featurecard__title { font - size: 1.125rem; }
-
-  .c - featurecard__oneliner { margin: 1vh 1.4vw; }
-
-  .c - featurecard__read { margin: 0.25vh; }
-}
 `;
