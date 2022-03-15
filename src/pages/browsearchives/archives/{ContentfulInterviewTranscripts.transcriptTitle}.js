@@ -158,7 +158,7 @@ export const query = graphql`
 `;
 
 const FullTranscriptWrapper = styled.section`
-  // DO NOT DISPLAY ON MOBILE
+  /* DO NOT DISPLAY ON MOBILE */
   display: none;
 
   ///////////////////////////
@@ -194,13 +194,18 @@ const FullTranscriptWrapper = styled.section`
   }
 
   .c-langtoggle {
-    background-color: transparent;
+    font-size: 0.85rem;
+    background-color: var(--primary-clr-100);
+    display: flex;
+    justify-content: center;
     border: none;
-    text-decoration: underline;
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
     font-weight: normal;
-    margin: 1vh;
+    padding: 1vh 1vw;
+    margin: 1vh uvw;
+    width: 200px;
+    border-radius: var(--border-rad-tablet);
   }
 
   .c-transcript__content {
@@ -252,6 +257,11 @@ const FullTranscriptWrapper = styled.section`
 
     .c-langtoggle {
       margin-bottom: 2vh;
+      :hover {
+        color: var(--primary-clr-100);
+        background-color: var(--primary-clr-150);
+        transition: var(--hover-transition);
+      }
     }
 
     .c-tagscontainer {

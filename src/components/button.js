@@ -111,7 +111,7 @@ const ButtonWrapper = styled.div`
 
   button:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 4px 9px rgba(51, 53, 51, 0.65);
+    box-shadow: var(--hovercard-default);
 })
 `;
 
