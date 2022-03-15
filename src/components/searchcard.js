@@ -198,6 +198,7 @@ const SearchCardWrapper = styled.main`
       margin: 2vh 0vw;
 
       p {
+        text-align: left;
         font-size: 0.9rem;
       }
     }

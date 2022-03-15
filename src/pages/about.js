@@ -33,6 +33,7 @@ export const query = graphql`
       }
       projectMembersList
       researchAssistant
+      developerDesigner
       secondImage {
         gatsbyImageData(
           aspectRatio: 1.5
@@ -71,6 +72,7 @@ const About = ({ data }) => {
     ourFocusImage,
     principalInvestigator,
     projectMembersList,
+    developerDesigner,
     researchAssistant,
     ourFocus: {
       childMarkdownRemark: { ourfocus },
@@ -86,6 +88,7 @@ const About = ({ data }) => {
       childMarkdownRemark: { projectmembers },
     },
   } = aboutUs;
+  console.log(developerDesigner);
 
   // use getImage function to provide fallback class if NO iamge exists
   const pathToFirstImage = getImage(firstImage);
@@ -144,8 +147,16 @@ const About = ({ data }) => {
               </p>
             </div>
             <div className="c-projectmembers__RA">
-              <h4 className="c-projetmembers__RATitle">Research Assistant</h4>
+              <h4 className="c-projectmembers__RATitle">Research Assistant</h4>
               <p className="c-projectmembers__RAName">{researchAssistant}</p>
+            </div>
+            <div className="c-projectmembers__devdesign">
+              <h4 className="c-projectmembers__developerdesignerTitle">
+                Developer & Designer
+              </h4>
+              <p className="c-projectmembers__developerdesignerName">
+                {developerDesigner}
+              </p>
             </div>
             <div className="c-projectmembers__researchers">
               <h4 className="c-projectmemebers__researchersTitle">
@@ -352,10 +363,11 @@ const AboutWrapper = styled.main`
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
-      row-gap: 4vh;
+      row-gap: 0vh;
       grid-template-areas:
         "pi researchers"
-        "ra researchers";
+        "ra researchers"
+        "devdes researchers";
     }
 
     .c-projectmembers__pi {
@@ -367,6 +379,12 @@ const AboutWrapper = styled.main`
     .c-projectmembers__RA {
       margin: 0vh 4vw;
       grid-area: ra;
+      align-self: center;
+    }
+
+    .c-projectmembers__devdesign {
+      margin: 0vh 4vw;
+      grid-area: devdes;
       align-self: start;
     }
 

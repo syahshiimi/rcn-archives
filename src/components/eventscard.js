@@ -3,13 +3,18 @@ import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
 import parse from "html-react-parser";
+import Masonry from "react-masonry-css";
 
 {
   /* Events List Page */
 }
 export const EventsCard = ({ events = [] }) => {
   return (
-    <div className="l-pastevents__container">
+    <Masonry
+      className="l-pastevents__container"
+      columnClassName="l-pastevents__containerColumn"
+      breakpointCols={{ default: 2, 500: 1, 992: 3, 1280: 4 }}
+    >
       {events.map((events) => {
         const {
           id,
@@ -40,7 +45,7 @@ export const EventsCard = ({ events = [] }) => {
           </EventsCardWrapper>
         );
       })}
-    </div>
+    </Masonry>
   );
 };
 
@@ -137,8 +142,11 @@ const EventsCardWrapper = styled.div`
   box-shadow: var(--hovercard-default);
   border-radius: var(--border-rad-mobile);
   background-color: var(--primary-clr-100);
-  margin: 0;
   margin: 1.5vh 2vw;
+  flex: 1 1 auto;
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  width: auto;
 
   a {
     text-decoration: none !important;

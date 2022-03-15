@@ -116,6 +116,8 @@ const FooterStyle = styled.footer`
     margin: 1vh 0vw;
     color: var(--primary-clr-0);
     font-size: 0.5rem;
+    display: none;
+    visbility: none;
   }
 
   /////////////////////////
