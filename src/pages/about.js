@@ -25,6 +25,7 @@ export const query = graphql`
         )
       }
       id
+      formerCurrentPostdoctoralFellows
       principalInvestigator
       projectMembers {
         childMarkdownRemark {
@@ -71,6 +72,7 @@ const About = ({ data }) => {
     secondImage,
     ourFocusImage,
     principalInvestigator,
+    formerCurrentPostdoctoralFellows,
     projectMembersList,
     developerDesigner,
     researchAssistant,
@@ -145,6 +147,16 @@ const About = ({ data }) => {
               <p className="c-projectmembers__piName">
                 {principalInvestigator}
               </p>
+            </div>
+            <div className="c-projectmembers__fellows">
+              <h4 className="c-projectmemebers__fellowsTitle">Researchers</h4>
+              {formerCurrentPostdoctoralFellows.map((item, index) => {
+                return (
+                  <p className="c-projectmembmers__fellowNames" key={index}>
+                    {item}
+                  </p>
+                );
+              })}
             </div>
             <div className="c-projectmembers__RA">
               <h4 className="c-projectmembers__RATitle">Research Assistant</h4>
@@ -366,6 +378,7 @@ const AboutWrapper = styled.main`
       row-gap: 0vh;
       grid-template-areas:
         "pi researchers"
+        "fellows researchers"
         "ra researchers"
         "devdes researchers";
     }
@@ -373,7 +386,13 @@ const AboutWrapper = styled.main`
     .c-projectmembers__pi {
       margin: 0vh 4vw;
       grid-area: pi;
-      align-self: end;
+      align-self: center;
+    }
+
+    .c-projectmembers__fellows {
+      margin: 0vh 4vw;
+      grid-area: fellows;
+      align-self: center;
     }
 
     .c-projectmembers__RA {
@@ -385,7 +404,7 @@ const AboutWrapper = styled.main`
     .c-projectmembers__devdesign {
       margin: 0vh 4vw;
       grid-area: devdes;
-      align-self: start;
+      align-self: center;
     }
 
     .c-projectmembers__researchers {
