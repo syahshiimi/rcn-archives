@@ -30,7 +30,8 @@ const Footer = () => {
         <div className="c-footer__copyright">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <a href={masudaWebsite}>Masuda Hajimu</a> All Rights Reserved.{" "}
+            <a href={masudaWebsite}>Masuda Hajimu</a> National University of
+            Singapore.{" "}
           </p>
         </div>
         <div className="c-footer__designer">{designer}</div>
