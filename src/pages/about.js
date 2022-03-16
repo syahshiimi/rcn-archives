@@ -119,7 +119,18 @@ const About = ({ data }) => {
   const sanitizePIBio = sanitize(PIBio, {
     allowedTags: ["b", "i", "em", "strong", "a"],
   });
-  console.log(sanitizePIBio);
+  const sanitizeWhoWeAre = sanitize(whoweare, {
+    allowedTags: ["b", "i", "em", "strong", "a", "p"],
+  });
+  const sanitizeOurFocus = sanitize(ourfocus, {
+    allowedTags: ["b", "i", "em", "strong", "a", "p"],
+  });
+  const sanitizeTheArchives = sanitize(thearchives, {
+    allowedTags: ["b", "i", "em", "strong", "a", "p"],
+  });
+  const sanitizeProjectMembers = sanitize(projectmembers, {
+    allowedTags: ["b", "i", "em", "strong", "a", "p"],
+  });
 
   return (
     <Layout>
@@ -134,7 +145,9 @@ const About = ({ data }) => {
           <section className="l-whoweare">
             <div className="c-whoweare__container">
               <h1 className="c-whoweare__title">Who We Are</h1>
-              <div className="c-whoweare__content">{parse(`${whoweare}`)}</div>
+              <div className="c-whoweare__content">
+                {parse(`${sanitizeWhoWeAre}`)}
+              </div>
             </div>
           </section>
         </FirstStyledBackgroundImage>
@@ -145,7 +158,9 @@ const About = ({ data }) => {
             alt="our_focus_image"
             className="c-ourfocus__image"
           ></GatsbyImage>
-          <div className="c-ourfocus__content">{parse(`${ourfocus}`)}</div>
+          <div className="c-ourfocus__content">
+            {parse(`${sanitizeOurFocus}`)}
+          </div>
         </section>
         <SecondStyledBackgroundImage Tag="div" image={pathToSecondImage}>
           {" "}
@@ -154,7 +169,7 @@ const About = ({ data }) => {
               {" "}
               <h1 className="c-thearchives__title">The Archives</h1>
               <div className="c-thearchives__content">
-                {parse(`${thearchives}`)}
+                {parse(`${sanitizeTheArchives}`)}
               </div>
               <DefaultButton url="/browsearchives" title="Browse Archives" />
             </div>
@@ -163,7 +178,7 @@ const About = ({ data }) => {
         <section className="l-projectmembers">
           <h1 className="c-projectmembers__title">Project Members</h1>
           <div className="c-projectmembers__content">
-            {parse(`${projectmembers}`)}
+            {parse(`${sanitizeProjectMembers}`)}
           </div>
           <article className="c-projectmembers__info">
             {" "}
