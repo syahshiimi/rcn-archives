@@ -3,6 +3,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { BgImage } from "gbimage-bridge";
 import parse from "html-react-parser";
 import React from "react";
+import sanitize from "sanitize-html";
+import sanitze from "sanitize-html";
 import styled from "styled-components";
 
 import { DefaultButton } from "../components/button";
@@ -25,8 +27,22 @@ export const query = graphql`
         )
       }
       id
-      formerCurrentPostdoctoralFellows
       principalInvestigator
+      principalInvestigatorBio {
+        childMarkdownRemark {
+          PIBio: html
+        }
+      }
+      principalInvestigatorImage {
+        gatsbyImageData(
+          aspectRatio: 1.5
+          placeholder: TRACED_SVG
+          resizingBehavior: SCALE
+          formats: WEBP
+          layout: CONSTRAINED
+        )
+      }
+      formerCurrentPostdoctoralFellows
       projectMembers {
         childMarkdownRemark {
           projectmembers: html
@@ -72,6 +88,9 @@ const About = ({ data }) => {
     secondImage,
     ourFocusImage,
     principalInvestigator,
+    principalInvestigatorBio: {
+      childMarkdownRemark: { PIBio },
+    },
     formerCurrentPostdoctoralFellows,
     projectMembersList,
     developerDesigner,
@@ -90,12 +109,17 @@ const About = ({ data }) => {
       childMarkdownRemark: { projectmembers },
     },
   } = aboutUs;
-  console.log(developerDesigner);
 
   // use getImage function to provide fallback class if NO iamge exists
   const pathToFirstImage = getImage(firstImage);
   const pathToFocusImage = getImage(ourFocusImage);
   const pathToSecondImage = getImage(secondImage);
+
+  // sanitize HTML for parsing
+  const sanitizePIBio = sanitize(PIBio, {
+    allowedTags: ["b", "i", "em", "strong", "a"],
+  });
+  console.log(sanitizePIBio);
 
   return (
     <Layout>
@@ -106,6 +130,7 @@ const About = ({ data }) => {
           image={pathToFirstImage}
           className="c-whoweare__bgimage"
         >
+          {" "}
           <section className="l-whoweare">
             <div className="c-whoweare__container">
               <h1 className="c-whoweare__title">Who We Are</h1>
@@ -147,6 +172,9 @@ const About = ({ data }) => {
               <p className="c-projectmembers__piName">
                 {principalInvestigator}
               </p>
+              <p className="c-projectmembers__pibio">
+                {parse(`${sanitizePIBio}`)}
+              </p>
             </div>
             <div className="c-projectmembers__fellows">
               <h4 className="c-projectmemebers__fellowsTitle">Researchers</h4>
@@ -164,7 +192,7 @@ const About = ({ data }) => {
             </div>
             <div className="c-projectmembers__devdesign">
               <h4 className="c-projectmembers__developerdesignerTitle">
-                Developer & Designer
+                Developer& Designer
               </h4>
               <p className="c-projectmembers__developerdesignerName">
                 {developerDesigner}
@@ -173,7 +201,7 @@ const About = ({ data }) => {
             <div className="c-projectmembers__researchers">
               <h4 className="c-projectmemebers__researchersTitle">
                 Researchers
-              </h4>
+              </h4>{" "}
               {projectMembersList.map((item, index) => {
                 return (
                   <p className="c-projectmembmers__researcherNames" key={index}>
@@ -184,7 +212,12 @@ const About = ({ data }) => {
             </div>
           </article>
           <button className="c-projectmembers__contributebtn">
-            <Link to="/contribute">Looking to contribute?</Link>
+            <Link
+              to="/contribute
+         "
+            >
+              Looking to contribute?
+            </Link>
           </button>
         </section>
       </AboutWrapper>
@@ -215,6 +248,7 @@ const SecondStyledBackgroundImage = styled(BgImage)`
     }
   }
 `;
+
 const AboutWrapper = styled.main`
   line-height: 1.125rem;
   section {
@@ -302,6 +336,14 @@ const AboutWrapper = styled.main`
       margin: 1vh 0vw;
     }
   }
+
+  .c-projectmembers__piName {
+    margin: 2vh 0vw;
+  }
+
+  .c-projectmembers__pibio {
+    text-align: justify;
+  }
   .c-projectmembers__contributebtn {
     margin: 4vh 0vw;
     display: flex;
@@ -377,10 +419,12 @@ const AboutWrapper = styled.main`
       grid-template-rows: auto;
       row-gap: 0vh;
       grid-template-areas:
-        "pi researchers"
+        "pi pi"
+        ". researchers"
         "fellows researchers"
         "ra researchers"
-        "devdes researchers";
+        "devdes researchers"
+        ". researchers";
     }
 
     .c-projectmembers__pi {
