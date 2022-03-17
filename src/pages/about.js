@@ -183,7 +183,9 @@ const About = ({ data }) => {
           <article className="c-projectmembers__info">
             {" "}
             <div className="c-projectmembers__pi">
-              <h4 className="c-projectmembers__pi">Principal Investigator</h4>
+              <h4 className="c-projectmembers__piTitle">
+                Principal Investigator
+              </h4>
               <p className="c-projectmembers__piName">
                 {principalInvestigator}
               </p>
@@ -192,7 +194,9 @@ const About = ({ data }) => {
               </p>
             </div>
             <div className="c-projectmembers__fellows">
-              <h4 className="c-projectmemebers__fellowsTitle">Researchers</h4>
+              <h4 className="c-projectmemebers__fellowsTitle">
+                Current & Past Postdoctoral Fellows
+              </h4>
               {formerCurrentPostdoctoralFellows.map((item, index) => {
                 return (
                   <p className="c-projectmembmers__fellowNames" key={index}>
@@ -207,7 +211,7 @@ const About = ({ data }) => {
             </div>
             <div className="c-projectmembers__devdesign">
               <h4 className="c-projectmembers__developerdesignerTitle">
-                Developer& Designer
+                Developer & Designer
               </h4>
               <p className="c-projectmembers__developerdesignerName">
                 {developerDesigner}
@@ -437,13 +441,15 @@ const AboutWrapper = styled.main`
         "pi pi"
         ". researchers"
         "fellows researchers"
+        ". researchers"
         "ra researchers"
+        ". researchers"
         "devdes researchers"
         ". researchers";
     }
 
     .c-projectmembers__pi {
-      margin: 0vh 4vw;
+      margin: 0vh 0vw 4vh 0vw;
       grid-area: pi;
       align-self: center;
     }
@@ -556,10 +562,23 @@ const AboutWrapper = styled.main`
         margin: 2vh 0vw;
       }
     }
+
     .c-projectmembers__info {
       margin: 7vh 0vw;
     }
-
+    .c-projectmembers__piName,
+    .c-projectmembers__RAName,
+    .c-projectmembmers__fellowNames,
+    .c-projectmembers__developerdesignerName,
+    .c-projectmembmers__researcherNames {
+      font-size: 1.2rem;
+    }
+    .c-projectmembers__pi {
+      margin: 0vh 0vw 4vh 0vw;
+    }
+    .c-projectmembers__pibio {
+      font-size: 1.2rem;
+    }
     .c-projectmembers__contributebtn {
       margin: a {
         font-size: 1.2rem;
