@@ -569,7 +569,7 @@ const AboutWrapper = styled.main`
 
     .c-ourfocus__title {
       margin-top: 0;
-      margin-bottom: 3vh;
+      margin-bottom: 4vh;
       grid-area: title;
     }
     .c-ourfocus__image {
@@ -623,10 +623,13 @@ const AboutWrapper = styled.main`
     .c-projectmembmers__researcherNames {
       font-size: 1rem;
     }
-    .c-projectmembers__pi {
-      margin: 0vh 0vw 4vh 0vw;
-    }
+
     .c-projectmembers__pibio {
+      font-size: 1rem;
+    }
+
+    .c-projectmembers__piImage {
+      margin: 0 0 1vh 2vw;
     }
     .c-projectmembers__contributebtn {
       margin: a {
