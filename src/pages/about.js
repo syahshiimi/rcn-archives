@@ -37,7 +37,8 @@ export const query = graphql`
         gatsbyImageData(
           aspectRatio: 1.5
           placeholder: TRACED_SVG
-          resizingBehavior: SCALE
+          resizingBehavior: THUMB
+          cropFocus: TOP
           formats: WEBP
           layout: CONSTRAINED
         )
@@ -87,6 +88,7 @@ const About = ({ data }) => {
     firstImage,
     secondImage,
     ourFocusImage,
+    principalInvestigatorImage,
     principalInvestigator,
     principalInvestigatorBio: {
       childMarkdownRemark: { PIBio },
@@ -114,6 +116,7 @@ const About = ({ data }) => {
   const pathToFirstImage = getImage(firstImage);
   const pathToFocusImage = getImage(ourFocusImage);
   const pathToSecondImage = getImage(secondImage);
+  const pathToPrincipalImage = getImage(principalInvestigatorImage);
 
   // sanitize HTML for parsing
   const sanitizePIBio = sanitize(PIBio, {
@@ -183,6 +186,11 @@ const About = ({ data }) => {
           <article className="c-projectmembers__info">
             {" "}
             <div className="c-projectmembers__pi">
+              <GatsbyImage
+                image={pathToPrincipalImage}
+                alt="principal_investigator_image"
+                class="c-projectmembers__piImage"
+              ></GatsbyImage>
               <h4 className="c-projectmembers__piTitle">
                 Principal Investigator
               </h4>
@@ -356,12 +364,25 @@ const AboutWrapper = styled.main`
     }
   }
 
+  .c-projectmembers__pi > * {
+    margin: 3vh 0vw;
+  }
+  .c-projectmembers__piImage {
+    /* border: var(--imagecard-border-clr); */
+    border-radius: var(--imagecard-border-radius);
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   .c-projectmembers__piName {
     margin: 2vh 0vw;
   }
 
   .c-projectmembers__pibio {
     text-align: justify;
+    font-size: 0.875rem;
   }
   .c-projectmembers__contributebtn {
     margin: 4vh 0vw;
@@ -449,9 +470,38 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__pi {
-      margin: 0vh 0vw 4vh 0vw;
+      margin: 4vh 0vw;
       grid-area: pi;
       align-self: center;
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: auto;
+      grid-template-areas:
+        "image title"
+        "image name"
+        "bio bio";
+      * {
+        margin: 0;
+      }
+    }
+
+    .c-projectmembers__piImage {
+      grid-area: image;
+      margin-left: 2vw;
+    }
+
+    .c-projectmembers__piTitle {
+      align-self: end;
+      grid-area: title;
+    }
+    .c-projectmembers__piName {
+      align-self: start;
+      grid-area: name;
+      margin-top: 1vh;
+    }
+    .c-projectmembers__pibio {
+      grid-area: bio;
+      margin: 3vh 0vw;
     }
 
     .c-projectmembers__fellows {
@@ -571,13 +621,12 @@ const AboutWrapper = styled.main`
     .c-projectmembmers__fellowNames,
     .c-projectmembers__developerdesignerName,
     .c-projectmembmers__researcherNames {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
     .c-projectmembers__pi {
       margin: 0vh 0vw 4vh 0vw;
     }
     .c-projectmembers__pibio {
-      font-size: 1.2rem;
     }
     .c-projectmembers__contributebtn {
       margin: a {
