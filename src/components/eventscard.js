@@ -267,8 +267,7 @@ const EventScheduleWrapper = styled.div`
     display: flex;
     box-shadow: var(--hovercard-default);
     flex-direction: column;
-
-    @media (max-width: 992px) {
+    }
 
     h3 {
     margin: 1.5vh 0vw;
@@ -287,14 +286,13 @@ const EventScheduleWrapper = styled.div`
       }
     }
 
-  }
 
   //////////////////////
   // tablet styling //// 
   //////////////////////
   @media (min-width: 992px) {
     .c-eventschedule__card {
-      margin: 3vh 2vw;
+      margin: 4vw 4vw;
       padding: 2vh 4vw;
 
         * {
@@ -322,21 +320,22 @@ const EventScheduleWrapper = styled.div`
   //////////////////////
     @media (min-width: 1280px) {
       .c-eventschedule__card {
-        padding: 4vh 4vw;
-        * {
-          margin: 4vh 0vw;
-        }
+        padding: 2vw 4vw;
+        margin: 2vw;
+        
         h3 {
           font-size: 1.25rem;
         }
       }
     }
-    
+  //////////////////////
+    // 4k desktop styling ///
+    //////////////////////
+      
     @media (min-width: 2560px) {
       .c-eventschedule__card {
-        margin: 3vh 2vw;
-        padding: 3vh 4vw;
-      * }
+        margin: 1.5vw 1.5vw 0vw 1.5vw;
+        padding: 1.5vw;
       }
 
     }

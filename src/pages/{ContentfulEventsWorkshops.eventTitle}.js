@@ -268,6 +268,7 @@ const EventWrapper = styled.main`
 
     .c-eventschedule__container {
       grid-area: schedule;
+      padding: 0;
     }
 
     .c-event__pastevents {
@@ -326,7 +327,7 @@ const EventWrapper = styled.main`
     }
 
     .c-eventschedule__container {
-      border-radius: calc(3rem + 4px);
+      border-radius: var(--border-rad-desktop);
       margin: 0vh 8vw;
       padding: 2vh 2vw;
     }
@@ -356,7 +357,7 @@ const EventWrapper = styled.main`
 
     .c-eventschedule__container {
       border-radius: calc(3rem + 4px);
-      padding: 0vh 1vw;
+      padding: 0;
     }
   }
 `;
