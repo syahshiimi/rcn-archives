@@ -98,7 +98,6 @@ const BrowseMap = () => {
   // We use flexsearch engine to list it out as it is fast and lightweight!
   function ListofTranscripts(value) {
     const { searchValue } = value; // obtained from geo.properties, which would be the name of a country
-    console.log(`The search value is: ${searchValue}`);
 
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
 
@@ -115,7 +114,6 @@ const BrowseMap = () => {
       .filter((item) => {
         return item != null;
       });
-    console.log(filterResults);
 
     // We sort the results
     filterResults.sort(function (a, b) {
