@@ -57,6 +57,7 @@ const customStyles = {
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
+    listStyle: "none",
   },
 };
 
@@ -100,20 +101,39 @@ const BrowseMap = () => {
     console.log(`The search value is: ${searchValue}`);
 
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
-    const filterResults = results.map((item, index) => {
-      const { transcriptTags } = item;
-      if (transcriptTags.includes(searchValue)) {
-        return item;
-      } else {
-        return null;
+
+    // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
+    const filterResults = results
+      .map((item, index) => {
+        const { transcriptTags } = item;
+        if (transcriptTags.includes(searchValue)) {
+          return item;
+        } else {
+          return null;
+        }
+      })
+      .filter((item) => {
+        return item != null;
+      });
+    console.log(filterResults);
+
+    // We sort the results
+    filterResults.sort(function (a, b) {
+      const nameA = a.transcriptTitle.toUpperCase();
+      const nameB = b.transcriptTitle.toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
       }
-    });
-    const notNullResults = filterResults.filter((element) => {
-      return element != null;
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      return 0;
     });
 
-    if (notNullResults.length > 0) {
-      return notNullResults.map((item, index) => {
+    if (filterResults.length > 0) {
+      return filterResults.map((item, index) => {
         const { transcriptTitle } = item;
 
         const cleanString = transcriptTitle
@@ -123,10 +143,8 @@ const BrowseMap = () => {
         const slug = slugify(cleanString, { lower: true });
 
         return (
-          <div key={index}>
-            <li className="c-browsemap__transcript" key={index}>
-              <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
-            </li>
+          <div className="c-browsemap__transcript" key={index}>
+            <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
           </div>
         );
       });
@@ -139,6 +157,7 @@ const BrowseMap = () => {
   // We will use the componenet variable in the useState hook to render later
   // SetComponent is a function that determines the value of component
   const [component, setComponent] = useState("");
+
   // We define the function which would allow the modification of the component
   // This function will be used as an onClick handler.
   // The function will return a value. This value can then be passed

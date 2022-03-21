@@ -92,7 +92,7 @@ input {
 }
 
 /* modal styling */
-.c-browsemap__listoftranscripts > .c-browsemap__transcript {
+.c-browsemap__transcript {
   margin: 1vh 0vw;
 }
 
