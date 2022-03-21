@@ -237,20 +237,26 @@ const SearchCardWrapper = styled.main`
 
   @media (min-width: 2560px) {
     .l-searchcard {
-      padding-top: 2.5vh;
+      margin: 1vh 0.5vw;
+      padding: 2.5vh 2vw;
     }
-    .c-searchcard__title {
-      font-size: 1.5rem;
+    .c-searchcard__desktoptitle {
+      font-size: 1.3rem;
     }
 
     .c-searchcard__oneliner {
       p {
-        font-size: 1.275rem;
+        font-size: 1rem;
       }
     }
 
-    .c-searchcard__tagscontainer {
-      margin: 1.5vh 0vw;
+    .c-tagscontainer {
+      margin: 0;
+    }
+    .c-tagscontainer__tag {
+      font-size: 0.9rem !important;
+      p {
+      }
     }
   }
 `;

@@ -335,6 +335,7 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__searchcontainer {
+      padding: 1vw;
     }
   }
 `;
