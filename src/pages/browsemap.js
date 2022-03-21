@@ -1,24 +1,25 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
-import Layout from "../components/Layout";
-import styled from "styled-components";
+import { findDOMNode } from "react-dom";
+import Modal from "react-modal";
 import {
+  Annotation,
   ComposableMap,
-  ZoomableGroup,
   Geographies,
   Geography,
   Marker,
-  Annotation,
+  ZoomableGroup,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
-import asia from "../../content/asia-mapshaper.json"; // geoJson
-import { countryData } from "../data"; // coordinates of the countrie
-import { graphql, useStaticQuery } from "gatsby";
 import { useFlexSearch } from "react-use-flexsearch";
 import slugify from "slugify";
-import { Link } from "gatsby";
-import Modal from "react-modal";
+import styled from "styled-components";
+
+import asia from "../../content/asia-mapshaper.json"; // geoJson
 import { DefaultButton } from "../components/button";
 import { Head } from "../components/head";
+import Layout from "../components/Layout";
+import { countryData } from "../data"; // coordinates of the countrie
 
 /////////////////////////////////
 /////// Tablet & Desktop Only ///
@@ -55,6 +56,7 @@ const customStyles = {
     opacity: "0.9",
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
+    flexDirection: "column",
   },
 };
 
@@ -95,36 +97,39 @@ const BrowseMap = () => {
   // We use flexsearch engine to list it out as it is fast and lightweight!
   function ListofTranscripts(value) {
     const { searchValue } = value; // obtained from geo.properties, which would be the name of a country
+    console.log(`The search value is: ${searchValue}`);
+
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
-    console.log(results);
+    const filterResults = results.map((item, index) => {
+      const { transcriptTags } = item;
+      if (transcriptTags.includes(searchValue)) {
+        return item;
+      } else {
+        return null;
+      }
+    });
+    const notNullResults = filterResults.filter((element) => {
+      return element != null;
+    });
 
-    // We can check whether our searchValue returns search arrays by the value of the returned array length.
-    // Therefore, exposing the ListofTranscripts function (this function) will return a DOM element
-    if (results.length > 0) {
-      return (
-        <ul className="c-browsemap__listoftranscripts">
-          {results.map((item, index) => {
-            const { transcriptTitle } = item;
+    if (notNullResults.length > 0) {
+      return notNullResults.map((item, index) => {
+        const { transcriptTitle } = item;
 
-            // remove dots in strings (if exists)
-            const cleanString = transcriptTitle
-              .replace(".", " ")
-              .replace("(", " ")
-              .replace(")", " ");
+        const cleanString = transcriptTitle
+          .replace(".", " ")
+          .replace("(", " ")
+          .replace(")", " ");
+        const slug = slugify(cleanString, { lower: true });
 
-            const slug = slugify(cleanString, { lower: true });
-            const listComponent = (
-              <div className="c-browsemap__transcript" key={index}>
-                {/* {transcriptTitle} */}
-
-                <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
-              </div>
-            );
-
-            return listComponent;
-          })}
-        </ul>
-      );
+        return (
+          <div key={index}>
+            <li className="c-browsemap__transcript" key={index}>
+              <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
+            </li>
+          </div>
+        );
+      });
     } else {
       return <div>There are currently no documents for {searchValue}</div>;
     }
