@@ -698,7 +698,7 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__info {
-      margin: 4vh 0vw;
+      margin: 4vh 18vw;
     }
   }
 `;
