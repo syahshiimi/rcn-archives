@@ -219,7 +219,7 @@ const TranscriptWrapper = styled.section`
     display: grid;
     column-gap: 4vw;
     row-gap: 3vh;
-    grid-template-columns: auto;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       "title title"
