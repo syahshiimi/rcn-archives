@@ -109,10 +109,10 @@ const ButtonWrapper = styled.div`
     transition: var(--hover-transition);
   }
 
-  button:hover {
+ button:hover {
     transform: translateY(-4px);
     box-shadow: var(--hovercard-default);
-})
+}
 `;
 
 const AltButtonWrapper = styled.div`

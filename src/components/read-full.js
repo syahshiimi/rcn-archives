@@ -20,7 +20,7 @@ export const ReadFullButton = ({ slug }) => {
   );
 };
 
-const ReadFullButtonWrapper = styled.article`
+const ReadFullButtonWrapper = styled.button`
   display: none;
   @media (min-width: 992px) {
     display: flex;
@@ -54,6 +54,14 @@ const ReadFullButtonWrapper = styled.article`
     .c-readfullbutton__icon {
       height: 2.5rem;
       width: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    transition: var(--hover-transition);
+
+    :hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hovercard-default);
     }
   }
 `;

@@ -112,6 +112,12 @@ const CollectionCardWrapper = styled.section`
     .c-collectioncard {
       padding: 2vh 1.5vh;
       margin: 1vh 0vw;
+      transition: var(--hover-transition);
+    }
+
+    .c-collectioncard: hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 5px 14px rgba(51, 53, 51, 0.65);
     }
 
     .c-collectioncard__title {
