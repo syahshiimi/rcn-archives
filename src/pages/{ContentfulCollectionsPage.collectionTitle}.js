@@ -67,31 +67,32 @@ const CollectionsTemplate = ({ data }) => {
         <p className="c-collectionspage__trasnscriptssubtitle">
           These transcripts were interviewed by {interviewer}
         </p>
-
-        <Masonry
-          breakpointCols={{ default: 1, 992: 1, 1280: 3, 2560: 4 }}
-          columnClassName="c-collectionspage__masonrycolumn"
-          className="c-collectionspage__cardcontainer"
-        >
-          {collectionTranscripts.map((item) => {
-            const {
-              id,
-              transcriptTitle,
-              interviewer,
-              oneLineTeaser: {
-                childMarkdownRemark: { html },
-              },
-            } = item;
-            return (
-              <FeatureCard
-                key={id}
-                transcriptTitle={transcriptTitle}
-                interviewer={interviewer}
-                html={html}
-              />
-            );
-          })}
-        </Masonry>
+        <div className="c-collectionspage__container">
+          <Masonry
+            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2560: 3 }}
+            columnClassName="c-collectionspage__masonrycolumn"
+            className="c-collectionspage__cardcontainer"
+          >
+            {collectionTranscripts.map((item) => {
+              const {
+                id,
+                transcriptTitle,
+                interviewer,
+                oneLineTeaser: {
+                  childMarkdownRemark: { html },
+                },
+              } = item;
+              return (
+                <FeatureCard
+                  key={id}
+                  transcriptTitle={transcriptTitle}
+                  interviewer={interviewer}
+                  html={html}
+                />
+              );
+            })}
+          </Masonry>
+        </div>
         <BackTopButton />
       </CollectionsWrapper>
     </Layout>
@@ -123,6 +124,11 @@ const CollectionsWrapper = styled.section`
     font-size: 0.85rem;
   }
 
+  .c-collectionspage__container {
+    background-color: var(--primary-clr-50);
+    border-radius: var(--border-rad-mobile);
+  }
+
   .c-collectionspage__cardcontainer {
     padding: 1vh 2vw;
     width: auto;
@@ -149,6 +155,9 @@ const CollectionsWrapper = styled.section`
     .c-collectionspage__trasnscriptssubtitle {
       margin-bottom: 1vh;
     }
+    .c-collectionspage__container {
+      padding: 1vw;
+    }
 
     .c-collectionspage__cardcontainer {
       padding: 0;
@@ -171,12 +180,44 @@ const CollectionsWrapper = styled.section`
     .c-collectionspage__masonrycolumn {
       margin: 0;
     }
+    .c-collectionspage__container {
+      margin-bottom: 2vh;
+    }
     .c-collectionspage__cardcontainer {
+      margin: 0;
+    }
+    .c-collectionspage__transcriptstitle {
       margin: 2vh 0vw;
     }
 
     .c-collectionspage__trasnscriptssubtitle {
+      margin: 1vh 0vw 4vh 0vw;
+    }
+  }
+  ///////////////////////////
+  /////// 4k Desktop ////////
+  ///////////////////////////
+
+  @media (min-width: 2560px) {
+    padding: 4vh 24vw;
+
+    .c-collectionspage__blurb {
       margin: 1vh 0vw;
+    }
+
+    .c-collectionspage__container {
+      margin: 3vh 0vw;
+    }
+    .c-collectionspage__masonrycolumn {
+      margin: 0;
+    }
+    .c-collectionspage__cardcontainer {
+      margin: 0vh 0vw;
+    }
+
+    .c-collectionspage__trasnscriptssubtitle {
+      margin: 1vh 0vw;
+      font-size: 1rem;
     }
   }
 `;

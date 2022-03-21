@@ -78,6 +78,9 @@ const FeatureCardWrapper = styled.div`
       justify-content: center;
       margin: 0.5vh 0vw;
     }
+    .c-featurecard__title {
+      margin: 0vh 1vw;
+    }
     .c-featurecard__oneliner {
       font-size: 4rem !important;
       p {
@@ -115,8 +118,8 @@ const FeatureCardWrapper = styled.div`
 
   @media (min-width: 2560px) {
     .c-featurecard {
-      margin: 1.5vh 1vw;
-      padding: 2.5vh 0.5vw;
+      margin: 1vh 0.5vw;
+      padding: 2.5vh 1.5vw;
     }
   }
 `;
