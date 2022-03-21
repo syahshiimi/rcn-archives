@@ -178,5 +178,12 @@ const CollectionCardWrapper = styled.section`
     .c-collectioncard__read {
       margin: 0.25vh;
     }
+
+    .c-collectioncard__button {
+      margin: 0;
+    }
+    .c-simplebutton {
+      margin: 0vh 1vw;
+    }
   }
 `;

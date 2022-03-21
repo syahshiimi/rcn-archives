@@ -594,7 +594,7 @@ const IndexWrapper = styled.main`
   ///////// 4k Display //////////////
   ///////////////////////////////////
   @media (min-width: 2560px) {
-    padding: 4vh 20vw;
+    padding: 2vh 20vw 4vh 20vw;
     .c-divider__one {
       margin: 5vh 0.25vw 20vh 0.25vw; // top, right, bottom, left
     }

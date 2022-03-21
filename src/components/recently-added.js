@@ -162,7 +162,7 @@ const RecentlyAddWrapper = styled.section`
 
   @media (min-width: 2560px) {
     .c-recentlyaddedcard {
-      margin: 1.5vh 1vw;
+      margin: 1.5vh 0.5vw;
       padding: 2.5vh 0.5vw;
     }
     .c-recentlyaddedcard__title {
@@ -170,11 +170,15 @@ const RecentlyAddWrapper = styled.section`
     }
 
     .c-recentlyaddedcard__oneliner {
-      margin: 1vh 1.8vw;
+      margin: 1vh 1vw;
     }
 
     .c-recentlyaddedcard__read {
       margin: 0.25vh;
+    }
+
+    .c-simplebutton {
+      margin: 0vh 1vw;
     }
   }
 `;
