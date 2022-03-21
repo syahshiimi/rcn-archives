@@ -466,6 +466,9 @@ const AccordionWrapper = styled.div`
     
     @media (min-width: 2560px) {
       margin: 0vh;
+      /* Document Summary Accordion */
+      .c-accordion__summary {
+      }
       
   /* Document Information Accordion */
     .c-accordion__info > *  {
@@ -476,10 +479,11 @@ const AccordionWrapper = styled.div`
       .c-accordion__qns {
         padding: 3vh 0vw;
       ol > li > p {
-        font-size: 1.25em;
 
+          font-size: 1.125rem;
       }
       }
     }
+
     
 `;
