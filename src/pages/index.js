@@ -22,6 +22,7 @@ export const query = graphql`
             resizingBehavior: FILL
             placeholder: TRACED_SVG
             layout: CONSTRAINED
+            quality: 7
           )
           browsearchivesalt: title
         }
@@ -30,6 +31,7 @@ export const query = graphql`
             resizingBehavior: FILL
             placeholder: TRACED_SVG
             layout: CONSTRAINED
+            quality: 7
           )
           workshopalt: title
         }
@@ -39,6 +41,8 @@ export const query = graphql`
             layout: CONSTRAINED
             placeholder: TRACED_SVG
             resizingBehavior: FILL
+            formats: WEBP
+            quality: 7
           )
           welcomealt: title
         }
@@ -52,6 +56,7 @@ export const query = graphql`
             placeholder: TRACED_SVG
             resizingBehavior: FILL
             layout: CONSTRAINED
+            quality: 7
           )
           membersalt: title
         }
