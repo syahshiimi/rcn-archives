@@ -317,6 +317,8 @@ const AccordionWrapper = styled.div`
   .c-accordion__info > * {
     margin: 1vh 6vw;
   }
+
+
   .c-accordion__tagsandkeyscontainer {
     display: flex;
     flex-direction: column;
@@ -389,6 +391,9 @@ const AccordionWrapper = styled.div`
     /* Document Information Accordion */
     .c-accordion__info > * {
       margin: 1vh 3vw;
+    }
+    .c-accordion__info > .c-transcript__contentnotes {
+    margin: 2vh 5vw;
     }
     
     .c-transcript__contenttags {
@@ -468,18 +473,29 @@ const AccordionWrapper = styled.div`
       margin: 0vh;
       /* Document Summary Accordion */
       .c-accordion__summary {
+        p {
+          margin: 1vh 2vw;
+          text-align: justify !important;
+        }
       }
       
   /* Document Information Accordion */
     .c-accordion__info > *  {
-      margin: 1vh 3vw;
+      margin: 1vh 2vw;
     }
+
+    .c-accordion__info > .c-transcript__contentnotes {
+    margin: 0vh 3vw;
+    }
+
 
   /* Document Questions Accordion */
       .c-accordion__qns {
         padding: 3vh 0vw;
+        ol > li {
+      margin: 1vh 2.5vw;
+        }
       ol > li > p {
-
           font-size: 1.125rem;
       }
       }
