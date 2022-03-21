@@ -236,9 +236,10 @@ const EventsCardWrapper = styled.div`
   //////////////////////////
 
   @media (min-width: 2560px) {
+    margin: 1vh 0.5vw;
+    padding: 3vh 2vw;
     .c-pastevents__title {
       text-align: left;
-      font-size: 1.5rem;
       margin: 1vh 0vw;
     }
     .c-pastevents__date {
@@ -246,7 +247,6 @@ const EventsCardWrapper = styled.div`
       margin: 1vh 0vw;
     }
     .c-pastevents__location {
-      font-size: 1.125rem;
       margin: 1vh 0vw;
     }
   }
@@ -336,6 +336,7 @@ const EventScheduleWrapper = styled.div`
       .c-eventschedule__card {
         margin: 3vh 2vw;
         padding: 3vh 4vw;
+      * }
       }
 
     }

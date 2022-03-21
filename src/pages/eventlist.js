@@ -143,15 +143,15 @@ const EventWrapper = styled.main`
     }
 
     .l-pastevents__list {
-      padding: 2vh 4vw;
-      border-radius: calc(4vw + 1px);
+      padding: 2vh;
+      border-radius: var(--border-rad-desktop);
     }
     .c-pastevents__heading {
       font-size: 4.5rem;
     }
 
-    .l-pastevents__container > * {
-      margin: 2vh 0vw;
+    .l-pastevents__containerColumn {
+      margin: 0;
     }
   }
 `;
