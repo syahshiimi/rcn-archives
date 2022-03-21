@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="nav__separator"></div>
       <div className="nav__dropdown">
         <div className="nav__header">
-          <button className="nav__btn" onClick={handleClick}>
+          <button className="nav-btn__hamburger" onClick={handleClick}>
             <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
           <div className="nav__currentPage">
@@ -62,7 +62,7 @@ const Navbar = () => {
               <CurrentPage />
             </p>
           </div>
-          <button className="nav__btn btn--hidden">
+          <button className="nav-btn__hamburger  btn--hidden">
             <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
         </div>
@@ -158,7 +158,7 @@ const NavStyle = styled.nav`
     border-radius: 40px;
   }
 
-  .nav__btn {
+  .nav-btn__hamburger {
     display: flex;
     align-items: center;
     border: none;
@@ -354,6 +354,9 @@ const NavStyle = styled.nav`
       font-size: 0.95rem;
       color: var(--primary-clr-50);
       margin: 0 !important;
+    }
+    .c-nav__dropdowntext {
+      color: inherit;
     }
 
     /* toggle class */

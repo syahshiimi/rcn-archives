@@ -18,7 +18,7 @@ export const DropdownComponent = ({ subMenu, dropdown }) => {
             className={"c-nav" + " " + text}
             key={index}
           >
-            {text}
+            <p className="c-nav__dropdowntext">{text}</p>
           </Link>
         );
       })}
