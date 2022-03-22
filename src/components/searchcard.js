@@ -36,10 +36,11 @@ export const SearchCard = ({
           {" "}
           <div className="c-searchcard__titlecontainer">
             From{" "}
-            <span className="c-searchcard__bottomtitle">{transcriptTitle}</span>{" "}
+            {/*<span className="c-searchcard__bottomtitle">{transcriptTitle}</span>{" "}*/}
+            <Link to={`${slug}`}>{transcriptTitle}</Link>
           </div>
           <span className="c-searchcard__read">
-            <Link to={`${slug}`}>Read More </Link>
+            <Link to={`${slug}`}>{transcriptTitle}</Link>
           </span>
         </section>
       </div>
@@ -86,6 +87,15 @@ const SearchCardWrapper = styled.main`
     margin: 1vh 0vw;
     color: var(--primary-clr-150);
     text-align: center;
+    display: none;
+    visibility: none;
+  }
+  .c-searchcard__bottomtitle {
+    font-family: "Lora", serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    font-style: italic;
+    text-align: left;
   }
 
   .c-tagscontainer {
@@ -101,21 +111,18 @@ const SearchCardWrapper = styled.main`
 
   .c-searchcard__titlecontainer {
     /* font-size: 0.95rem; */
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin: 1vh 0vw;
     text-align: center;
     font-family: "Ubuntu", Sans-Serif !important;
     a {
       /* font-family: "Lora", Serif !important; */
       font-weight: bold !important;
+      font-family: "Lora", serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      font-weight: 900;
     }
-  }
-  .c-searchcard__bottomtitle {
-    font-family: "Lora", serif;
-    font-size: 0.85rem;
-    font-weight: 900;
-    font-style: italic;
-    text-align: left;
   }
 
   //////////////////////////////
