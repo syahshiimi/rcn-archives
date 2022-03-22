@@ -54,7 +54,11 @@ const Navbar = () => {
       <div className="nav__separator"></div>
       <div className="nav__dropdown">
         <div className="nav__header">
-          <button className="nav-btn__hamburger" onClick={handleClick}>
+          <button
+            className="nav-btn__hamburger"
+            aria-label="Hambuger Icon"
+            onClick={handleClick}
+          >
             <GiHamburgerMenu color="var(--primary-clr-100)" />
           </button>
           <div className="nav__currentPage">
