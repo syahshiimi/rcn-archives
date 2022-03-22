@@ -12,7 +12,7 @@ export const DropdownComponent = ({ subMenu, dropdown }) => {
       {subMenu.map((items, index) => {
         const { pageID, url, text } = items;
         return (
-          <li className={"c-nav" + "__" + text}>
+          <li className={"c-nav" + "__" + text} key={pageID + text}>
             <Link
               activeClassName="active--link"
               to={url}
