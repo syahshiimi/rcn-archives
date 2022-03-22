@@ -357,6 +357,7 @@ const NavStyle = styled.nav`
     }
     .c-nav__dropdowntext {
       color: inherit;
+      font-size: inherit;
     }
 
     /* toggle class */
