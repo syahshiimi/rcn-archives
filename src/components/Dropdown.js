@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { Link } from "gatsby";
+import React, { useState } from "react";
 
 export const DropdownComponent = ({ subMenu, dropdown }) => {
   // to render the submenu dropdown, first check if the item has a subMenu
@@ -12,14 +12,16 @@ export const DropdownComponent = ({ subMenu, dropdown }) => {
       {subMenu.map((items, index) => {
         const { pageID, url, text } = items;
         return (
-          <Link
-            activeClassName="active--link"
-            to={url}
-            className={"c-nav" + " " + text}
-            key={index}
-          >
-            <p className="c-nav__dropdowntext">{text}</p>
-          </Link>
+          <li className={"c-nav" + "__" + text}>
+            <Link
+              activeClassName="active--link"
+              to={url}
+              className={"c-nav__link" + " " + text}
+              key={index}
+            >
+              <p className="c-nav__dropdowntext">{text}</p>
+            </Link>
+          </li>
         );
       })}
     </ul>

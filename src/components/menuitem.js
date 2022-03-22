@@ -32,7 +32,7 @@ export const MenuItems = ({ link, index }) => {
         <Link
           activeClassName="active--link"
           to={url}
-          className={"c-nav" + "__" + "link" + "  " + text}
+          className={"c-nav__link" + " " + text}
         >
           {text}
         </Link>

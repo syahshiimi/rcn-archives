@@ -1,5 +1,4 @@
 // Icons
-import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
@@ -66,9 +65,6 @@ const Navbar = () => {
               <CurrentPage />
             </p>
           </div>
-          <button className="nav-btn__hamburger  btn--hidden">
-            <GiHamburgerMenu color="var(--primary-clr-100)" />
-          </button>
         </div>
         <div className="nav__list" ref={linksContainerRef}>
           <ul className="nav__links" ref={linksRef}>
@@ -235,9 +231,13 @@ const NavStyle = styled.nav`
   }
 
   /* hide Search Map as it is not available for mobile */
-  .c-nav.Search.Map {
+  .c-nav__Search.Map {
     display: none;
     visibility: none;
+  }
+
+  .c-nav__Search.Archive {
+    list-style: none;
   }
 
   ///////////////////////////////
@@ -361,7 +361,7 @@ const NavStyle = styled.nav`
     }
     .c-nav__dropdowntext {
       color: inherit;
-      font-size: inherit;
+      font-size: 0.85rem;
     }
 
     /* toggle class */
@@ -385,12 +385,10 @@ const NavStyle = styled.nav`
       display: flex;
       visibility: visible;
       justify-content: flex-end;
-      font-size: 0.85rem;
     }
-    .c-nav.Search.Map {
+    .c-nav__Search.Map {
       display: flex;
       justify-content: flex-end;
-      font-size: 0.85rem;
       visibility: visible;
     }
   }
@@ -426,14 +424,18 @@ const NavStyle = styled.nav`
       visibility: visible;
     }
 
-    .c-nav.Search.Archive {
+    .c-nav__Search.Archive {
       font-size: 0.85rem;
     }
-    .c-nav.Search.Map {
+    .c-nav__Search.Map {
       display: flex;
       justify-content: flex-end;
       font-size: 0.85rem;
       visibility: visible;
+    }
+    .c-nav__dropdowntext {
+      color: inherit;
+      font-size: 0.85rem;
     }
   }
 
@@ -449,6 +451,10 @@ const NavStyle = styled.nav`
     }
     .nav__subtitle {
       font-size: 1.2rem !important;
+    }
+    .c-nav__dropdowntext {
+      color: inherit;
+      font-size: 0.85rem;
     }
   }
 `;
