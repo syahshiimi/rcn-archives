@@ -92,7 +92,7 @@ const CollectionCardWrapper = styled.section`
 
   .c-collectioncard__blurb {
     margin: 2vh 1vw 0vh 1vw;
-    text-align: justify;
+    text-align: left;
     p {
       font-size: 0.85rem;
       line-height: 1.25;

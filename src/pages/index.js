@@ -523,12 +523,14 @@ const IndexWrapper = styled.main`
     padding: 4vh 10vw;
 
     .c-divider__one {
-      margin: 5vh 0.5vw 20vh 0.5vw;     }
+      margin: 5vh 0.5vw 20vh 0.5vw;
+    }
     .c-divider__two {
-      margin: 5vh 0.5vw 20vh 0.5vw;     }
+      margin: 5vh 0.5vw 20vh 0.5vw;
+    }
 
     .l-welcome {
-      margin: 0vh 1vw 2vh 1vw;
+      margin: 0vh 1vw 0vh 1vw;
     }
     .c-welcome__title {
       font-size: 1.7rem;
@@ -542,15 +544,14 @@ const IndexWrapper = styled.main`
     }
     .c-featureddocs__title {
       font-size: 1.7rem;
-    
-  }
+    }
 
     .c-recentlyadded__title {
       font-size: 1.7rem;
     }
 
     .l-browsearchives {
-      margin: 0vh 1vw 2vh 1vw;
+      margin: 0vh 1vw 0vh 1vw;
     }
     .c-browsearchives__title {
       font-size: 1.7rem;
@@ -568,7 +569,7 @@ const IndexWrapper = styled.main`
     }
 
     .l-workshops {
-      margin: 0vh 1vw 2vh 1vw;
+      margin: 0vh 1vw 0vh 1vw;
     }
 
     .c-workshops__title {
@@ -582,7 +583,7 @@ const IndexWrapper = styled.main`
     }
 
     .l-projectmembers {
-      margin: 0vh 1vw 2vh 1vw;
+      margin: 0vh 1vw 0vh 1vw;
     }
     .c-projectmembers__title {
       margin-bottom: 2vh;
