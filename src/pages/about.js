@@ -50,6 +50,9 @@ export const query = graphql`
         }
       }
       projectMembersList
+      workshopParticipants
+      overseasResearchers
+      phDMaUndergraduateStudents
       researchAssistant
       developerDesigner
       secondImage {
@@ -94,6 +97,9 @@ const About = ({ data }) => {
       childMarkdownRemark: { PIBio },
     },
     formerCurrentPostdoctoralFellows,
+    workshopParticipants,
+    overseasResearchers,
+    phDMaUndergraduateStudents,
     projectMembersList,
     developerDesigner,
     researchAssistant,
@@ -111,6 +117,7 @@ const About = ({ data }) => {
       childMarkdownRemark: { projectmembers },
     },
   } = aboutUs;
+  console.log(aboutUs);
 
   // use getImage function to provide fallback class if NO iamge exists
   const pathToFirstImage = getImage(firstImage);
@@ -225,13 +232,40 @@ const About = ({ data }) => {
                 {developerDesigner}
               </p>
             </div>
+            <div className="c-rpojectmembers__phdmastudents">
+              <h4 className="c-projectmembers__phdmaTitle">
+                PhD and MA Researchers
+              </h4>
+              {phDMaUndergraduateStudents.map((item, index) => {
+                return (
+                  <p
+                    className="c-projectmembers__phdmastudentsnames"
+                    key={index}
+                  >
+                    {item}
+                  </p>
+                );
+              })}
+            </div>
             <div className="c-projectmembers__researchers">
               <h4 className="c-projectmemebers__researchersTitle">
-                Researchers
+                Overseas Researchers
               </h4>{" "}
-              {projectMembersList.map((item, index) => {
+              {overseasResearchers.map((item, index) => {
                 return (
                   <p className="c-projectmembmers__researcherNames" key={index}>
+                    {item}
+                  </p>
+                );
+              })}
+            </div>
+            <div className="c-projectmembers__workshopparticipants">
+              <h4 className="c-projectmemebers__workshopparticpantstitle">
+                Workshop Participants
+              </h4>{" "}
+              {workshopParticipants.map((item, index) => {
+                return (
+                  <p className="c-projectmembmers__particpantnames" key={index}>
                     {item}
                   </p>
                 );
