@@ -196,7 +196,7 @@ const About = ({ data }) => {
               <GatsbyImage
                 image={pathToPrincipalImage}
                 alt="principal_investigator_image"
-                class="c-projectmembers__piImage"
+                className="c-projectmembers__piImage"
               ></GatsbyImage>
               <h4 className="c-projectmembers__piTitle">
                 Principal Investigator
@@ -232,7 +232,7 @@ const About = ({ data }) => {
                 {developerDesigner}
               </p>
             </div>
-            <div className="c-rpojectmembers__phdmastudents">
+            <div className="c-projectmembers__phdmastudents">
               <h4 className="c-projectmembers__phdmaTitle">
                 PhD and MA Researchers
               </h4>
@@ -489,18 +489,16 @@ const AboutWrapper = styled.main`
     .c-projectmembers__info {
       flex: 1 1 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: auto;
       grid-template-rows: auto;
       row-gap: 0vh;
       grid-template-areas:
-        "pi pi"
-        ". researchers"
-        "fellows researchers"
-        ". researchers"
-        "ra researchers"
-        ". researchers"
-        "devdes researchers"
-        ". researchers";
+        "pi pi "
+        "fellows researchers "
+        "phdma researchers "
+        "ra researchers "
+        "devdes researchers "
+        "participants participants";
     }
 
     .c-projectmembers__pi {
@@ -539,26 +537,36 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__fellows {
-      margin: 0vh 4vw;
+      margin: 0vh 0vw;
       grid-area: fellows;
       align-self: center;
     }
 
     .c-projectmembers__RA {
-      margin: 0vh 4vw;
+      margin: 0vh 0vw;
       grid-area: ra;
       align-self: center;
     }
 
     .c-projectmembers__devdesign {
-      margin: 0vh 4vw;
+      margin: 0vh 0vw;
       grid-area: devdes;
       align-self: center;
     }
 
     .c-projectmembers__researchers {
-      margin: 0vh 4vw;
+      margin: 0vh 0vw;
       grid-area: researchers;
+    }
+
+    .c-projectmembers__phdmastudents {
+      grid-area: phdma;
+      align-self: center;
+      margin: 0;
+    }
+    .c-projectmembers__workshopparticipants {
+      grid-area: participants;
+      margin: 0vh 0vw;
     }
 
     .c-projectmembers__contributebtn {
