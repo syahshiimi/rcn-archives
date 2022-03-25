@@ -131,7 +131,7 @@ const SearchCardWrapper = styled.main`
 
   @media (min-width: 992px) {
     .l-searchcard {
-      padding: 2.5vh 5vw 1.5vh 5vw;
+      padding: 2.5vh 4vw 1.5vh 4vw;
       margin: 1.5vh 1vw;
       display: flex;
       justify-content: center;
@@ -182,10 +182,6 @@ const SearchCardWrapper = styled.main`
   //////////////////////
 
   @media (min-width: 1280px) {
-    .l-searchcard > * {
-      margin: 0;
-    }
-
     .l-searchcard > a {
       margin: 1vh;
     }
@@ -196,7 +192,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .l-searchcard {
-      padding: 3vh 3vw 2vh 3vw;
+      padding: 3vh 2.5vw 2vh 2.5vw;
       transition: var(--hover-transition);
       flex: 0 0 auto;
     }
@@ -204,6 +200,13 @@ const SearchCardWrapper = styled.main`
     .c-searchcard__desktoptitle {
       font-size: 1.15rem;
       margin: 1vh 0vw;
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        transition: var(--hover-transition);
+        text-decoration: underline;
+      }
     }
 
     .c-searchcard__oneliner {
@@ -222,7 +225,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-tagscontainer {
-      margin: 2vh 0.5vw 0;
+      margin: 1vh 0.5vw 0;
       justify-content: space-around;
     }
 
@@ -230,6 +233,12 @@ const SearchCardWrapper = styled.main`
       margin: 0.5vh 0.2vw;
       flex: 1 1 auto;
       justify-content: center;
+
+      :hover {
+        transform: translateY(-2px);
+        box-shadow: var(--hovercard-default);
+        transition: var(--hover-transition);
+      }
     }
 
     .c-tagscontainer__tag {
