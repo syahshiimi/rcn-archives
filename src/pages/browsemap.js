@@ -43,13 +43,12 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    right: "auto",
+    justifyContent: "center",
+    textAlign: "center",
     bottom: "auto",
-    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     display: "flex",
     justifyContent: "center",
-    alignSelf: "center",
     backgroundColor: "#cfdbd5",
     fontFamily: "Ubuntu",
     padding: "4vh 6vw",
@@ -57,7 +56,10 @@ const customStyles = {
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
+    maxHeight: "70vh",
     listStyle: "none",
+    flexBasis: "20%",
+    flexWrap: "wrap",
   },
 };
 
