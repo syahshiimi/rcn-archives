@@ -43,7 +43,6 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    justifyContent: "center",
     textAlign: "center",
     bottom: "auto",
     transform: "translate(-50%, -50%)",
@@ -51,14 +50,15 @@ const customStyles = {
     justifyContent: "center",
     backgroundColor: "#cfdbd5",
     fontFamily: "Ubuntu",
-    padding: "4vh 6vw",
+    padding: "4vh 4vw",
     opacity: "0.9",
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
+    flexGrow: "1",
     maxHeight: "70vh",
     listStyle: "none",
-    flexBasis: "20%",
+    flexBasis: "100%",
     flexWrap: "wrap",
   },
 };
@@ -104,21 +104,21 @@ const BrowseMap = () => {
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
 
     // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
-    const filterResults = results
-      .map((item, index) => {
-        const { transcriptTags } = item;
-        if (transcriptTags.includes(searchValue)) {
-          return item;
-        } else {
-          return null;
-        }
-      })
-      .filter((item) => {
-        return item != null;
-      });
+    //    const filterResults = results
+    //      .map((item, index) => {
+    //        const { transcriptTags } = item;
+    //        if (transcriptTags.includes(searchValue)) {
+    //          return item;
+    //        } else {
+    //          return null;
+    //        }
+    //      })
+    //      .filter((item) => {
+    //        return item != null;
+    //      });
 
     // We sort the results
-    filterResults.sort(function (a, b) {
+    results.sort(function (a, b) {
       const nameA = a.transcriptTitle.toUpperCase();
       const nameB = b.transcriptTitle.toUpperCase();
 
@@ -132,8 +132,8 @@ const BrowseMap = () => {
       return 0;
     });
 
-    if (filterResults.length > 0) {
-      return filterResults.map((item, index) => {
+    if (results.length > 0) {
+      return results.map((item, index) => {
         const { transcriptTitle } = item;
 
         const cleanString = transcriptTitle
