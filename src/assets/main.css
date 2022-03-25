@@ -233,7 +233,37 @@ input {
 
 /* modal styling */
 .c-browsemap__transcript {
-  margin: 1vh 0vw;
+  margin: .5vh 1vw;
+  padding: 4vh 2vw;
+  background-color: var(--primary-clr-100);
+  display: flex;
+  flex: 1 1 0;
+  width: 530px;
+  border-radius: 15px;
+  box-shadow: var(--hovercard-default);
+  transition: var(--hover-transition);
+}
+
+.c-browsemap__transcript:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hovercard-boxshadow);
+  transition: var(--hover-transition);
+  background-color: var(--primary-clr-150);
+}
+
+.c-browsemap__transcript > a {
+  text-decoration: none;
+
+}
+.c-browsemap__transcript:hover > a {
+  text-decoration: none;
+  color: var(--primary-clr-100);
+
+}
+
+.c-browsemap__noresults {
+  text-align: center;
+
 }
 
 /* tablet displays wide 992px */

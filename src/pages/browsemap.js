@@ -43,23 +43,20 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    textAlign: "center",
     bottom: "auto",
     transform: "translate(-50%, -50%)",
     display: "flex",
-    justifyContent: "center",
     backgroundColor: "#cfdbd5",
     fontFamily: "Ubuntu",
-    padding: "4vh 4vw",
     opacity: "0.9",
+    padding: "4vh 2vw",
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
-    flexGrow: "1",
-    maxHeight: "70vh",
+    flex: "1 1 auto",
+    maxHeight: "80vh",
+    overflow: "auto",
     listStyle: "none",
-    flexBasis: "100%",
-    flexWrap: "wrap",
   },
 };
 
@@ -149,7 +146,11 @@ const BrowseMap = () => {
         );
       });
     } else {
-      return <div>There are currently no documents for {searchValue}</div>;
+      return (
+        <div className="c-browsemap__noresults">
+          There are currently no documents for {searchValue}
+        </div>
+      );
     }
   }
 
