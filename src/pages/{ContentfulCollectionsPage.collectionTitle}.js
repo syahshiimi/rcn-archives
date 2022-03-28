@@ -174,10 +174,17 @@ const CollectionsWrapper = styled.section`
   ///////////////////////////
 
   @media (min-width: 1280px) {
+    .c-collectionspage__title {
+      margin: 2vh 10vw;
+    }
     .c-collectionspage__blurb {
-      margin: 3vh 0vw;
+      margin: 0vh 0vw;
     }
     .c-collectionspage__masonrycolumn {
+      margin: 0;
+    }
+
+    .c-collectionspage__border {
       margin: 0;
     }
     .c-collectionspage__container {
@@ -191,7 +198,7 @@ const CollectionsWrapper = styled.section`
     }
 
     .c-collectionspage__trasnscriptssubtitle {
-      margin: 1vh 0vw 4vh 0vw;
+      margin: 0vh 0vw 4vh 0vw;
     }
   }
   ///////////////////////////
