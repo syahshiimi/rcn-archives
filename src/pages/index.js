@@ -602,20 +602,12 @@ const IndexWrapper = styled.main`
   @media (min-width: 2560px) {
     padding: 2vh 20vw 4vh 20vw;
     .c-divider__one {
-      margin: 5vh 0.25vw 20vh 0.25vw; // top, right, bottom, left
+      margin: 5vh 0.25vw 20vh 0.25vw; 
     }
     .c-divider__two {
-      margin: 5vh 0.25vw 20vh 0.25vw; // top, right, bottom, left
+      margin: 5vh 0.25vw 20vh 0.25vw;  
     }
-    .c-welcome__title,
-    .c-featureddocs__title,
-    .c-recentlyadded__title,
-    .c-browsearchives__title,
-    .c-workshops__title,
-    .c-projectmembers__title {
-      font-size: 2.25rem;
-    }
-
+ 
     .l-welcome,
     .l-workshops,
     .l-browsearchives,

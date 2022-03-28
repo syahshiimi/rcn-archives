@@ -209,7 +209,7 @@ const About = ({ data }) => {
               </p>
             </div>
             <div className="c-projectmembers__fellows">
-              <h4 className="c-projectmemebers__fellowsTitle">
+              <h4 className="c-projectmembers__fellowsTitle">
                 Current & Past Postdoctoral Fellows
               </h4>
               {formerCurrentPostdoctoralFellows.map((item, index) => {
@@ -248,7 +248,7 @@ const About = ({ data }) => {
               })}
             </div>
             <div className="c-projectmembers__researchers">
-              <h4 className="c-projectmemebers__researchersTitle">
+              <h4 className="c-projectmembers__researchersTitle">
                 Overseas Researchers
               </h4>{" "}
               {overseasResearchers.map((item, index) => {
@@ -685,7 +685,8 @@ const AboutWrapper = styled.main`
     .c-projectmembers__RAName,
     .c-projectmembmers__fellowNames,
     .c-projectmembers__developerdesignerName,
-    .c-projectmembmers__researcherNames {
+    .c-projectmembmers__researcherNames,
+    .c-projectmembmers__particpantnames {
       font-size: 1rem;
     }
 
@@ -773,11 +774,11 @@ const AboutWrapper = styled.main`
     }
 
     .l-projectmembers {
-      padding: 10vh 10vw;
     }
 
     .c-projectmembers__content {
-      margin: 4vh 18vw;
+      margin: 4vh 27vw;
+      padding: 0;
       p {
         margin: 0;
         font-size: 1.25rem;
@@ -786,6 +787,9 @@ const AboutWrapper = styled.main`
 
     .c-projectmembers__info {
       margin: 4vh 18vw;
+    }
+    .c-projectmembers__participantscontainer {
+      max-height: 1000px;
     }
   }
 `;

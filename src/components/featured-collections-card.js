@@ -174,6 +174,7 @@ const CollectionCardWrapper = styled.section`
       padding: 2.5vh 0.5vw;
     }
     .c-collectioncard__title {
+      margin: 1vh 1vw;
       font-size: 1.125rem;
     }
 
