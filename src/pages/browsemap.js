@@ -53,9 +53,9 @@ const customStyles = {
     borderRadius: "3vh",
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
-    flex: "1 1 auto",
-    maxHeight: "80vh",
+    flex: "0 1 auto",
     overflow: "auto",
+    maxWidth: "40%",
     listStyle: "none",
   },
 };
