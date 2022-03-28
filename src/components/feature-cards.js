@@ -96,12 +96,20 @@ const FeatureCardWrapper = styled.div`
   @media (min-width: 1280px) {
     .c-featurecard {
       margin: 1vh 0.7vw;
+      transition: var(--hover-transition);
       padding: 3vh 2vw;
     }
-
+    .c-featurecard:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 5px 14px rgba(51, 53, 51, 0.65);
+    }
     .c-featurecard__title {
       font-size: 0.95rem;
       margin-bottom: 2vh;
+    }
+
+    .c-featurecard__title:hover {
+      text-decoration: underline;
     }
 
     .c-featurecard__oneliner {

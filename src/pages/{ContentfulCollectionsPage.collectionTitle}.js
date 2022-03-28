@@ -206,7 +206,11 @@ const CollectionsWrapper = styled.section`
   ///////////////////////////
 
   @media (min-width: 2560px) {
-    padding: 4vh 24vw;
+    padding: 5vh 24vw;
+    .c-collectionspage__title {
+      margin: 2vh 0vw;
+      font-size: 4rem;
+    }
 
     .c-collectionspage__blurb {
       margin: 1vh 0vw;
