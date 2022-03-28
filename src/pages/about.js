@@ -260,16 +260,21 @@ const About = ({ data }) => {
               })}
             </div>
             <div className="c-projectmembers__workshopparticipants">
-              <h4 className="c-projectmemebers__workshopparticpantstitle">
+              <h4 className="c-projectmembers__workshopparticpantstitle">
                 Workshop Participants
               </h4>{" "}
-              {workshopParticipants.map((item, index) => {
-                return (
-                  <p className="c-projectmembmers__particpantnames" key={index}>
-                    {item}
-                  </p>
-                );
-              })}
+              <div className="c-projectmembers__participantscontainer">
+                {workshopParticipants.map((item, index) => {
+                  return (
+                    <p
+                      className="c-projectmembmers__particpantnames"
+                      key={index}
+                    >
+                      {item}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </article>
           <button className="c-projectmembers__contributebtn">
@@ -640,15 +645,18 @@ const AboutWrapper = styled.main`
       }
     }
     .l-projectmembers {
-      padding: 10vh 18vw;
+      margin: 0 0 6vh 0;
+      padding: 0;
     }
 
     .c-projectmembers__title {
+      padding: 10vh 18vw 0vh 18vw;
       margin-top: 0;
     }
 
     .c-projectmembers__content {
       margin: 2vh 0vw;
+      padding: 0vh 18vw;
       p {
         font-size: 1.2rem;
         margin: 2vh 0vw;
@@ -656,7 +664,15 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__info {
-      margin: 7vh 0vw;
+      margin: 0vh 9vw 5vh 9vw;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr 1fr 1.45fr;
+      grid-template-areas:
+        "pi pi pi "
+        "fellows researchers participants "
+        "phdma researchers participants  "
+        "ra researchers participants  "
+        "devdes researchers  participants ";
     }
     .c-projectmembers__piName,
     .c-projectmembers__RAName,
@@ -666,6 +682,9 @@ const AboutWrapper = styled.main`
       font-size: 1rem;
     }
 
+    .c-projectmembers__pi {
+      margin: 7vh 9vw;
+    }
     .c-projectmembers__pibio {
       font-size: 1rem;
     }
@@ -673,8 +692,26 @@ const AboutWrapper = styled.main`
     .c-projectmembers__piImage {
       margin: 0 0 1vh 2vw;
     }
+
+    .c-projectmembers__researchers {
+      align-self: baseline;
+    }
+
+    .c-projectmembers__workshopparticipants {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    .c-projectmembers__participantscontainer {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      max-height: 900px;
+    }
     .c-projectmembers__contributebtn {
-      margin: a {
+      margin: 2vh 0vw;
+      a {
         font-size: 1.2rem;
       }
     }
