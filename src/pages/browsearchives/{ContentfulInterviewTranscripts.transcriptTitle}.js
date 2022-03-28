@@ -1,17 +1,17 @@
 import { graphql, Link } from "gatsby";
-import { getImage } from "gatsby-plugin-image";
-import React from "react";
-import styled from "styled-components";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
-import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
 import slugify from "slugify";
+import styled from "styled-components";
 
+import { Accordion } from "../../components/accordion";
+import { Head } from "../../components/head";
 // Components import
 import Layout from "../../components/Layout";
-import { Accordion } from "../../components/accordion";
 import { ReadFullButton } from "../../components/read-full";
 import { NestedTagsContainer } from "../../components/tags";
-import { Head } from "../../components/head";
+import { GroupedTranscripts } from "../../components/groupedtranscripts";
 
 export const query = graphql`
   query getSingleTranscript($transcriptTitle: String) {
@@ -49,6 +49,9 @@ export const query = graphql`
           layout: CONSTRAINED
           aspectRatio: 1.5
         )
+      }
+      groupedTranscripts {
+        transcriptTitle
       }
     }
   }
@@ -121,15 +124,15 @@ const TranscriptTemplate = ({ data }) => {
             <div className="c-transcriptsummary__tagscontainer">
               <NestedTagsContainer tags={transcriptTags} />
             </div>
+            <GroupedTranscripts transcript={transcript} />
           </div>
         </div>
-
         <hr className="c-transcriptsummary__border"></hr>
         <Accordion
           transcript={transcript}
           type="Document Summary"
           name="document__summary"
-        />
+        />{" "}
         <Accordion
           transcript={transcript}
           type="Document Transcript"
@@ -202,6 +205,17 @@ const TranscriptWrapper = styled.section`
     display: none;
   }
 
+  .c-transcriptsummary__groupedtranscriptcontainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 4vh 0vw 2vh 0vw;
+
+    div {
+      margin: 1vh 0vw 0.5vh 0vw;
+    }
+  }
+
   .c-transcriptsummary__tagsandkeywords {
     display: none;
   }
@@ -241,7 +255,7 @@ const TranscriptWrapper = styled.section`
       flex-direction: row-reverse;
       flex-grow: 1 1 auto;
       column-gap: 4vh;
-      margin: 1vh 0vw;
+      margin: 0;
     }
 
     .c-transcriptsummary__subcontainer {
@@ -263,6 +277,18 @@ const TranscriptWrapper = styled.section`
       align-self: center;
       text-align: center;
     }
+
+    .c-transcriptsummary__groupedtranscriptcontainer {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin: 0.5vh 0vw;
+
+      div {
+        margin: 1vh 0vw 0.5vh 0vw;
+      }
+    }
+
     .c-transcriptsummary__tagsandkeywords {
       display: block;
       grid-area: tagsandkeywords;
@@ -313,9 +339,9 @@ const TranscriptWrapper = styled.section`
   /////////////////////////
 
   @media (min-width: 1280px) {
-    padding: 10vh var(--padding-desktop);
+    padding: 6vh var(--padding-desktop);
     row-gap: 4vh;
-  }
+  
 
   .c-transcriptsummary__container {
     column-gap: 6vw;
