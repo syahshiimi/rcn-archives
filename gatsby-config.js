@@ -36,6 +36,21 @@ module.exports = {
 
   plugins: [
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.rcw-asi.com",
+        sitemap: "https://www.rcw-asia.com/sitemap.xml",
+        env: {
+          development: {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+          },
+          production: {
+            policy: [{ userAgent: "*", allow: "/" }],
+          },
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-react-helmet`,
     },
     {

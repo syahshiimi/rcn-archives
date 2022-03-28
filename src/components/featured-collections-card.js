@@ -14,10 +14,6 @@ const query = graphql`
     ) {
       nodes {
         collectionTitle
-        collectionTranscripts {
-          id
-          collectionTitle
-        }
         collectionBlurb {
           childMarkdownRemark {
             html
@@ -31,6 +27,7 @@ const query = graphql`
 export const CollectionCard = () => {
   const data = useStaticQuery(query);
   const collections = data.allContentfulCollectionsPage.nodes;
+  console.log(collections);
 
   return (
     <article className="l-featurecard">
