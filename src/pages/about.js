@@ -571,7 +571,14 @@ const AboutWrapper = styled.main`
     }
     .c-projectmembers__workshopparticipants {
       grid-area: participants;
-      margin: 0vh 0vw;
+      margin: 0vh 9vw;
+    }
+
+    .c-projectmembers__participantscontainer {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      max-height: 1100px;
     }
 
     .c-projectmembers__contributebtn {
@@ -694,13 +701,14 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__researchers {
-      align-self: baseline;
+      align-self: center;
     }
 
     .c-projectmembers__workshopparticipants {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
+      margin: 0;
     }
     .c-projectmembers__participantscontainer {
       margin: 0;
