@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
+import parse from "html-react-parser";
 import React, { useState } from "react";
-import { findDOMNode } from "react-dom";
 import Modal from "react-modal";
 import {
   Annotation,
@@ -12,6 +12,7 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { useFlexSearch } from "react-use-flexsearch";
+import sanitize from "sanitize-html";
 import slugify from "slugify";
 import styled from "styled-components";
 
@@ -100,20 +101,6 @@ const BrowseMap = () => {
 
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
 
-    // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
-    //    const filterResults = results
-    //      .map((item, index) => {
-    //        const { transcriptTags } = item;
-    //        if (transcriptTags.includes(searchValue)) {
-    //          return item;
-    //        } else {
-    //          return null;
-    //        }
-    //      })
-    //      .filter((item) => {
-    //        return item != null;
-    //      });
-
     // We sort the results
     results.sort(function (a, b) {
       const nameA = a.transcriptTitle.toUpperCase();
@@ -156,7 +143,6 @@ const BrowseMap = () => {
 
   // We use a useState hook to determine the value of component.
   // We will use the componenet variable in the useState hook to render later
-  // SetComponent is a function that determines the value of component
   const [component, setComponent] = useState("");
 
   // We define the function which would allow the modification of the component
@@ -168,9 +154,22 @@ const BrowseMap = () => {
     setComponent(<ListofTranscripts searchValue={value} />);
   }
 
+  const pageBlurb = (
+    <h5 className="c-browsemap__content">
+      Our archival map showcases a diverse array of oral transcripts and
+      interviews we have collected and curated throughout the past few years. It
+      is a collective effort of many researchers. Please feel free to click on
+      any of the countries above. The archive is constantly growing.
+    </h5>
+  );
+
+  const {
+    props: { children },
+  } = pageBlurb;
+
   return (
     <Layout>
-      <Head title="Browse Map" />{" "}
+      <Head title="Browse Map" description={children} />{" "}
       <BrowseMapWrapper>
         <h1 className="c-browsemap__title">Browse Archive Map</h1>
         <ReactTooltip className="c-browsemap__tooltip">
@@ -268,13 +267,7 @@ const BrowseMap = () => {
         </div>
         <section className="l-content">
           {" "}
-          <h5 className="c-browsemap__content">
-            Our archival map showcases a diverse array of oral transcripts and
-            interviews we have collected and curated throughout the past few
-            years. It is a collective effort of many researchers. Please feel
-            free to click on any of the countries above. The archive is
-            constantly growing.
-          </h5>
+          {pageBlurb}
           <p className="c-browsemap__contribute">
             If you would like to contribute, you can click on the button below.
           </p>

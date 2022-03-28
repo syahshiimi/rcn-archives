@@ -99,9 +99,15 @@ const Index = () => {
   const pathToProjectMembersImage = getImage(projectMembersImageCard);
   const pathToBrowseArchivesImage = getImage(browseArchiveImageCard);
 
+  // Metadata
+  const metadata = parse(`${html}`);
+  const {
+    props: { children },
+  } = metadata;
+
   return (
     <Layout>
-      <Head title="Home" />
+      <Head title="Home" description={children} />
       <IndexWrapper>
         <section className="l-welcome">
           <h1 className="c-welcome__title">Welcome Message</h1>

@@ -120,13 +120,25 @@ const BrowseArchives = () => {
     ? unFlattenResults(results)
     : transcript;
 
+  // Metadata
+  const pageBlurb = (
+    <p className="c-browsearchives__content">
+      Browse through our carefully curated oral archives. Working with on - the
+      - ground experiences, we aim to provide a wholesome and comprehensive
+      approach towards understanding the cold war from a grassroots perspective.
+    </p>
+  );
+  const {
+    props: { children },
+  } = pageBlurb;
+
   /////////////////////////////
   //////// Render  ////////////
   /////////////////////////////
 
   return (
     <Layout>
-      <Head title="Browse Archives" />
+      <Head title="Browse Archives" description={children} />
       <BrowseArchivesWrapper>
         <section className="l-browsearchives">
           <h1 className="c-browsearchives__heading">Search The Archives</h1>
@@ -135,12 +147,7 @@ const BrowseArchives = () => {
             setSearchQuery={setSearchQuery}
             queries={FilteredTranscript}
           />
-          <p className="c-browsearchives__content">
-            Browse through our carefully curated oral archives. Working with on
-            - the - ground experiences, we aim to provide a wholesome and
-            comprehensive approach towards understanding the cold war from a
-            grassroots perspective.
-          </p>
+          {pageBlurb}
         </section>
         <section className="l-browsearchives__search">
           <h1 className="c-browsearchives__searchresults">Search Results</h1>

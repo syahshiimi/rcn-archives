@@ -117,7 +117,6 @@ const About = ({ data }) => {
       childMarkdownRemark: { projectmembers },
     },
   } = aboutUs;
-  console.log(aboutUs);
 
   // use getImage function to provide fallback class if NO iamge exists
   const pathToFirstImage = getImage(firstImage);
@@ -141,11 +140,16 @@ const About = ({ data }) => {
   const sanitizeProjectMembers = sanitize(projectmembers, {
     allowedTags: ["b", "i", "em", "strong", "a", "p"],
   });
+  // Metadata
+  const metadata = parse(`${sanitizeWhoWeAre}`);
+  const {
+    props: { children },
+  } = metadata;
 
   return (
     <Layout>
       <AboutWrapper>
-        <Head title="About Us" />
+        <Head title="About Us" description={children} />
         <FirstStyledBackgroundImage
           Tag="div"
           image={pathToFirstImage}
