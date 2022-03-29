@@ -442,7 +442,7 @@ const NavStyle = styled.nav`
   /////////////////////////
   /* 4k UHD display */
   //////////////////////
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     padding: 3.5vh 21vw;
     font-size: 2rem;
 

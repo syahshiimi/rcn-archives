@@ -27,7 +27,6 @@ const query = graphql`
 export const CollectionCard = () => {
   const data = useStaticQuery(query);
   const collections = data.allContentfulCollectionsPage.nodes;
-  console.log(collections);
 
   return (
     <article className="l-featurecard">
@@ -165,7 +164,7 @@ const CollectionCardWrapper = styled.section`
   //////// 4k Display //////////
   //////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-collectioncard {
       margin: 1.5vh 1vw;
       padding: 2.5vh 0.5vw;

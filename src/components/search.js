@@ -179,7 +179,7 @@ const SeaerchBarWrapper = styled.div`
     }
   }
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-browsearchives__searchbar {
       margin-left: 19vw;
       margin-right: 19vw;

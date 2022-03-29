@@ -361,7 +361,7 @@ const TranscriptWrapper = styled.section`
   //// 4k Display //////////
   //////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     padding: 6vh 24vw;
     row-gap: 4vh;
 

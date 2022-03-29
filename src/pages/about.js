@@ -732,7 +732,7 @@ const AboutWrapper = styled.main`
   ///////////////////////////////////////
   //////// 4k Desktop ///////////////////
   ///////////////////////////////////////
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     h1 {
       font-size: 4.5rem;
     }

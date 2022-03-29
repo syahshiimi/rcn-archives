@@ -206,7 +206,7 @@ const FooterStyle = styled.footer`
   ////////// 4k Disp ///////////
   //////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     padding: 4vh 21vw;
 
     .l-footersupport {

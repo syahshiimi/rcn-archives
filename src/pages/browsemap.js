@@ -399,7 +399,7 @@ const BrowseMapWrapper = styled.article`
   /////////////////////////////////
   //////////// 4k Display /////////
   /////////////////////////////////
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-browsemap {
       height: 800px;
     }

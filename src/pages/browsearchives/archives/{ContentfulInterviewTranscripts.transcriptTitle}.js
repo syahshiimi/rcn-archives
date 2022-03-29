@@ -276,7 +276,7 @@ const FullTranscriptWrapper = styled.section`
     }
   }
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     padding: 6vh 24vw;
     .c-fulltranscript__oneliner {
       margin: 2vh 0vw;

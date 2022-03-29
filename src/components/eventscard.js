@@ -235,7 +235,7 @@ const EventsCardWrapper = styled.div`
   //////////////////////////
   //////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     margin: 1vh 0.5vw;
     padding: 3vh 2vw;
     .c-pastevents__title {
@@ -332,7 +332,7 @@ const EventScheduleWrapper = styled.div`
     // 4k desktop styling ///
     //////////////////////
       
-    @media (min-width: 2560px) {
+    @media (min-width: 2500px) {
       .c-eventschedule__card {
         margin: 1.5vw 1.5vw 0vw 1.5vw;
         padding: 1.5vw;

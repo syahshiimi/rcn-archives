@@ -33,7 +33,7 @@ export const RecentlyAdd = () => {
 
   if (isBrowser) {
     let recentaddedsliced; // Create a media condition that targets viewports at least 768px wide
-    const mediaQuery = window.matchMedia("(min-width: 2560px)");
+    const mediaQuery = window.matchMedia("(min-width: 2500px)");
     // Check if the media query is true
     if (mediaQuery.matches) {
       recentaddedsliced = recentadded.slice(0, 10);
@@ -44,7 +44,7 @@ export const RecentlyAdd = () => {
     return (
       <article className="l-recentlyaddedcardcard">
         {" "}
-        {recentaddedsliced.map((item, index) => {
+        {recentaddedsliced.map((item) => {
           const {
             transcriptTitle,
             oneLineTeaser: {
@@ -175,7 +175,7 @@ const RecentlyAddWrapper = styled.section`
   //////// 4k Display //////////
   //////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-recentlyaddedcard {
       margin: 1.5vh 0.5vw;
       padding: 2.5vh 0.5vw;

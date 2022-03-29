@@ -124,7 +124,7 @@ const FeatureCardWrapper = styled.div`
     }
   }
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-featurecard {
       margin: 1vh 0.5vw;
       padding: 2.5vh 1.5vw;

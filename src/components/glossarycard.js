@@ -118,7 +118,7 @@ const GlossaryCardWrapper = styled.section`
     }
   }
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .c-glossarycard {
       padding: 4vh 4vw 6vh 4vw;
       border

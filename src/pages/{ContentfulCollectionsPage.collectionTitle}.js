@@ -69,7 +69,7 @@ const CollectionsTemplate = ({ data }) => {
         </p>
         <div className="c-collectionspage__container">
           <Masonry
-            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2560: 3 }}
+            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2500: 3 }}
             columnClassName="c-collectionspage__masonrycolumn"
             className="c-collectionspage__cardcontainer"
           >
@@ -205,7 +205,7 @@ const CollectionsWrapper = styled.section`
   /////// 4k Desktop ////////
   ///////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     padding: 5vh 24vw;
     .c-collectionspage__title {
       margin: 2vh 0vw;

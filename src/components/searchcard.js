@@ -251,7 +251,7 @@ const SearchCardWrapper = styled.main`
   //////// 4k Desktop ///////////
   ///////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .l-searchcard {
       margin: 1vh 0.5vw;
       padding: 2.5vh 2vw;

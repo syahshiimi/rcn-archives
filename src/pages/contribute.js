@@ -158,7 +158,7 @@ const ContributeWrapper = styled.article`
   //////////////////////
   /////// Hi res ///////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .l-contactus {
       padding: 10vh 30vw;
     }

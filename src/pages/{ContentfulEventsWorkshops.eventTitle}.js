@@ -333,7 +333,7 @@ const EventWrapper = styled.main`
     }
   }
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .l-events {
       padding: 10vh 22.5vw;
     }

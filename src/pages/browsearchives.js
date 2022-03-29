@@ -152,7 +152,7 @@ const BrowseArchives = () => {
         <section className="l-browsearchives__search">
           <h1 className="c-browsearchives__searchresults">Search Results</h1>
           <Masonry
-            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2560: 3 }}
+            breakpointCols={{ default: 3, 992: 1, 1280: 2, 2560: 3 }}
             className="c-browsearchives__searchcontainer"
             columnClassName="c-browsearchives__masonrycolumn"
           >
@@ -320,7 +320,7 @@ const BrowseArchivesWrapper = styled.main`
   ////////////////////////////
   ////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .l-browsearchives {
       height: 90vh;
     }

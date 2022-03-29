@@ -137,7 +137,7 @@ const EventWrapper = styled.main`
   //////// 4k Desktop /////////
   /////////////////////////////
 
-  @media (min-width: 2560px) {
+  @media (min-width: 2500px) {
     .l-pastevents {
       padding: 10vh 20vw;
     }
