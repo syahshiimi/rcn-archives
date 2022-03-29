@@ -508,6 +508,9 @@ const AboutWrapper = styled.main`
         "ra researchers "
         "devdes researchers "
         "participants participants";
+      * {
+        margin: 0.5vh 0vw;
+      }
     }
 
     .c-projectmembers__pi {
@@ -548,41 +551,41 @@ const AboutWrapper = styled.main`
     .c-projectmembers__fellows {
       margin: 0vh 0vw;
       grid-area: fellows;
-      align-self: center;
+      align-self: start;
     }
 
     .c-projectmembers__RA {
       margin: 0vh 0vw;
       grid-area: ra;
-      align-self: center;
     }
 
     .c-projectmembers__devdesign {
       margin: 0vh 0vw;
       grid-area: devdes;
-      align-self: center;
+      align-self: start;
     }
 
     .c-projectmembers__researchers {
       margin: 0vh 0vw;
       grid-area: researchers;
+      align-self: start;
     }
 
     .c-projectmembers__phdmastudents {
       grid-area: phdma;
-      align-self: center;
+      align-self: start;
       margin: 0;
     }
     .c-projectmembers__workshopparticipants {
       grid-area: participants;
-      margin: 0vh 9vw;
+      margin: 1vh 9vw;
     }
 
     .c-projectmembers__participantscontainer {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
-      max-height: 1100px;
+      max-height: 550px;
     }
 
     .c-projectmembers__contributebtn {
