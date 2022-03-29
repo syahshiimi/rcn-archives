@@ -414,7 +414,7 @@ const AboutWrapper = styled.main`
     /* border: var(--imagecard-border-clr); */
     border-radius: var(--imagecard-border-radius);
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-    max-width: 100%;
+    max-width: 80%;
     margin: 0;
     padding: 0;
   }
@@ -552,6 +552,8 @@ const AboutWrapper = styled.main`
       margin: 0vh 0vw;
       grid-area: fellows;
       align-self: start;
+
+      }
     }
 
     .c-projectmembers__RA {
@@ -677,10 +679,11 @@ const AboutWrapper = styled.main`
       }
     }
 
-    .c-projectmembers__info {
+   .c-projectmembers__info {
       margin: 0vh 9vw 5vh 9vw;
+      column-gap: .9vw;
       grid-template-rows: auto;
-      grid-template-columns: 1fr 1fr 1.45fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-template-areas:
         "pi pi pi "
         "fellows researchers participants "
@@ -696,6 +699,15 @@ const AboutWrapper = styled.main`
     .c-projectmembmers__particpantnames {
       font-size: 1rem;
     }
+    .c-projectmembers__fellowsTitle,
+    .c-projectmembers__phdmaTitle,
+    .c-projectmembers__RATitle,
+    .c-projectmembers__developerdesignerTitle,
+    .c-projectmembers__researchersTitle,
+    .c-projectmembers__workshopparticpantstitle {
+      margin-bottom: 2vh;
+
+    }
 
     .c-projectmembers__pi {
       margin: 7vh 9vw;
@@ -705,11 +717,40 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__piImage {
-      margin: 0 0 1vh 2vw;
+      margin: 0 0 1vh 4vw;
     }
 
+    .c-projectmembers__fellows {
+      p {
+    text-align: left;
+      }
+    }
+    .c-projectmembers__fellowsTitle {
+      overflow-wrap: break-word;
+
+    }
+
+    .c-projectmembers__RA {
+      p {
+    text-align: left;
+      }
+    }
+
+    .c-projectmembers__devdesign {
+      p {
+    text-align: left;
+      }
+    }
+    .c-projectmembers__phdmastudents {
+      p {
+        text-align: left;
+      }
+
+    }
     .c-projectmembers__researchers {
-      align-self: center;
+      p {
+        text-align: left;
+      }
     }
 
     .c-projectmembers__workshopparticipants {
@@ -721,9 +762,14 @@ const AboutWrapper = styled.main`
     .c-projectmembers__participantscontainer {
       margin: 0;
       display: flex;
-      flex-wrap: wrap;
+      max-height: 750px;
       flex-direction: column;
-      max-height: 900px;
+      max-height: 720px;
+      p {
+
+        margin-right: 2vw;
+        text-align: left;
+      }
     }
     .c-projectmembers__contributebtn {
       margin: 2vh 0vw;
@@ -784,7 +830,7 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__content {
-      margin: 4vh 27vw;
+      margin: 4vh 28vw;
       padding: 0;
       p {
         margin: 0;
@@ -793,10 +839,13 @@ const AboutWrapper = styled.main`
     }
 
     .c-projectmembers__info {
-      margin: 4vh 18vw;
+      margin: 4vh 25vw;
     }
     .c-projectmembers__participantscontainer {
-      max-height: 1000px;
+      max-height: 780px;
+      p {
+        margin-left: 1vw;
+      }
     }
   }
 `;
