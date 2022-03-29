@@ -766,7 +766,6 @@ const AboutWrapper = styled.main`
       flex-direction: column;
       max-height: 720px;
       p {
-
         margin-right: 2vw;
         text-align: left;
       }
