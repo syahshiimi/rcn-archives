@@ -55,6 +55,7 @@ const customStyles = {
     boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
     flexDirection: "column",
     flex: "0 1 auto",
+    maxHeight: "80vh",
     overflow: "auto",
     maxWidth: "40%",
     listStyle: "none",
