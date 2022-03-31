@@ -1,183 +1,184 @@
 import { IconContext } from "@react-icons/all-files/lib";
-import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import { useStaticQuery } from "gatsby";
 import { TiArrowDown } from "@react-icons/all-files/ti/TiArrowDown";
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
-export const query = graphql`
-  {
-    allContentfulSearchFilterList {
-      nodes {
-        contentful_id
-        countryList
-        interviewerList
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     allContentfulSearchFilterList {
+//       nodes {
+//         contentful_id
+//         countryList
+//         interviewerList
+//       }
+//     }
+//   }
+//`;
 
-//////////////////////////////
-/// Main Filter Component ///
-//////////////////////////////
+////////////////////////////////
+///// Main Filter Component ///
+////////////////////////////////
 export const SearchFilter = () => {
-  // Drodpown Filter Effects
-  // 4.1 Hide filter accordion as the initial state, where show = false
-  // and also for icon direction where we start wtih southfacing
-  const [show, setShow] = useState(false);
-  const [normal, setRotate] = useState(true);
-
-  // 4.2 Create button handler for onclick events
-  const SearchClick = () => {
-    setShow(!show); // returns the opposite upon click
-    //    setRotate(!normal) // returns the opposite upon click
-    setRotate(!normal); // reverse thhe arrow position
-  };
-
-  // 4.3  Create CSS Modifiers with useRef
-
-  const SearchFilter = useRef(null);
-  const SearchRef = useRef(null);
-  const SearchBody = useRef(null);
-  const MainrotateArrowIcon = normal
-    ? "c-searchfilter__icon"
-    : "c-searchfilter__icon pulled";
-
-  // 4.4 useEffect() to apply effects onto selected DOM tags
-  useEffect(() => {
-    if (show) {
-      SearchBody.current.style.height = `100%`;
-      SearchBody.current.style.padding = `2vh 4vw`;
-      SearchFilter.current.style.borderRadius = ` calc(2rem + 2px) calc(2rem + 2px) 0 0 `;
-    } else {
-      SearchBody.current.style.height = `0`;
-      SearchBody.current.style.paddingTop = `0`;
-      SearchBody.current.style.paddingBottom = `0`;
-      SearchFilter.current.style.borderRadius = `calc(2rem + 2px)`;
-    }
-  }, [show]);
-
-  return (
-    <SearchFilterWrapper>
-      <button
-        className="c-searchfilter___header"
-        onClick={SearchClick}
-        ref={SearchFilter}
-      >
-        <h5 className="c-searchfilter__title">Search Filter</h5>
-        <IconContext.Provider value={{ className: MainrotateArrowIcon }}>
-          <TiArrowDown />
-        </IconContext.Provider>
-      </button>
-      <div className="c-searchfilter__bodycontainer" ref={SearchBody}>
-        <div className="c-searchfilter__body" ref={SearchRef}>
-          <SubFilter type="Interviewer" />
-          <SubFilter type="Countries" />
-        </div>
-      </div>
-    </SearchFilterWrapper>
-  );
+  //   // Drodpown Filter Effects
+  //   // 4.1 Hide filter accordion as the initial state, where show = false
+  //   // and also for icon direction where we start wtih southfacing
+  //   const [show, setShow] = useState(false);
+  //   const [normal, setRotate] = useState(true);
+  //
+  //   // 4.2 Create button handler for onclick events
+  //   const SearchClick = () => {
+  //     setShow(!show); // returns the opposite upon click
+  //     //    setRotate(!normal) // returns the opposite upon click
+  //     setRotate(!normal); // reverse thhe arrow position
+  //   };
+  //
+  //   // 4.3  Create CSS Modifiers with useRef
+  //
+  //   const SearchFilter = useRef(null);
+  //   const SearchRef = useRef(null);
+  //   const SearchBody = useRef(null);
+  //   const MainrotateArrowIcon = normal
+  //     ? "c-searchfilter__icon"
+  //     : "c-searchfilter__icon pulled";
+  //
+  //   // 4.4 useEffect() to apply effects onto selected DOM tags
+  //   useEffect(() => {
+  //     if (show) {
+  //       SearchBody.current.style.height = `100%`;
+  //       SearchBody.current.style.padding = `2vh 4vw`;
+  //       SearchFilter.current.style.borderRadius = ` calc(2rem + 2px) calc(2rem
+  //       + 2px) 0 0 `;
+  //     } else {
+  //       SearchBody.current.style.height = `0`;
+  //       SearchBody.current.style.paddingTop = `0`;
+  //       SearchBody.current.style.paddingBottom = `0`;
+  //       SearchFilter.current.style.borderRadius = `calc(2rem + 2px)`;
+  //     }
+  //   }, [show]);
+  //
+  //   return (
+  //     <SearchFilterWrapper>
+  //       <button
+  //         className="c-searchfilter___header"
+  //         onClick={SearchClick}
+  //         ref={SearchFilter}
+  //       >
+  //         <h5 className="c-searchfilter__title">Search Filter</h5>
+  //         <IconContext.Provider value={{ className: MainrotateArrowIcon }}>
+  //           <TiArrowDown />
+  //         </IconContext.Provider>
+  //       </button>
+  //       <div className="c-searchfilter__bodycontainer" ref={SearchBody}>
+  //         <div className="c-searchfilter__body" ref={SearchRef}>
+  //           <SubFilter type="Interviewer" />
+  //           <SubFilter type="Countries" />
+  //         </div>
+  //       </div>
+  //     </SearchFilterWrapper>
+  //   );
+  // };
+  //
+  ////////////////////////////////
+  ///////// Sub Filters //////////
+  ///////////////////////////////
+  //
+  // function SubFilter({ type }) {
+  //  const data = useStaticQuery(query);
+  //  const interviewers = data.allContentfulSearchFilterList.nodes;
+  //
+  //  // 1. Destructre array to return the object within it
+  //  const [item] = interviewers;
+  //
+  //  // 2. Destructure object to get the values
+  //  const { interviewerList, countryList } = item;
+  //
+  //  // 3. Conditionally render
+  //  // either 'Interviewers' or 'Countries'
+  //
+  //  let FilterType;
+  //  if (type == "Interviewer") {
+  //    FilterType = interviewerList.map((item, index) => {
+  //      return (
+  //        <p className="c-subfilter__${item}" key={index}>
+  //          {item}
+  //        </p>
+  //      );
+  //    });
+  //  } else {
+  //    FilterType = countryList.map((item, index) => {
+  //      return (
+  //        <p className="c-subfilter__${item}" key={index}>
+  //          {item}
+  //        </p>
+  //      );
+  //    });
+  //  }
+  //
+  //  // 4. Dropdown Click Effects
+  //
+  //  // 4.1 Hide filter accordion as the initial state, where show = false
+  //  // and also for icon direction where we start wtih southfacing
+  //  const [show, setShow] = useState(false);
+  //  const [normal, setRotate] = useState(true);
+  //
+  //  // 4.2 Create button handler for onclick events
+  //  const handleClick = () => {
+  //    setShow(!show); // returns the opposite upon click
+  //    //    setRotate(!normal) // returns the opposite upon click
+  //    setRotate(!normal); // reverse thhe arrow position
+  //  };
+  //
+  //  // 4.3  Create CSS Modifiers with useRef
+  //
+  //  const FilterHeader = useRef(null);
+  //  const FilterRef = useRef(null);
+  //  const FilterBody = useRef(null);
+  //  const rotateArrowIcon = normal
+  //    ? "c-subfilter__icon"
+  //    : "c-subfilter__icon pulled";
+  //
+  //  // 4.4 useEffect() to apply effects onto selected DOM tags
+  //  useEffect(() => {
+  //    const FilterListHeight = FilterRef.current.getBoundingClientRect().height;
+  //
+  //    if (show) {
+  //      console.log(`${FilterListHeight}`);
+  //      FilterBody.current.style.height = `${FilterListHeight}px`;
+  //      FilterBody.current.style.paddingBottom = `3vh`;
+  //      FilterBody.current.style.paddingTop = `1vh`;
+  //      FilterBody.current.style.border = `2px solid var(--primary-clr-200)`;
+  //      FilterHeader.current.style.borderRadius = `calc(2rem + 1px)`;
+  //    } else {
+  //      FilterBody.current.style.height = "0px";
+  //      FilterBody.current.style.padding = `0px`;
+  //      FilterBody.current.style.border = `0px solid var(--primary-clr-200)`;
+  //      FilterHeader.current.style.borderRadius = `calc(2rem + 2px)`;
+  //    }
+  //  }, [show]);
+  //  return (
+  //    <SubFilterWrapper className="c-subfilter">
+  //      <h5 className="c-subfilter__title">{type}</h5>
+  //      <button
+  //        className="c-subfilter__header"
+  //        ref={FilterHeader}
+  //        onClick={handleClick}
+  //      >
+  //        <p className="c-subfilter__selected">None</p>
+  //        <IconContext.Provider value={{ className: rotateArrowIcon }}>
+  //          <TiArrowDown />
+  //        </IconContext.Provider>
+  //      </button>
+  //
+  //      <div className="c-subfilter__listcontainer" ref={FilterBody}>
+  //        <div className="c-subfilter__list" ref={FilterRef}>
+  //          {FilterType}
+  //        </div>
+  //      </div>
+  //    </SubFilterWrapper>
+  //  );
+  return null;
 };
-
-//////////////////////////////
-/////// Sub Filters //////////
-/////////////////////////////
-
-function SubFilter({ type }) {
-  const data = useStaticQuery(query);
-  const interviewers = data.allContentfulSearchFilterList.nodes;
-
-  // 1. Destructre array to return the object within it
-  const [item] = interviewers;
-
-  // 2. Destructure object to get the values
-  const { interviewerList, countryList } = item;
-
-  // 3. Conditionally render
-  // either 'Interviewers' or 'Countries'
-
-  let FilterType;
-  if (type == "Interviewer") {
-    FilterType = interviewerList.map((item, index) => {
-      return (
-        <p className="c-subfilter__${item}" key={index}>
-          {item}
-        </p>
-      );
-    });
-  } else {
-    FilterType = countryList.map((item, index) => {
-      return (
-        <p className="c-subfilter__${item}" key={index}>
-          {item}
-        </p>
-      );
-    });
-  }
-
-  // 4. Dropdown Click Effects
-
-  // 4.1 Hide filter accordion as the initial state, where show = false
-  // and also for icon direction where we start wtih southfacing
-  const [show, setShow] = useState(false);
-  const [normal, setRotate] = useState(true);
-
-  // 4.2 Create button handler for onclick events
-  const handleClick = () => {
-    setShow(!show); // returns the opposite upon click
-    //    setRotate(!normal) // returns the opposite upon click
-    setRotate(!normal); // reverse thhe arrow position
-  };
-
-  // 4.3  Create CSS Modifiers with useRef
-
-  const FilterHeader = useRef(null);
-  const FilterRef = useRef(null);
-  const FilterBody = useRef(null);
-  const rotateArrowIcon = normal
-    ? "c-subfilter__icon"
-    : "c-subfilter__icon pulled";
-
-  // 4.4 useEffect() to apply effects onto selected DOM tags
-  useEffect(() => {
-    const FilterListHeight = FilterRef.current.getBoundingClientRect().height;
-
-    if (show) {
-      console.log(`${FilterListHeight}`);
-      FilterBody.current.style.height = `${FilterListHeight}px`;
-      FilterBody.current.style.paddingBottom = `3vh`;
-      FilterBody.current.style.paddingTop = `1vh`;
-      FilterBody.current.style.border = `2px solid var(--primary-clr-200)`;
-      FilterHeader.current.style.borderRadius = `calc(2rem + 1px)`;
-    } else {
-      FilterBody.current.style.height = "0px";
-      FilterBody.current.style.padding = `0px`;
-      FilterBody.current.style.border = `0px solid var(--primary-clr-200)`;
-      FilterHeader.current.style.borderRadius = `calc(2rem + 2px)`;
-    }
-  }, [show]);
-  return (
-    <SubFilterWrapper className="c-subfilter">
-      <h5 className="c-subfilter__title">{type}</h5>
-      <button
-        className="c-subfilter__header"
-        ref={FilterHeader}
-        onClick={handleClick}
-      >
-        <p className="c-subfilter__selected">None</p>
-        <IconContext.Provider value={{ className: rotateArrowIcon }}>
-          <TiArrowDown />
-        </IconContext.Provider>
-      </button>
-
-      <div className="c-subfilter__listcontainer" ref={FilterBody}>
-        <div className="c-subfilter__list" ref={FilterRef}>
-          {FilterType}
-        </div>
-      </div>
-    </SubFilterWrapper>
-  );
-}
 const SearchFilterWrapper = styled.div`
   display: none;
 

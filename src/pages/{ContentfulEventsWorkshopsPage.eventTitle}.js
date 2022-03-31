@@ -11,7 +11,7 @@ import { DefaultButton } from "../components/button";
 import { Head } from "../components/head";
 
 const EventsTemplate = ({ data }) => {
-  const events = data.contentfulEventsWorkshops;
+  const events = data.contentfulEventsWorkshopsPage;
 
   // 1. convert default objects to array with key value pairs
   // 2. filter through key/value pairs to remove 'null' and produce new arr
@@ -69,7 +69,7 @@ const EventsTemplate = ({ data }) => {
 
 export const query = graphql`
   query getSingleEvent($eventTitle: String) {
-    contentfulEventsWorkshops(eventTitle: { eq: $eventTitle }) {
+    contentfulEventsWorkshopsPage(eventTitle: { eq: $eventTitle }) {
       eventTitle
       eventSubheading
       eventTags

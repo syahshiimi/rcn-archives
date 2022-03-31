@@ -38,7 +38,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://www.rcw-asi.com",
+        host: "https://www.rcw-asia.com",
         sitemap: "https://www.rcw-asia.com/sitemap.xml",
         env: {
           development: {

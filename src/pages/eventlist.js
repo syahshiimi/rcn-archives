@@ -8,7 +8,9 @@ import Masonry from "react-masonry-css";
 
 const query = graphql`
   {
-    allContentfulEventsWorkshops(sort: { fields: eventStart, order: DESC }) {
+    allContentfulEventsWorkshopsPage(
+      sort: { fields: eventStart, order: DESC }
+    ) {
       nodes {
         id
         eventTitle
@@ -29,7 +31,7 @@ const query = graphql`
 `;
 const Events = () => {
   const data = useStaticQuery(query);
-  const events = data.allContentfulEventsWorkshops.nodes;
+  const events = data.allContentfulEventsWorkshopsPage.nodes;
   return (
     <Layout>
       <Head title="Workshops" />
