@@ -115,33 +115,40 @@ const ContributeWrapper = styled.article`
     .l-contactus {
       padding: 6vh var(--padding-desktop);
       display: grid;
-      grid-column-gap: 4vw;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto auto auto;
+      grid-template-columns: auto 
+      grid-template-rows: auto ;
       grid-template-areas:
         "header header"
         "subheading subheading"
-        "form form"
-        "button button";
+      "content content";
     }
 
     .c-contactus__header {
       text-align: center;
       grid-area: header;
     }
-    .c-contactus__image {
-      grid-area: image;
-    }
     .c-contactus__subheading {
       margin: 2vh 0vw;
       grid-area: subheading;
       text-align: center;
     }
-    .c-contactus__form {
-      grid-area: form;
+  .c-contactus__content {
+      grid-area: content
+      display: flex;
+      flex-direction: column;
+    p {
+      text-align: justify;
+    }
+    ul {
 
-      input {
-        margin: 0.5vh 0vw;
+      p {
+      }
+    }
+    q {
+      :before {
+        display: none;
+      }
+      p {
       }
     }
 
