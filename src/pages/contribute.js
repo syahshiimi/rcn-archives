@@ -167,12 +167,18 @@ const ContributeWrapper = styled.article`
   @media (min-width: 1280px) {
     .l-contactus {
       padding: 10vh 15vw;
-      grid-row-gap: 4vh;
+      grid-row-gap: 2vh;
     }
 
     .c-contactus__header {
       margin: 0;
     }
+      .c-contactus__content {
+        p {
+    font-size: 1.25rem;
+        }
+
+      }
 
     .c-contactus__subheading {
       font-size: 1.125rem;

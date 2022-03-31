@@ -107,7 +107,10 @@ const BrowseMap = () => {
     const filterResults = results
       .map((item, index) => {
         const { transcriptTags } = item;
-        if (transcriptTags.includes(searchValue)) {
+        const newTranscriptTags = transcriptTags.filter((word) =>
+          word.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        if (newTranscriptTags.includes(searchValue)) {
           return item;
         } else {
           return null;
@@ -116,6 +119,7 @@ const BrowseMap = () => {
       .filter((item) => {
         return item != null;
       });
+    console.log(filterResults);
 
     // We sort the results
     filterResults.sort(function (a, b) {
@@ -131,7 +135,6 @@ const BrowseMap = () => {
 
       return 0;
     });
-    console.log(filterResults);
 
     if (filterResults.length > 0) {
       return filterResults.map((item, index) => {
