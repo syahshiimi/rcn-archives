@@ -1,25 +1,66 @@
 import React from "react";
 import { Head } from "../components/head";
 import styled from "styled-components";
+import { graphql, useStaticQuery } from "gatsby";
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 // Import Wrapper Components
 import Layout from "../components/Layout";
 
-// Variables
-const ContributeSub =
-  "Kindly contact us if you wish to contribute or enquire more about our project";
-
-// To-do
-// Add in and request from prof content for thhis page such as email, address etc
+export const query = graphql`
+  {
+    allContentfulContactUsPage {
+      nodes {
+        contactUsTitlePage
+        contactUs {
+          raw
+        }
+      }
+    }
+  }
+`;
 
 const ContactUs = () => {
+  const data = useStaticQuery(query);
+  const [contactinfo] = data.allContentfulContactUsPage.nodes;
+  const { contactUsTitlePage, contactUs } = contactinfo;
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
+    },
+    renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => {
+        const { uri } = node.data;
+        return (
+          <a href={uri} className="underline">
+            {children}
+          </a>
+        );
+      },
+      [BLOCKS.HEADING_2]: (node, children) => {
+        return <h2>{children}</h2>;
+      },
+      [BLOCKS.OL_LIST]: (node, children) => {
+        return <ol>{children}</ol>;
+      },
+      [BLOCKS.QUOTE]: (node, children) => {
+        return <q>{children}</q>;
+      },
+    },
+  };
+
   return (
     <Layout>
       <Head title="Contact Us" />
       <ContributeWrapper>
         <section className="l-contactus">
           <h1 className="c-contactus__header">Contact Us</h1>
-          <p className="c-contactus__subheading">{ContributeSub}</p>
+          <h5 className="c-contactus__subheading">{contactUsTitlePage}</h5>
+          <article className="c-contactus__content">
+            {renderRichText(contactUs, options)}
+          </article>
         </section>
       </ContributeWrapper>
     </Layout>
@@ -40,43 +81,28 @@ const ContributeWrapper = styled.article`
   }
 
   .c-contactus__subheading {
-    margin: 4vh 0vw;
+    margin: 1vh 0vw;
   }
-
-  .c-contactus__form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    flex: 1 1 0;
-  }
-  .c-contactus__form > input {
-    padding: 1rem;
-    background: rgba(232, 237, 223, 0.5);
-    border: none;
-    outline: none;
-
-    ::placeholder {
-      opacity: 50%;
+  .c-contactus__content {
+    p {
+      margin: 2vh 0vw;
+      text-align: justify;
     }
-  }
+    ul {
+      margin: 0vh 4vw 0vh 4vw;
 
-  .c-contactus__form > p,
-  input {
-    margin: 0vh 0rem 2vh 0rem;
-  }
-
-  .c-contactus__form > .addinfo {
-    height: 8.5vh;
-    align-items: start;
-  }
-
-  // image styling
-  .c-contactus__image {
-    border: var(--imagecard-border-clr);
-    border-radius: var(--imagecard-border-radius);
-
-    /* drop shadow */
-    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+      p {
+        margin: 0.5vh 0vw;
+      }
+    }
+    q {
+      :before {
+        display: none;
+      }
+      p {
+        margin: 0vh 10vw;
+      }
+    }
   }
 
   ///////////////////
