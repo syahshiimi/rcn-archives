@@ -101,7 +101,7 @@ export const Accordion = ({ transcript = [], type, name }) => {
   function DocumentInfo() {
     return (
       <div className="c-accordion__info">
-        <p className="c-accordion__interviewer">Interviewr: {interviewer}</p>
+        <p className="c-accordion__interviewer">Interviewer: {interviewer}</p>
         <p className="c-accordion__interviewee">Interviewee: {interviewee}</p>
         <div className="c-accordion__tagsandkeyscontainer">
           <p className="c-accordion__tagsandkeystitle">Tags & Keywords</p>

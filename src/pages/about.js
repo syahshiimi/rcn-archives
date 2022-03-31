@@ -238,7 +238,7 @@ const About = ({ data }) => {
             </div>
             <div className="c-projectmembers__phdmastudents">
               <h4 className="c-projectmembers__phdmaTitle">
-                Grad & Undergrad{" "}
+                Student Researchers{" "}
               </h4>
               {phDMaUndergraduateStudents.map((item, index) => {
                 return (

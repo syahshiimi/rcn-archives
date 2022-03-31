@@ -1,3 +1,4 @@
+import { filter } from "domutils";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import parse from "html-react-parser";
 import React, { useState } from "react";
@@ -102,8 +103,22 @@ const BrowseMap = () => {
 
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
 
+    // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
+    const filterResults = results
+      .map((item, index) => {
+        const { transcriptTags } = item;
+        if (transcriptTags.includes(searchValue)) {
+          return item;
+        } else {
+          return null;
+        }
+      })
+      .filter((item) => {
+        return item != null;
+      });
+
     // We sort the results
-    results.sort(function (a, b) {
+    filterResults.sort(function (a, b) {
       const nameA = a.transcriptTitle.toUpperCase();
       const nameB = b.transcriptTitle.toUpperCase();
 
@@ -116,9 +131,10 @@ const BrowseMap = () => {
 
       return 0;
     });
+    console.log(filterResults);
 
-    if (results.length > 0) {
-      return results.map((item, index) => {
+    if (filterResults.length > 0) {
+      return filterResults.map((item, index) => {
         const { transcriptTitle } = item;
 
         const cleanString = transcriptTitle

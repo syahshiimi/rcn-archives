@@ -134,6 +134,7 @@ const RecentlyAddWrapper = styled.section`
     }
     .c-recentlyaddedcard__oneliner {
       margin: 1vh 0vw;
+      text-align: left;
       p {
         font-size: 0.75rem;
       }

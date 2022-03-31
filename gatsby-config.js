@@ -72,7 +72,7 @@ module.exports = {
       options: {
         name: "archives",
         engine: "flexsearch",
-        engineOptions: { tokenize: "forward" },
+        engineOptions: { tokenize: "strict" },
         query: `
         query MyQuery {
           allContentfulInterviewTranscripts {
