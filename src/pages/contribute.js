@@ -175,7 +175,7 @@ const ContributeWrapper = styled.article`
     }
       .c-contactus__content {
         p {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
         }
 
       }
