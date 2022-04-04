@@ -77,7 +77,8 @@ export const countryData = [
     coordinates: [113.9213, 0.7893],
     dx: -40, // for annotation line
     dy: 50, // for annotation line
-    textY: -20,
+    textY: -17,
+    textX: 3,
     curve: 0, // for annotation line
   },
   {
@@ -102,9 +103,10 @@ export const countryData = [
     markerOffset: -50,
     name: "Singapore",
     coordinates: [103.8198, 1.3321],
-    dx: -80, // for annotation line
+    dx: -70, // for annotation line
     dy: 30, // for annotation line
-    textY: -20,
+    textY: -17,
+    textX: 3,
     curve: 0, // for annotation line
   },
   {

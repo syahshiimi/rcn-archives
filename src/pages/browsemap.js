@@ -1,6 +1,4 @@
-import { filter } from "domutils";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import parse from "html-react-parser";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import {
@@ -13,7 +11,6 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { useFlexSearch } from "react-use-flexsearch";
-import sanitize from "sanitize-html";
 import slugify from "slugify";
 import styled from "styled-components";
 
@@ -21,25 +18,8 @@ import asia from "../../content/asia-mapshaper.json"; // geoJson
 import { DefaultButton } from "../components/button";
 import { Head } from "../components/head";
 import Layout from "../components/Layout";
+import { ListofTranscripts } from "../components/listoftranscripts";
 import { countryData } from "../data"; // coordinates of the countrie
-
-/////////////////////////////////
-/////// Tablet & Desktop Only ///
-/////////////////////////////////
-const transcriptQuery = graphql`
-  {
-    allContentfulInterviewTranscripts {
-      nodes {
-        transcriptTitle
-        transcriptTags
-      }
-    }
-    localSearchArchives {
-      index
-      store
-    }
-  }
-`;
 
 const customStyles = {
   content: {
@@ -68,9 +48,6 @@ if (isSearch) {
   Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
 }
 const BrowseMap = () => {
-  // To create hover effect with tooltip, the useState will be iplemeneted
-  const [content, setContent] = useState("");
-
   ///////////////////////////////////////
   ///////////// React Modal /////////////
   ///////////////////////////////////////
@@ -88,97 +65,8 @@ const BrowseMap = () => {
     setIsOpen(false);
   }
 
-  // Conditional Transcript Rendering within the Modal
-
-  const data = useStaticQuery(transcriptQuery);
-
-  // We now use flexsearch to filter through our transcripts
-  const flexTranscripts = data.localSearchArchives;
-  const { index, store } = flexTranscripts;
-
-  // Function will use the value from geo.properties and us it as a search valu to render out the specified list of transcripts.
-  // We use flexsearch engine to list it out as it is fast and lightweight!
-  function ListofTranscripts(value) {
-    const { searchValue } = value; // obtained from geo.properties, which would be the name of a country
-
-    const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
-
-    // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
-    // See THis
-    //
-    // https://stackoverflow.com/questions/52387754/filter-object-by-key-values
-    //    const filterResults = results
-    //      .map((item, index) => {
-    //        const { transcriptTags } = item;
-    //        const newTranscriptTags = transcriptTags.filter((word) =>
-    //          word.toLowerCase().includes(searchValue.toLowerCase())
-    //        );
-    //        if (newTranscriptTags.includes(searchValue)) {
-    //          return item;
-    //        } else {
-    //          return null;
-    //        }
-    //      })
-    //      .filter((item) => {
-    //        return item != null;
-    //      });
-
-    const filtered = results.filter((item) =>
-      item.transcriptTags.includes(searchValue)
-    );
-
-    // We sort the results
-    filtered.sort(function (a, b) {
-      const nameA = a.transcriptTitle.toUpperCase();
-      const nameB = b.transcriptTitle.toUpperCase();
-
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-
-      return 0;
-    });
-
-    if (filtered.length > 0) {
-      return filtered.map((item, index) => {
-        const { transcriptTitle } = item;
-
-        const cleanString = transcriptTitle
-          .replace(".", " ")
-          .replace("(", " ")
-          .replace(")", " ");
-        const slug = slugify(cleanString, { lower: true });
-
-        return (
-          <div className="c-browsemap__transcript" key={index}>
-            <Link to={`../browsearchives/${slug}`}>{transcriptTitle}</Link>
-          </div>
-        );
-      });
-    } else {
-      return (
-        <div className="c-browsemap__noresults">
-          There are currently no documents for {searchValue}
-        </div>
-      );
-    }
-  }
-
-  // We use a useState hook to determine the value of component.
-  // We will use the componenet variable in the useState hook to render later
   const [component, setComponent] = useState("");
-
-  // We define the function which would allow the modification of the component
-  // This function will be used as an onClick handler.
-  // The function will return a value. This value can then be passed
-  // as a component prop for <ListofTranscripts/> componnent.
-  // While passing this as a prop, this means that we can use it as a search value.
-  function condRender(value = []) {
-    setComponent(<ListofTranscripts searchValue={value} />);
-  }
+  const [content, setContent] = useState("");
 
   const pageBlurb = (
     <h5 className="c-browsemap__content">
@@ -189,6 +77,7 @@ const BrowseMap = () => {
     </h5>
   );
 
+  // metadata
   const {
     props: { children },
   } = pageBlurb;
@@ -216,7 +105,7 @@ const BrowseMap = () => {
                       onClick={() => {
                         openModal();
                         const { name } = geo.properties;
-                        condRender(name);
+                        setComponent(<ListofTranscripts searchValue={name} />);
                         afterOpenModal();
                       }}
                       onMouseEnter={() => {
@@ -251,7 +140,7 @@ const BrowseMap = () => {
                 );
               })}
               {countryData.map(
-                ({ name, coordinates, dx, dy, curve, textY }) => {
+                ({ name, coordinates, dx, dy, curve, textY, textX }) => {
                   return (
                     <Annotation
                       key={name}
@@ -268,6 +157,7 @@ const BrowseMap = () => {
                       <text
                         className="c-browsemap__annotateText"
                         x={textY}
+                        y={textX}
                         textAnchor="middle"
                         alignmentBaseline="middle"
                       >
