@@ -30,8 +30,10 @@ module.exports = {
   siteMetadata: {
     title: "RCW Asia",
     description:
-      " Reconceptualizing the Cold War: On-the-ground Experiences in Asia, which aims to build an online archive of oral history collections concerning the Cold War and decolonization in Asia, with a particular focus on Southeast, East, and South Asia.",
-    author: "@syahshiimi",
+      " Reconceptualizing the Cold War: On-the-ground Experiences in Asia, aims to build an online archive of oral history collections concerning the Cold War and decolonization in Asia, with a particular focus on Southeast, East, and South Asia.",
+    author: "@masudahajimu",
+    url: "https://rcw-asia.com",
+    image: "/alt.svg",
   },
 
   plugins: [
