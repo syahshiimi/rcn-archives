@@ -104,25 +104,31 @@ const BrowseMap = () => {
     const results = useFlexSearch(searchValue, index, store); //  resutls will be returned with an array of our requested search value
 
     // Filter out results due to flexSearch engine returning a more diverse search result. We aim to remove values that do not equals to searchValue AND not null.
-    const filterResults = results
-      .map((item, index) => {
-        const { transcriptTags } = item;
-        const newTranscriptTags = transcriptTags.filter((word) =>
-          word.toLowerCase().includes(searchValue.toLowerCase())
-        );
-        if (newTranscriptTags.includes(searchValue)) {
-          return item;
-        } else {
-          return null;
-        }
-      })
-      .filter((item) => {
-        return item != null;
-      });
-    console.log(filterResults);
+    // See THis
+    //
+    // https://stackoverflow.com/questions/52387754/filter-object-by-key-values
+    //    const filterResults = results
+    //      .map((item, index) => {
+    //        const { transcriptTags } = item;
+    //        const newTranscriptTags = transcriptTags.filter((word) =>
+    //          word.toLowerCase().includes(searchValue.toLowerCase())
+    //        );
+    //        if (newTranscriptTags.includes(searchValue)) {
+    //          return item;
+    //        } else {
+    //          return null;
+    //        }
+    //      })
+    //      .filter((item) => {
+    //        return item != null;
+    //      });
+
+    const filtered = results.filter((item) =>
+      item.transcriptTags.includes(searchValue)
+    );
 
     // We sort the results
-    filterResults.sort(function (a, b) {
+    filtered.sort(function (a, b) {
       const nameA = a.transcriptTitle.toUpperCase();
       const nameB = b.transcriptTitle.toUpperCase();
 
@@ -136,8 +142,8 @@ const BrowseMap = () => {
       return 0;
     });
 
-    if (filterResults.length > 0) {
-      return filterResults.map((item, index) => {
+    if (filtered.length > 0) {
+      return filtered.map((item, index) => {
         const { transcriptTitle } = item;
 
         const cleanString = transcriptTitle
