@@ -257,6 +257,7 @@ const FullTranscriptWrapper = styled.section`
 
     .c-langtoggle {
       margin-bottom: 2vh;
+      transition: var(--hover-transition);
       :hover {
         color: var(--primary-clr-100);
         background-color: var(--primary-clr-150);
