@@ -469,7 +469,7 @@ const AboutWrapper = styled.main`
       margin-bottom: 3vh;
     }
     .c-ourfocus__image {
-      margin: 0;
+      margin: 0vh 10vw;
       padding: 0;
       height: 400px;
     }
