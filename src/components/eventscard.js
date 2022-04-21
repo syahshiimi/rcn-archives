@@ -237,14 +237,17 @@ const EventsCardWrapper = styled.div`
 
   @media (min-width: 2500px) {
     margin: 1vh 0.5vw;
-    padding: 3vh 2vw;
+    padding: 2vh;
     .c-pastevents__title {
-      text-align: left;
+      text-align: center;
       margin: 1vh 0vw;
     }
     .c-pastevents__date {
       font-size: 0.9rem;
       margin: 1vh 0vw;
+    }
+    .c-pastevents__content {
+      text-align: center;
     }
     .c-pastevents__location {
       margin: 1vh 0vw;
@@ -292,7 +295,7 @@ const EventScheduleWrapper = styled.div`
   //////////////////////
   @media (min-width: 992px) {
     .c-eventschedule__card {
-      margin: 4vw 4vw;
+      margin: 2vh 2vh;
       padding: 2vh 4vw;
 
         * {
@@ -320,9 +323,8 @@ const EventScheduleWrapper = styled.div`
   //////////////////////
     @media (min-width: 1280px) {
       .c-eventschedule__card {
-        padding: 2vw 4vw;
-        margin: 2vw;
-        
+       margin: 1.5vh;
+ 
         h3 {
           font-size: 1.25rem;
         }
@@ -334,7 +336,7 @@ const EventScheduleWrapper = styled.div`
       
     @media (min-width: 2500px) {
       .c-eventschedule__card {
-        margin: 1.5vw 1.5vw 0vw 1.5vw;
+        margin: 2vh;
         padding: 1.5vw;
       }
 
