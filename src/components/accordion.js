@@ -245,7 +245,6 @@ const AccordionWrapper = styled.div`
     transform: rotate(180deg);
     transition: var(--transition);
   }
-  
 
   .c-accordion__title {
     font-size: 1rem;
@@ -262,7 +261,6 @@ const AccordionWrapper = styled.div`
     /* border: 1px solid var(--primary-clr-200); */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: var(--transition);
-
   }
 
   .c-accordion__body {
@@ -271,7 +269,6 @@ const AccordionWrapper = styled.div`
     flex: 1 1 auto;
   }
 
-  
   /* Accordion Styling */
 
   /* Document Summary Accordion */
@@ -293,7 +290,7 @@ const AccordionWrapper = styled.div`
     text-align: justify;
   }
   .c-transcript__content > p {
-    margin: .5vh 6vw;
+    margin: 0.5vh 6vw;
     min-height: 10px;
   }
 
@@ -303,21 +300,20 @@ const AccordionWrapper = styled.div`
     text-decoration: underline;
     font-family: "Ubuntu", sans-serif;
     font-style: normal;
-  font-size: 0.85rem;
+    font-size: 0.85rem;
     font-weight: normal;
-  margin: 1.5vh 0vw;
+    margin: 1.5vh 0vw;
   }
 
   /* Document Information Accordion */
-.c-accordion__info {
-  display: flex;
-  flex-direction: column;
-  padding: 2vh 0vw;
-}
+  .c-accordion__info {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0vw;
+  }
   .c-accordion__info > * {
     margin: 1vh 6vw;
   }
-
 
   .c-accordion__tagsandkeyscontainer {
     display: flex;
@@ -326,7 +322,7 @@ const AccordionWrapper = styled.div`
 
   .c-accordion__tagsandkeystitle {
     font-weight: bold;
-  padding: 2vh 0vw 0vh vw;
+    padding: 2vh 0vw 0vh vw;
   }
   .c-accordion__tagsandkeysline {
     border: 1px solid var(--primary-clr-200);
@@ -344,17 +340,17 @@ const AccordionWrapper = styled.div`
     border: 1px solid var(--primary-clr-200);
     border-radius: 1px;
   }
-  
+
   .c-transcript__contentnotes {
     margin: 0vh 6vw 2vh 10vw;
     li {
       padding: 1vh 0vw;
     }
-}
-  ol li::marker {
-    font-family: 'Ubuntu';
   }
-  
+  ol li::marker {
+    font-family: "Ubuntu";
+  }
+
   /* Document Questions Accordion */
   .c-accordion__qns {
     display: flex;
@@ -362,7 +358,7 @@ const AccordionWrapper = styled.div`
     padding: 2vh 2vw;
 
     ol > li {
-    margin: 2vh 6vw 2vh 10vw;
+      margin: 2vh 6vw 2vh 10vw;
     }
   }
 
@@ -393,9 +389,9 @@ const AccordionWrapper = styled.div`
       margin: 1vh 3vw;
     }
     .c-accordion__info > .c-transcript__contentnotes {
-    margin: 2vh 5vw;
+      margin: 2vh 5vw;
     }
-    
+
     .c-transcript__contenttags {
       justify-content: stretch;
     }
@@ -406,7 +402,7 @@ const AccordionWrapper = styled.div`
     .c-accordion__tag {
       font-size: 0.85rem;
     }
-    
+
     .c-transcript__content {
       display: none;
     }
@@ -420,7 +416,7 @@ const AccordionWrapper = styled.div`
       border-radius: 1px;
       margin: 0vh 3vw;
     }
-    
+
     /* Document Question Accordion */
     .c-accordion__qns {
       padding: 1vh 0vw;
@@ -429,7 +425,6 @@ const AccordionWrapper = styled.div`
       ol > li {
         margin: 1vh 3vw 1vh 5vw;
       }
-      
 
       ol > li > p {
         font-size: 1rem;
@@ -440,66 +435,69 @@ const AccordionWrapper = styled.div`
   ////////////////////////////
   ///////// Desktop //////////
   ////////////////////////////
-  
+
   @media (min-width: 1280px) {
-  /* Document Summary Accordion */
+    /* Document Summary Accordion */
     .c-accordion__summary {
       padding: 3vh 0vw;
       p {
         font-size: 1.125rem;
       }
     }
-    
-  /* Document Information Accordion */
+
+    /* Document Information Accordion */
     .c-accordion__info {
       padding: 2vh 0vw;
     }
-    
-    
+
     .c-transcript__contentnotesline {
       margin: 1vh 3vw;
     }
 
-  /* Document Questions Accordion */
+    /* Document Questions Accordion */
     .c-accordion__qns {
       padding: 1.5vh 2vw 1.5vh 1vw;
       ol > li {
         margin: 1vh 3vw;
       }
-     
     }
-    
-    @media (min-width: 2560px) {
-      margin: 0vh;
-      /* Document Summary Accordion */
-      .c-accordion__summary {
-        p {
-          margin: 1vh 2vw;
-          text-align: justify !important;
-        }
+  }
+
+  @media (min-width: 2500px) {
+    margin: 0;
+    /* Document Summary Accordion */
+    .c-accordion__summary {
+      padding: 2vh 0vw;
+      p {
+        margin: 0vh 2vw;
+        text-align: justify !important;
       }
-      
-  /* Document Information Accordion */
-    .c-accordion__info > *  {
+    }
+
+    /* Document Information Accordion */
+
+    .c-accordion__info {
+      margin: 0;
+      padding: 1vh 0vw 2.5vh 0vw;
+    }
+    .c-accordion__info > * {
       margin: 1vh 2vw;
+      padding: 0vh 0vw;
     }
 
     .c-accordion__info > .c-transcript__contentnotes {
-    margin: 0vh 3vw;
+      margin: 0vh 3vw;
     }
 
-
-  /* Document Questions Accordion */
-      .c-accordion__qns {
-        padding: 3vh 0vw;
-        ol > li {
-      margin: 1vh 2.5vw;
-        }
+    /* Document Questions Accordion */
+    .c-accordion__qns {
+      padding: 1vh 0vw;
+      ol > li {
+        margin: 1vh 2.5vw;
+      }
       ol > li > p {
-          font-size: 1.125rem;
-      }
+        font-size: 1.125rem;
       }
     }
-
-    
+  }
 `;
