@@ -120,7 +120,7 @@ const EventWrapper = styled.main`
   /////////////////////////////
   @media (min-width: 1280px) {
     section {
-      padding: 8vh var(--padding-desktop);
+      padding: 3vh var(--padding-desktop);
     }
 
     .l-pastevents > * {
@@ -141,12 +141,11 @@ const EventWrapper = styled.main`
 
   @media (min-width: 2500px) {
     .l-pastevents {
-      padding: 10vh 20vw;
+      padding: 5vh 18vw;
     }
 
     .l-pastevents__list {
-      padding: 2vh;
-      border-radius: var(--border-rad-desktop);
+      padding: 1vh 1vw;
     }
     .c-pastevents__heading {
       font-size: 4.5rem;
