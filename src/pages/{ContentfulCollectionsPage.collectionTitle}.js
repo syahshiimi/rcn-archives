@@ -69,7 +69,7 @@ const CollectionsTemplate = ({ data }) => {
         </p>
         <div className="c-collectionspage__container">
           <Masonry
-            breakpointCols={{ default: 1, 992: 1, 1280: 2, 2500: 3 }}
+            breakpointCols={{ default: 3, 992: 1, 1280: 2, 2500: 3 }}
             columnClassName="c-collectionspage__masonrycolumn"
             className="c-collectionspage__cardcontainer"
           >

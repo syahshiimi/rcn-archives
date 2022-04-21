@@ -830,6 +830,7 @@ const AboutWrapper = styled.main`
     }
     .c-ourfocus__image {
       width: 512px;
+      margin: 0;
     }
     .l-thearchives {
       padding: 9vh 10vw;
