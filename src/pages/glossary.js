@@ -163,7 +163,6 @@ const Glossary = () => {
     e.preventDefault();
     // We store the last char value and we will concatenate into the component name for jump linking
     const lastChar = e.target.className.charAt(e.target.className.length - 1);
-    console.log(lastChar);
     // We create new var to store actual glossary card className
     const jumpLink = `.c-glossarycard_${lastChar}`;
     scrollTo(jumpLink);
