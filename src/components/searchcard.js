@@ -261,6 +261,7 @@ const SearchCardWrapper = styled.main`
     }
 
     .c-searchcard__oneliner {
+      margin: 1.2vh 0;
       p {
         font-size: 1rem;
       }
