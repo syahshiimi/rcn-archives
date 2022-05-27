@@ -26,62 +26,62 @@ const query = graphql`
 
 const isBrowser = typeof window !== "undefined";
 export const RecentlyAdd = () => {
-  const data = useStaticQuery(query);
-  const recentadded = data.allContentfulInterviewTranscripts.nodes;
+    const data = useStaticQuery(query);
+    const recentadded = data.allContentfulInterviewTranscripts.nodes;
 
-  // We slice array to limit the amount based on media queries
+    // We slice array to limit the amount based on media queries
 
-  if (isBrowser) {
-    let recentaddedsliced; // Create a media condition that targets viewports at least 768px wide
-    const mediaQuery = window.matchMedia("(min-width: 2500px)");
-    // Check if the media query is true
-    if (mediaQuery.matches) {
-      recentaddedsliced = recentadded.slice(0, 10);
+    if (isBrowser) {
+        let recentaddedsliced; // Create a media condition that targets viewports at least 768px wide
+        const mediaQuery = window.matchMedia("(min-width: 2500px)");
+        // Check if the media query is true
+        if (mediaQuery.matches) {
+            recentaddedsliced = recentadded.slice(0, 10);
+        } else {
+            recentaddedsliced = recentadded.slice(0, 7);
+        }
+
+        return (
+            <article className="l-recentlyaddedcardcard">
+                {" "}
+                {recentaddedsliced.map((item) => {
+                    const {
+                        transcriptTitle,
+                        oneLineTeaser: {
+                            childMarkdownRemark: { html },
+                        },
+                    } = item;
+
+                    // remove dots in strings (if exists)
+                    const cleanString = transcriptTitle
+                        .replace(".", " ")
+                        .replace("(", " ")
+                        .replace(")", " ");
+                    // use slugify to return a string in a slug format
+                    const slug = slugify(cleanString, { lower: true });
+
+                    return (
+                        <RecentlyAddWrapper key={transcriptTitle}>
+                            <div className="c-recentlyaddedcard">
+                                <div className="c-recentlyaddedcard__title">
+                                    {transcriptTitle}
+                                </div>
+                                <div className="c-recentlyaddedcard__oneliner">
+                                    {parse(`${html}`)}
+                                </div>
+                                <SimpleButton
+                                    url={`browsearchives/${slug}`}
+                                    title="Read More"
+                                />
+                            </div>
+                        </RecentlyAddWrapper>
+                    );
+                })}
+            </article>
+        );
     } else {
-      recentaddedsliced = recentadded.slice(0, 7);
+        return null;
     }
-
-    return (
-      <article className="l-recentlyaddedcardcard">
-        {" "}
-        {recentaddedsliced.map((item) => {
-          const {
-            transcriptTitle,
-            oneLineTeaser: {
-              childMarkdownRemark: { html },
-            },
-          } = item;
-
-          // remove dots in strings (if exists)
-          const cleanString = transcriptTitle
-            .replace(".", " ")
-            .replace("(", " ")
-            .replace(")", " ");
-          // use slugify to return a string in a slug format
-          const slug = slugify(cleanString, { lower: true });
-
-          return (
-            <RecentlyAddWrapper key={transcriptTitle}>
-              <div className="c-recentlyaddedcard">
-                <div className="c-recentlyaddedcard__title">
-                  {transcriptTitle}
-                </div>
-                <div className="c-recentlyaddedcard__oneliner">
-                  {parse(`${html}`)}
-                </div>
-                <SimpleButton
-                  url={`browsearchives/${slug}`}
-                  title="Read More"
-                />
-              </div>
-            </RecentlyAddWrapper>
-          );
-        })}
-      </article>
-    );
-  } else {
-    return null;
-  }
 };
 
 const RecentlyAddWrapper = styled.section`

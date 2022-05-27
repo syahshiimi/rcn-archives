@@ -25,43 +25,43 @@ const query = graphql`
 `;
 
 export const CollectionCard = () => {
-  const data = useStaticQuery(query);
-  const collections = data.allContentfulCollectionsPage.nodes;
+    const data = useStaticQuery(query);
+    const collections = data.allContentfulCollectionsPage.nodes;
 
-  return (
-    <article className="l-featurecard">
-      {" "}
-      {collections.map((item) => {
-        const {
-          //          transcriptImage,
-          collectionTitle,
-          collectionBlurb: {
-            childMarkdownRemark: { html },
-          },
-        } = item;
+    return (
+        <article className="l-featurecard">
+            {" "}
+            {collections.map((item) => {
+                const {
+                    //          transcriptImage,
+                    collectionTitle,
+                    collectionBlurb: {
+                        childMarkdownRemark: { html },
+                    },
+                } = item;
 
-        // remove dots in strings (if exists)
-        const cleanString = collectionTitle
-          .replace(".", " ")
-          .replace("(", " ")
-          .replace(")", " ");
-        // use slugify to return a string in a slug format
-        const slug = slugify(cleanString, { lower: true });
+                // remove dots in strings (if exists)
+                const cleanString = collectionTitle
+                    .replace(".", " ")
+                    .replace("(", " ")
+                    .replace(")", " ");
+                // use slugify to return a string in a slug format
+                const slug = slugify(cleanString, { lower: true });
 
-        return (
-          <CollectionCardWrapper key={collectionTitle}>
-            <div className="c-collectioncard">
-              <div className="c-collectioncard__title">{collectionTitle}</div>
-              <div className="c-collectioncard__blurb">{parse(`${html}`)}</div>
-              <div className="c-collectioncard__button">
-                <SimpleButton title="Read More" url={`${slug}`} />
-              </div>
-            </div>
-          </CollectionCardWrapper>
-        );
-      })}
-    </article>
-  );
+                return (
+                    <CollectionCardWrapper key={collectionTitle}>
+                        <div className="c-collectioncard">
+                            <div className="c-collectioncard__title">{collectionTitle}</div>
+                            <div className="c-collectioncard__blurb">{parse(`${html}`)}</div>
+                            <div className="c-collectioncard__button">
+                                <SimpleButton title="Read More" url={`${slug}`} />
+                            </div>
+                        </div>
+                    </CollectionCardWrapper>
+                );
+            })}
+        </article>
+    );
 };
 
 const CollectionCardWrapper = styled.section`
@@ -167,7 +167,7 @@ const CollectionCardWrapper = styled.section`
   @media (min-width: 2500px) {
     .c-collectioncard {
       margin: 1.5vh 1vw;
-      padding: 2.5vh 0.5vw;
+      padding: 2vh 0.5vw;
     }
     .c-collectioncard__title {
       margin: 1vh 1vw;
@@ -175,7 +175,7 @@ const CollectionCardWrapper = styled.section`
     }
 
     .c-collectioncard__blurb {
-      margin: 1vh 1.4vw;
+      margin: 1vh 1vw;
     }
 
     .c-collectioncard__read {
