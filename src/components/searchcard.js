@@ -6,46 +6,48 @@ import { Link } from "gatsby";
 import { TagsContainer } from "./tags";
 
 export const SearchCard = ({
-  transcriptTitle,
-  transcriptTags,
-  html,
-  func,
-  queryState,
+    transcriptTitle,
+    transcriptTags,
+    html,
+    func,
+    queryState,
 }) => {
-  // remove dots in strings (if exists)
-  const cleanString = transcriptTitle
-    .replace(".", " ")
-    .replace("(", " ")
-    .replace(")", " ");
-  // use slugify to return a string in a slug format
-  const slug = slugify(cleanString, { lower: true });
-  return (
-    <SearchCardWrapper>
-      <div className="l-searchcard">
-        <div className="c-searchcard__desktoptitle">
-          <Link to={`${slug}`}>{transcriptTitle}</Link>
-          {/* From {transcriptTitle} */}
-        </div>
-        <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
-        <TagsContainer
-          tags={transcriptTags}
-          func={func}
-          queryState={queryState}
-        />
-        <section className="c-searchcard__bottom">
-          {" "}
-          <div className="c-searchcard__titlecontainer">
-            From{" "}
-            {/*<span className="c-searchcard__bottomtitle">{transcriptTitle}</span>{" "}*/}
-            <Link to={`${slug}`}>{transcriptTitle}</Link>
-          </div>
-          <span className="c-searchcard__read">
-            <Link to={`${slug}`}>{transcriptTitle}</Link>
-          </span>
-        </section>
-      </div>
-    </SearchCardWrapper>
-  );
+    // remove dots in strings (if exists)
+    const cleanString = transcriptTitle
+        .replace(".", " ")
+        .replace("(", " ")
+        .replace(")", " ")
+        .replace("&", "and");
+    // use slugify to return a string in a slug format
+    const slug = slugify(cleanString, { lower: true });
+    console.log(slug);
+    return (
+        <SearchCardWrapper>
+            <div className="l-searchcard">
+                <div className="c-searchcard__desktoptitle">
+                    <Link to={`${slug}`}>{transcriptTitle}</Link>
+                    {/* From {transcriptTitle} */}
+                </div>
+                <div className="c-searchcard__oneliner">{parse(`${html}`)}</div>
+                <TagsContainer
+                    tags={transcriptTags}
+                    func={func}
+                    queryState={queryState}
+                />
+                <section className="c-searchcard__bottom">
+                    {" "}
+                    <div className="c-searchcard__titlecontainer">
+                        From{" "}
+                        {/*<span className="c-searchcard__bottomtitle">{transcriptTitle}</span>{" "}*/}
+                        <Link to={`${slug}`}>{transcriptTitle}</Link>
+                    </div>
+                    <span className="c-searchcard__read">
+                        <Link to={`${slug}`}>{transcriptTitle}</Link>
+                    </span>
+                </section>
+            </div>
+        </SearchCardWrapper>
+    );
 };
 
 const SearchCardWrapper = styled.main`

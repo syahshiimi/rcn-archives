@@ -56,7 +56,8 @@ export const RecentlyAdd = () => {
                     const cleanString = transcriptTitle
                         .replace(".", " ")
                         .replace("(", " ")
-                        .replace(")", " ");
+                        .replace(")", " ")
+                        .replace("&", "and");
                     // use slugify to return a string in a slug format
                     const slug = slugify(cleanString, { lower: true });
 
