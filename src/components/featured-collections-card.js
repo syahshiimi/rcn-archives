@@ -25,43 +25,44 @@ const query = graphql`
 `;
 
 export const CollectionCard = () => {
-    const data = useStaticQuery(query);
-    const collections = data.allContentfulCollectionsPage.nodes;
+  const data = useStaticQuery(query);
+  const collections = data.allContentfulCollectionsPage.nodes;
 
-    return (
-        <article className="l-featurecard">
-            {" "}
-            {collections.map((item) => {
-                const {
-                    //          transcriptImage,
-                    collectionTitle,
-                    collectionBlurb: {
-                        childMarkdownRemark: { html },
-                    },
-                } = item;
+  return (
+    <article className="l-featurecard">
+      {" "}
+      {collections.map((item) => {
+        const {
+          //          transcriptImage,
+          collectionTitle,
+          collectionBlurb: {
+            childMarkdownRemark: { html },
+          },
+        } = item;
 
-                // remove dots in strings (if exists)
-                const cleanString = collectionTitle
-                    .replace(".", " ")
-                    .replace("(", " ")
-                    .replace(")", " ");
-                // use slugify to return a string in a slug format
-                const slug = slugify(cleanString, { lower: true });
+        // remove dots in strings (if exists)
+        const cleanString = collectionTitle
+          .replace(".", " ")
+          .replace("(", " ")
+          .replace(")", " ")
+          .replace("'", " ");
+        // use slugify to return a string in a slug format
+        const slug = slugify(cleanString, { lower: true });
 
-                return (
-                    <CollectionCardWrapper key={collectionTitle}>
-                        <div className="c-collectioncard">
-                            <div className="c-collectioncard__title">{collectionTitle}</div>
-                            <div className="c-collectioncard__blurb">{parse(`${html}`)}</div>
-                            <div className="c-collectioncard__button">
-                                <SimpleButton title="Read More" url={`${slug}`} />
-                            </div>
-                        </div>
-                    </CollectionCardWrapper>
-                );
-            })}
-        </article>
-    );
+        return (
+          <CollectionCardWrapper key={collectionTitle}>
+            <div className="c-collectioncard">
+              <div className="c-collectioncard__title">{collectionTitle}</div>
+              <div className="c-collectioncard__blurb">{parse(`${html}`)}</div>
+              <div className="c-collectioncard__button">
+                <SimpleButton title="Read More" url={`${slug}`} />
+              </div>
+            </div>
+          </CollectionCardWrapper>
+        );
+      })}
+    </article>
+  );
 };
 
 const CollectionCardWrapper = styled.section`
