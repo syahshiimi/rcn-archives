@@ -110,13 +110,13 @@ const BrowseMap = () => {
                                             }}
                                             onMouseEnter={() => {
                                                 let { name } = geo.properties;
-                                                setContent(`${name}`);
                                                 if (name == "Korea") {
                                                     name = "South Korea";
                                                 } else if (name == "Dem. Rep. Korea") {
                                                     name = "North Korea";
                                                 }
-                                                console.log(name);
+
+                                                setContent(`${name}`);
                                             }}
                                             onMouseLeave={() => {
                                                 setContent("");
