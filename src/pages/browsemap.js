@@ -2,12 +2,12 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import {
-  Annotation,
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-  ZoomableGroup,
+    Annotation,
+    ComposableMap,
+    Geographies,
+    Geography,
+    Marker,
+    ZoomableGroup,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { useFlexSearch } from "react-use-flexsearch";
@@ -22,180 +22,186 @@ import { ListofTranscripts } from "../components/listoftranscripts";
 import { countryData } from "../data"; // coordinates of the countrie
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    display: "flex",
-    backgroundColor: "#cfdbd5",
-    fontFamily: "Ubuntu",
-    opacity: "0.9",
-    padding: "4vh 2vw",
-    borderRadius: "3vh",
-    boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
-    flexDirection: "column",
-    flex: "0 1 auto",
-    maxHeight: "80vh",
-    overflow: "auto",
-    maxWidth: "40%",
-    listStyle: "none",
-  },
+    content: {
+        top: "50%",
+        left: "50%",
+        bottom: "auto",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        backgroundColor: "#cfdbd5",
+        fontFamily: "Ubuntu",
+        opacity: "0.9",
+        padding: "4vh 2vw",
+        borderRadius: "3vh",
+        boxShadow: "0px 4px 19px rgba(51, 53, 51, 0.35)",
+        flexDirection: "column",
+        flex: "0 1 auto",
+        maxHeight: "80vh",
+        overflow: "auto",
+        maxWidth: "40%",
+        listStyle: "none",
+    },
 };
 
 const isSearch = typeof window !== "undefined";
 if (isSearch) {
-  Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
+    Modal.setAppElement(document.getElementsByClassName(".l-browsemap"));
 }
 const BrowseMap = () => {
-  ///////////////////////////////////////
-  ///////////// React Modal /////////////
-  ///////////////////////////////////////
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+    ///////////////////////////////////////
+    ///////////// React Modal /////////////
+    ///////////////////////////////////////
+    const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+    function openModal() {
+        setIsOpen(true);
+    }
 
-  function afterOpenModal() {
-    // this.style.backgroundColor = "red";
-  }
+    function afterOpenModal() {
+        // this.style.backgroundColor = "red";
+    }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+    function closeModal() {
+        setIsOpen(false);
+    }
 
-  const [component, setComponent] = useState("");
-  const [content, setContent] = useState("");
+    const [component, setComponent] = useState("");
+    const [content, setContent] = useState("");
 
-  const pageBlurb = (
-    <h5 className="c-browsemap__content">
-      Our archival map showcases a diverse array of oral transcripts and
-      interviews we have collected and curated throughout the past few years. It
-      is a collective effort of many researchers. Please feel free to click on
-      any of the countries above. The archive is constantly growing.
-    </h5>
-  );
+    const pageBlurb = (
+        <h5 className="c-browsemap__content">
+            Our archival map showcases a diverse array of oral transcripts and
+            interviews we have collected and curated throughout the past few years. It
+            is a collective effort of many researchers. Please feel free to click on
+            any of the countries above. The archive is constantly growing.
+        </h5>
+    );
 
-  // metadata
-  const {
-    props: { children },
-  } = pageBlurb;
+    // metadata
+    const {
+        props: { children },
+    } = pageBlurb;
 
-  return (
-    <Layout>
-      <Head title="Browse Map" description={children} />{" "}
-      <BrowseMapWrapper>
-        <h1 className="c-browsemap__title">Browse Archive Map</h1>
-        <ReactTooltip className="c-browsemap__tooltip">
-          Read Documents of {content}{" "}
-        </ReactTooltip>
-        <div className="l-browsemap">
-          {" "}
-          <ComposableMap className="c-browsemap" data-tip="">
-            <ZoomableGroup center={[90, 20]} zoom={2.2}>
-              {" "}
-              <Geographies geography={asia}>
-                {({ geographies }) =>
-                  geographies.map((geo) => (
-                    <Geography
-                      className="c-browsemap__country"
-                      key={geo.rsmKey}
-                      geography={geo}
-                      onClick={() => {
-                        openModal();
-                        const { name } = geo.properties;
-                        setComponent(<ListofTranscripts searchValue={name} />);
-                        afterOpenModal();
-                      }}
-                      onMouseEnter={() => {
-                        const { name } = geo.properties;
-                        setContent(`${name}`);
-                      }}
-                      onMouseLeave={() => {
-                        setContent("");
-                      }}
-                      style={{
-                        default: {
-                          outline: "none",
-                        },
-                        hover: {
-                          fill: "#e8edff",
-                          outline: "none",
-                        },
-                        pressed: {
-                          fill: "#e8edff",
-                          outline: "none",
-                        },
-                      }}
+    return (
+        <Layout>
+            <Head title="Browse Map" description={children} />{" "}
+            <BrowseMapWrapper>
+                <h1 className="c-browsemap__title">Browse Archive Map</h1>
+                <ReactTooltip className="c-browsemap__tooltip">
+                    Read Documents of {content}{" "}
+                </ReactTooltip>
+                <div className="l-browsemap">
+                    {" "}
+                    <ComposableMap className="c-browsemap" data-tip="">
+                        <ZoomableGroup center={[90, 20]} zoom={2.2}>
+                            {" "}
+                            <Geographies geography={asia}>
+                                {({ geographies }) =>
+                                    geographies.map((geo) => (
+                                        <Geography
+                                            className="c-browsemap__country"
+                                            key={geo.rsmKey}
+                                            geography={geo}
+                                            onClick={() => {
+                                                openModal();
+                                                const { name } = geo.properties;
+                                                setComponent(<ListofTranscripts searchValue={name} />);
+                                                afterOpenModal();
+                                            }}
+                                            onMouseEnter={() => {
+                                                let { name } = geo.properties;
+                                                setContent(`${name}`);
+                                                if (name == "Korea") {
+                                                    name = "South Korea";
+                                                } else if (name == "Dem. Rep. Korea") {
+                                                    name = "North Korea";
+                                                }
+                                                console.log(name);
+                                            }}
+                                            onMouseLeave={() => {
+                                                setContent("");
+                                            }}
+                                            style={{
+                                                default: {
+                                                    outline: "none",
+                                                },
+                                                hover: {
+                                                    fill: "#e8edff",
+                                                    outline: "none",
+                                                },
+                                                pressed: {
+                                                    fill: "#e8edff",
+                                                    outline: "none",
+                                                },
+                                            }}
+                                        />
+                                    ))
+                                }
+                            </Geographies>
+                            {countryData.map(({ name, coordinates, markerOffset }) => {
+                                return (
+                                    <Marker key={name} coordinates={coordinates}>
+                                        <circle className="c-browsemap__marker"></circle>
+                                    </Marker>
+                                );
+                            })}
+                            {countryData.map(
+                                ({ name, coordinates, dx, dy, curve, textY, textX }) => {
+                                    return (
+                                        <Annotation
+                                            key={name}
+                                            subject={coordinates}
+                                            dx={dx}
+                                            dy={dy}
+                                            curve={curve}
+                                            connectorProps={{
+                                                stroke: "#242423",
+                                                strokeWidth: 1,
+                                                strokeLinecap: "round",
+                                            }}
+                                        >
+                                            <text
+                                                className="c-browsemap__annotateText"
+                                                x={textY}
+                                                y={textX}
+                                                textAnchor="middle"
+                                                alignmentBaseline="middle"
+                                            >
+                                                {name}
+                                            </text>
+                                        </Annotation>
+                                    );
+                                }
+                            )}
+                            <Modal
+                                isOpen={modalIsOpen}
+                                // ariaHideApp={false}
+                                onAfterOpen={afterOpenModal}
+                                onRequestClose={closeModal}
+                                style={customStyles}
+                                portalClassName="Modal"
+                                contentLabel="Example Modal"
+                            >
+                                {component}
+                            </Modal>
+                        </ZoomableGroup>
+                    </ComposableMap>
+                </div>
+                <section className="l-content">
+                    {" "}
+                    {pageBlurb}
+                    <p className="c-browsemap__contribute">
+                        If you would like to contribute, you can click on the button below.
+                    </p>
+                    <DefaultButton
+                        title="Contribute"
+                        url="/contribute"
+                        className="c-browsemap__button"
                     />
-                  ))
-                }
-              </Geographies>
-              {countryData.map(({ name, coordinates, markerOffset }) => {
-                return (
-                  <Marker key={name} coordinates={coordinates}>
-                    <circle className="c-browsemap__marker"></circle>
-                  </Marker>
-                );
-              })}
-              {countryData.map(
-                ({ name, coordinates, dx, dy, curve, textY, textX }) => {
-                  return (
-                    <Annotation
-                      key={name}
-                      subject={coordinates}
-                      dx={dx}
-                      dy={dy}
-                      curve={curve}
-                      connectorProps={{
-                        stroke: "#242423",
-                        strokeWidth: 1,
-                        strokeLinecap: "round",
-                      }}
-                    >
-                      <text
-                        className="c-browsemap__annotateText"
-                        x={textY}
-                        y={textX}
-                        textAnchor="middle"
-                        alignmentBaseline="middle"
-                      >
-                        {name}
-                      </text>
-                    </Annotation>
-                  );
-                }
-              )}
-              <Modal
-                isOpen={modalIsOpen}
-                // ariaHideApp={false}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                portalClassName="Modal"
-                contentLabel="Example Modal"
-              >
-                {component}
-              </Modal>
-            </ZoomableGroup>
-          </ComposableMap>
-        </div>
-        <section className="l-content">
-          {" "}
-          {pageBlurb}
-          <p className="c-browsemap__contribute">
-            If you would like to contribute, you can click on the button below.
-          </p>
-          <DefaultButton
-            title="Contribute"
-            url="/contribute"
-            className="c-browsemap__button"
-          />
-        </section>
-      </BrowseMapWrapper>
-    </Layout>
-  );
+                </section>
+            </BrowseMapWrapper>
+        </Layout>
+    );
 };
 
 const BrowseMapWrapper = styled.article`
