@@ -3,6 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 import React from "react";
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 import { BACard } from "../components/ba-cards";
 // components
@@ -124,7 +125,9 @@ const Index = () => {
                     <SimpleButton title="Read More" url="/about" />
                 </section>
                 <section className="l-featureddocs">
-                    <h1 className="c-featureddocs__title">Featured Collections</h1>
+                    <Link to="/collections">
+                        <h1 className="c-featureddocs__title">Featured Collections</h1>
+                    </Link>
                     <div className="c-featureddocs__container">
                         <CollectionCard />
                     </div>
