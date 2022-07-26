@@ -90,7 +90,7 @@ const TagsWrapper = styled.div`
     }
 
     .c-tagscontainer__tagpill {
-      margin: 0.5vh 0.3vw;
+      margin: 0.4vh 0.3vw !important;
     }
   }
 `;

@@ -14,6 +14,7 @@ const query = graphql`
     ) {
       nodes {
         collectionTitle
+        frontPageFeature
         collectionBlurb {
           childMarkdownRemark {
             html
@@ -35,6 +36,7 @@ export const CollectionCard = () => {
         const {
           //          transcriptImage,
           collectionTitle,
+            frontPageFeature,
           collectionBlurb: {
             childMarkdownRemark: { html },
           },
@@ -44,11 +46,13 @@ export const CollectionCard = () => {
         const cleanString = collectionTitle
           .replace(".", " ")
           .replace("(", " ")
-          .replace(")", " ");
+          .replace(")", " ")
+          .replace("'", " ");
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 
-        return (
+        if (frontPageFeature) {
+            return (
           <CollectionCardWrapper key={collectionTitle}>
             <div className="c-collectioncard">
               <div className="c-collectioncard__title">{collectionTitle}</div>
@@ -58,7 +62,9 @@ export const CollectionCard = () => {
               </div>
             </div>
           </CollectionCardWrapper>
-        );
+            )} else {
+                return null;
+            }
       })}
     </article>
   );
@@ -167,7 +173,7 @@ const CollectionCardWrapper = styled.section`
   @media (min-width: 2500px) {
     .c-collectioncard {
       margin: 1.5vh 1vw;
-      padding: 2.5vh 0.5vw;
+      padding: 2vh 0.5vw;
     }
     .c-collectioncard__title {
       margin: 1vh 1vw;
@@ -175,7 +181,7 @@ const CollectionCardWrapper = styled.section`
     }
 
     .c-collectioncard__blurb {
-      margin: 1vh 1.4vw;
+      margin: 1vh 1vw;
     }
 
     .c-collectioncard__read {

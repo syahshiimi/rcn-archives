@@ -3,6 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 import React from "react";
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 import { BACard } from "../components/ba-cards";
 // components
@@ -66,126 +67,128 @@ export const query = graphql`
   }
 `;
 const Index = () => {
-  const data = useStaticQuery(query);
-  const homepage = data.allContentfulHomePage.nodes;
+    const data = useStaticQuery(query);
+    const homepage = data.allContentfulHomePage.nodes;
 
-  // 1. Destructure homepage GraphQL query
-  // homepage query returns an array which has a single object
-  // we destructure the array first
-  const [HomeItems] = homepage;
+    // 1. Destructure homepage GraphQL query
+    // homepage query returns an array which has a single object
+    // we destructure the array first
+    const [HomeItems] = homepage;
 
-  // 2. Afterward,s we can proceed to destructure the HomeItems obj.
+    // 2. Afterward,s we can proceed to destructure the HomeItems obj.
 
-  const {
-    welcomeMessageImageCard,
-    welcomeMessageImageCard: { welcomealt },
-    browseArchivesBlurb,
-    workshopBlurb,
-    workshopsImageCard,
-    browseArchiveImageCard,
-    browseArchiveImageCard: { browsearchivesalt },
-    workshopsImageCard: { workshopalt },
-    welcomeMessage: {
-      childMarkdownRemark: { html },
-    },
-    projectMembersImageCard,
-    projectMembersBlurb,
-    projectMembersImageCard: { membersalt },
-  } = HomeItems;
+    const {
+        welcomeMessageImageCard,
+        welcomeMessageImageCard: { welcomealt },
+        browseArchivesBlurb,
+        workshopBlurb,
+        workshopsImageCard,
+        browseArchiveImageCard,
+        browseArchiveImageCard: { browsearchivesalt },
+        workshopsImageCard: { workshopalt },
+        welcomeMessage: {
+            childMarkdownRemark: { html },
+        },
+        projectMembersImageCard,
+        projectMembersBlurb,
+        projectMembersImageCard: { membersalt },
+    } = HomeItems;
 
-  // 3. Create Image Paths with getFile for images
-  const pathToWelcomeImage = getImage(welcomeMessageImageCard);
-  const pathToWorkshopsImage = getImage(workshopsImageCard);
-  const pathToProjectMembersImage = getImage(projectMembersImageCard);
-  const pathToBrowseArchivesImage = getImage(browseArchiveImageCard);
+    // 3. Create Image Paths with getFile for images
+    const pathToWelcomeImage = getImage(welcomeMessageImageCard);
+    const pathToWorkshopsImage = getImage(workshopsImageCard);
+    const pathToProjectMembersImage = getImage(projectMembersImageCard);
+    const pathToBrowseArchivesImage = getImage(browseArchiveImageCard);
 
-  // Metadata
-  const metadata = parse(`${html}`);
-  const {
-    props: { children },
-  } = metadata;
+    // Metadata
+    const metadata = parse(`${html}`);
+    const {
+        props: { children },
+    } = metadata;
 
-  return (
-    <Layout>
-      <Head title="Home" description={children} />
-      <IndexWrapper>
-        <section className="l-welcome">
-          <h1 className="c-welcome__title">Welcome Message</h1>
-          <ImageWrapper>
-            {" "}
-            <GatsbyImage
-              image={pathToWelcomeImage}
-              alt={welcomealt}
-              className="c-welcome__image"
-            ></GatsbyImage>
-          </ImageWrapper>
-          <div className="c-welcome__blurb">{parse(`${html}`)}</div>
+    return (
+        <Layout>
+            <Head title="Home" description={children} />
+            <IndexWrapper>
+                <section className="l-welcome">
+                    <h1 className="c-welcome__title">Welcome Message</h1>
+                    <ImageWrapper>
+                        {" "}
+                        <GatsbyImage
+                            image={pathToWelcomeImage}
+                            alt={welcomealt}
+                            className="c-welcome__image"
+                        ></GatsbyImage>
+                    </ImageWrapper>
+                    <div className="c-welcome__blurb">{parse(`${html}`)}</div>
 
-          <SimpleButton title="Read More" url="/about" />
-        </section>
-        <section className="l-featureddocs">
-          <h1 className="c-featureddocs__title">Featured Collections</h1>
-          <div className="c-featureddocs__container">
-            <CollectionCard />
-          </div>
-        </section>
-        <hr className="c-divider__one"></hr>{" "}
-        <section className="l-recentlyadded">
-          <h1 className="c-recentlyadded__title">Recently Added</h1>
-          <div className="c-recentlyadded__container">
-            {" "}
-            <RecentlyAdd />
-          </div>
-        </section>
-        <hr className="c-divider__two"></hr>{" "}
-        <section className="l-browsearchives">
-          <h1 className="c-browsearchives__title">Browse Archives</h1>
-          <div className="c-browsearchives__container">
-            <BACard type="Search" />
-          </div>
-          <ImageWrapper>
-            {" "}
-            <GatsbyImage
-              image={pathToBrowseArchivesImage}
-              alt={browsearchivesalt}
-              className="c-browsearchives__image"
-            ></GatsbyImage>
-          </ImageWrapper>
-          <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
+                    <SimpleButton title="Read More" url="/about" />
+                </section>
+                <section className="l-featureddocs">
+                    <Link to="/collections">
+                        <h1 className="c-featureddocs__title">Featured Collections</h1>
+                    </Link>
+                    <div className="c-featureddocs__container">
+                        <CollectionCard />
+                    </div>
+                </section>
+                <hr className="c-divider__one"></hr>{" "}
+                <section className="l-recentlyadded">
+                    <h1 className="c-recentlyadded__title">Recently Added</h1>
+                    <div className="c-recentlyadded__container">
+                        {" "}
+                        <RecentlyAdd />
+                    </div>
+                </section>
+                <hr className="c-divider__two"></hr>{" "}
+                <section className="l-browsearchives">
+                    <h1 className="c-browsearchives__title">Browse Archives</h1>
+                    <div className="c-browsearchives__container">
+                        <BACard type="Search" />
+                    </div>
+                    <ImageWrapper>
+                        {" "}
+                        <GatsbyImage
+                            image={pathToBrowseArchivesImage}
+                            alt={browsearchivesalt}
+                            className="c-browsearchives__image"
+                        ></GatsbyImage>
+                    </ImageWrapper>
+                    <p className="c-browsearchives__blurb">{browseArchivesBlurb}</p>
 
-          <SimpleButton title="Read More" url="/browsemap" />
-        </section>
-        <section className="l-workshops">
-          <h1 className="c-workshops__title">Workshops</h1>
-          <ImageWrapper>
-            {" "}
-            <GatsbyImage
-              image={pathToWorkshopsImage}
-              alt={workshopalt}
-              className="c-workshops__image"
-            ></GatsbyImage>
-          </ImageWrapper>
-          <p className="c-workshops__blurb">{workshopBlurb}</p>
+                    <SimpleButton title="Read More" url="/browsemap" />
+                </section>
+                <section className="l-workshops">
+                    <h1 className="c-workshops__title">Workshops</h1>
+                    <ImageWrapper>
+                        {" "}
+                        <GatsbyImage
+                            image={pathToWorkshopsImage}
+                            alt={workshopalt}
+                            className="c-workshops__image"
+                        ></GatsbyImage>
+                    </ImageWrapper>
+                    <p className="c-workshops__blurb">{workshopBlurb}</p>
 
-          <SimpleButton title="Read More" url="/eventlist" />
-        </section>
-        <section className="l-projectmembers">
-          <h1 className="c-projectmembers__title">Project Members</h1>
-          <ImageWrapper>
-            {" "}
-            <GatsbyImage
-              image={pathToProjectMembersImage}
-              alt={membersalt}
-              className="c-projectmembers__image"
-            ></GatsbyImage>
-          </ImageWrapper>
-          <p className="c-projectmembers__blurb">{projectMembersBlurb}</p>
+                    <SimpleButton title="Read More" url="/eventlist" />
+                </section>
+                <section className="l-projectmembers">
+                    <h1 className="c-projectmembers__title">Project Members</h1>
+                    <ImageWrapper>
+                        {" "}
+                        <GatsbyImage
+                            image={pathToProjectMembersImage}
+                            alt={membersalt}
+                            className="c-projectmembers__image"
+                        ></GatsbyImage>
+                    </ImageWrapper>
+                    <p className="c-projectmembers__blurb">{projectMembersBlurb}</p>
 
-          <SimpleButton title="Read More" url="/about" />
-        </section>
-      </IndexWrapper>
-    </Layout>
-  );
+                    <SimpleButton title="Read More" url="/about" />
+                </section>
+            </IndexWrapper>
+        </Layout>
+    );
 };
 
 const ImageWrapper = styled.article`

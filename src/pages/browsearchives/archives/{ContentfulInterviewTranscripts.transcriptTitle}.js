@@ -13,107 +13,107 @@ import { NestedTagsContainer } from "../../../components/tags";
 import { TranscriptContent } from "../../../components/transcriptcontent";
 
 const FullTranscript = ({ data }) => {
-  ////////////////////////////////////////
-  ////////////////////////////////////////
-  ////////////////////////////////////////
-  const transcript = data.contentfulInterviewTranscripts;
-  const {
-    transcriptTitle,
-    transcriptTags,
-    englishFullTranscript,
-    transcriptEndNotes,
-    originalTranscriptLanguage,
-    vernacularFullTranscript,
-    onelinerteaser: {
-      childMarkdownRemark: { oneliner },
-    },
-  } = transcript || [];
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+    ////////////////////////////////////////
+    const transcript = data.contentfulInterviewTranscripts;
+    const {
+        transcriptTitle,
+        transcriptTags,
+        englishFullTranscript,
+        transcriptEndNotes,
+        originalTranscriptLanguage,
+        vernacularFullTranscript,
+        onelinerteaser: {
+            childMarkdownRemark: { oneliner },
+        },
+    } = transcript || [];
 
-  ////////////////////////////////////////
-  ////////  Rich Text Render    //////////
-  ////////////////////////////////////////
+    ////////////////////////////////////////
+    ////////  Rich Text Render    //////////
+    ////////////////////////////////////////
 
-  const options = {
-    renderMark: {
-      [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
-    },
-    renderNode: {
-      [INLINES.HYPERLINK]: (node, children) => {
-        const { uri } = node.data;
-        return (
-          <a href={uri} className="underline">
-            {children}
-          </a>
-        );
-      },
-      [BLOCKS.HEADING_2]: (node, children) => {
-        return <h2>{children}</h2>;
-      },
-      [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol>{children}</ol>;
-      },
-    },
-  };
+    const options = {
+        renderMark: {
+            [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
+        },
+        renderNode: {
+            [INLINES.HYPERLINK]: (node, children) => {
+                const { uri } = node.data;
+                return (
+                    <a href={uri} className="underline">
+                        {children}
+                    </a>
+                );
+            },
+            [BLOCKS.HEADING_2]: (node, children) => {
+                return <h2>{children}</h2>;
+            },
+            [BLOCKS.OL_LIST]: (node, children) => {
+                return <ol>{children}</ol>;
+            },
+        },
+    };
 
-  let englishLanguage = renderRichText(englishFullTranscript, options);
-  let vernacularLanguage = vernacularFullTranscript
-    ? renderRichText(vernacularFullTranscript, options)
-    : null;
-  let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
+    let englishLanguage = renderRichText(englishFullTranscript, options);
+    let vernacularLanguage = vernacularFullTranscript
+        ? renderRichText(vernacularFullTranscript, options)
+        : null;
+    let lang = originalTranscriptLanguage ? originalTranscriptLanguage : null;
 
-  // Conditional Rendering of Endnotes
-  // Instead of destructuring first, we first check if transcriptEndNotes is
-  // a null value By doing so, we avoid incurring the uncaughtError.
-  function EndnotesContent() {
-    if (transcriptEndNotes != null) {
-      const {
-        childMarkdownRemark: { endnotes },
-      } = transcriptEndNotes;
-      return (
-        <div className="c-fulltranscript__endnotescontent">
-          {parse(`${endnotes}`)}
-        </div>
-      );
-    } else if (transcriptEndNotes == null) {
-      return <p className="c-fulltranscript__endnotescontent">None </p>;
+    // Conditional Rendering of Endnotes
+    // Instead of destructuring first, we first check if transcriptEndNotes is
+    // a null value By doing so, we avoid incurring the uncaughtError.
+    function EndnotesContent() {
+        if (transcriptEndNotes != null) {
+            const {
+                childMarkdownRemark: { endnotes },
+            } = transcriptEndNotes;
+            return (
+                <div className="c-fulltranscript__endnotescontent">
+                    {parse(`${endnotes}`)}
+                </div>
+            );
+        } else if (transcriptEndNotes == null) {
+            return <p className="c-fulltranscript__endnotescontent">None </p>;
+        }
     }
-  }
 
-  ////////////////////////////////////////
-  /////////// Component Render ///////////
-  ////////////////////////////////////////
+    ////////////////////////////////////////
+    /////////// Component Render ///////////
+    ////////////////////////////////////////
 
-  // Metadata
-  const metadata = parse(`${oneliner}`);
-  const {
-    props: { children },
-  } = metadata;
+    // Metadata
+    const metadata = parse(`${oneliner}`);
+    const {
+        props: { children },
+    } = metadata;
 
-  return (
-    <Layout>
-      <Head title={transcriptTitle} description={children} />
-      <FullTranscriptWrapper>
-        <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
-        <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
-        <BackToSummaryBtn />
-        <hr className="c-fulltranscript__border"></hr>
-        <TranscriptContent
-          englishTranscript={englishLanguage}
-          vernacularTranscript={vernacularLanguage}
-          lang={lang}
-        />
-        <hr className="c-fulltranscript__border"></hr>
-        <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
-        <NestedTagsContainer tags={transcriptTags} />
-        <div className="c-fulltranscript__endnotescontainer">
-          <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
-          <hr className="c-fulltranscript__endnotesborder"></hr>
-          <EndnotesContent />
-        </div>
-        <BackTopButton />
-      </FullTranscriptWrapper>
-    </Layout>
-  );
+    return (
+        <Layout>
+            <Head title={transcriptTitle} description={children} />
+            <FullTranscriptWrapper>
+                <h1 className="c-fulltranscript__title">{transcriptTitle}</h1>
+                <div className="c-fulltranscript__oneliner">{parse(`${oneliner}`)}</div>
+                <BackToSummaryBtn />
+                <hr className="c-fulltranscript__border"></hr>
+                <TranscriptContent
+                    englishTranscript={englishLanguage}
+                    vernacularTranscript={vernacularLanguage}
+                    lang={lang}
+                />
+                <hr className="c-fulltranscript__border"></hr>
+                <h2 className="c-fulltranscript__tagsandkeywords">Tags & Keywords</h2>
+                <NestedTagsContainer tags={transcriptTags} />
+                <div className="c-fulltranscript__endnotescontainer">
+                    <h5 className="c-fulltranscript__endnotes">Endnotes</h5>
+                    <hr className="c-fulltranscript__endnotesborder"></hr>
+                    <EndnotesContent />
+                </div>
+                <BackTopButton />
+            </FullTranscriptWrapper>
+        </Layout>
+    );
 };
 export const query = graphql`
   query ($transcriptTitle: String) {
@@ -280,7 +280,11 @@ const FullTranscriptWrapper = styled.section`
   @media (min-width: 2500px) {
     padding: 6vh 24vw;
     .c-fulltranscript__oneliner {
-      margin: 2vh 0vw;
+      margin: 2vh 4vw;
+        p {
+            font-size: 1.2rem;
+        }
+
     }
 
     .c-fulltranscript__border {

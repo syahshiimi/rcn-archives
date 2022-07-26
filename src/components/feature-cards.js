@@ -8,29 +8,29 @@ import styled from "styled-components";
 // import components
 import { SimpleButton } from "./simplebutton";
 export const FeatureCard = ({ id, transcriptTitle, html }) => {
-  // remove dots in strings (if exists)
-  const cleanString = transcriptTitle
-    .replace(".", " ")
-    .replace("(", " ")
-    .replace(")", " ");
+    // remove dots in strings (if exists)
+    const cleanString = transcriptTitle
+        .replace(".", " ")
+        .replace("(", " ")
+        .replace(")", " ");
 
-  // use slugify to return a string in a slug format
-  const slug = slugify(cleanString, { lower: true });
+    // use slugify to return a string in a slug format
+    const slug = slugify(cleanString, { lower: true });
 
-  // Sanitize HTML to be parsed
-  const cleanHTML = sanitize(html);
+    // Sanitize HTML to be parsed
+    const cleanHTML = sanitize(html);
 
-  return (
-    <FeatureCardWrapper key={id}>
-      <div className="c-featurecard">
-        <div className="c-featurecard__title">{transcriptTitle}</div>
-        <div className="c-featurecard__oneliner">{parse(`${cleanHTML}`)}</div>
-        <span className="c-featurecard__read">
-          <SimpleButton title="Read More" url={`../browsearchives/${slug}`} />
-        </span>
-      </div>
-    </FeatureCardWrapper>
-  );
+    return (
+        <FeatureCardWrapper key={id}>
+            <div className="c-featurecard">
+                <div className="c-featurecard__title">{transcriptTitle}</div>
+                <div className="c-featurecard__oneliner">{parse(`${cleanHTML}`)}</div>
+                <span className="c-featurecard__read">
+                    <SimpleButton title="Read More" url={`../browsearchives/${slug}`} />
+                </span>
+            </div>
+        </FeatureCardWrapper>
+    );
 };
 
 const FeatureCardWrapper = styled.div`

@@ -329,8 +329,9 @@ const BrowseArchivesWrapper = styled.main`
     }
 
     .c-browsearchives__content {
-      margin: 4vh 13vw;
-      font-size: 1.25rem;
+      margin: 4vh 15vw;
+      font-size: 1.55rem;
+      line-height: 30px;
     }
 
     .l-browsearchives__search {

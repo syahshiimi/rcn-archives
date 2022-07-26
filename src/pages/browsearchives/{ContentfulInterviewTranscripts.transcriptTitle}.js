@@ -58,100 +58,101 @@ export const query = graphql`
 `;
 
 const TranscriptTemplate = ({ data }) => {
-  const transcript = data.contentfulInterviewTranscripts;
-  const {
-    transcriptTags,
-    transcriptImage,
-    onelinerteaser: {
-      childMarkdownRemark: { oneliner },
-    },
-    transcriptTitle,
-  } = transcript;
+    const transcript = data.contentfulInterviewTranscripts;
+    const {
+        transcriptTags,
+        transcriptImage,
+        onelinerteaser: {
+            childMarkdownRemark: { oneliner },
+        },
+        transcriptTitle,
+    } = transcript;
 
-  //////////////////////////
-  ////// Image Utils ///////
-  //////////////////////////
+    //////////////////////////
+    ////// Image Utils ///////
+    //////////////////////////
 
-  // Conditionally render gatsby image
-  const pathToImage = getImage(transcriptImage);
-  function TranscriptImage() {
-    if (transcriptImage != undefined) {
-      return (
-        <GatsbyImage
-          image={pathToImage}
-          alt={transcriptTitle}
-          className="c-transcriptsummary__image std-style"
-        />
-      );
-    } else {
-      return null;
+    // Conditionally render gatsby image
+    const pathToImage = getImage(transcriptImage);
+    function TranscriptImage() {
+        if (transcriptImage != undefined) {
+            return (
+                <GatsbyImage
+                    image={pathToImage}
+                    alt={transcriptTitle}
+                    className="c-transcriptsummary__image std-style"
+                />
+            );
+        } else {
+            return null;
+        }
     }
-  }
 
-  // remove dots in strings (if exists)
-  const cleanString = transcriptTitle
-    .replace(".", " ")
-    .replace("(", " ")
-    .replace(")", " ");
-  // use slugify to return a string in a slug format
-  const slug = slugify(cleanString, { lower: true });
+    // remove dots in strings (if exists)
+    const cleanString = transcriptTitle
+        .replace(".", " ")
+        .replace("(", " ")
+        .replace(")", " ")
+        .replace("&", "and");
+    // use slugify to return a string in a slug format
+    const slug = slugify(cleanString, { lower: true });
 
-  // Metadata
-  const metadata = parse(`${oneliner}`);
-  const {
-    props: { children },
-  } = metadata;
+    // Metadata
+    const metadata = parse(`${oneliner}`);
+    const {
+        props: { children },
+    } = metadata;
 
-  return (
-    <Layout>
-      <Head title={transcriptTitle} description={children} />
-      <TranscriptWrapper>
-        <h1 className="c-transcriptsummary__title">{transcriptTitle}</h1>
-        {/* container  to create flexible grid + blox layout */}
-        <div className="c-transcriptsummary__container">
-          <ImageWrapper>
-            <TranscriptImage />
-          </ImageWrapper>
+    return (
+        <Layout>
+            <Head title={transcriptTitle} description={children} />
+            <TranscriptWrapper>
+                <h1 className="c-transcriptsummary__title">{transcriptTitle}</h1>
+                {/* container  to create flexible grid + blox layout */}
+                <div className="c-transcriptsummary__container">
+                    <ImageWrapper>
+                        <TranscriptImage />
+                    </ImageWrapper>
 
-          {/* sub-container to create flexible grid + blox layout */}
-          <div className="c-transcriptsummary__subcontainer">
-            <div className="c-transcriptsummary__oneliner">
-              {parse(`${oneliner}`)}
-            </div>
-            <div className="c-transcriptsummary__tagsandkeywords">
-              <h5>Tags & Keywords</h5>
-            </div>
-            <div className="c-transcriptsummary__tagscontainer">
-              <NestedTagsContainer tags={transcriptTags} />
-            </div>
-            <GroupedTranscripts transcript={transcript} />
-          </div>
-        </div>
-        <hr className="c-transcriptsummary__border"></hr>
-        <Accordion
-          transcript={transcript}
-          type="Document Summary"
-          name="document__summary"
-        />{" "}
-        <Accordion
-          transcript={transcript}
-          type="Document Transcript"
-          name="document__transcript"
-        />
-        <ReadFullButton slug={slug} />
-        <Accordion
-          transcript={transcript}
-          type="Document Information"
-          name="document__information"
-        />
-        <Accordion
-          transcript={transcript}
-          type="Document Questions"
-          name="document__questions"
-        />
-      </TranscriptWrapper>
-    </Layout>
-  );
+                    {/* sub-container to create flexible grid + blox layout */}
+                    <div className="c-transcriptsummary__subcontainer">
+                        <div className="c-transcriptsummary__oneliner">
+                            {parse(`${oneliner}`)}
+                        </div>
+                        <div className="c-transcriptsummary__tagsandkeywords">
+                            <h5>Tags & Keywords</h5>
+                        </div>
+                        <div className="c-transcriptsummary__tagscontainer">
+                            <NestedTagsContainer tags={transcriptTags} />
+                        </div>
+                        <GroupedTranscripts transcript={transcript} />
+                    </div>
+                </div>
+                <hr className="c-transcriptsummary__border"></hr>
+                <Accordion
+                    transcript={transcript}
+                    type="Document Summary"
+                    name="document__summary"
+                />{" "}
+                <Accordion
+                    transcript={transcript}
+                    type="Document Transcript"
+                    name="document__transcript"
+                />
+                <ReadFullButton slug={slug} />
+                <Accordion
+                    transcript={transcript}
+                    type="Document Information"
+                    name="document__information"
+                />
+                <Accordion
+                    transcript={transcript}
+                    type="Document Questions"
+                    name="document__questions"
+                />
+            </TranscriptWrapper>
+        </Layout>
+    );
 };
 
 const ImageWrapper = styled.article`
