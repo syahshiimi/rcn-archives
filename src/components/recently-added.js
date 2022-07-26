@@ -38,7 +38,7 @@ export const RecentlyAdd = () => {
         if (mediaQuery.matches) {
             recentaddedsliced = recentadded.slice(0, 10);
         } else {
-            recentaddedsliced = recentadded.slice(0, 7);
+            recentaddedsliced = recentadded.slice(0, 8);
         }
 
         return (

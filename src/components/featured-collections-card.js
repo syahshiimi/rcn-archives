@@ -14,6 +14,7 @@ const query = graphql`
     ) {
       nodes {
         collectionTitle
+        frontPageFeature
         collectionBlurb {
           childMarkdownRemark {
             html
@@ -35,6 +36,7 @@ export const CollectionCard = () => {
         const {
           //          transcriptImage,
           collectionTitle,
+            frontPageFeature,
           collectionBlurb: {
             childMarkdownRemark: { html },
           },
@@ -49,7 +51,8 @@ export const CollectionCard = () => {
         // use slugify to return a string in a slug format
         const slug = slugify(cleanString, { lower: true });
 
-        return (
+        if (frontPageFeature) {
+            return (
           <CollectionCardWrapper key={collectionTitle}>
             <div className="c-collectioncard">
               <div className="c-collectioncard__title">{collectionTitle}</div>
@@ -59,7 +62,9 @@ export const CollectionCard = () => {
               </div>
             </div>
           </CollectionCardWrapper>
-        );
+            )} else {
+                return null;
+            }
       })}
     </article>
   );
