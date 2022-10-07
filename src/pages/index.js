@@ -131,7 +131,7 @@ const Index = () => {
                     <div className="c-featureddocs__container">
                         <CollectionCard />
                     </div>
-                    <SimpleButton url="/collections" title={"Read More"}/>
+                    {/* <SimpleButton url="/collections" title={"Read More"}/> */}
                 </section>
                 <hr className="c-divider__one"></hr>{" "}
                 <section className="l-recentlyadded">
