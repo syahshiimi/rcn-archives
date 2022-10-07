@@ -105,7 +105,7 @@ const CollectionCardWrapper = styled.section`
     font-weight: normal;
     text-align: right;
     margin: 1vh 0vw;
-    font-size: 0.85rem;
+    font-size: 2.85rem;
     color: var(--primary-clr-150);
     text-align: right;
   }
@@ -135,13 +135,11 @@ const CollectionCardWrapper = styled.section`
     .c-collectioncard__read {
       margin: 0;
     }
+
     .c-collectioncard__button {
       margin: 0;
 
-      .c-simplebutton {
-        font-size: 0.65rem;
-      }
-    }
+        }
   }
 
   @media (min-width: 1280px) {

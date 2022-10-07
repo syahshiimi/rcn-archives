@@ -240,6 +240,11 @@ const NavStyle = styled.nav`
     list-style: none;
   }
 
+    .c-nav__Search.Collections {
+    list-style: none;
+  }
+
+
   ///////////////////////////////
   /////// TABLET ////////////////
   ///////////////////////////////
@@ -379,25 +384,32 @@ const NavStyle = styled.nav`
       margin-left: 1.2rem;
       row-gap: 0.3rem;
       flex-direction: column;
+      align-items: flex-end;
     }
 
     .c-nav.Search.Archive {
       display: flex;
       visibility: visible;
-      justify-content: flex-end;
     }
     .c-nav__Search.Map {
       display: flex;
-      justify-content: flex-end;
       visibility: visible;
     }
+    
+    .c-nav__Search.Collections {
+       display: flex;
+      visibility: visible;
+ 
+    }
+    
+     
   }
 
   //////////////////////////////////
   ///////* Desktop Display *////////
   //////////////////////////////////
   @media (min-width: 1280px) {
-    padding: 4.5vh 4.5vw;
+    padding: 4.5vh 4.5vw 6vh 4.5vw;
     /* height: 13vh !important; */
 
     .c-nav__container {

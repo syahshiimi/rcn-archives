@@ -24,6 +24,12 @@ export const pageLinks = [
         url: "/browsearchives",
         text: "Search Archive",
       },
+      {
+        pageID: 3,
+        url: "/collections",
+        text: "Search Collections",
+      },
+
     ],
   },
   {

@@ -141,9 +141,6 @@ const RecentlyAddWrapper = styled.section`
       }
     }
 
-    .c-simplebutton {
-      font-size: 0.65rem;
-    }
   }
 
   /////////////////////////////

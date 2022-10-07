@@ -29,7 +29,7 @@ const SimpleButtonWrapper = styled.div`
     align-items: center;
     align-items: center;
     font-weight: bold;
-    font-size: 0.75rem;
+    font-size: 0.825rem;
   }
   .c-simplebutton__icon {
     width: 1.25rem;
